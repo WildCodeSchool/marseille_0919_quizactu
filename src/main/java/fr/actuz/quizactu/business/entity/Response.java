@@ -1,13 +1,29 @@
 package fr.actuz.quizactu.business.entity;
 
+import java.io.Serializable;
 import java.util.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * 
  */
-public class Response {
+@Entity
+@Table(name="RESPONSE")
+public class Response implements Serializable {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Default constructor
      */
     public Response() {
@@ -16,6 +32,8 @@ public class Response {
     /**
      * 
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     /**
@@ -31,6 +49,8 @@ public class Response {
     /**
      * 
      */
+    @ManyToOne(optional=false) 
+    @JoinColumn(name="QUESTION_ID", nullable=false)
     private Question question;
 
 }

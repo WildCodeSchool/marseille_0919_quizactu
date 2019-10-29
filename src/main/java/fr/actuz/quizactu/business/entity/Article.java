@@ -69,6 +69,6 @@ public class Article implements Serializable {
 	 * 
 	 */
 	@ManyToMany(mappedBy = "articles")
-	private List<Account> articles = new ArrayList<Account>();
+	private List<Account> accounts = new ArrayList<Account>();
 
 }

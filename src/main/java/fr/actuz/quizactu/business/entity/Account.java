@@ -1,51 +1,75 @@
 package fr.actuz.quizactu.business.entity;
 
+import java.io.Serializable;
 import java.util.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * 
  */
-public class Account {
+@Entity
+@Table(name = "ACCOUNT")
+public class Account implements Serializable {
 
-    /**
-     * Default constructor
-     */
-    public Account() {
-    }
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * 
-     */
-    private Integer id;
+	/**
+	 * Default constructor
+	 */
+	public Account() {
+	}
 
-    /**
-     * 
-     */
-    private Role role;
+	/**
+	 * 
+	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-    /**
-     * 
-     */
-    private String userName;
+	/**
+	 * 
+	 */
+	@ManyToOne 
+    @JoinColumn(name="ROLE_ID", nullable=false)
+	private Role role;
 
-    /**
-     * 
-     */
-    private String email;
+	/**
+	 * 
+	 */
+	private String userName;
 
-    /**
-     * 
-     */
-    private String password;
+	/**
+	 * 
+	 */
+	private String email;
 
-    /**
-     * 
-     */
-    private Integer score;
+	/**
+	 * 
+	 */
+	private String password;
 
-    /**
-     * 
-     */
-    private List<Article> articles;
+	/**
+	 * 
+	 */
+	private Integer score;
+
+	/**
+	 * 
+	 */
+	@ManyToMany
+	@JoinTable(name = "ACCOUNT_has_ARTICLE")
+	private List<Article> articles;
 
 }

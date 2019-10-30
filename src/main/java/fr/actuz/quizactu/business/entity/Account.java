@@ -83,9 +83,6 @@ public class Account implements Serializable {
 		this.score = score;
 		this.articles = articles;
 	}
-	
-	
-	
 
 	public Account(String userName, String email, String password) {
 		super();
@@ -93,8 +90,6 @@ public class Account implements Serializable {
 		this.email = email;
 		this.password = password;
 	}
-
-
 
 
 	public Integer getId() {
@@ -152,14 +147,9 @@ public class Account implements Serializable {
 	public void setArticles(List<Article> articles) {
 		this.articles = articles;
 	}
-
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
-	
-	
-	
-	
-	
 }

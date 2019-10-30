@@ -2,35 +2,34 @@ package fr.actuz.quizactu.business.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import fr.actuz.quizactu.business.entity.Account;
+import fr.actuz.quizactu.persistence.AccountRepository;
 
 @Service
 public class AccountService implements UserDetailsService{
-	private List<Account> accounts;
+	
+	@Autowired
+	private AccountRepository accountRepo;
 	
 	
-	
-	
-	
-	
-	public void create(String userName, String password, String email) {
-		
-		this.accounts.add(new Account(userName, password, email));
-	}
-
-
-
-
-
-
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+		return this.accountRepo.findOneByUsername(userName);
 	}
+	
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+	    return new BCryptPasswordEncoder();
+	}
+
+
+
+	
 }

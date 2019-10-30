@@ -72,13 +72,33 @@ public class Account implements Serializable {
 	@JoinTable(name = "ACCOUNT_has_ARTICLE")
 	private List<Article> articles;
 
+	public Account(Integer id, Role role, String userName, String email, String password, Integer score,
+			List<Article> articles) {
+		super();
+		this.id = id;
+		this.role = role;
+		this.userName = userName;
+		this.email = email;
+		this.password = password;
+		this.score = score;
+		this.articles = articles;
+	}
+
+	public Account(String userName, String email, String password) {
+		super();
+		this.userName = userName;
+		this.email = email;
+		this.password = password;
+	}
+
+
 	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+//	public void setId(Integer id) {
+//		this.id = id;
+//	}
 
 	public Role getRole() {
 		return role;
@@ -128,6 +148,8 @@ public class Account implements Serializable {
 		this.articles = articles;
 	}
 	
-	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 }

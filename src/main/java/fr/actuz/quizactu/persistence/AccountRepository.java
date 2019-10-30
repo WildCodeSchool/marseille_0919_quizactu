@@ -13,6 +13,6 @@ import fr.actuz.quizactu.business.entity.Account;
  */
 public interface AccountRepository extends JpaRepository<Account, Integer> {
 
-	UserDetails findOneByUsername(final String userName);
+	UserDetails findOneByUserName(String userName);
 
 }

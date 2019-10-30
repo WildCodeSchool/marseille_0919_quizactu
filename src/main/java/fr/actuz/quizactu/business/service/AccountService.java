@@ -10,10 +10,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import fr.actuz.quizactu.business.entity.Account;
 import fr.actuz.quizactu.persistence.AccountRepository;
 
 @Service
-public class AccountService implements UserDetailsService{
+public class AccountService implements UserDetailsService {
 	
 	@Autowired
 	private AccountRepository accountRepo;
@@ -21,7 +22,7 @@ public class AccountService implements UserDetailsService{
 	
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-		return this.accountRepo.findOneByUsername(userName);
+		return this.accountRepo.findOneByUserName(userName);
 	}
 	
 	@Bean
@@ -29,7 +30,33 @@ public class AccountService implements UserDetailsService{
 	    return new BCryptPasswordEncoder();
 	}
 
+	public List<Account> getAll(){
+		return this.accountRepo.findAll();
+	}
+	
+	public void create(String userName, String email, String password) {
+		this.accountRepo.save(new Account(userName, email, password));
+	}
+	
+	public Account read(int id) {
+		return this.accountRepo.getOne(id);
+	}
+	
+	public void update(Account account) {
+		this.accountRepo.save(account);
+	}
+	
+	public void delete(int id) {
+		this.accountRepo.deleteById(id);
+	}
 
+	
+	
+	
+	
+	
+	
+	
 
 	
 }

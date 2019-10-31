@@ -13,12 +13,16 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 /**
  * 
  */
 @Entity
 @Table(name = "ACCOUNT")
-public class Account implements Serializable {
+public class Account implements Serializable, UserDetails {
 
 	/**
 	 * 
@@ -89,6 +93,7 @@ public class Account implements Serializable {
 		this.userName = userName;
 		this.email = email;
 		this.password = password;
+		this.role = new Role(3, "user");
 	}
 
 
@@ -108,9 +113,6 @@ public class Account implements Serializable {
 		this.role = role;
 	}
 
-	public String getUserName() {
-		return userName;
-	}
 
 	public void setUserName(String userName) {
 		this.userName = userName;
@@ -151,5 +153,37 @@ public class Account implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return Arrays.asList(this.role);
+	}
+
+	@Override
+	public String getUsername() {
+		return this.userName;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
+
+
 
 }

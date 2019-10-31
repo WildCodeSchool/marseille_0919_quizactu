@@ -14,28 +14,19 @@ import fr.actuz.quizactu.business.entity.Account;
 import fr.actuz.quizactu.persistence.AccountRepository;
 
 @Service
-public class AccountService implements UserDetailsService {
+public class AccountService  {
 	
 	@Autowired
 	private AccountRepository accountRepo;
-	
-	
-	@Override
-	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-		return this.accountRepo.findOneByUserName(userName);
-	}
-	
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-	    return new BCryptPasswordEncoder();
-	}
 
 	public List<Account> getAll(){
 		return this.accountRepo.findAll();
 	}
 	
 	public void create(String userName, String email, String password) {
-		this.accountRepo.save(new Account(userName, email, password));
+		final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		final String hashedPassword = passwordEncoder.encode(password);
+		this.accountRepo.save(new Account(userName, email, hashedPassword));
 	}
 	
 	public Account read(int id) {
@@ -49,14 +40,6 @@ public class AccountService implements UserDetailsService {
 	public void delete(int id) {
 		this.accountRepo.deleteById(id);
 	}
-
-	
-	
-	
-	
-	
-	
-	
 
 	
 }

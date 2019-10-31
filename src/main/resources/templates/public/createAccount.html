@@ -2,18 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 
-<head th:insert="head.html :: head"></head>
+<head th:insert="/head.html :: head"></head>
 <head>
-<link rel="stylesheet" th:href="@{css/style.css}">
+<link rel="stylesheet" th:href="@{./css/style.css}">
 </head>
 <body>
-	<h1>Veuillez vous authentifier</h1>
+	<h1>Veuillez créer votre compte</h1>
 	<div class="container">
-		<form class="form-signin" th:action="@{/form}"
-			method="post">
+		<form class="form-signin" th:action="@{/form}" method="post">
+			<div class="form-group">
+				<label for="email">Votre email</label> <input id="email"
+					name="email" type="email" class="form-control">
+			</div>
 			<div class="form-group">
 				<label for="username">Nom d'utilisateur</label> <input id="username"
-					name="username" class="form-control">
+					name="userName" class="form-control">
 			</div>
 			<div class="form-group">
 				<label for="password">Mot de passe</label> <input id="password"
@@ -22,7 +25,7 @@
 			<button class="btn btn-lg btn-primary btn-block">Valider</button>
 		</form>
 		<h3>
-			<a th:href="@{/public/createAccount}">Créer un compte</a>
+			<a href="#">Connectez-vous</a>
 		</h3>
 	</div>
 </body>

@@ -21,7 +21,7 @@ public class AccountService implements UserDetailsService{
 	
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-		return this.accountRepo.findOneByUsername(userName);
+		return this.accountRepo.findOneByUserName(userName);
 	}
 	
 	@Bean

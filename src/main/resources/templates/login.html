@@ -1,38 +1,28 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="head :: head"></head>
+<head th:replace="head.html :: head">
 	<title>Connexion</title>
-   <link rel="stylesheet" th:href="@{/css/styles.css}">
+   
     </head>
     <body>
-        <div class="container">
-			<h1>Connexion ou inscription</h1>
-            <div class="row" style="margin-top : 10px">
-                <div class="col-md-6 col-md-offset-3 col-sm-8 col-xs-12">
-                    <form action="#" th:action="@{/}" th:object="${userForm}" method="post">
-                        <!--
-                        <div th:if="${#fields.hasErrors('all')}" th:errors="*{all}" th:errorclass="fieldError"></div>
-                        -->
-                        <div class="form-group"   th:class="${#fields.hasErrors('userName')}? has-error" >
-                            <label for="name">Pseudo</label>
-                            <input type="text" th:field="*{userName}" class="form-control" id="lastname" placeholder="Nom d'utilisateur"/>
-                            <span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" th:errorclass="fieldError">Lastname Error</span>
-						</div>
-						<div class="form-group"   th:class="${#fields.hasErrors('email')}? has-error" >
-                            <label for="email">email</label>
-                            <input type="text" th:field="*{email}" class="form-control" id="email" placeholder="email"/>
-                            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:errorclass="fieldError">email Error</span>
-                        </div>
-                        <div class="form-group" th:class="${#fields.hasErrors('password')}? has-error">
-                            <label for="password">Password</label>
-                            <input type="text" th:field="*{password}" class="form-control" id="password" placeholder="password"/>
-                            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:errorclass="fieldError">Password Error</span>
-						</div>
-                        <button style="margin-top:10px" class="btn btn-default" type="submit">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <h1>Veuillez vous authentifier</h1>
+	<div class="container">
+		<form class="form-signin" th:action="@{/login}"
+			method="post">
+			<div class="form-group">
+				<label for="username">Nom d'utilisateur</label> <input id="username"
+					name="username" class="form-control">
+			</div>
+			<div class="form-group">
+				<label for="password">Mot de passe</label> <input id="password"
+					name="password" type="password" class="form-control">
+			</div>
+			<button class="btn btn-lg btn-primary btn-block">Valider</button>
+		</form>
+		<h3>
+			<a th:href="@{/public/account/create}">Créer un compte</a>
+		</h3>
+	</div>
 </body>
 
 </html>

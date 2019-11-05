@@ -43,7 +43,7 @@ public class AccountController {
 				service.create(account.getUsername(), account.getEmail(), account.getPassword());
 				System.out.println("creation ok");
 			}
-			return "redirect:/index";
+			return "redirect:/";
 		}
 		
 	}

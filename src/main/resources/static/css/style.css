@@ -34,3 +34,7 @@ h1, h3 {
     padding: 15px;
     margin: 0 auto;
 }
+
+.img {
+	background-image: url(../img/agathe.png);
+}

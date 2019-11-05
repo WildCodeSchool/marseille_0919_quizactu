@@ -31,17 +31,19 @@ public class AccountController {
 		return "public/createAccount";
 	}
 	
-	@PostMapping("/form")
+	@PostMapping("/public/form")
 	public String save(@Valid Account account, BindingResult result) {
 		if(result.hasErrors()) {
+			System.out.println(result.toString());
 			return "public/createAccount";
 		}else {
 			if (account.getId() != null) {
 				return "public/createAccount";
 			}else {
 				service.create(account.getUsername(), account.getEmail(), account.getPassword());
+				System.out.println("creation ok");
 			}
-			return "index";
+			return "redirect:/index";
 		}
 		
 	}

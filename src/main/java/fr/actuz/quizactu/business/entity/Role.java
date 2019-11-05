@@ -6,11 +6,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.security.core.GrantedAuthority;
 
 
 @Entity
 @Table(name = "ROLE")
-public class Role implements Serializable {
+public class Role implements Serializable, GrantedAuthority {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -33,9 +36,9 @@ public class Role implements Serializable {
 		return id;
 	}
 
-//	public void setId(Integer id) {
-//		this.id = id;
-//	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -47,6 +50,11 @@ public class Role implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	@Override
+	public String getAuthority() {
+		return this.name;
 	}
     
     

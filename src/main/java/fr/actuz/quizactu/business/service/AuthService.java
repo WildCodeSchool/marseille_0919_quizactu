@@ -6,9 +6,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import fr.actuz.quizactu.persistence.AccountRepository;
-
+@Service
 public class AuthService implements UserDetailsService {
 
 	@Autowired

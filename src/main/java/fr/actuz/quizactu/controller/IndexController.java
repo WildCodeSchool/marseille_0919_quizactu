@@ -17,30 +17,4 @@ public class IndexController {
 		return "index";
 	}
 	
-	@GetMapping("/{id}")
-	@ResponseBody
-	public String username(@PathVariable int id) {
-		switch (id) {
-		case 1: 
-			return "cas 1";
-		case 2:
-			return "cas 2";
-		case 3: 
-			return "cas 3";
-		case 4:
-			return "cas 4";
-		case 5: 
-			return "cas 5";
-		case 6:
-			return "cas 6";
-		}
-		return "index";
-	}
-	
-	@GetMapping("/connection")
-	public String connection(Model model) {
-		model.addAttribute("userForm", new Account());
-		return "login";
-	}
-	
 }

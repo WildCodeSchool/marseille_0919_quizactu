@@ -26,7 +26,7 @@ public class AccountController {
 //		return "public/createAccount";
 //	}
 	
-	@GetMapping("/createAccount")
+	@GetMapping("/public/createAccount")
 	public String create() {
 		return "public/createAccount";
 	}

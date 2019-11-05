@@ -12,10 +12,5 @@ public class AuthController {
 	public String login() {
 		return "login";	
 	}
-//	@GetMapping("/createAccount")
-//	public String create() {
-//		return "createAccount";
-//	}
-
 
 }

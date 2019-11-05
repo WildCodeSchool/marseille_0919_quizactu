@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-	<head th:replace="head.html :: head">
+	<head th:replace="head.html :: head"></head>
+	<head>
 		<title>Connexion</title>
 	</head>
 	<body>
 		<h1>Veuillez vous authentifier</h1>
 		<div class="container">
-			<form class="form-signin" th:action="@{/form}" method="post">
+			<form class="form-signin" th:action="@{/login}" method="post">
 				<div class="form-group">
 					<label for="username">Nom d'utilisateur</label> <input id="username"
 						name="username" class="form-control">
@@ -18,7 +19,7 @@
 				<button class="btn btn-lg btn-primary btn-block">Valider</button>
 			</form>
 			<h3>
-				<a th:href="@{/public/account/create}">Créer un compte</a>
+				<a th:href="@{/public/createAccount}">Créer un compte</a>
 			</h3>
 		</div>
 	</body>

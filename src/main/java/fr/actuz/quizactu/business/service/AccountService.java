@@ -24,7 +24,7 @@ public class AccountService  {
 		final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		final String hashedPassword = passwordEncoder.encode(password);
 		Account account = new Account(userName, email, hashedPassword);
-		account.setRole(new Role(1));
+//		account.setRole(new Role(3)); => a utiliser pour les admin et manager
 		this.accountRepo.save(account);
 	}
 	

@@ -13,37 +13,38 @@ import org.springframework.web.bind.annotation.PostMapping;
 import fr.actuz.quizactu.business.entity.Account;
 import fr.actuz.quizactu.business.service.AccountService;
 
-
 @Controller
 public class AccountController {
-	
+
 	@Autowired
 	private AccountService service;
-	
+
 //	@GetMapping("/createAccount")
 //	public String create(Model model) {
 //		model.addAttribute("account", new Account());
 //		return "public/createAccount";
 //	}
-	
+
 	@GetMapping("/public/createAccount")
 	public String create() {
 		return "public/createAccount";
 	}
-	
-	@PostMapping("/form")
+
+	@PostMapping("/public/form")
 	public String save(@Valid Account account, BindingResult result) {
-		if(result.hasErrors()) {
+		if (result.hasErrors()) {
+			System.out.println(result.toString());
 			return "public/createAccount";
-		}else {
+		} else {
 			if (account.getId() != null) {
 				return "public/createAccount";
-			}else {
+			} else {
 				service.create(account.getUsername(), account.getEmail(), account.getPassword());
+				System.out.println("creation ok");
 			}
-			return "index";
+			return "redirect:/index";
 		}
-		
+
 	}
 
 }

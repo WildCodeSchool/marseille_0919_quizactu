@@ -17,4 +17,9 @@ public class IndexController {
 		return "index";
 	}
 	
+	@GetMapping("/public/homePage")
+	public String homePage() {
+		return "public/homePage";
+	}
+	
 }

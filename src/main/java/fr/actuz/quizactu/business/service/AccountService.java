@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import fr.actuz.quizactu.business.entity.Account;
+import fr.actuz.quizactu.business.entity.Role;
 import fr.actuz.quizactu.persistence.AccountRepository;
 
 @Service
@@ -22,7 +23,9 @@ public class AccountService  {
 	public void create(String userName, String email, String password) {
 		final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		final String hashedPassword = passwordEncoder.encode(password);
-		this.accountRepo.save(new Account(userName, email, hashedPassword));
+		Account account = new Account(userName, email, hashedPassword);
+		account.setRole(new Role(1));
+		this.accountRepo.save(account);
 	}
 	
 

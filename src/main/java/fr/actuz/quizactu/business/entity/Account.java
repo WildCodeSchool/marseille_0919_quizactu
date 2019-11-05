@@ -93,9 +93,8 @@ public class Account implements Serializable, UserDetails {
 		this.userName = userName;
 		this.email = email;
 		this.password = password;
-		this.role = new Role(3, "user");
+		this.role = new Role(3);
 	}
-
 
 	public Integer getId() {
 		return id;

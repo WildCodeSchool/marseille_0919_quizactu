@@ -34,3 +34,16 @@ h1, h3 {
     padding: 15px;
     margin: 0 auto;
 }
+
+
+.lois {
+	margin-top: 4%;
+}
+
+@media screen and (max-width: 640px) {
+	.lois {
+		margin-top: 17%;
+}
+}
+
+

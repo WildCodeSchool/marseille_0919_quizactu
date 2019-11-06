@@ -1,0 +1,145 @@
+.msgUser {
+	margin: 2rem 0;
+}
+
+.card {
+	margin: 1rem 0;
+	color: black;
+}
+
+.card-title {
+	margin: 0;
+}
+
+.card-button {
+	margin: 1rem 0;
+	padding: .3rem .8rem;
+	border-radius: 10px;
+	background-color: #4381C1;
+}
+
+.card-button a {
+	color: white;
+}
+
+.dashboard_ranking {
+	margin: 1rem 0;
+}
+
+.news {
+	background: #e8e8e8;
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+	transition: all 0.5s ease;
+	color: #4A4A4A;
+	border: 1px solid #e8e8e8;
+	border-radius: 3px;
+}
+
+.news:hover {
+	box-shadow: 0px 21px 36px -14px rgba(220, 220, 220, 1);;
+}
+
+.news .img-figure {
+	position: relative;
+	max-height: 200px;
+}
+
+.news .img-figure .img-responsive {
+	width: 100%;
+}
+
+.news .img-figure img {
+	position: relative;
+	overflow: hidden;
+	transition: all 1s ease;
+	bottom: 235px;
+}
+
+.news:hover .img-figure img {
+	transform: scale(1.10);
+}
+
+.news .title {
+	padding: .5rem;
+	position: absolute;
+	left: 0;
+	background: #fff;
+	width: 100%;
+	height: 100%;
+	transition: all 0.5s ease;
+}
+
+.news .title span {
+	font-size: 1rem;
+	color: #929292;
+}
+
+.news .title h1 {
+	margin: .5rem 0 0 0;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 1.5rem;
+	color: #4381C1;
+	text-align: center;
+	transition: all 0.5s ease;
+}
+
+.news:hover .title {
+	background: #fff;
+	cursor: pointer;
+}
+
+.news:hover .title h1 {
+	color: #0085FF;
+}
+
+.news  p.description {
+	position: relative;
+	font-weight: normal;
+	line-height: 22px;
+	opacity: 0;
+	text-align: left;
+	padding: 15px 20px 0px 20px;
+	transition: all 0.5s ease;
+}
+
+.more a {
+	position: relative;
+    font-size: 1.3rem;
+    margin-top: 5rem;
+    display: block;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    display: inline-block;
+    color: #4381C1;
+    padding: .5rem 2rem;
+    border: 1px solid #929292;
+    text-decoration: none;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+}
+
+.news:hover .more a {
+	background: #4A4A4A;
+	color: white;
+}
+
+.cat {
+	background: #DCDCDC;
+	color: #4A4A4A;
+	text-transform: uppercase;
+	position: absolute;
+	left: 0;
+	top: 20px;
+	z-index: 1;
+	padding: 6px 16px;
+	opacity: .8;
+	transition: all 0.5s ease;
+}
+
+.news:hover .cat {
+	background: #0085FF;
+	color: white;
+}

@@ -19,6 +19,7 @@ public class AccountController {
 	
 	@Autowired
 	private AccountService service;
+
 	
 //	@GetMapping("/createAccount")
 //	public String create(Model model) {
@@ -41,21 +42,24 @@ public class AccountController {
 		return "public/createAccount";
 	}
 	
+	
 	@PostMapping("/public/form")
-	public String save(@Valid Account account, BindingResult result) {
+	public String save(@Valid Account account, BindingResult result, String confirmPassword) {
 		if(result.hasErrors()) {
-			System.out.println(result.toString());
 			return "public/createAccount";
 		}else {
-			if (account.getId() != null) {
-				return "public/createAccount";
-			}else {
+			if (confirmPassword.equals(account.getPassword())) {
 				service.create(account.getUsername(), account.getEmail(), account.getPassword());
-				System.out.println("creation ok");
+			}else {
+				return "public/createAccount";			
 			}
 			return "redirect:/";
 		}
 		
 	}
-
+	
+	@GetMapping("/public/forgotPassword")
+	public String forgot() {
+		return "public/forgotPassword";
+	}
 }

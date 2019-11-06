@@ -17,4 +17,9 @@ public class IndexController {
 		return "index";
 	}
 	
+	@GetMapping("/rank")
+	public String ranking() {
+		return "ranking";
+	}
+	
 }

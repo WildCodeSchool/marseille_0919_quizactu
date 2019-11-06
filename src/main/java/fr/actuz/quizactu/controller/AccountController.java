@@ -26,6 +26,16 @@ public class AccountController {
 //		return "public/createAccount";
 //	}
 	
+	@GetMapping("/public/changedPassword")
+	public String change() {
+		return "public/changedPassword";
+	}
+	
+	@GetMapping("/public/contact")
+	public String contact() {
+		return "public/contact";
+	}
+	
 	@GetMapping("/public/createAccount")
 	public String create() {
 		return "public/createAccount";

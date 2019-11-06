@@ -35,6 +35,15 @@ h1, h3 {
     margin: 0 auto;
 }
 
-.img {
-	background-image: url(../img/agathe.png);
+
+.lois {
+	margin-top: 4%;
 }
+
+@media screen and (max-width: 640px) {
+	.lois {
+		margin-top: 17%;
+}
+}
+
+

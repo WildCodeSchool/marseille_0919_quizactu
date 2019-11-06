@@ -41,11 +41,6 @@ public class AccountController {
 				return "public/createAccount";
 			}else {
 				service.create(account.getUsername(), account.getEmail(), account.getPassword());
-<<<<<<< Updated upstream
-				System.out.println("creation ok");
-=======
-				System.out.println("ok created");
->>>>>>> Stashed changes
 			}
 			return "redirect:/index";
 		}

@@ -22,10 +22,14 @@
 				<label for="password">Mot de passe</label> <input id="password"
 					name="password" type="password" class="form-control" required>
 			</div>
+			<div class="form-group">
+				<label for="confirmPassword">Confirmer le mot de passe</label> <input id="confirmPassword"
+					name="confirmPassword" type="password" class="form-control" required>
+			</div>
 			<button class="btn btn-lg btn-primary btn-block">Valider</button>
 		</form>
 		<h3>
-			<a href="#">Connectez-vous</a>
+			<a th:href="@{/login}">Connectez-vous</a>
 		</h3>
 	</div>
 </body>

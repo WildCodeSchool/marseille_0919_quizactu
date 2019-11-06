@@ -40,9 +40,8 @@ public class AccountController {
 		}else {
 			if (confirmPassword.equals(account.getPassword())) {
 				service.create(account.getUsername(), account.getEmail(), account.getPassword());
-				System.out.println("creation ok");
 			}else {
-				return "public/createAccount";	
+				return "public/createAccount";			
 			}
 			return "redirect:/";
 		}

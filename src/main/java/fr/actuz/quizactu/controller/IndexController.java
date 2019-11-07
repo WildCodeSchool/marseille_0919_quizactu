@@ -21,7 +21,7 @@ public class IndexController {
 	public String homePage() {
 		return "public/homePage";
 	}
-	@GetMapping("/rank")
+	@GetMapping("/public/rank")
 	public String ranking() {
 		return "ranking";
 	}

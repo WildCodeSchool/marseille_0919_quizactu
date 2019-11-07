@@ -12,7 +12,7 @@ import fr.actuz.quizactu.business.entity.Account;
 
 @Controller
 public class IndexController {
-	@GetMapping("/")
+	@GetMapping("/homePage")
 	public String user() {
 		return "homePage";
 	}

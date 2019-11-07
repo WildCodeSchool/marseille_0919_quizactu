@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import fr.actuz.quizactu.business.entity.Account;
 import fr.actuz.quizactu.business.service.AccountService;
@@ -48,7 +49,20 @@ public class AccountController {
 		}
 
 	}
-
+	
+	@PutMapping("/changedPassword")
+	public String update(@Valid Account account, BindingResult result, String newPassword) {
+		if (newPassword.equals(account.getPassword())) {
+			save(account, result, newPassword);
+		}else {
+			
+		}
+		
+		return "redirect:/homePage";
+	}
+	
+	
+	
 	
 	@GetMapping("/public/forgotPassword")
 	public String forgot() {

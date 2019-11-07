@@ -14,17 +14,12 @@ import fr.actuz.quizactu.business.entity.Account;
 public class IndexController {
 	@GetMapping("/")
 	public String user() {
-		return "index";
-	}
-	
-	@GetMapping("/public/homePage")
-	public String homePage() {
-		return "public/homePage";
+		return "homePage";
 	}
 
-	@GetMapping("/public/ranking")
+	@GetMapping("/ranking")
 	public String ranking() {
-		return "public/ranking";
+		return "ranking";
 	}
 	
 }

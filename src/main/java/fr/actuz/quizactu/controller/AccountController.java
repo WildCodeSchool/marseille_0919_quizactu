@@ -19,14 +19,14 @@ public class AccountController {
 	@Autowired
 	private AccountService service;
 	
-	@GetMapping("/public/changedPassword")
+	@GetMapping("/changedPassword")
 	public String change() {
-		return "public/changedPassword";
+		return "changedPassword";
 	}
 	
-	@GetMapping("/public/contact")
+	@GetMapping("/contact")
 	public String contact() {
-		return "public/contact";
+		return "contact";
 	}
 	
 	@GetMapping("/public/createAccount")

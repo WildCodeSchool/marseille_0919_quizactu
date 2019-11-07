@@ -5,8 +5,9 @@
 <head th:insert="/head.html :: head"></head>
 
 <body>
+	<nav th:replace="fragments/navbar.html :: nav"></nav>
 	<div class="msgUser" th:if="${#httpServletRequest.remoteUser != null}">
-		<h2 th:inline="text">Bienvenue
+		<h2 th:inline="text" class="quizActu-title">Bienvenue
 			[[${#httpServletRequest.remoteUser}]]</h2>
 	</div>
 	<div class="container">
@@ -20,9 +21,7 @@
 						<span>Vendredi 8 Novembre 2019</span>
 						<h1>Quiz du jour </h1>
 					</div>
-					<button class="more">
-						<a href="#">Jouer</a>
-					</button>
+					<button class="button">Jouer</button>
 				</div>
 			</div>
 		</div>
@@ -31,36 +30,32 @@
 			<div class="col-lg-6">
 				<div class="news">
 					<div class="img-figure">
-						<img th:src="@{/images/media.jpg}" class="img-responsive">
+						<img th:src="@{/images/journalism.jpg}" class="img-responsive">
 					</div>
 					<div class="title">
 						<span>Jeudi 7 Novembre 2019</span>
-						<h1>Quiz du jour </h1>
+						<h1>Quiz de la veille </h1>
 					</div>
-					<button class="more">
-						<a href="#">Jouer</a>
-					</button>
+					<button class="button">Jouer</button>
 				</div>
 			</div>
 			<div class="col-lg-6">
 				<div class="news">
 					<div class="img-figure">
-						<img th:src="@{/images/media.jpg}" class="img-responsive">
+						<img th:src="@{/images/magazine.jpg}" class="img-responsive">
 					</div>
 					<div class="title">
 						<span>Mercredi 6 Novembre 2019</span>
-						<h1>Quiz du jour </h1>
+						<h1>Quiz de l'avant veille</h1>
 					</div>
-					<button class="more">
-						<a href="#">Jouer</a>
-					</button>
+					<button class="button">Jouer</button>
 				</div>
 			</div>
 		</div>
 
 		<div class="dashboard_ranking">
-			<h2>Classement</h2>
-			<table class="table table-striped" style="color: white;">
+			<h2 class="quizActu-title">Classement</h2>
+			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>Pseudo</th>
@@ -110,6 +105,7 @@
 					</tr>
 				</tbody>
 			</table>
+			<a th:href="@{/public/ranking}" class="button">Voir le classement</a>
 		</div>
 	</div>
 </body>

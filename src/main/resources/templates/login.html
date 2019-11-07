@@ -5,8 +5,9 @@
 		<title>Connexion</title>
 	</head>
 	<body>
+		<nav th:replace="fragments/navbar.html :: nav"></nav>
 		<h1>Veuillez vous authentifier</h1>
-		<div class="container">
+		<div class="container login">
 			<form class="form-signin" th:action="@{/login}" method="post">
 				<div class="form-group">
 					<label for="username">Nom d'utilisateur</label> <input id="username"
@@ -17,7 +18,7 @@
 						name="password" type="password" class="form-control" required>
 				</div>
 				<a th:href="@{/public/forgotPassword}">mot de passe oublié</a>
-				<button class="btn btn-lg btn-primary btn-block">Valider</button>
+				<button class="btn btn-lg btn-block button">Valider</button>
 			</form>
 			<h3>
 				<a th:href="@{/public/createAccount}">Créer un compte</a>

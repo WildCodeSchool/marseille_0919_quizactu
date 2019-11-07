@@ -4,12 +4,14 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import fr.actuz.quizactu.business.entity.Account;
 import fr.actuz.quizactu.business.service.AccountService;
@@ -45,20 +47,27 @@ public class AccountController {
 			}else {
 				return "public/createAccount";			
 			}
-			return "redirect:/";
+			return "redirect:/homePage";
 		}
 
 	}
 	
-	@PutMapping("/changedPassword")
+	@PostMapping("/changedPassword")
+//	@PreAuthorize("hasRole('READ_PRIVILEGE')")
+//	@ResponseBody
 	public String update(@Valid Account account, BindingResult result, String newPassword) {
-		if (newPassword.equals(account.getPassword())) {
-			save(account, result, newPassword);
-		}else {
+		
+		if (newPassword != account.getPassword()) {
+			account.setPassword(newPassword);
+			this.service.update(new Account(account.getUsername(), account.getEmail(), account.getPassword()));
+		//	service.update(account);
+			return "redirect:/";
 			
+		}else {
+			return "changedPassword";
 		}
 		
-		return "redirect:/homePage";
+		// return "redirect:/";
 	}
 	
 	

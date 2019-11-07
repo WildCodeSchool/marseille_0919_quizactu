@@ -1,27 +1,19 @@
+/*
+*	COLORS :
+*		Ecru : #fafafa;
+*		Gris Clair : #e8e8e8;
+*		Gris foncé : #444;
+*		Bleu : #4381C1;
+*
+* 	CLASS :
+*		Class button à mettre sur les <a> pour que le style s'applique
+*/
+
 body {
-	background-color: #14213d;
+	/* background-color: #14213d; */
+	background-color: #fafafa;
 	text-align: center;
-	color: aliceblue;
-}  
-
-h1 {
-	margin-top: 50px;
-}
-
-.btn {
-	background-color: #3e4960;
-	color: aliceblue;
-	font-size: 2rem;
-	margin-top: 30px;
-}
-
-form {
-	margin-top: 50px;
-}
-
-.form-control {
-	font-size: 2rem;
-	margin-top: 10px;
+	color: #444;
 }
 
 h1, h3 {
@@ -29,12 +21,62 @@ h1, h3 {
 	margin-top: 2em;
 }
 
-.form-signin {
-    max-width: 330px;
-    padding: 15px;
-    margin: 0 auto;
+h1 {
+	margin-top: 50px;
 }
 
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+form {
+	margin-top: 50px;
+}
+
+.btn-group-lg>.btn, .btn-lg {
+	padding: 0;
+}
+
+.button {
+	display: flex;
+	justify-content: center;
+	width: auto;
+	font-size: 1.3rem;
+	margin: 0 auto;
+	padding: 1rem 0;
+	color: white;
+	border-radius: 10px;
+	border: 1px solid #4381C1; 
+	background-color: #4381C1;
+	transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+}
+
+.button:hover {
+	background: white;
+	color: #4381C1;
+	border: 1px solid #4381C1;
+}
+
+.form-control {
+	font-size: 2rem;
+	margin-top: 10px;
+}
+
+.form-signin {
+	max-width: 330px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+.login .button {
+	width: 100%;
+	margin-top: 2rem;
+}
 
 .lois {
 	margin-top: 4%;
@@ -57,7 +99,5 @@ h1, h3 {
 @media screen and (max-width: 640px) {
 	.lois {
 		margin-top: 17%;
+	}
 }
-}
-
-

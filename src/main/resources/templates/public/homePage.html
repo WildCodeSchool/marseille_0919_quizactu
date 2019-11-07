@@ -5,6 +5,7 @@
 <head th:insert="/head.html :: head"></head>
 
 <body>
+	<nav th:replace="fragments/navbar.html :: nav"></nav>
 	<div class="msgUser" th:if="${#httpServletRequest.remoteUser != null}">
 		<h2 th:inline="text" class="quizActu-title">Bienvenue
 			[[${#httpServletRequest.remoteUser}]]</h2>

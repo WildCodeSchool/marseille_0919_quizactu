@@ -5,6 +5,7 @@
 		<title>Connexion</title>
 	</head>
 	<body>
+		<nav th:replace="fragments/navbar.html :: nav"></nav>
 		<h1>Veuillez vous authentifier</h1>
 		<div class="container">
 			<form class="form-signin" th:action="@{/login}" method="post">

@@ -40,6 +40,20 @@ h1, h3 {
 	margin-top: 4%;
 }
 
+#logout-btn{
+	margin: 0;
+
+border: none;
+
+background: none;
+
+font-size: 1rem;
+
+font-weight: 400;
+
+line-height: 1.5;
+}
+
 @media screen and (max-width: 640px) {
 	.lois {
 		margin-top: 17%;

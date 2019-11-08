@@ -1,27 +1,20 @@
+/*
+*	COLORS :
+*		Ecru : #fafafa;
+*		Gris Clair : #e8e8e8;
+*		Gris foncé : #444;
+*		Bleu : #4381C1;
+*
+* 	CLASS :
+*		Class "button" à mettre sur les <a> pour que le style s'applique
+*		Class "quizActu-title" à mettre sur les <h2> pour aplkquer le border-bootom
+*/
+
 body {
-	background-color: #14213d;
+	/* background-color: #14213d; */
+	background-color: #fafafa;
 	text-align: center;
-	color: aliceblue;
-}  
-
-h1 {
-	margin-top: 50px;
-}
-
-.btn {
-	background-color: #3e4960;
-	color: aliceblue;
-	font-size: 2rem;
-	margin-top: 30px;
-}
-
-form {
-	margin-top: 50px;
-}
-
-.form-control {
-	font-size: 2rem;
-	margin-top: 10px;
+	color: #444;
 }
 
 h1, h3 {
@@ -29,21 +22,148 @@ h1, h3 {
 	margin-top: 2em;
 }
 
-.form-signin {
-    max-width: 330px;
-    padding: 15px;
-    margin: 0 auto;
+.mt-150 {
+	margin-top: 150px;
 }
 
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+form {
+	margin-top: 50px;
+}
+
+.btn-group-lg>.btn, .btn-lg {
+	padding: 0;
+}
+
+.button {
+	display: flex;
+	justify-content: center;
+	width: auto;
+	font-size: 1.3rem;
+	margin: 0 auto;
+	padding: 1rem 0;
+	color: white;
+	border-radius: 10px;
+	border: 1px solid #4381C1; 
+	background-color: #4381C1;
+	transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+}
+
+.button:hover {
+	background: white;
+	color: #4381C1;
+	border: 1px solid #4381C1;
+}
+
+.quizActu-title {
+	border-bottom: 1px solid #e8e8e8;
+	width: 30%;
+	padding: 0 0 .5rem 0;
+	margin: 3rem auto;
+}
+
+.form-control {
+	font-size: 2rem;
+	margin-top: 10px;
+}
+
+.form-signin {
+	max-width: 330px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+.login .button {
+	width: 100%;
+	margin-top: 2rem;
+}
 
 .lois {
 	margin-top: 4%;
 }
 
+#logout-btn{
+	margin: 0;
+
+border: none;
+
+background: none;
+
+font-size: 1rem;
+
+font-weight: 400;
+
+line-height: 1.5;
+}
+
+/* navbar */
+
+.navbar-connexion {
+	width: 100%;
+}
+
+.navbar {
+  background-color: #4381C1;
+}
+
+.navbar-light .navbar-nav .nav-link, .navbar-light .navbar-brand {
+	color: #fff;
+	font-weight: bold;
+}
+
+.logo {
+	height: 70px;
+}
+
+.title-nav {
+	font-size: 36px;
+}
+
+/* nav hover */
+
+.nav-item{
+    position: relative;
+}
+.nav-link, .nav-link::before{
+    -webkit-transition: all .5s ease-in;
+   -o-transition: all .5s ease-in;
+   transition: all .5s ease-in;
+}
+.nav-link::before{
+     content: "";
+   background: #fff;
+   height: 2px;
+   width: 0;
+   position: absolute;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   opacity: 0;
+   visibility: hidden;
+}
+.navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:active, .navbar-light .navbar-nav .nav-link:visited{
+    color: #fff !important;
+}
+.nav-link:hover::before{
+   opacity: 1;
+   visibility: visible;
+   width: 100%;
+}
+
+.navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
+    color: #fff;
+}
+
 @media screen and (max-width: 640px) {
 	.lois {
 		margin-top: 17%;
+	}
 }
-}
-
-

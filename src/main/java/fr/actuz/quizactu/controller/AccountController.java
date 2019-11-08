@@ -1,14 +1,21 @@
 package fr.actuz.quizactu.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import fr.actuz.quizactu.business.entity.Account;
 import fr.actuz.quizactu.business.service.AccountService;
@@ -19,14 +26,17 @@ public class AccountController {
 	@Autowired
 	private AccountService service;
 	
-	@GetMapping("/public/changedPassword")
-	public String change() {
-		return "public/changedPassword";
+	@GetMapping("/changedPassword")
+	public String change(Model model, HttpServletRequest request) {
+		String user = request.getUserPrincipal().getName();
+		Account acc = service.read(user);
+		model.addAttribute("connectedId", acc.getId());
+		return "changedPassword";
 	}
 	
-	@GetMapping("/public/contact")
+	@GetMapping("/contact")
 	public String contact() {
-		return "public/contact";
+		return "contact";
 	}
 	
 	@GetMapping("/public/createAccount")
@@ -48,7 +58,19 @@ public class AccountController {
 		}
 
 	}
+	
+	@PostMapping("/changedPassword")
+//	@PreAuthorize("hasRole('READ_PRIVILEGE')")
+	public String newPassword(Integer id, String newPassword) {
 
+	//	Logger LOG = LoggerFactory.getLogger("Wilder");
+		service.updatePassword(id, newPassword);
+		
+		return "redirect:/";
+	}
+	
+	
+	
 	
 	@GetMapping("/public/forgotPassword")
 	public String forgot() {

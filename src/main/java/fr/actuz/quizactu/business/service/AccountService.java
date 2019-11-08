@@ -42,5 +42,7 @@ public class AccountService  {
 		this.accountRepo.deleteById(id);
 	}
 
-	
+	public List<Account> getScoreLimitTen() {
+        return this.accountRepo.findAllByOrderByScoreDesc();
+    }
 }

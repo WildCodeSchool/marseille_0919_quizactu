@@ -63,7 +63,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
+					<!-- <tr>
 						<td>Abdel</td>
 						<td>698740</td>
 					</tr>
@@ -102,7 +102,11 @@
 					<tr>
 						<td>Aurelie</td>
 						<td>2</td>
-					</tr>
+					</tr> -->
+					<tr th:each="user: ${users}">
+                        <td th:text="${user.getUsername()}" />
+                        <td th:text="${user.getScore()}" />
+                    </tr>
 				</tbody>
 			</table>
 			<a th:href="@{/ranking}" class="button">Voir le classement</a>

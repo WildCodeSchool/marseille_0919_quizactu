@@ -17,5 +17,6 @@ import fr.actuz.quizactu.business.entity.Account;
 public interface AccountRepository extends JpaRepository<Account, Integer> {
 
 	UserDetails findOneByUserName(final String userName);
-
+	
+	List<Account> findAllByOrderByScoreDesc();
 }

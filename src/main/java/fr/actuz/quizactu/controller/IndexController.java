@@ -1,5 +1,6 @@
 package fr.actuz.quizactu.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,13 +10,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.actuz.quizactu.business.entity.Account;
+import fr.actuz.quizactu.business.service.AccountService;
 
 @Controller
 public class IndexController {
-	@GetMapping("/")
-	public String user() {
-		return "homePage";
-	}
+	
+	@Autowired
+    private AccountService accountServ;
+    
+    @GetMapping("/")
+    public String user(Model model) {
+        model.addAttribute("users", this.accountServ.getScoreLimitTen());
+        return "homePage";
+    }
+    
+//	@GetMapping("/")
+//	public String user() {
+//		return "homePage";
+//	}
 
 	@GetMapping("/ranking")
 	public String ranking() {

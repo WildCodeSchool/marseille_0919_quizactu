@@ -95,6 +95,11 @@ public class Account implements Serializable, UserDetails {
 		this.password = password;
 	}
 
+	public Account(int id, String password) {
+		this.id = id;
+		this.password = password;
+	}
+
 	public Integer getId() {
 		return id;
 	}

@@ -6,7 +6,8 @@
 *		Bleu : #4381C1;
 *
 * 	CLASS :
-*		Class button à mettre sur les <a> pour que le style s'applique
+*		Class "button" à mettre sur les <a> pour que le style s'applique
+*		Class "quizActu-title" à mettre sur les <h2> pour aplkquer le border-bootom
 */
 
 body {
@@ -21,8 +22,8 @@ h1, h3 {
 	margin-top: 2em;
 }
 
-h1 {
-	margin-top: 50px;
+.mt-150 {
+	margin-top: 150px;
 }
 
 a {
@@ -62,6 +63,13 @@ form {
 	border: 1px solid #4381C1;
 }
 
+.quizActu-title {
+	border-bottom: 1px solid #e8e8e8;
+	width: 30%;
+	padding: 0 0 .5rem 0;
+	margin: 3rem auto;
+}
+
 .form-control {
 	font-size: 2rem;
 	margin-top: 10px;
@@ -98,9 +106,12 @@ line-height: 1.5;
 
 /* navbar */
 
+.navbar-connexion {
+	width: 100%;
+}
+
 .navbar {
   background-color: #4381C1;
-
 }
 
 .navbar-light .navbar-nav .nav-link, .navbar-light .navbar-brand {
@@ -116,18 +127,18 @@ line-height: 1.5;
 	font-size: 36px;
 }
 
-.nav-item{
-	position: relative;
-}
+/* nav hover */
 
+.nav-item{
+    position: relative;
+}
 .nav-link, .nav-link::before{
-	-webkit-transition: all .5s ease-in;
+    -webkit-transition: all .5s ease-in;
    -o-transition: all .5s ease-in;
    transition: all .5s ease-in;
 }
-
 .nav-link::before{
-	 content: "";
+     content: "";
    background: #fff;
    height: 2px;
    width: 0;
@@ -138,15 +149,17 @@ line-height: 1.5;
    opacity: 0;
    visibility: hidden;
 }
-
-.navbar-light .navbar-nav .nav-link:hover{
-	color: #fff;
+.navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:active, .navbar-light .navbar-nav .nav-link:visited{
+    color: #fff !important;
 }
-
 .nav-link:hover::before{
-	opacity: 1;
+   opacity: 1;
    visibility: visible;
    width: 100%;
+}
+
+.navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
+    color: #fff;
 }
 
 @media screen and (max-width: 640px) {

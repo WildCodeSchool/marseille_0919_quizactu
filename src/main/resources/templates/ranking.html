@@ -8,126 +8,22 @@
 </head>
 <body>
 	<nav th:replace="fragments/navbar.html :: nav"></nav>
-	<table class="table table-striped" style="color: white;">
-                <thead>
-                    <tr>
-                    	<th>Rank</th>
-                        <th>Pseudo</th>
-                        <th>Score</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-         				<td>1</td>
-                        <td>John</td>
-                        <td>698740</td>
-                    </tr>
-                </tbody>
-	
-
-
-
-
-
-	<table class="WorldTable">
-	<thead>
-		<tr>
-			<th>World Rank</th>
-		</tr>
-		<tr>
-			<th>Rank</th>
-			<th>UserName</th>
-			<th>Score</th>
-		</tr>
-		
-	</thead>
-	<tbody>
-		<tr>
-			<td>user_id</td>
-			<td>userName</td>
-			<td>score_id</td>
-		</tr>
-		<tr>
-			<td>user_id</td>
-			<td>userName</td>
-			<td>score_id</td>
-		</tr>		
-		<tr>
-			<td>user_id</td>
-			<td>userName</td>
-			<td>score_id</td>
-		</tr>		
-		<tr>
-			<td>user_id</td>
-			<td>userName</td>
-			<td>score_id</td>
-		</tr>		
-		<tr>
-			<td>user_id</td>
-			<td>userName</td>
-			<td>score_id</td>
-		</tr>		
-		<tr>
-			<td>user_id</td>
-			<td>userName</td>
-			<td>score_id</td>
-		</tr>		
-		<tr>
-			<td>user_id</td>
-			<td>userName</td>
-			<td>score_id</td>
-		</tr>
-	</tbody>	
-	</table>
-	<table class="FBRank">
-	<thead>
-		<tr>
-			<th>FB Rank</th>
-		</tr>
-		<tr>
-			<th>Rank</th>
-			<th>UserName</th>
-			<th>Score</th>
-		</tr>
-		
-	</thead>
-	<tbody>
-		<tr>
-			<td>user_id</td>
-			<td>userName</td>
-			<td>score_id</td>
-		</tr>
-		<tr>
-			<td>user_id</td>
-			<td>userName</td>
-			<td>score_id</td>
-		</tr>		
-		<tr>
-			<td>user_id</td>
-			<td>userName</td>
-			<td>score_id</td>
-		</tr>		
-		<tr>
-			<td>user_id</td>
-			<td>userName</td>
-			<td>score_id</td>
-		</tr>		
-		<tr>
-			<td>user_id</td>
-			<td>userName</td>
-			<td>score_id</td>
-		</tr>		
-		<tr>
-			<td>user_id</td>
-			<td>userName</td>
-			<td>score_id</td>
-		</tr>		
-		<tr>
-			<td>user_id</td>
-			<td>userName</td>
-			<td>score_id</td>
-		</tr>
-	</tbody>	
-	</table>
+	<div class="container mt-150">
+		<h2 class="quizActu-title">Classement</h2>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Rank</th>
+					<th>Pseudo</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="userScore: ${usersScore}">
+					<td th:text="${userScore.getUsername()}" />
+					<td th:text="${userScore.getScore()}" />
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>

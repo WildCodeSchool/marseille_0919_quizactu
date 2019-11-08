@@ -45,8 +45,4 @@ public class AccountService  {
 	public List<Account> getScoreLimitTen() {
 		return this.accountRepo.findTop10ByOrderByScoreDesc();
 	}
-
-	public List<Account> getScoreLimitTen() {
-        return this.accountRepo.findAllByOrderByScoreDesc();
-    }
 }

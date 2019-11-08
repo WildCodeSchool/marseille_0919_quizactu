@@ -84,4 +84,5 @@ public class AccountController {
 	public String forgot() {
 		return "public/forgotPassword";
 	}
+	
 }

@@ -6,8 +6,9 @@
 	</head>
 	<body>
 		<nav th:replace="fragments/navbar.html :: nav"></nav>
-		<h1>Veuillez vous authentifier</h1>
-		<div class="container login">
+		
+		<div class="container login mt-150">
+		<h1>Connexion</h1>
 			<form class="form-signin" th:action="@{/login}" method="post">
 				<div class="form-group">
 					<label for="username">Nom d'utilisateur</label> <input id="username"

@@ -47,6 +47,10 @@ public class AccountService  {
 	public List<Account> getScoreLimitTen() {
 		return this.accountRepo.findTop10ByOrderByScoreDesc();
 	}
+	
+	public List<Account> getScoreOnRankingPage() {
+		return this.accountRepo.findByOrderByScoreDesc();
+	}
 
 	public void updatePassword(int id, String password) {
 		Account acc = this.accountRepo.getOne(id);

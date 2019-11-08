@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="head.html :: head"></head>
 
@@ -8,12 +8,11 @@
 
 <body>
 	<nav th:replace="fragments/navbar.html :: nav"></nav>
-	<h1>À propos</h1>
-	<div>
+	<div class="mt-150 container">
+		<h1>À propos</h1>
 		<img th:src="@{/images/agathe2.png}" alt="">
 		<img class="lois" th:src="@{/images/lois2.png}" alt="">
-	</div>
-	<div>
+			<div>
 		<h3>Qui sommes nous et comment est née l'idée ?</h3>
 		<p>Agathe Perrier et Loïs Elziere, tous deux journalistes à Marseille depuis trois ans, nous nous sommes
 rencontrés dans le cadre professionnel. Notre travail nous pousse à nous intéresser aux technologies de
@@ -30,6 +29,8 @@ une fois développée. Elle ne nécessite pas un investissement démesuré. Enfi
 développer notre propre activité, générer nos propres revenus, nous confronter à l’entreprenariat en
 répondant à une volonté d’indépendance.</p>
 	</div>
+	</div>
+
 </body>
 
 </html>

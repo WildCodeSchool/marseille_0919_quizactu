@@ -6,7 +6,7 @@
 
 <body>
 	<nav th:replace="fragments/navbar.html :: nav"></nav>
-	<div class="msgUser" th:if="${#httpServletRequest.remoteUser != null}">
+	<div class="msgUser mt-150" th:if="${#httpServletRequest.remoteUser != null}">
 		<h2 th:inline="text" class="quizActu-title">Bienvenue
 			[[${#httpServletRequest.remoteUser}]]</h2>
 	</div>
@@ -55,6 +55,7 @@
 
 		<div class="dashboard_ranking">
 			<h2 class="quizActu-title">Classement</h2>
+			<h3>Top 10</h3>
 			<table class="table table-striped">
 				<thead>
 					<tr>

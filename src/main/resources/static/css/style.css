@@ -116,6 +116,39 @@ line-height: 1.5;
 	font-size: 36px;
 }
 
+.nav-item{
+	position: relative;
+}
+
+.nav-link, .nav-link::before{
+	-webkit-transition: all .5s ease-in;
+   -o-transition: all .5s ease-in;
+   transition: all .5s ease-in;
+}
+
+.nav-link::before{
+	 content: "";
+   background: #fff;
+   height: 2px;
+   width: 0;
+   position: absolute;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   opacity: 0;
+   visibility: hidden;
+}
+
+.navbar-light .navbar-nav .nav-link:hover{
+	color: #fff;
+}
+
+.nav-link:hover::before{
+	opacity: 1;
+   visibility: visible;
+   width: 100%;
+}
+
 @media screen and (max-width: 640px) {
 	.lois {
 		margin-top: 17%;

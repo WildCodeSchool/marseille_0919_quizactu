@@ -6,7 +6,8 @@
 *		Bleu : #4381C1;
 *
 * 	CLASS :
-*		Class button à mettre sur les <a> pour que le style s'applique
+*		Class "button" à mettre sur les <a> pour que le style s'applique
+*		Class "quizActu-title" à mettre sur les <h2> pour aplkquer le border-bootom
 */
 
 body {
@@ -60,6 +61,13 @@ form {
 	background: white;
 	color: #4381C1;
 	border: 1px solid #4381C1;
+}
+
+.quizActu-title {
+	border-bottom: 1px solid #e8e8e8;
+	width: 30%;
+	padding: 0 0 .5rem 0;
+	margin: 3rem auto;
 }
 
 .form-control {

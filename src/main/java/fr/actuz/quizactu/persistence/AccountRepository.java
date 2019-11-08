@@ -20,5 +20,8 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
 	
 	// Find user and score order by score
 	List<Account> findTop10ByOrderByScoreDesc();
+	
+	// Find all user on page ranking;
+	List<Account> findByOrderByScoreDesc();
 
 }

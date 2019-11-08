@@ -6,21 +6,31 @@
 <meta charset="UTF-8">
 <head th:insert="/head.html :: head"></head>
 </head>
-<body>	
- 	<nav
-		class="navbar navbar-light navbar-expand-lg fixed-top"
-		id="mainNav">
-		<div class="container">
-			<a class="navbar-brand js-scroll-trigger title-nav" th:href="@{/}" href="#page-top"><img
-				class="logo mr-4" th:src="@{./images/logo6.png}" alt="">Quiz'Actu</a>
+<body>
+
+	<!-- NAV NOT LOGGED IN -->
+	<nav class="navbar navbar-light navbar-expand-lg fixed-top"
+		id="mainNav" th:if="${#httpServletRequest.remoteUser == null}">
+		<div class="container ctn-nav ">
+			<a class="navbar-brand js-scroll-trigger title-nav navbar-connexion"
+				th:href="@{/}"><img class="logo mr-2 "
+				th:src="@{./images/logo6.png}" alt="">Quiz'Actu</a>
+		</div>
+	</nav>
+
+	<!-- NAV LOGGED IN -->
+	<nav class="navbar navbar-light navbar-expand-lg fixed-top"
+		id="mainNav" th:if="${#httpServletRequest.remoteUser != null}">
+		<div class="container ctn-nav">
+			<a class="navbar-brand js-scroll-trigger title-nav" th:href="@{/}"><img
+				class="logo mr-2" th:src="@{./images/logo6.png}" alt="">Quiz'Actu</a>
 			<button data-toggle="collapse" data-target="#navbarResponsive"
 				class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded"
 				aria-controls="navbarResponsive" aria-expanded="false"
 				aria-label="Toggle navigation">
 				<i class="fa fa-bars"></i>
 			</button>
-			<div th:if="${#httpServletRequest.remoteUser != null}"
-				class="collapse navbar-collapse" id="navbarResponsive">
+			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="nav navbar-nav ml-auto">
 					<li class="nav-item mx-0 mx-lg-1 dropdown"><a
 						class="nav-link dropdown-toggle nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
@@ -33,16 +43,16 @@
 						</div></li>
 					<li class="nav-item mx-0 mx-lg-1" role="presentation"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="#portfolio">Classement</a></li>
-<!-- 						      <li class="nav-item">
+						href="#">Classement</a></li>
+					<!-- 						      <li class="nav-item">
         <a class="nav-link" th:href="@{/changedPassword}">Changer de mot de passe</a>
       </li> -->
 					<li class="nav-item mx-0 mx-lg-1" role="presentation"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="#about">Mon compte</a></li>
+						th:href="@{/changedPassword}">Mon compte</a></li>
 					<li class="nav-item mx-0 mx-lg-1" role="presentation"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="#contact">A propos</a></li>
+						href="#">A propos</a></li>
 					<li
 						class="nav-item mx-0 mx-lg-1 nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger">
 						<form th:action="@{/logout}" method="post"
@@ -54,15 +64,6 @@
 				</ul>
 			</div>
 		</div>
-	</nav> 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Quiz'Actu</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-	</nav> 
+	</nav>
 </body>
 </html>

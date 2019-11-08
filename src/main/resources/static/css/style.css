@@ -21,8 +21,8 @@ h1, h3 {
 	margin-top: 2em;
 }
 
-h1 {
-	margin-top: 50px;
+.mt-150 {
+	margin-top: 150px;
 }
 
 a {
@@ -98,9 +98,12 @@ line-height: 1.5;
 
 /* navbar */
 
+.navbar-connexion {
+	width: 100%;
+}
+
 .navbar {
   background-color: #4381C1;
-
 }
 
 .navbar-light .navbar-nav .nav-link, .navbar-light .navbar-brand {
@@ -114,6 +117,41 @@ line-height: 1.5;
 
 .title-nav {
 	font-size: 36px;
+}
+
+/* nav hover */
+
+.nav-item{
+    position: relative;
+}
+.nav-link, .nav-link::before{
+    -webkit-transition: all .5s ease-in;
+   -o-transition: all .5s ease-in;
+   transition: all .5s ease-in;
+}
+.nav-link::before{
+     content: "";
+   background: #fff;
+   height: 2px;
+   width: 0;
+   position: absolute;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   opacity: 0;
+   visibility: hidden;
+}
+.navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:active, .navbar-light .navbar-nav .nav-link:visited{
+    color: #fff !important;
+}
+.nav-link:hover::before{
+   opacity: 1;
+   visibility: visible;
+   width: 100%;
+}
+
+.navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
+    color: #fff;
 }
 
 @media screen and (max-width: 640px) {

@@ -19,13 +19,13 @@
 					</div>
 					<div class="title">
 						<span>Vendredi 8 Novembre 2019</span>
-						<h1>Quiz du jour </h1>
+						<h1>Quiz du jour</h1>
 					</div>
 					<button class="button">Jouer</button>
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="row">
 			<div class="col-lg-6">
 				<div class="news">
@@ -34,7 +34,7 @@
 					</div>
 					<div class="title">
 						<span>Jeudi 7 Novembre 2019</span>
-						<h1>Quiz de la veille </h1>
+						<h1>Quiz de la veille</h1>
 					</div>
 					<button class="button">Jouer</button>
 				</div>
@@ -63,50 +63,10 @@
 					</tr>
 				</thead>
 				<tbody>
-					<!-- <tr>
-						<td>Abdel</td>
-						<td>698740</td>
-					</tr>
-					<tr>
-						<td>Thomas</td>
-						<td>698521</td>
-					</tr>
-					<tr>
-						<td>Nina</td>
-						<td>698508</td>
-					</tr>
-					<tr>
-						<td>Gabrielle</td>
-						<td>698482</td>
-					</tr>
-					<tr>
-						<td>Paul</td>
-						<td>665410</td>
-					</tr>
-					<tr>
-						<td>Pierre</td>
-						<td>663561</td>
-					</tr>
-					<tr>
-						<td>Dylan</td>
-						<td>662564</td>
-					</tr>
-					<tr>
-						<td>Pauline</td>
-						<td>658420</td>
-					</tr>
-					<tr>
-						<td>Jeanne</td>
-						<td>658020</td>
-					</tr>
-					<tr>
-						<td>Aurelie</td>
-						<td>2</td>
-					</tr> -->
 					<tr th:each="user: ${users}">
-                        <td th:text="${user.getUsername()}" />
-                        <td th:text="${user.getScore()}" />
-                    </tr>
+						<td th:text="${user.getUsername()}" />
+						<td th:text="${user.getScore()}" />
+					</tr>
 				</tbody>
 			</table>
 			<a th:href="@{/ranking}" class="button">Voir le classement</a>

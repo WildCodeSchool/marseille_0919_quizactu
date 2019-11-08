@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -59,15 +60,21 @@ public class AccountController {
 		
 		if (newPassword != account.getPassword()) {
 			account.setPassword(newPassword);
-			this.service.update(new Account(account.getUsername(), account.getEmail(), account.getPassword()));
-		//	service.update(account);
-			return "redirect:/";
+			account.setEmail("truc@gmail.com");
+			account.setUserName("truc");
+			final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			final String hashedPassword = passwordEncoder.encode(newPassword);
+//			account.setPassword(hashedPassword);
+			service.update(new Account(account.getUsername(), account.getEmail(), hashedPassword));
+//			service.update(account);
+//		//	service.update(account);
+//			return "redirect:/";
 			
 		}else {
-			return "changedPassword";
+			return "redirect:/ranking";
 		}
 		
-		// return "redirect:/";
+		 return "redirect:/";
 	}
 	
 	
@@ -77,4 +84,5 @@ public class AccountController {
 	public String forgot() {
 		return "public/forgotPassword";
 	}
+	
 }

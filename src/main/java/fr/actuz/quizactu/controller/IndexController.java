@@ -16,18 +16,13 @@ import fr.actuz.quizactu.business.service.AccountService;
 public class IndexController {
 	
 	@Autowired
-    private AccountService accountServ;
-    
-    @GetMapping("/")
-    public String user(Model model) {
-        model.addAttribute("users", this.accountServ.getScoreLimitTen());
-        return "homePage";
-    }
-    
-//	@GetMapping("/")
-//	public String user() {
-//		return "homePage";
-//	}
+	private AccountService accountServ;
+	
+	@GetMapping("/")
+	public String user(Model model) {
+		model.addAttribute("users", this.accountServ.getScoreLimitTen());
+		return "homePage";
+	}
 
 	@GetMapping("/ranking")
 	public String ranking() {

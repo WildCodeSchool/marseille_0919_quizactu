@@ -18,5 +18,7 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
 
 	UserDetails findOneByUserName(final String userName);
 	
-	List<Account> findAllByOrderByScoreDesc();
+	// Find user and score order by score
+	List<Account> findTop10ByOrderByScoreDesc();
+
 }

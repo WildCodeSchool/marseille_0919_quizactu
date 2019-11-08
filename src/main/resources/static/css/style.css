@@ -96,6 +96,26 @@ font-weight: 400;
 line-height: 1.5;
 }
 
+/* navbar */
+
+.navbar {
+  background-color: #4381C1;
+
+}
+
+.navbar-light .navbar-nav .nav-link, .navbar-light .navbar-brand {
+	color: #fff;
+	font-weight: bold;
+}
+
+.logo {
+	height: 70px;
+}
+
+.title-nav {
+	font-size: 36px;
+}
+
 @media screen and (max-width: 640px) {
 	.lois {
 		margin-top: 17%;

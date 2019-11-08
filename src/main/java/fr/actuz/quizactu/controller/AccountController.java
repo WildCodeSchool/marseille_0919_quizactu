@@ -1,7 +1,10 @@
 package fr.actuz.quizactu.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,7 +27,10 @@ public class AccountController {
 	private AccountService service;
 	
 	@GetMapping("/changedPassword")
-	public String change() {
+	public String change(Model model, HttpServletRequest request) {
+		String user = request.getUserPrincipal().getName();
+		Account acc = service.read(user);
+		model.addAttribute("connectedId", acc.getId());
 		return "changedPassword";
 	}
 	
@@ -48,33 +54,19 @@ public class AccountController {
 			}else {
 				return "public/createAccount";			
 			}
-			return "redirect:/homePage";
+			return "redirect:/";
 		}
 
 	}
 	
 	@PostMapping("/changedPassword")
 //	@PreAuthorize("hasRole('READ_PRIVILEGE')")
-//	@ResponseBody
-	public String update(@Valid Account account, BindingResult result, String newPassword) {
+	public String newPassword(Integer id, String newPassword) {
+
+	//	Logger LOG = LoggerFactory.getLogger("Wilder");
+		service.updatePassword(id, newPassword);
 		
-		if (newPassword != account.getPassword()) {
-			account.setPassword(newPassword);
-			account.setEmail("truc@gmail.com");
-			account.setUserName("truc");
-			final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-			final String hashedPassword = passwordEncoder.encode(newPassword);
-//			account.setPassword(hashedPassword);
-			service.update(new Account(account.getUsername(), account.getEmail(), hashedPassword));
-//			service.update(account);
-//		//	service.update(account);
-//			return "redirect:/";
-			
-		}else {
-			return "redirect:/ranking";
-		}
-		
-		 return "redirect:/";
+		return "redirect:/";
 	}
 	
 	

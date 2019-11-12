@@ -53,4 +53,36 @@ public class Response implements Serializable {
     @JoinColumn(name="QUESTION_ID", nullable=false)
     private Question question;
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public Boolean getIsTrue() {
+		return isTrue;
+	}
+
+	public void setIsTrue(Boolean isTrue) {
+		this.isTrue = isTrue;
+	}
+
+	public Question getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
+
 }

@@ -1,29 +1,43 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-	<head th:replace="head.html :: head"></head>
-	<head>
-		<title>Connexion</title>
-	</head>
-	<body>
-		<nav th:replace="fragments/navbar.html :: nav"></nav>
-		
-		<div class="container login mt-150">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head.html :: head"></head>
+<head>
+<title>Connexion</title>
+</head>
+<body>
+	<nav th:replace="fragments/navbar.html :: nav"></nav>
+
+	<div class="container login mt-150">
 		<h1>Connexion</h1>
-			<form class="form-signin" th:action="@{/login}" method="post">
-				<div class="form-group">
-					<label for="username">Nom d'utilisateur</label> <input id="username"
-						name="username" class="form-control" required>
-				</div>
-				<div class="form-group">
-					<label for="password">Mot de passe</label> <input id="password"
-						name="password" type="password" class="form-control" required>
-				</div>
-				<a th:href="@{/public/forgotPassword}">mot de passe oublié</a>
-				<button class="btn btn-lg btn-block button">Valider</button>
-			</form>
-			<h3>
-				<a th:href="@{/public/createAccount}">Créer un compte</a>
-			</h3>
-		</div>
-	</body>
+		<form class="form-signin" th:action="@{/login}" method="post">
+			<div class="form-group">
+				<label for="username">Nom d'utilisateur</label> <input id="username"
+					name="username" class="form-control" required>
+			</div>
+			<div class="form-group">
+				<label for="password">Mot de passe</label> <input id="password"
+					name="password" type="password" class="form-control" required>
+			</div>
+			<a th:href="@{/public/forgotPassword}">mot de passe oublié</a>
+			<button class="btn btn-lg btn-block button">Valider</button>
+		</form>
+		<h3>Login par Facebook</h3>
+		<form th:action="@{/signin/facebook}" method="post">
+			<input type="hidden" name="scope" value="public_profile" /> <input
+				type="submit" value="Login using Facebook" />
+		</form>
+		<form th:action="@{/signin/linkedin}" method="post">
+			<input type="hidden" name="scope" value="r_liteprofile r_emailaddress" /> <input
+				type="submit" value="Login using LinkedIn" />
+		</form>
+		<form th:action="@{/signin/google}" method="post">
+			<input type="hidden" name="scope" value="profile email" /> <input
+				type="submit" value="Login using Google" />
+		</form>
+		<h3>
+			<a th:href="@{/public/createAccount}">Créer un compte</a>
+		</h3>
+	</div>
+</body>
 </html>

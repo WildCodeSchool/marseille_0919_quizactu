@@ -1,7 +1,9 @@
 package fr.actuz.quizactu.business.entity;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,17 +17,18 @@ import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.social.security.SocialUserDetails;
 
 /**
- * 
+ *
  */
 @Entity
 @Table(name = "ACCOUNT")
-public class Account implements Serializable, UserDetails {
+public class Account
+		implements Serializable, SocialUserDetails, UserDetails {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -36,48 +39,48 @@ public class Account implements Serializable, UserDetails {
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	/**
-	 * 
+	 *
 	 */
-	@ManyToOne 
-    @JoinColumn(name="ROLE_ID", nullable=false)
+	@ManyToOne
+	@JoinColumn(name = "ROLE_ID", nullable = false)
 	private Role role;
 
 	/**
-	 * 
+	 *
 	 */
 	private String userName;
 
 	/**
-	 * 
+	 *
 	 */
 	private String email;
 
 	/**
-	 * 
+	 *
 	 */
 	private String password;
 
 	/**
-	 * 
+	 *
 	 */
 	private Integer score;
 
 	/**
-	 * 
+	 *
 	 */
 	@ManyToMany
 	@JoinTable(name = "ACCOUNT_has_ARTICLE")
 	private List<Article> articles;
 
-	public Account(Integer id, Role role, String userName, String email, String password, Integer score,
-			List<Article> articles) {
+	public Account(Integer id, Role role, String userName, String email,
+			String password, Integer score, List<Article> articles) {
 		super();
 		this.id = id;
 		this.role = role;
@@ -101,7 +104,7 @@ public class Account implements Serializable, UserDetails {
 	}
 
 	public Integer getId() {
-		return id;
+		return this.id;
 	}
 
 //	public void setId(Integer id) {
@@ -109,28 +112,28 @@ public class Account implements Serializable, UserDetails {
 //	}
 
 	public Role getRole() {
-		return role;
+		return this.role;
 	}
 
 	public void setRole(Role role) {
 		this.role = role;
 	}
 
-
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	@Override
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 
 	public void setPassword(String password) {
@@ -138,7 +141,7 @@ public class Account implements Serializable, UserDetails {
 	}
 
 	public Integer getScore() {
-		return score;
+		return this.score;
 	}
 
 	public void setScore(Integer score) {
@@ -146,15 +149,15 @@ public class Account implements Serializable, UserDetails {
 	}
 
 	public List<Article> getArticles() {
-		return articles;
+		return this.articles;
 	}
 
 	public void setArticles(List<Article> articles) {
 		this.articles = articles;
 	}
-	
+
 	public static long getSerialversionuid() {
-		return serialVersionUID;
+		return Account.serialVersionUID;
 	}
 
 	@Override
@@ -187,6 +190,9 @@ public class Account implements Serializable, UserDetails {
 		return true;
 	}
 
-
+	@Override
+	public String getUserId() {
+		return this.userName;
+	}
 
 }

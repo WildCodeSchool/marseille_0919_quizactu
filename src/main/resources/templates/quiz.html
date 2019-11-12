@@ -10,9 +10,27 @@
 </head>
 <body>
 <table>
+<!-- 			<tbody> -->
+<!-- 				<tr th:each="question : ${questions}"> -->
+<!-- 					<td th:text="${question.getContent()}"></td> -->
+<!-- 					<td th:each="response : ${question.getResponses()}"> -->
+<!-- 						<button th:text="${response.getContent()}" -->
+<!-- 						th:classappend="${response.isTrue} ? green : red"></button> -->
+<!-- 					</td> -->
+					
+<!-- 				</tr> -->
+<!-- 			</tbody> -->
+
 			<tbody>
-				<tr th:each="question : ${quizVar}">
-					<td th:text="${question.getContent()}" />
+				<tr>
+					<td th:text="${question.getContent()}"></td>
+					<td th:each="response : ${question.getResponses()}">
+						<a class="btn btn-primary button" 
+						th:href="@{/nextQuestion/} + ${question.id} + '/' + ${response.id}"
+						th:text="${response.getContent()}"
+						th:classappend="${response.isTrue} ? green : red"></a>
+					</td>
+					
 				</tr>
 			</tbody>
 </table>

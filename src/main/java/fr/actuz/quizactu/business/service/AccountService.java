@@ -56,11 +56,7 @@ public class AccountService  {
 		Account acc = this.accountRepo.getOne(id);
 		final String hashedPassword = this.bCrypt.encode(password);
 		acc.setPassword(hashedPassword);
-//		Account account = new Account (id, hashedPassword);
-//		account.setPassword(password);
 		this.accountRepo.save(acc);
-//		this.accountRepo.findOneByPassword(hashedPassword);
-//		this.bCrypt.encode(hashedPassword);
 	}
 	
 }

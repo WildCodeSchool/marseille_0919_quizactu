@@ -34,22 +34,25 @@ public class QuizController {
 
 	@GetMapping("nextQuestion/{questionId}/{responseId}")
 	public String nextQuestion(Model model, @PathVariable Integer questionId, @PathVariable Integer responseId) {
-		
 		Response resp = service.getResponseById(responseId);
-		model.addAttribute("score", this.score);
+		//Si la réponse choisie est juste, incrémente le score de 10
 		if (resp.getIsTrue()) {
-			this.score++;
+			this.score += 10;
 		}
-
-		// TODO: Enregistrer la réponse choisie en BDD.
+		model.addAttribute("score", this.score);
 		if (index < quiz.getQuestions().size() - 1) {
 			model.addAttribute("question", this.quiz.getQuestions().get(++index));
-
 			return "quiz";
 		} else {
-			// Affichage page résultats.
-			return "result";
+			// Redirige vers page résultats.
+			return "redirect:/result";
 		}
+	}
+	
+	@GetMapping("/result")
+	public String getResult(Model model) {
+		model.addAttribute("score", this.score);
+		return "result";
 	}
 
 }

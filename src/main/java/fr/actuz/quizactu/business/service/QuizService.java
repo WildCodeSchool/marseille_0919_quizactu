@@ -22,12 +22,19 @@ public class QuizService {
 //		return questions;
 //	}
 	
+//	public Quiz getQuizByPublicationDate() {
+//		LocalDate today = LocalDate.now();
+//		Quiz quiz = this.quizRepo.findOneByPublicationDateBetween(today.minusDays(0), today.plusDays(0));
+//		return quiz;
+//		
+//		
+//	}
+	
 	public Quiz getQuizByPublicationDate() {
 		LocalDate today = LocalDate.now();
-		Quiz quiz = this.quizRepo.findOneByPublicationDateBetween(today.minusDays(1), today.plusDays(1));
+		Quiz quiz = this.quizRepo.findOneByPublicationDateBetween(today.minusDays(-1), today.plusDays(1));
 		return quiz;
 		
 		
 	}
-	
 }

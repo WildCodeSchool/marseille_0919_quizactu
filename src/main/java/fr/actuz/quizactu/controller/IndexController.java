@@ -30,4 +30,6 @@ public class IndexController {
 		return "ranking";
 	}
 	
+
+	
 }

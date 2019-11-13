@@ -44,23 +44,23 @@
 					<li class="nav-item mx-0 mx-lg-1" role="presentation"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						th:href="@{/ranking}">Classement</a></li>
-					<!-- 						      <li class="nav-item">
-        <a class="nav-link" th:href="@{/changedPassword}">Changer de mot de passe</a>
-      </li> -->
-					<li class="nav-item mx-0 mx-lg-1" role="presentation"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						th:href="@{/changedPassword}">Mon compte</a></li>
-					<li class="nav-item mx-0 mx-lg-1" role="presentation"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						th:href="@{/contact}">A propos</a></li>
-					<li
-						class="nav-item mx-0 mx-lg-1 nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger">
-						<form th:action="@{/logout}" method="post"
-							class="form-inline my-2 my-lg-0">
-							<button id="logout-btn" class="btn btn-lg btn-primary btn-block">Se
-								déconnecter</button>
-						</form>
-					</li>
+					<li class="nav-item mx-0 mx-lg-1 dropdown"><a
+						class="nav-link dropdown-toggle nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+						href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">
+
+							[[${#httpServletRequest.remoteUser}]]</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a th:href="@{/changedPassword}" class="dropdown-item" href="#">
+								<i class="fa fa-user pr-1"></i> Mon compte
+							</a> <a class="dropdown-item" href="#">
+								<form th:action="@{/logout}" class="mt-0" method="post">
+									<i class="fa fa-power-off"></i>
+									<button id="logout-btn">Se déconnecter</button>
+								</form>
+							</a>
+						</div></li>
+					
 				</ul>
 			</div>
 		</div>

@@ -9,30 +9,30 @@
 <title></title>
 </head>
 <body>
-<table>
-<!-- 			<tbody> -->
-<!-- 				<tr th:each="question : ${questions}"> -->
-<!-- 					<td th:text="${question.getContent()}"></td> -->
-<!-- 					<td th:each="response : ${question.getResponses()}"> -->
-<!-- 						<button th:text="${response.getContent()}" -->
-<!-- 						th:classappend="${response.isTrue} ? green : red"></button> -->
-<!-- 					</td> -->
-					
-<!-- 				</tr> -->
-<!-- 			</tbody> -->
+	<table>
+		<!-- 			<tbody> -->
+		<!-- 				<tr th:each="question : ${questions}"> -->
+		<!-- 					<td th:text="${question.getContent()}"></td> -->
+		<!-- 					<td th:each="response : ${question.getResponses()}"> -->
+		<!-- 						<button th:text="${response.getContent()}" -->
+		<!-- 						th:classappend="${response.isTrue} ? green : red"></button> -->
+		<!-- 					</td> -->
 
-			<tbody>
-				<tr>
-					<td th:text="${question.getContent()}"></td>
-					<td th:each="response : ${question.getResponses()}">
-						<a class="btn btn-primary button" 
-						th:href="@{/nextQuestion/} + ${question.id} + '/' + ${response.id}"
-						th:text="${response.getContent()}"
-						th:classappend="${response.isTrue} ? green : red"></a>
-					</td>
-					
-				</tr>
-			</tbody>
-</table>
+		<!-- 				</tr> -->
+		<!-- 			</tbody> -->
+
+		<tbody>
+			<tr>
+				<td th:text="${question.getContent()}"></td>
+				<td th:each="response : ${question.getResponses()}"><a
+					class="btn btn-primary button"
+					th:href="@{/nextQuestion/} + ${question.id} + '/' + ${response.id}"
+					th:text="${response.getContent()}"
+					th:classappend="${response.isTrue} ? green : red"></a></td>
+
+			</tr>
+		</tbody>
+	</table>
+	<p th:text="${score}"></p>
 </body>
 </html>

@@ -12,8 +12,7 @@ import fr.actuz.quizactu.business.entity.Quiz;
  * 
  */
 @Repository
-public interface QuizRepository extends JpaRepository<Quiz, Integer>{
-
+public interface QuizRepository extends JpaRepository<Quiz, Integer> {
 	Quiz findOneByPublicationDateBetween(LocalDate dateBefore, LocalDate dateAfter); 
 	
 }

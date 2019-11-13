@@ -113,7 +113,7 @@
 	background-color: #4381C1;
 	border-color: #4381C1; margin-top : 3rem;
 	margin-bottom: 1.5rem;
-	width: auto;
+	width: fit-content;
 	padding: 0.3rem 4rem;
 	margin-top: 3rem;
 	text-decoration: none;

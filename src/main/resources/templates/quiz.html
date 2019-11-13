@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="/head.html :: head"></head>
+<head>
+<link rel="stylesheet" th:href="@{./css/style.css}">
+</head>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+<table>
+<!-- 			<tbody> -->
+<!-- 				<tr th:each="question : ${questions}"> -->
+<!-- 					<td th:text="${question.getContent()}"></td> -->
+<!-- 					<td th:each="response : ${question.getResponses()}"> -->
+<!-- 						<button th:text="${response.getContent()}" -->
+<!-- 						th:classappend="${response.isTrue} ? green : red"></button> -->
+<!-- 					</td> -->
+					
+<!-- 				</tr> -->
+<!-- 			</tbody> -->
+
+			<tbody>
+				<tr>
+					<td th:text="${question.getContent()}"></td>
+					<td th:each="response : ${question.getResponses()}">
+						<a class="btn btn-primary button" 
+						th:href="@{/nextQuestion/} + ${question.id} + '/' + ${response.id}"
+						th:text="${response.getContent()}"
+						th:classappend="${response.isTrue} ? green : red"></a>
+					</td>
+					
+				</tr>
+			</tbody>
+</table>
+</body>
+</html>

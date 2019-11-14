@@ -39,6 +39,13 @@ public class QuizRecord implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="ACCOUNT_ID", nullable=false)
 	private Account account;
+	
+	public QuizRecord(Quiz quiz, Response response, Account account) {
+		super();
+		this.quiz = quiz;
+		this.response = response;
+		this.account = account;
+	}
 
 	public Integer getId() {
 		return id;

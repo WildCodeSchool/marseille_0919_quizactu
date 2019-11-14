@@ -38,6 +38,10 @@ public class QuizService {
 //		
 //	}
 	
+	public Quiz getQuizById(Integer id) {
+		return quizRepo.getOne(id);
+	}
+	
 	public Quiz getQuizByPublicationDate() {
 		LocalDate today = LocalDate.now();
 		Quiz quiz = this.quizRepo.findOneByPublicationDateBetween(today.minusDays(-1), today.plusDays(1));

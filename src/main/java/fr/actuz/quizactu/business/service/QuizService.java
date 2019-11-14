@@ -39,7 +39,7 @@ public class QuizService {
 	
 	public Quiz getQuizByPublicationDate() {
 		LocalDate today = LocalDate.now();
-		Quiz quiz = this.quizRepo.findOneByPublicationDateBetween(today.minusDays(1), today.plusDays(1));
+		Quiz quiz = this.quizRepo.findOneByPublicationDateBetween(today.minusDays(-1), today.plusDays(1));
 		return quiz;
 	}
 	

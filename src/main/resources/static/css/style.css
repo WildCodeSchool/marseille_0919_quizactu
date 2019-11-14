@@ -100,16 +100,16 @@ form {
 
 #logout-btn{
 	margin: 0;
+	border: none;
+	background: none;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+}
 
-border: none;
-
-background: none;
-
-font-size: 1rem;
-
-font-weight: 400;
-
-line-height: 1.5;
+.deconnected {
+	width: 20%;
+	margin-left: 550px;
 }
 
 /* navbar */

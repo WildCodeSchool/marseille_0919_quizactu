@@ -17,6 +17,8 @@
 
 		<div th:each="resp : ${listResponse}">
 			<p th:utext="${resp.question.content}"></p>
+			<p th:utext="${resp.question.article.title}"></p>
+			<a th:href="${resp.question.article.link}" target="_blank">lien</a>
 			<p th:utext="${resp.content}"></p>
 		</div>
 

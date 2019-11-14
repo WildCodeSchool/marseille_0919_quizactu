@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import fr.actuz.quizactu.business.entity.Account;
 import fr.actuz.quizactu.business.entity.Quiz;
 import fr.actuz.quizactu.business.service.AccountService;
+import fr.actuz.quizactu.business.service.QuizRecordService;
 import fr.actuz.quizactu.business.entity.Response;
 import fr.actuz.quizactu.business.service.QuizService;
 
@@ -27,6 +28,9 @@ public class QuizController {
 	
 	@Autowired
 	private AccountService accountService;
+	
+	@Autowired
+	private QuizRecordService recordService;
 	
 	@ModelAttribute("accountId")
 	public Integer account() {
@@ -78,11 +82,19 @@ public class QuizController {
 		}
 	}
 	
+//	@GetMapping("/result")
+//	public String getResult(Model model) {
+//		// TODO: Calculer le score du quiz et récupérer le score total.
+//		model.addAttribute("score", 5);
+//		return "result";
+//	}
+	
 	@GetMapping("/result")
-	public String getResult(Model model) {
-		// TODO: Calculer le score du quiz et récupérer le score total.
-		model.addAttribute("score", 0);
+	public String getScoreQuiz(Model model, Integer quizId, Integer responseId, Integer accountId) {
+		model.addAttribute("score", this.recordService.recordResultQuiz(quizId, responseId, accountId));
+		model.addAttribute("result", this.recordService.getScoreQuiz(quizId, accountId));
 		return "result";
 	}
+	
 
 }

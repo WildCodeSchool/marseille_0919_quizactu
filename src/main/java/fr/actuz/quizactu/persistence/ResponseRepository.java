@@ -12,5 +12,4 @@ import fr.actuz.quizactu.business.entity.Response;
  */
 @Repository
 public interface ResponseRepository extends JpaRepository<Response, Integer>{
-
 }

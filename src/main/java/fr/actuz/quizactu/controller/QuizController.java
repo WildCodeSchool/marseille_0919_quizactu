@@ -9,10 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import fr.actuz.quizactu.business.entity.Account;
 import fr.actuz.quizactu.business.entity.Quiz;
 import fr.actuz.quizactu.business.service.AccountService;
+import fr.actuz.quizactu.business.entity.Response;
 import fr.actuz.quizactu.business.service.QuizService;
 
 @Controller
@@ -59,16 +61,28 @@ public class QuizController {
 	}
 
 	@GetMapping("nextQuestion/{questionId}/{responseId}")
-	public String nextQuestion(Model model, Integer questionId, Integer responseId, @ModelAttribute("quiz") Quiz quiz, @ModelAttribute("questionIndex") int index) {
+	public String nextQuestion(Model model, @PathVariable Integer questionId, @PathVariable Integer responseId, @ModelAttribute("quiz") Quiz quiz, @ModelAttribute("questionIndex") int index) {
 		// TODO: Enregistrer la réponse choisie en BDD.
+		// Response resp = service.getResponseById(responseId);
+		//Si la réponse choisie est juste, incrémente le score de 10
+		// if (resp.getIsTrue()) {
+		// 	this.score += 10;
+		// }
 		if (index < quiz.getQuestions().size() - 1) {
 			model.addAttribute("question", quiz.getQuestions().get(++index));
-			
+			model.addAttribute("questionIndex", index);
 			return "quiz";
 		} else {
-			// Affichage page résultats.
-			return "result";
+			// Redirige vers page résultats.
+			return "redirect:/result";
 		}
+	}
+	
+	@GetMapping("/result")
+	public String getResult(Model model) {
+		// TODO: Calculer le score du quiz et récupérer le score total.
+		model.addAttribute("score", 0);
+		return "result";
 	}
 
 }

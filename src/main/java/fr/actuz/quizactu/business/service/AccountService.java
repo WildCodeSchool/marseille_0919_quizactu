@@ -44,6 +44,10 @@ public class AccountService  {
 		this.accountRepo.deleteById(id);
 	}
 	
+	public Account getById(Integer id) {
+		return this.accountRepo.getOne(id);
+	}
+	
 	public List<Account> getScoreLimitTen() {
 		return this.accountRepo.findTop10ByOrderByScoreDesc();
 	}

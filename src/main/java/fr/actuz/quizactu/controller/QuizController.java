@@ -65,13 +65,10 @@ public class QuizController {
 	}
 
 	@GetMapping("nextQuestion/{questionId}/{responseId}")
-	public String nextQuestion(Model model, @PathVariable Integer questionId, @PathVariable Integer responseId, @ModelAttribute("quiz") Quiz quiz, @ModelAttribute("questionIndex") int index) {
+	public String nextQuestion(Model model, @PathVariable Integer questionId, @PathVariable Integer responseId, @ModelAttribute("quiz") Quiz quiz, @ModelAttribute("questionIndex") int index, @ModelAttribute("accountId") Integer accountId) {
 		// TODO: Enregistrer la réponse choisie en BDD.
-		// Response resp = service.getResponseById(responseId);
-		//Si la réponse choisie est juste, incrémente le score de 10
-		// if (resp.getIsTrue()) {
-		// 	this.score += 10;
-		// }
+		service.getPoints(accountId , responseId);
+		//Passe à la question suivante tant qu'il reste des questions, sinon passe à aux resultats.
 		if (index < quiz.getQuestions().size() - 1) {
 			model.addAttribute("question", quiz.getQuestions().get(++index));
 			model.addAttribute("questionIndex", index);
@@ -81,18 +78,14 @@ public class QuizController {
 			return "redirect:/result";
 		}
 	}
-	
-//	@GetMapping("/result")
-//	public String getResult(Model model) {
-//		// TODO: Calculer le score du quiz et récupérer le score total.
-//		model.addAttribute("score", 5);
-//		return "result";
-//	}
-	
+
 	@GetMapping("/result")
-	public String getScoreQuiz(Model model, Integer quizId, Integer responseId, Integer accountId) {
-		model.addAttribute("score", this.recordService.recordResultQuiz(quizId, responseId, accountId));
-		model.addAttribute("result", this.recordService.getScoreQuiz(quizId, accountId));
+public String getResult(Model model, @ModelAttribute("accountId") Integer accountId) {
+		// TODO: Calculer le score du quiz et récupérer le score total.
+		model.addAttribute("totalScore", accountService.getById(accountId).getScore());
+//		model.addAttribute("result", this.recordService.getScoreQuiz(quizId, accountId));
+
+
 		return "result";
 	}
 	

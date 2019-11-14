@@ -1,16 +1,14 @@
 package fr.actuz.quizactu.business.service;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.actuz.quizactu.business.entity.Account;
-import fr.actuz.quizactu.business.entity.Question;
 import fr.actuz.quizactu.business.entity.Quiz;
 import fr.actuz.quizactu.business.entity.Response;
+import fr.actuz.quizactu.persistence.AccountRepository;
 import fr.actuz.quizactu.persistence.QuizRepository;
 import fr.actuz.quizactu.persistence.ResponseRepository;
 
@@ -22,6 +20,9 @@ public class QuizService {
 	
 	@Autowired
 	private ResponseRepository responseRepo;
+	
+	@Autowired 
+	private AccountRepository accountRepo;
 	
 //	public List<Question> getQuizById(int id) {
 //		Quiz quiz = this.quizRepo.getOne(id);
@@ -43,8 +44,22 @@ public class QuizService {
 		return quiz;
 	}
 	
-	public void getPoints(Account acc, int score) {
-		acc.setScore(score + acc.getScore());
+	public void getPoints(Integer accountId, Integer responseId) {
+		Response resp = this.getResponseById(responseId);
+		Account acc = this.accountRepo.getOne(accountId);
+		Integer score = 0;
+		//Si la réponse choisie est juste, incrémente le score de 10
+		if (resp.getIsTrue()) {
+		 	score += 10;
+		}
+		//Si le score de l'user est null, set son score avec celui de la variable score
+		if (acc.getScore() == null) {
+			acc.setScore(score);
+			this.accountRepo.save(acc);
+		} else {
+			acc.setScore(score + acc.getScore());
+			this.accountRepo.save(acc);
+		}
 	}
 
 	public Response getResponseById(Integer id) {

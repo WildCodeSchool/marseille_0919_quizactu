@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import fr.actuz.quizactu.business.entity.Account;
 import fr.actuz.quizactu.business.entity.Quiz;
 import fr.actuz.quizactu.business.service.AccountService;
-import fr.actuz.quizactu.business.entity.Response;
 import fr.actuz.quizactu.business.service.QuizService;
 
 @Controller
@@ -61,13 +60,10 @@ public class QuizController {
 	}
 
 	@GetMapping("nextQuestion/{questionId}/{responseId}")
-	public String nextQuestion(Model model, @PathVariable Integer questionId, @PathVariable Integer responseId, @ModelAttribute("quiz") Quiz quiz, @ModelAttribute("questionIndex") int index) {
+	public String nextQuestion(Model model, @PathVariable Integer questionId, @PathVariable Integer responseId, @ModelAttribute("quiz") Quiz quiz, @ModelAttribute("questionIndex") int index, @ModelAttribute("accountId") Integer accountId) {
 		// TODO: Enregistrer la réponse choisie en BDD.
-		// Response resp = service.getResponseById(responseId);
-		//Si la réponse choisie est juste, incrémente le score de 10
-		// if (resp.getIsTrue()) {
-		// 	this.score += 10;
-		// }
+		service.getPoints(accountId , responseId);
+		//Passe à la question suivante tant qu'il reste des questions, sinon passe à aux resultats.
 		if (index < quiz.getQuestions().size() - 1) {
 			model.addAttribute("question", quiz.getQuestions().get(++index));
 			model.addAttribute("questionIndex", index);
@@ -79,9 +75,9 @@ public class QuizController {
 	}
 	
 	@GetMapping("/result")
-	public String getResult(Model model) {
+	public String getResult(Model model, @ModelAttribute("accountId") Integer accountId) {
 		// TODO: Calculer le score du quiz et récupérer le score total.
-		model.addAttribute("score", 0);
+		model.addAttribute("totalScore", accountService.getById(accountId).getScore());
 		return "result";
 	}
 

@@ -13,5 +13,14 @@
 	<h1>Resultat</h1>
 	<h2 th:text="${scoreOfQuiz}"></h2>
 	<p th:text="${totalScore}"></p>
+
+
+		<div th:each="resp : ${listResponse}">
+			<p th:utext="${resp.question.content}"></p>
+			<p th:utext="${resp.content}"></p>
+		</div>
+
+
+
 </body>
 </html>

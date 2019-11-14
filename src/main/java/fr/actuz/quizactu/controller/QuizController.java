@@ -81,6 +81,7 @@ public class QuizController {
 	public String getResult(Model model, @ModelAttribute("accountId") Integer accountId, @ModelAttribute("quiz") Quiz quiz) {
 		model.addAttribute("totalScore", accountService.getById(accountId).getScore());
 		model.addAttribute("scoreOfQuiz", recordService.getScoreQuiz(quiz.getId(), accountId));
+		model.addAttribute("listResponse", recordService.getQuizResponses(quiz.getId(), accountId));
 		return "result";
 	}
 

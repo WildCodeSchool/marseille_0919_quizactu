@@ -1,5 +1,6 @@
 package fr.actuz.quizactu.business.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,18 @@ public class QuizRecordService {
 		}
 		return score;
 	}
+	
+	public List<Response> getQuizResponses(Integer quizId, Integer accountId) {
+		List<QuizRecord> quizRecord = this.recordRepo.findAllByQuizIdAndAccountId(quizId, accountId);
+		List<Response> responses = new ArrayList<Response>();
+		
+		for (QuizRecord result : quizRecord) {
+			responses.add(result.getResponse());
+		}
+		
+		return responses;
+	}
+	
+	
 	
 }

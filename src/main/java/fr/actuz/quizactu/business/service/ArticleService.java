@@ -17,16 +17,18 @@ public class ArticleService {
 	@Autowired
 	private AccountRepository accountRepo;
 
-	public void favoriteArticle(Integer accountId, Integer articleId) {
+	public boolean favoriteArticle(Integer accountId, Integer articleId) {
 		Article art = this.articleRepo.getOne(articleId);
 		Account acc = this.accountRepo.getOne(accountId);
-
+		
 		if (acc.getArticles().contains(art)) {
 			acc.getArticles().remove(art);
 			this.accountRepo.save(acc);
+			return false;
 		} else {
 			acc.getArticles().add(art);
 			this.accountRepo.save(acc);
+			return true;
 		}
 	}
 }

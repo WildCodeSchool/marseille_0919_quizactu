@@ -126,7 +126,6 @@ public class Article implements Serializable {
 	public void setAccounts(List<Account> accounts) {
 		this.accounts = accounts;
 	}
-	
-	
+
 
 }

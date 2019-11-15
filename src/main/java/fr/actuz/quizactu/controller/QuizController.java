@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import fr.actuz.quizactu.business.entity.Account;
 import fr.actuz.quizactu.business.entity.Quiz;
@@ -83,16 +84,18 @@ public class QuizController {
 
 	@GetMapping("/result")
 	public String getResult(Model model, @ModelAttribute("accountId") Integer accountId, @ModelAttribute("quiz") Quiz quiz) {
-		model.addAttribute("totalScore", accountService.getById(accountId).getScore());
+		Account account = accountService.getById(accountId);
+		model.addAttribute("totalScore", account.getScore());
 		model.addAttribute("scoreOfQuiz", recordService.getScoreQuiz(quiz.getId(), accountId));
 		model.addAttribute("listResponse", recordService.getQuizResponses(quiz.getId(), accountId));
+		model.addAttribute("articles", account.getArticles());
 		return "result";
 	}
 	
 	@GetMapping("/favArticle/{articleId}")
-	public String favArticle(@ModelAttribute("accountId") Integer accountId, @PathVariable Integer articleId) {
-		articleService.favoriteArticle(accountId, articleId);
-		return "redirect:/result";
+	@ResponseBody
+	public boolean favArticle(@ModelAttribute("accountId") Integer accountId, @PathVariable Integer articleId) {
+		return articleService.favoriteArticle(accountId, articleId);
 	}
 
 }

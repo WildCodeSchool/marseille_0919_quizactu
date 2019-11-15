@@ -92,10 +92,16 @@ public class QuizController {
 		return "result";
 	}
 	
+
+	@GetMapping("/timer")
+	public String timer() {
+		return "timer";
+	}
+	
+
 	@GetMapping("/favArticle/{articleId}")
 	@ResponseBody
 	public boolean favArticle(@ModelAttribute("accountId") Integer accountId, @PathVariable Integer articleId) {
 		return articleService.favoriteArticle(accountId, articleId);
 	}
-
 }

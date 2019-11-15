@@ -19,7 +19,7 @@
 }
 
 body {
-	/* background-color: #14213d; */
+	/* background-color: #91f5ad; */
 	background-color: #fafafa;
 	text-align: center;
 	color: #444;
@@ -168,6 +168,29 @@ form {
 
 .navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
     color: #fff;
+}
+
+.item {
+    position: relative;
+    float: left;
+    margin:40%;
+}
+
+.item h2 {
+    text-align:center;
+    position: absolute;
+    line-height: 125px;
+    width: 100%;
+}
+
+svg {
+    transform: rotate(-90deg);
+}
+
+.circle_animation {
+  stroke-dasharray: 440; /* this value is the pixel circumference of the circle */
+  stroke-dashoffset: 440;
+  transition: all 1s linear;
 }
 
 @media screen and (max-width: 640px) {

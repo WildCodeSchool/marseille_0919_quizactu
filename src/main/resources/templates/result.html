@@ -13,5 +13,42 @@
 	<h1>Resultat</h1>
 	<h2 th:text="${scoreOfQuiz}"></h2>
 	<p th:text="${totalScore}"></p>
+
+
+	<div th:each="resp : ${listResponse}">
+		<img th:src="@{/images/media.jpg}" style="width: 30%;" />
+		<p th:utext="${resp.question.content}"></p>
+		<p th:utext="${resp.question.article.title}"></p>
+		<a th:href="${resp.question.article.link}" target="_blank">lien</a>
+		<p th:utext="${resp.content}"></p>
+		
+		<a th:href="@{/favArticle/} + ${resp.question.article.id}">
+			<i class="fa fa-star-o icon" aria-hidden="true">
+			</i>
+		</a>
+		
+		
+<!-- 		<a th:href="@{/favArticle/} + ${resp.question.article.id}" -->
+
+	</div>
+
+
+
 </body>
+<script>
+document.querySelector('a').addEventListener('click', function() {
+	  const icon = this.querySelector('i');
+	  //const text = this.querySelector('span');
+
+	  if (icon.classList.contains('fa-star')) {
+	    icon.classList.remove('fa-star');
+	    icon.classList.add('fa-star-o');
+	    //text.innerHTML = 'Hide';
+	  } else {
+	    icon.classList.remove('fa-star-o');
+	    icon.classList.add('fa-star');
+	    //text.innerHTML = 'Show';
+	  }
+	});
+</script>
 </html>

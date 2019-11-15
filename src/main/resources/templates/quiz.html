@@ -9,8 +9,9 @@
 <title></title>
 </head>
 <body>
+	<img th:src="${question.imageEncoded}" />
 	<table>
-		<!-- 			<tbody> -->
+		<!-- 			<tbody> exemple de boucle dans une boucle--> 
 		<!-- 				<tr th:each="question : ${questions}"> -->
 		<!-- 					<td th:text="${question.getContent()}"></td> -->
 		<!-- 					<td th:each="response : ${question.getResponses()}"> -->
@@ -24,6 +25,9 @@
 		<tbody>
 			<tr>
 				<td th:text="${question.getContent()}"></td>
+				
+			
+				
 				<td th:each="response : ${question.getResponses()}"><a
 					class="btn btn-primary button"
 					th:href="@{/nextQuestion/} + ${question.id} + '/' + ${response.id}"

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import fr.actuz.quizactu.business.entity.Account;
 import fr.actuz.quizactu.business.entity.Quiz;
 import fr.actuz.quizactu.business.service.AccountService;
+import fr.actuz.quizactu.business.service.ArticleService;
 import fr.actuz.quizactu.business.service.QuizRecordService;
 import fr.actuz.quizactu.business.service.QuizService;
 
@@ -30,6 +31,9 @@ public class QuizController {
 
 	@Autowired
 	private QuizRecordService recordService;
+	
+	@Autowired
+	private ArticleService articleService;
 
 	@ModelAttribute("accountId")
 	public Integer account() {
@@ -81,12 +85,20 @@ public class QuizController {
 	public String getResult(Model model, @ModelAttribute("accountId") Integer accountId, @ModelAttribute("quiz") Quiz quiz) {
 		model.addAttribute("totalScore", accountService.getById(accountId).getScore());
 		model.addAttribute("scoreOfQuiz", recordService.getScoreQuiz(quiz.getId(), accountId));
+		model.addAttribute("listResponse", recordService.getQuizResponses(quiz.getId(), accountId));
 		return "result";
 	}
 	
+
 	@GetMapping("/timer")
 	public String timer() {
 		return "timer";
 	}
 	
+
+	@GetMapping("/favArticle/{articleId}")
+	public String favArticle(@ModelAttribute("accountId") Integer accountId, @PathVariable Integer articleId) {
+		articleService.favoriteArticle(accountId, articleId);
+		return "redirect:/result";
+	}
 }

@@ -2,6 +2,7 @@ package fr.actuz.quizactu.business.entity;
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.Base64.Encoder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -50,7 +51,7 @@ public class Question implements Serializable {
      * 
      */
     @Lob
-    private Byte[] image;
+    private byte[] image;
 
     /**
      * 
@@ -99,11 +100,17 @@ public class Question implements Serializable {
 		this.content = content;
 	}
 
-	public Byte[] getImage() {
+	public byte[] getImage() {
 		return image;
+		
+	}
+	
+	public String getImageEncoded() {
+		Encoder encoder = Base64.getEncoder();
+		return "data:image/png;base64," + encoder.encodeToString(this.image);
 	}
 
-	public void setImage(Byte[] image) {
+	public void setImage(byte[] image) {
 		this.image = image;
 	}
 

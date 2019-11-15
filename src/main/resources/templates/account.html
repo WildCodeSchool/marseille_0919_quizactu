@@ -11,8 +11,9 @@
 		<p th:text="${totalScore}"></p>
 		<div th:each="article : ${account.articles}">
 		<p th:text="${article.title}"></p>
-		<p th:text="${article.media}"></p>
+		<a th:href="${article.link}">Lien</a>
 		<p th:text="${article.summary}"></p>
+		<img th:src="${article.question.imageEncoded}" /> 
 		
 		</div>
 </html>

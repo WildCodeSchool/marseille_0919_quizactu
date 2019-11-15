@@ -10,45 +10,48 @@
 <title></title>
 </head>
 <body>
-	<h1>Resultat</h1>
-	<h2 th:text="${scoreOfQuiz}"></h2>
-	<p th:text="${totalScore}"></p>
-
-
-	<div th:each="resp : ${listResponse}">
-		<img th:src="@{/images/media.jpg}" style="width: 30%;" />
-		<p th:utext="${resp.question.content}"></p>
-		<p th:utext="${resp.question.article.title}"></p>
-		<a th:href="${resp.question.article.link}" target="_blank">lien</a>
-		<p th:utext="${resp.content}"></p>
-		
-		<a th:href="@{/favArticle/} + ${resp.question.article.id}">
-			<i class="fa fa-star-o icon" aria-hidden="true">
-			</i>
-		</a>
-		
-		
-<!-- 		<a th:href="@{/favArticle/} + ${resp.question.article.id}" -->
-
+	<div class="container result">
+	
+		<h1>Resultat</h1>
+		<h2 th:text="${scoreOfQuiz}"></h2>
+		<p th:text="${totalScore}"></p>
+		<div th:each="resp : ${listResponse}" 
+			class="card" 
+			th:classappend="${resp.isTrue} ? bg-success : bg-danger">
+		  <div class="row">
+		    <div class="col-md-4">
+		      <img th:src="@{/images/media.jpg}" style="width:100%;" />
+		    </div>
+		    <div class="col-md-8">
+		      <div class="card-body">
+		        <h5 th:utext="'Question : ' + ${resp.question.content}" class="card-title"></h5>
+		        <p th:utext="'Votre réponse : ' + ${resp.content}" class="card-text"></p>
+		        <p th:utext="'Titre de l\'article : ' + ${resp.question.article.title}" class="card-text"></p>
+		        <a th:href="${resp.question.article.link}" target="_blank">Voir l'article</a>
+		        <a th:onclick="'registerFav(' + ${resp.question.article.id} + ')'">
+					<i th:id="'article-' + ${resp.question.article.id}" class="fa icon" aria-hidden="true"
+						th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'"></i>
+				</a>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 	</div>
-
-
+	
 
 </body>
 <script>
-document.querySelector('a').addEventListener('click', function() {
-	  const icon = this.querySelector('i');
-	  //const text = this.querySelector('span');
-
-	  if (icon.classList.contains('fa-star')) {
-	    icon.classList.remove('fa-star');
-	    icon.classList.add('fa-star-o');
-	    //text.innerHTML = 'Hide';
-	  } else {
-	    icon.classList.remove('fa-star-o');
-	    icon.classList.add('fa-star');
-	    //text.innerHTML = 'Show';
-	  }
-	});
+	function registerFav(articleId) {
+		$.ajax('http://localhost:8080/favArticle/' + articleId).then((result) => {
+			let i = $('#article-' + articleId);
+			if (result) {
+				i.addClass('fa-star');
+				i.removeClass('fa-star-o');
+			} else {
+				i.removeClass('fa-star');
+				i.addClass('fa-star-o');
+			}
+		});
+	}
 </script>
 </html>

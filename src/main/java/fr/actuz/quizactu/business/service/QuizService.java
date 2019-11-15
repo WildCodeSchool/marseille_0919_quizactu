@@ -2,6 +2,7 @@ package fr.actuz.quizactu.business.service;
 
 import java.time.LocalDate;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,19 +25,6 @@ public class QuizService {
 	@Autowired 
 	private AccountRepository accountRepo;
 	
-//	public List<Question> getQuizById(int id) {
-//		Quiz quiz = this.quizRepo.getOne(id);
-//		List<Question> questions = quiz.getQuestions();
-//		return questions;
-//	}
-	
-//	public Quiz getQuizByPublicationDate() {
-//		LocalDate today = LocalDate.now();
-//		Quiz quiz = this.quizRepo.findOneByPublicationDateBetween(today.minusDays(0), today.plusDays(0));
-//		return quiz;
-//		
-//		
-//	}
 	
 	public Quiz getQuizById(Integer id) {
 		return quizRepo.getOne(id);
@@ -70,4 +58,5 @@ public class QuizService {
 		Response resp = responseRepo.getOne(id);
 		return resp;
 	}
+	
 }

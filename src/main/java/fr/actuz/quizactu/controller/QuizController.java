@@ -83,5 +83,10 @@ public class QuizController {
 		model.addAttribute("scoreOfQuiz", recordService.getScoreQuiz(quiz.getId(), accountId));
 		return "result";
 	}
-
+	
+	@GetMapping("/timer")
+	public String timer() {
+		return "timer";
+	}
+	
 }

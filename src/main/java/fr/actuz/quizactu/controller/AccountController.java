@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import fr.actuz.quizactu.business.entity.Account;
 import fr.actuz.quizactu.business.service.AccountService;
+import fr.actuz.quizactu.business.service.ArticleService;
 
 @Controller
 
@@ -19,6 +20,9 @@ public class AccountController {
 
 	@Autowired
 	private AccountService service;
+
+	@Autowired
+	private ArticleService artService;
 
 	@GetMapping("/changedPassword")
 	public String change(Model model, HttpServletRequest request) {
@@ -61,12 +65,6 @@ public class AccountController {
 		this.service.updatePassword(id, newPassword);
 
 		return "redirect:/";
-	}
-
-	@GetMapping("/account")
-	public String accountProfile(Integer id) {
-		this.service.getById(id).getArticles();
-		return "account";
 	}
 
 	@GetMapping("/public/forgotPassword")

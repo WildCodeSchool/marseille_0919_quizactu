@@ -9,6 +9,11 @@
 	<h1>Mon compte</h1>
 		
 		<p th:text="${totalScore}"></p>
-
+		<div th:each="article : ${account.articles}">
+		<p th:text="${article.title}"></p>
+		<p th:text="${article.media}"></p>
+		<p th:text="${article.summary}"></p>
+		
+		</div>
 </html>
 </body>

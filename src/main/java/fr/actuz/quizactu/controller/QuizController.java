@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import fr.actuz.quizactu.business.entity.Account;
 import fr.actuz.quizactu.business.entity.Quiz;
 import fr.actuz.quizactu.business.service.AccountService;
+import fr.actuz.quizactu.business.service.ArticleService;
 import fr.actuz.quizactu.business.service.QuizRecordService;
 import fr.actuz.quizactu.business.service.QuizService;
 
@@ -30,6 +31,9 @@ public class QuizController {
 
 	@Autowired
 	private QuizRecordService recordService;
+
+	@Autowired
+	private ArticleService articleService;
 
 	@ModelAttribute("accountId")
 	public Integer account() {
@@ -85,5 +89,11 @@ public class QuizController {
 		model.addAttribute("scoreOfQuiz", this.recordService.getScoreQuiz(quiz.getId(), accountId));
 		model.addAttribute("listResponse", this.recordService.getQuizResponses(quiz.getId(), accountId));
 		return "result";
+	}
+
+	@GetMapping("/favArticle/{articleId}")
+	public String favArticle(@ModelAttribute("accountId") Integer accountId, @PathVariable Integer articleId) {
+		this.articleService.favoriteArticle(accountId, articleId);
+		return "redirect:/result";
 	}
 }

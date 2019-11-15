@@ -8,8 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import fr.actuz.quizactu.business.entity.Account;
 import fr.actuz.quizactu.business.entity.Quiz;
@@ -62,10 +62,11 @@ public class QuizController {
 	}
 
 	@GetMapping("nextQuestion/{questionId}/{responseId}")
-	public String nextQuestion(Model model, @PathVariable Integer questionId, @PathVariable Integer responseId, @ModelAttribute("quiz") Quiz quiz, @ModelAttribute("questionIndex") int index,
+	public String nextQuestion(Model model, @PathVariable Integer questionId, @PathVariable Integer responseId,
+			@ModelAttribute("quiz") Quiz quiz, @ModelAttribute("questionIndex") int index,
 			@ModelAttribute("accountId") Integer accountId) {
-		service.getPoints(accountId, responseId);
-		recordService.recordResultQuiz(quiz.getId(), responseId, accountId);
+		this.service.getPoints(accountId, responseId);
+		this.recordService.recordResultQuiz(quiz.getId(), responseId, accountId);
 		// Passe à la question suivante tant qu'il reste des questions, sinon passe à
 		// aux resultats.
 		if (index < quiz.getQuestions().size() - 1) {
@@ -78,11 +79,11 @@ public class QuizController {
 	}
 
 	@GetMapping("/result")
-	public String getResult(Model model, @ModelAttribute("accountId") Integer accountId, @ModelAttribute("quiz") Quiz quiz) {
-		model.addAttribute("totalScore", accountService.getById(accountId).getScore());
-		model.addAttribute("scoreOfQuiz", recordService.getScoreQuiz(quiz.getId(), accountId));
-		model.addAttribute("listResponse", recordService.getQuizResponses(quiz.getId(), accountId));
+	public String getResult(Model model, @ModelAttribute("accountId") Integer accountId,
+			@ModelAttribute("quiz") Quiz quiz) {
+		model.addAttribute("totalScore", this.accountService.getById(accountId).getScore());
+		model.addAttribute("scoreOfQuiz", this.recordService.getScoreQuiz(quiz.getId(), accountId));
+		model.addAttribute("listResponse", this.recordService.getQuizResponses(quiz.getId(), accountId));
 		return "result";
 	}
-
 }

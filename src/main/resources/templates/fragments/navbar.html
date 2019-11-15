@@ -44,6 +44,9 @@
 					<li class="nav-item mx-0 mx-lg-1" role="presentation"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						th:href="@{/ranking}">Classement</a></li>
+					<li class="nav-item mx-0 mx-lg-1" role="presentation"><a
+						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+						th:href="@{/changedPassword}">Paramètre</a>
 					<li class="nav-item mx-0 mx-lg-1 dropdown"><a
 						class="nav-link dropdown-toggle nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -51,7 +54,7 @@
 
 							[[${#httpServletRequest.remoteUser}]]</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a th:href="@{/changedPassword}" class="dropdown-item" href="#">
+							<a th:href="@{/account}" class="dropdown-item" href="#">
 								<i class="fa fa-user pr-1"></i> Mon compte
 							</a> <a class="dropdown-item" href="#">
 								<form th:action="@{/logout}" class="mt-0" method="post">

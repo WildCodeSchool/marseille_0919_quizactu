@@ -30,6 +30,10 @@ h1, h3 {
 	margin-top: 2em;
 }
 
+h2 {
+	font-size: 4rem;
+}
+
 .mt-150 {
 	margin-top: 150px;
 }

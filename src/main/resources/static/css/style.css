@@ -30,6 +30,10 @@ h1, h3 {
 	margin-top: 2em;
 }
 
+h2 {
+	font-size: 4rem;
+}
+
 .mt-150 {
 	margin-top: 150px;
 }
@@ -55,7 +59,7 @@ form {
 	justify-content: center;
 	width: auto;
 	font-size: 1.3rem;
-	margin: 0 auto;
+	margin: 5px auto;
 	padding: 1rem 0;
 	color: white;
 	border-radius: 10px;

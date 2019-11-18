@@ -1,7 +1,82 @@
-.result .card {
-	border-radius: 10px;
+.result .result-trophy {
+	width: 100%;
+	margin: 0 auto;
+	display: inline-block;
 }
 
-.result .card img {
-	width: 100%;
+.result-trophy:before {
+	font-family: "FontAwesome";
+	content: '\f091';
+	display: block;
+	height: auto;
+	width: auto;
+	color: #9FE6BB;
+	font-size: 15rem;
+	line-height: 1;
+	float: left;
 }
+
+.result-trophy-score {
+	display: inline-flex;
+	float: left;
+	padding-top: 2rem;
+	padding-left: 3rem;
+}
+
+.result-trophy-txt {
+	font-size: 2.5rem;
+	margin: 0;
+}
+
+.result .card .card-title,
+.result .card .card-text,
+.false-anwser,
+.false-anwser h5 {
+	font-size: 2.5rem;
+}
+
+.card .card-body .icon {
+	position: absolute;
+    font-size: 6rem;
+    right: 2.5rem;
+    top: 2.5rem;
+    color: gold;
+}
+
+.result .card .card-title {
+	font-weight: normal;
+}
+
+.result .card .card-text {
+	font-weight: bold;
+}
+
+.false-anwser-article-title {
+	font-size: 3rem;
+    font-style: italic;
+    padding: 2rem 0;
+    border-top: 1px solid grey;
+    transition-duration: 0.8s;
+}
+
+.false-anwser a {
+	display: block;
+	width: 100%;
+	text-align: right;
+	color: grey;
+	transition: 0.8s;
+}
+
+.false-anwser a:hover {
+	color: black;
+}
+
+
+
+
+
+
+
+
+
+

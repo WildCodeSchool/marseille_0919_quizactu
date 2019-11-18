@@ -9,34 +9,25 @@
 <title></title>
 </head>
 <body>
-	<img th:src="${question.imageEncoded}" />
-	<table>
-		<!-- 			<tbody> exemple de boucle dans une boucle--> 
-		<!-- 				<tr th:each="question : ${questions}"> -->
-		<!-- 					<td th:text="${question.getContent()}"></td> -->
-		<!-- 					<td th:each="response : ${question.getResponses()}"> -->
-		<!-- 						<button th:text="${response.getContent()}" -->
-		<!-- 						th:classappend="${response.isTrue} ? green : red"></button> -->
-		<!-- 					</td> -->
-
-		<!-- 				</tr> -->
-		<!-- 			</tbody> -->
-
-		<tbody>
-			<tr>
-				<td th:text="${question.getContent()}"></td>
-				
-			
-				
-				<td th:each="response : ${question.getResponses()}"><a
-					class="btn btn-primary button"
+	<nav th:replace="fragments/navbar.html :: nav"></nav>
+	<div class="card" style="width: 100%; padding-top: 6rem;">
+		<div>
+			<img class="img-thumbnail card-img-top" style="width: 500px; max-height: 350px;"
+				th:if="${question.image != null}" th:src="${question.imageEncoded}" />
+		</div>
+		<div class="card-body">
+			<h2 th:text="${question.getContent()}"></h2>
+			<div th:each="response : ${question.getResponses()}">
+				<a class="btn btn-primary button btn-block"
 					th:href="@{/nextQuestion/} + ${question.id} + '/' + ${response.id}"
-					th:text="${response.getContent()}"
-					th:classappend="${response.isTrue} ? green : red"></a></td>
-
-			</tr>
-		</tbody>
-	</table>
-	<p th:text="${score}"></p>
+					th:text="${response.getContent()}"></a>
+				<!-- 				th:classappend="${response.isTrue} ? green : red" -->
+			</div>
+		</div>
+		<div class="card-footer text-right">
+			<p th:text="${quiz.getPublicationDate()}"></p>
+		</div>
+		<p th:text="${score}"></p>
+	</div>
 </body>
 </html>

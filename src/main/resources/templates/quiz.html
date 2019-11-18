@@ -19,7 +19,7 @@
 			<h2 th:utext="${question.getContent()}"></h2>
 			<div th:each="response : ${question.getResponses()}">
 				<a class="btn btn-primary button btn-block"
-					th:uhref="@{/nextQuestion/} + ${question.id} + '/' + ${response.id}"
+					th:href="@{/nextQuestion/} + ${question.id} + '/' + ${response.id}"
 					th:utext="${response.getContent()}"></a>
 				<!-- 				th:classappend="${response.isTrue} ? green : red" -->
 			</div>

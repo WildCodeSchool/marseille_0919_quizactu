@@ -16,11 +16,11 @@
 				th:if="${question.image != null}" th:src="${question.imageEncoded}" />
 		</div>
 		<div class="card-body">
-			<h2 th:text="${question.getContent()}"></h2>
+			<h2 th:utext="${question.getContent()}"></h2>
 			<div th:each="response : ${question.getResponses()}">
 				<a class="btn btn-primary button btn-block"
-					th:href="@{/nextQuestion/} + ${question.id} + '/' + ${response.id}"
-					th:text="${response.getContent()}"></a>
+					th:uhref="@{/nextQuestion/} + ${question.id} + '/' + ${response.id}"
+					th:utext="${response.getContent()}"></a>
 				<!-- 				th:classappend="${response.isTrue} ? green : red" -->
 			</div>
 		</div>

@@ -12,8 +12,13 @@
 	<nav th:replace="fragments/navbar.html :: nav"></nav>
 	<div class="card" style="width: 100%; padding-top: 6rem;">
 		<div>
-			<img class="img-thumbnail card-img-top" style="width: 500px; max-height: 350px;"
+			<img class="img-thumbnail card-img-top"
+				style="width: 500px; max-height: 350px;"
 				th:if="${question.image != null}" th:src="${question.imageEncoded}" />
+		</div>
+		<div class="timer progess">
+			<div class="progress-bar" role="progressbar" aria-valuenow="25" style="width:25%"
+				aria-valuemin="0" aria-valuemax="100"></div>
 		</div>
 		<div class="card-body">
 			<h2 th:utext="${question.getContent()}"></h2>
@@ -25,7 +30,7 @@
 			</div>
 		</div>
 		<div class="card-footer text-right">
-			<p th:text="${quiz.getPublicationDate()}"></p>
+			<p th:text="${#temporals.format(quiz.getPublicationDate(), 'dd/MM/yyyy')}"></p>
 		</div>
 		<p th:text="${score}"></p>
 	</div>

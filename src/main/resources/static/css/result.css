@@ -28,19 +28,18 @@
 	margin: 0;
 }
 
-.result .card .card-title,
-.result .card .card-text,
-.false-anwser,
-.false-anwser h5 {
+.result .card .card-title, .result .card .card-text, .false-anwser,
+	.false-anwser h5 {
 	font-size: 2.5rem;
 }
 
-.card .card-body .icon {
+.card .card-body .onclik-favorite {
 	position: absolute;
-    font-size: 6rem;
-    right: 2.5rem;
-    top: 2.5rem;
-    color: gold;
+	font-size: 5rem;
+	right: 86%;
+	bottom: 0;
+	color: gold;
+	width: auto;
 }
 
 .result .card .card-title {
@@ -53,10 +52,10 @@
 
 .false-anwser-article-title {
 	font-size: 3rem;
-    font-style: italic;
-    padding: 2rem 0;
-    border-top: 1px solid grey;
-    transition-duration: 0.8s;
+	font-style: italic;
+	padding: 2rem 0;
+	border-top: 1px solid grey;
+	transition-duration: 0.8s;
 }
 
 .false-anwser a {
@@ -64,19 +63,10 @@
 	width: 100%;
 	text-align: right;
 	color: grey;
+	padding: 1rem 0;
 	transition: 0.8s;
 }
 
 .false-anwser a:hover {
 	color: black;
 }
-
-
-
-
-
-
-
-
-
-

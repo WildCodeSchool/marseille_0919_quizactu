@@ -1,3 +1,5 @@
+INSERT INTO quiz VALUES (1, CURDATE(), CURDATE(), 'Quiz du jour');
+
 INSERT INTO question (content, timer_question, timer_response, quiz_id)
    VALUES ("Qui vient d&#39;être élu à la présidence de Les Républicains ?", 3, 10,1),
    ("Au coeur de quelle réserve naturelle un cargo s&#39;est-il échoué ?", 3, 10, 1),

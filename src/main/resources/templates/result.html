@@ -25,12 +25,7 @@
 				<div class="card-body">
 					<div class="true-anwser">
 						<img class="card-img-top" 
-							th:src="@{/images/journalism.jpg}" />
-						<a th:onclick="'registerFav(' + ${resp.question.article.id} + ')'">
-							<i th:id="'article-' + ${resp.question.article.id}"
-							class="fa icon" aria-hidden="true"
-							th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'"></i>
-						</a>
+							th:src="${resp.question.imageEncoded}" />
 						<h3 class="card-title text-left mt-3"
 							th:utext="'Question : ' + ${resp.question.content}"></h3>
 						<p class="card-text mt-3 text-center" 
@@ -43,6 +38,13 @@
 							class="text-left false-anwser-article-title"></h5>
 						<p th:utext="${resp.question.article.summary}" 
 							class="text-justify"></p>
+						<a th:onclick="'registerFav(' + ${resp.question.article.id} + ')'"
+							class="onclik-favorite">
+							<i th:id="'article-' + ${resp.question.article.id}"
+								class="fa icon" aria-hidden="true"
+								th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'">
+							</i>
+						</a>
 						<a th:href="${resp.question.article.link}" 
 							target="_blank">Lire la suite</a>
 					</div>

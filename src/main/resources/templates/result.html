@@ -1,44 +1,55 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
+
 <head th:insert="/head.html :: head"></head>
-<head>
-<link rel="stylesheet" th:href="@{./css/style.css}">
-</head>
-<head>
-<meta charset="UTF-8">
-<title></title>
-</head>
+
 <body>
-	<div class="container result">
-	
-		<h1>Resultat</h1>
-		<h2 th:text="${scoreOfQuiz}"></h2>
-		<p th:text="${totalScore}"></p>
-		<div th:each="resp : ${listResponse}" 
-			class="card" 
-			th:classappend="${resp.isTrue} ? bg-success : bg-danger">
-		  <div class="row">
-		    <div class="col-md-4">
-		      <img th:src="@{/images/media.jpg}" style="width:100%;" />
-		    </div>
-		    <div class="col-md-8">
-		      <div class="card-body">
-		        <h5 th:utext="'Question : ' + ${resp.question.content}" class="card-title"></h5>
-		        <p th:utext="'Votre réponse : ' + ${resp.content}" class="card-text"></p>
-		        <p th:utext="'Titre de l\'article : ' + ${resp.question.article.title}" class="card-text"></p>
-		        <a th:href="${resp.question.article.link}" target="_blank">Voir l'article</a>
-		        <a th:onclick="'registerFav(' + ${resp.question.article.id} + ')'">
-					<i th:id="'article-' + ${resp.question.article.id}" class="fa icon" aria-hidden="true"
-						th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'"></i>
-				</a>
-		      </div>
-		    </div>
-		  </div>
+	<nav th:replace="fragments/navbar.html :: nav"></nav>
+	<div class="container mt-150 result">
+		<h2>Résultats</h2>
+		<div class="result-trophy">
+			<div class="result-trophy-score result-trophy-txt">
+				<p>Votre score : </p>
+				<p class="result-trophy-txt" th:text="${scoreOfQuiz}"></p>
+			</div>
+			<div class="result-trophy-score result-trophy-txt">
+				<p>Votre score total : </p>
+				<p class="result-trophy-txt" th:text="${totalScore}"></p>
+			</div>
+		</div>
+		<div class="row">
+			<div th:each="resp : ${listResponse}" 
+				th:classappend="${resp.isTrue} ? list-group-item-success : list-group-item-danger" 
+				class="card mb-3">
+				<div class="card-body">
+					<div class="true-anwser">
+						<img class="card-img-top" 
+							th:src="@{/images/journalism.jpg}" />
+						<a th:onclick="'registerFav(' + ${resp.question.article.id} + ')'">
+							<i th:id="'article-' + ${resp.question.article.id}"
+							class="fa icon" aria-hidden="true"
+							th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'"></i>
+						</a>
+						<h3 class="card-title text-left mt-3"
+							th:utext="'Question : ' + ${resp.question.content}"></h3>
+						<p class="card-text mt-3 text-center" 
+							th:utext="'Votre réponse : ' + ${resp.content}"></p>
+					</div>
+					<div th:style="${!resp.isTrue} ? 'display:block' : 'display:none'" class="false-anwser">
+						<p class="card-text text-center" 
+							th:utext="'La bonne réponse était : ' + ${resp.question.correctResponse.content}"></p>
+						<h5 th:utext="${resp.question.article.title}" 
+							class="text-left false-anwser-article-title"></h5>
+						<p th:utext="${resp.question.article.summary}" 
+							class="text-justify"></p>
+						<a th:href="${resp.question.article.link}" 
+							target="_blank">Lire la suite</a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	
-
 </body>
 <script>
 	function registerFav(articleId) {

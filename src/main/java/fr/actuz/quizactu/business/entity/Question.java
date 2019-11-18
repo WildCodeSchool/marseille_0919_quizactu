@@ -1,8 +1,10 @@
 package fr.actuz.quizactu.business.entity;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Base64.Encoder;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,74 +20,74 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
- * 
+ *
  */
 @Entity
 @Table(name = "QUESTION")
 public class Question implements Serializable {
 
-    /**
+	/**
 	 * Default serial ID
 	 */
 	private static final long serialVersionUID = 1L;
 
 	/**
-     * Default constructor
-     */
-    public Question() {
-    }
+	 * Default constructor
+	 */
+	public Question() {
+	}
 
-    /**
-     * 
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+	/**
+	 *
+	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-    /**
-     * 
-     */
-    private String content;
+	/**
+	 *
+	 */
+	private String content;
 
-    /**
-     * 
-     */
-    @Lob
-    private byte[] image;
+	/**
+	 *
+	 */
+	@Lob
+	private byte[] image;
 
-    /**
-     * 
-     */
-    @Column(name="TIMER_QUESTION")
-    private Integer timerQuestion;
+	/**
+	 *
+	 */
+	@Column(name = "TIMER_QUESTION")
+	private Integer timerQuestion;
 
-    /**
-     * 
-     */
-    @Column(name="TIMER_RESPONSE")
-    private Integer timerResponse;
+	/**
+	 *
+	 */
+	@Column(name = "TIMER_RESPONSE")
+	private Integer timerResponse;
 
-    /**
-     * 
-     */
-    @OneToMany(mappedBy = "question", fetch = FetchType.EAGER)
-    private List<Response> responses = new ArrayList<Response>();
+	/**
+	 *
+	 */
+	@OneToMany(mappedBy = "question", fetch = FetchType.EAGER)
+	private List<Response> responses = new ArrayList<>();
 
-    /**
-     * 
-     */
-    @ManyToOne
-    @JoinColumn(name="QUIZ_ID", nullable=false)
-    private Quiz quiz;
-    
-    /**
-     * 
-     */
-    @OneToOne(mappedBy = "question")
-    private Article article;
+	/**
+	 *
+	 */
+	@ManyToOne
+	@JoinColumn(name = "QUIZ_ID", nullable = false)
+	private Quiz quiz;
+
+	/**
+	 *
+	 */
+	@OneToOne(mappedBy = "question")
+	private Article article;
 
 	public Integer getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Integer id) {
@@ -93,7 +95,7 @@ public class Question implements Serializable {
 	}
 
 	public String getContent() {
-		return content;
+		return this.content;
 	}
 
 	public void setContent(String content) {
@@ -101,10 +103,10 @@ public class Question implements Serializable {
 	}
 
 	public byte[] getImage() {
-		return image;
-		
+		return this.image;
+
 	}
-	
+
 	public String getImageEncoded() {
 		Encoder encoder = Base64.getEncoder();
 		return "data:image/png;base64," + encoder.encodeToString(this.image);
@@ -115,7 +117,7 @@ public class Question implements Serializable {
 	}
 
 	public Integer getTimerQuestion() {
-		return timerQuestion;
+		return this.timerQuestion;
 	}
 
 	public void setTimerQuestion(Integer timerQuestion) {
@@ -123,7 +125,7 @@ public class Question implements Serializable {
 	}
 
 	public Integer getTimerResponse() {
-		return timerResponse;
+		return this.timerResponse;
 	}
 
 	public void setTimerResponse(Integer timerResponse) {
@@ -131,7 +133,7 @@ public class Question implements Serializable {
 	}
 
 	public List<Response> getResponses() {
-		return responses;
+		return this.responses;
 	}
 
 	public void setResponses(List<Response> responses) {
@@ -139,7 +141,7 @@ public class Question implements Serializable {
 	}
 
 	public Quiz getQuiz() {
-		return quiz;
+		return this.quiz;
 	}
 
 	public void setQuiz(Quiz quiz) {
@@ -147,11 +149,22 @@ public class Question implements Serializable {
 	}
 
 	public Article getArticle() {
-		return article;
+		return this.article;
 	}
 
 	public void setArticle(Article article) {
 		this.article = article;
+	}
+
+	public Response getCorrectResponse() {
+		Response result = null;
+		for (Response resp : this.responses) {
+			// Chercher la bonne réponse et si trouvée remplir result.
+			if (resp.getIsTrue()) {
+				result = resp;
+			}
+		}
+		return result;
 	}
 
 }

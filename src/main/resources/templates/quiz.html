@@ -21,7 +21,7 @@
 				<a class="btn btn-primary button btn-block"
 					th:href="@{/nextQuestion/} + ${question.id} + '/' + ${response.id}"
 					th:utext="${response.getContent()}"></a>
-				<!-- 				th:classappend="${response.isTrue} ? green : red" -->
+				<!-- th:classappend="${response.isTrue} ? green : red" -->
 			</div>
 		</div>
 		<div class="card-footer text-right">

@@ -13,7 +13,7 @@ var interval = setInterval(function() {
 		$('.timer').text(i);
 		if (i == time) {  	
       clearInterval(interval);
-      setTimeout(() => { document.location.href="/quiz"}, 500);
+      setTimeout(() => { document.location.href="/quiz/today"}, 500);
     }
     $('.circle_animation').css('stroke-dashoffset', initialOffset-((i+1)*(initialOffset/3)));
 		$('.circle_animation').css('stroke-dashoffset', initialOffset - i * initialOffset / init);

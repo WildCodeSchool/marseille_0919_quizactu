@@ -51,31 +51,54 @@ public class QuizController {
 		return null;
 	}
 
-	@GetMapping("/quiz")
-	public String vuQuestion(Model model, @ModelAttribute("accountId") Integer accountId, Principal principal) {
-		Quiz quiz = this.service.getQuizByPublicationDate();
-		int index = 0;
-		model.addAttribute("quiz", quiz);
-		model.addAttribute("question", quiz.getQuestions().get(index));
-		model.addAttribute("questionIndex", index);
-		if (accountId == null) {
-			Account account = this.accountService.read(principal.getName());
-			model.addAttribute("accountId", account.getId());
-		}
-		return "quiz";
+	@GetMapping("/quiz/{type}")
+	public String vuQuestion(Model model,
+			@ModelAttribute("accountId") Integer accountId,
+			Principal principal, @PathVariable String type) {
+		Quiz quiz = null;
+		System.out.println(type);
 
+		if (type.equals("today")) {
+			quiz = this.service.getTodayQuiz();
+
+		} else if (type.equals("yesterday")) {
+			quiz = this.service.getYesterdayQuiz();
+
+		} else if (type.equals("dayBeforeYesterday")) {
+			quiz = this.service.getDayBeforeYesterdayQuiz();
+
+		}
+		if (quiz != null) {
+			int index = 0;
+			model.addAttribute("quiz", quiz);
+			model.addAttribute("question", quiz.getQuestions().get(index));
+			model.addAttribute("questionIndex", index);
+			if (accountId == null) {
+				Account account = this.accountService
+						.read(principal.getName());
+				model.addAttribute("accountId", account.getId());
+			}
+			return "quiz";
+		} else {
+			return "redirect:/";
+		}
 	}
 
 	@GetMapping("nextQuestion/{questionId}/{responseId}")
-	public String nextQuestion(Model model, @PathVariable Integer questionId, @PathVariable Integer responseId,
-			@ModelAttribute("quiz") Quiz quiz, @ModelAttribute("questionIndex") int index,
+	public String nextQuestion(Model model,
+			@PathVariable Integer questionId,
+			@PathVariable Integer responseId,
+			@ModelAttribute("quiz") Quiz quiz,
+			@ModelAttribute("questionIndex") int index,
 			@ModelAttribute("accountId") Integer accountId) {
 		this.service.getPoints(accountId, responseId);
-		this.recordService.recordResultQuiz(quiz.getId(), responseId, accountId);
+		this.recordService.recordResultQuiz(quiz.getId(), responseId,
+				accountId);
 		// Passe à la question suivante tant qu'il reste des questions, sinon passe à
 		// aux resultats.
 		if (index < quiz.getQuestions().size() - 1) {
-			model.addAttribute("question", quiz.getQuestions().get(++index));
+			model.addAttribute("question",
+					quiz.getQuestions().get(++index));
 			model.addAttribute("questionIndex", index);
 			return "quiz";
 		} else {
@@ -84,24 +107,30 @@ public class QuizController {
 	}
 
 	@GetMapping("/result")
-	public String getResult(Model model, @ModelAttribute("accountId") Integer accountId,
+	public String getResult(Model model,
+			@ModelAttribute("accountId") Integer accountId,
 			@ModelAttribute("quiz") Quiz quiz) {
 		Account account = this.accountService.getById(accountId);
 		model.addAttribute("totalScore", account.getScore());
-		model.addAttribute("scoreOfQuiz", this.recordService.getScoreQuiz(quiz.getId(), accountId));
-		model.addAttribute("listResponse", this.recordService.getQuizResponses(quiz.getId(), accountId));
+		model.addAttribute("scoreOfQuiz",
+				this.recordService.getScoreQuiz(quiz.getId(), accountId));
+		model.addAttribute("listResponse", this.recordService
+				.getQuizResponses(quiz.getId(), accountId));
 		model.addAttribute("articles", account.getArticles());
 		return "result";
 	}
 
-	@GetMapping("/timer")
-	public String timer() {
+	@GetMapping("/timer/{type}")
+	public String timer(@PathVariable String type, Model model) {
+		model.addAttribute("type", type);
 		return "timer";
 	}
 
 	@GetMapping("/favArticle/{articleId}")
 	@ResponseBody
-	public boolean favArticle(@ModelAttribute("accountId") Integer accountId, @PathVariable Integer articleId) {
+	public boolean favArticle(
+			@ModelAttribute("accountId") Integer accountId,
+			@PathVariable Integer articleId) {
 		return this.articleService.favoriteArticle(accountId, articleId);
 	}
 }

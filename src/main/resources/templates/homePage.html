@@ -3,10 +3,13 @@
 	xmlns:th="http://www.thymeleaf.org">
 
 <head th:insert="/head.html :: head"></head>
-
+<head>
+<link rel="stylesheet" th:href="@{/css/homePage.css}">
+</head>
 <body>
 	<nav th:replace="fragments/navbar.html :: nav"></nav>
-	<div class="msgUser mt-150" th:if="${#httpServletRequest.remoteUser != null}">
+	<div class="msgUser mt-150"
+		th:if="${#httpServletRequest.remoteUser != null}">
 		<h2 th:inline="text" class="quizActu-title">Bienvenue
 			[[${#httpServletRequest.remoteUser}]]</h2>
 	</div>

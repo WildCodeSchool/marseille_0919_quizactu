@@ -56,23 +56,19 @@ public class QuizController {
 			@ModelAttribute("accountId") Integer accountId,
 			Principal principal, @PathVariable String type) {
 		Quiz quiz = null;
-		System.out.println(type);
-
 		if (type.equals("today")) {
 			quiz = this.service.getTodayQuiz();
-
 		} else if (type.equals("yesterday")) {
 			quiz = this.service.getYesterdayQuiz();
-
 		} else if (type.equals("dayBeforeYesterday")) {
 			quiz = this.service.getDayBeforeYesterdayQuiz();
-
 		}
 		if (quiz != null) {
 			int index = 0;
 			model.addAttribute("quiz", quiz);
 			model.addAttribute("question", quiz.getQuestions().get(index));
 			model.addAttribute("questionIndex", index);
+			model.addAttribute("validation", false);
 			if (accountId == null) {
 				Account account = this.accountService
 						.read(principal.getName());
@@ -84,8 +80,25 @@ public class QuizController {
 		}
 	}
 
-	@GetMapping("nextQuestion/{questionId}/{responseId}")
+	@GetMapping("nextQuestion")
 	public String nextQuestion(Model model,
+			@ModelAttribute("quiz") Quiz quiz,
+			@ModelAttribute("questionIndex") int index) {
+		// Passe à la question suivante tant qu'il reste des questions, sinon passe à
+		// aux resultats.
+		if (index < quiz.getQuestions().size() - 1) {
+			model.addAttribute("question",
+					quiz.getQuestions().get(++index));
+			model.addAttribute("questionIndex", index);
+			model.addAttribute("validation", false);
+			return "quiz";
+		} else {
+			return "redirect:/result";
+		}
+	}
+
+	@GetMapping("validateQuestion/{questionId}/{responseId}")
+	public String validateQuestion(Model model,
 			@PathVariable Integer questionId,
 			@PathVariable Integer responseId,
 			@ModelAttribute("quiz") Quiz quiz,
@@ -94,16 +107,9 @@ public class QuizController {
 		this.service.getPoints(accountId, responseId);
 		this.recordService.recordResultQuiz(quiz.getId(), responseId,
 				accountId);
-		// Passe à la question suivante tant qu'il reste des questions, sinon passe à
-		// aux resultats.
-		if (index < quiz.getQuestions().size() - 1) {
-			model.addAttribute("question",
-					quiz.getQuestions().get(++index));
-			model.addAttribute("questionIndex", index);
-			return "quiz";
-		} else {
-			return "redirect:/result";
-		}
+		model.addAttribute("validation", true);
+		model.addAttribute("question", quiz.getQuestions().get(index));
+		return "quiz";
 	}
 
 	@GetMapping("/result")

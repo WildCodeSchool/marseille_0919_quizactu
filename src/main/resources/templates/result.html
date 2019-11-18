@@ -25,6 +25,7 @@
 				<div class="card-body">
 					<div class="true-anwser">
 						<img class="card-img-top" 
+							th:if="${resp.question.image != null}" 
 							th:src="${resp.question.imageEncoded}" />
 						<h3 class="card-title text-left mt-3"
 							th:utext="'Question : ' + ${resp.question.content}"></h3>

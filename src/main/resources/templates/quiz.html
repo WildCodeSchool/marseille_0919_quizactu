@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:insert="/head.html :: head"></head>
 <head>
-<link rel="stylesheet" th:href="@{./css/style.css}">
+<link rel="stylesheet" th:href="@{/css/quiz.css}">
 </head>
 <head>
 <meta charset="UTF-8">
@@ -12,20 +12,28 @@
 	<nav th:replace="fragments/navbar.html :: nav"></nav>
 	<div class="card" style="width: 100%; padding-top: 6rem;">
 		<div>
-			<img class="img-thumbnail card-img-top" style="width: 500px; max-height: 350px;"
+			<img class="img-thumbnail card-img-top"
+				style="width: 500px; max-height: 350px;"
 				th:if="${question.image != null}" th:src="${question.imageEncoded}" />
+		</div>
+		<div class="timer progess">
+			<div class="progress-bar" role="progressbar" aria-valuenow="25" style="width:25%"
+				aria-valuemin="0" aria-valuemax="100"></div>
 		</div>
 		<div class="card-body">
 			<h2 th:utext="${question.getContent()}"></h2>
 			<div th:each="response : ${question.getResponses()}">
-				<a class="btn btn-primary button btn-block"
-					th:href="@{/nextQuestion/} + ${question.id} + '/' + ${response.id}"
+				<a th:unless="${validation}" class="btn btn-block button"
+					th:href="@{/validateQuestion/} + ${question.id} + '/' + ${response.id}"
 					th:utext="${response.getContent()}"></a>
-				<!-- 				th:classappend="${response.isTrue} ? green : red" -->
+				<a th:if="${validation}" class="btn btn-block"
+					th:classappend="${response.isTrue} ? btn-success : btn-danger"
+					th:utext="${response.getContent()}"></a>
 			</div>
 		</div>
+		<a th:if="${validation}" th:href="@{/nextQuestion}" class="button">Continuer</a>
 		<div class="card-footer text-right">
-			<p th:text="${quiz.getPublicationDate()}"></p>
+			<p th:text="${#temporals.format(quiz.getPublicationDate(), 'dd/MM/yyyy')}"></p>
 		</div>
 		<p th:text="${score}"></p>
 	</div>

@@ -3,7 +3,9 @@
 	xmlns:th="http://www.thymeleaf.org">
 
 <head th:insert="/head.html :: head"></head>
-
+<head>
+<link rel="stylesheet" th:href="@{/css/result.css}">
+</head>
 <body>
 	<nav th:replace="fragments/navbar.html :: nav"></nav>
 	<div class="container mt-150 result">
@@ -25,6 +27,7 @@
 				<div class="card-body">
 					<div class="true-anwser">
 						<img class="card-img-top" 
+							th:if="${resp.question.image != null}" 
 							th:src="${resp.question.imageEncoded}" />
 						<h3 class="card-title text-left mt-3"
 							th:utext="'Question : ' + ${resp.question.content}"></h3>

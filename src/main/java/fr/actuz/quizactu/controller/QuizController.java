@@ -2,6 +2,7 @@ package fr.actuz.quizactu.controller;
 
 import java.security.Principal;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,11 +81,16 @@ public class QuizController {
 				model.addAttribute("accountId", account.getId());
 			}
 			List<QuizRecord>records = this.recordService.getByQuizIdAndAccountId(quiz.getId(), accountId);
-		if(records.isEmpty() && quiz.getPublicationDate().equals(LocalDate.now())) { 
-			return "quiz";
-		} else {
-			return "quizDone";
-        }
+			//&& quiz.getPublicationDate().equals(LocalDate.now().atStartOfDay().atZone(ZoneId.of("UTC")))
+			if(records.isEmpty() && type.equals("today")) { 
+				return "quiz";
+			} else if(type.equals("yesterday")){
+				return "quiz";
+			} else if(type.equals("dayBeforeYesterday")){
+				return "quiz";
+			} else {
+				return "quizDone";
+		    }
 		} else {
 			return "redirect:/";
 		}

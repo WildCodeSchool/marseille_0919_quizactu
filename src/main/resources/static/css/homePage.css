@@ -111,10 +111,10 @@
 
 .news .button {
 	position: relative;
-	background-color: #4381C1;
-	border-color: #4381C1;
-/* 	background-color: #233f20; */
-/* 	border-color: #233f20;  */
+	/*background-color: #4381C1;
+	border-color: #4381C1;*/
+ 	background-color: #233f20; 
+ 	border-color: #233f20;  
 	margin-top : 3rem;
 	margin-bottom: 1.5rem;
 	width: fit-content;

@@ -24,10 +24,10 @@ html {
 
 
 body {
-/* 	background-image: linear-gradient(to top, #2fa264, #EAF5EF); */
+ 	background-image: linear-gradient(to top, #2fa264, #EAF5EF; 
 	/*background-color: #85AAA0;*/
 	/* background-color: #91f5ad; */
-	background-color: #fafafa;
+	/*background-color: #fafafa;*/
 	text-align: center;
 	color: #444;
 }
@@ -70,10 +70,10 @@ form {
 	padding: 1rem 0;
 	color: white;
 	border-radius: 10px;
-	border: 1px solid #4381C1; 
-	background-color: #4381C1;
-/* 	border: 1px solid #233f20;  */
-/* 	background-color: #233f20; */
+	/*border: 1px solid #4381C1;*/ 
+	/*background-color: #4381C1;*/
+ 	border: 1px solid #233f20;  
+ 	background-color: #233f20; 
 	transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
 }
@@ -133,7 +133,7 @@ form {
 
 .navbar {
   background-color: #4381C1;
-/*   background-color: #233f20; */
+   background-color: #233f20; 
 }
 
 .navbar-light .navbar-nav .nav-link, .navbar-light .navbar-brand {

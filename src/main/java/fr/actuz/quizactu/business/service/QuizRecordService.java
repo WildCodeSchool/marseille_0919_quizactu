@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.actuz.quizactu.business.entity.Account;
+import fr.actuz.quizactu.business.entity.Question;
 import fr.actuz.quizactu.business.entity.Quiz;
 import fr.actuz.quizactu.business.entity.QuizRecord;
 import fr.actuz.quizactu.business.entity.Response;
@@ -56,6 +57,24 @@ public class QuizRecordService {
 		}
 		
 		return responses;
+	}
+	
+	public List<QuizRecord> getByQuizIdAndAccountId(Integer quizId, Integer accountId) {
+		List<QuizRecord> quizRecord = this.recordRepo.findAllByQuizIdAndAccountId(quizId, accountId);
+		return quizRecord;
+	}
+	
+	public boolean compareIfQuestionAlreadyAnswered(Integer quizId, Integer accountId, Integer responseId, Question curQuestion) {
+		List<QuizRecord> records = this.recordRepo.findAllByQuizIdAndAccountId(quizId, accountId);
+		Response responseRecord;
+		for (QuizRecord quizRecord : records) {
+			responseRecord = quizService.getResponseById(quizRecord.getResponse().getId());
+			if(responseRecord.getQuestion().getId() == curQuestion.getId()) {
+				System.out.println("c'est égal");
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	

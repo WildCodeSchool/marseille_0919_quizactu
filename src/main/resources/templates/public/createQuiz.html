@@ -1,0 +1,50 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="head.html :: head"></head>
+
+	<head>
+		<title>Création de quiz</title>
+	</head>
+<body>
+	<nav th:replace="fragments/navbar.html :: nav"></nav>
+	 <div class="container">
+            
+	        <h1>Ajouter un quiz</h1>
+	        <form name="quiz" method="post">
+				<div class="form-group"><label for="" class="required">Titre</label><input type="text" id="" name="" required="required" maxlength="255" class="form-control" />
+				</div>
+				<div class="form-group"><label for="" class="required">Date de création</label><input type="date" id="start" name="trip-start"
+       value="2018-07-22"
+       min="2018-01-01" max="2018-12-31">
+				</div>
+				<div class="form-group"><label for="" class="required">Date de publication</label><input type="date" id="start" name="trip-start"
+       value="2018-07-22"
+       min="2018-01-01" max="2018-12-31">
+				</div>
+				<div class="form-group"><label for="" class="required">Texte Question</label><textarea id="" name="" required="required" class="form-control"></textarea>
+				</div>
+				<div class="form-group"><label for="" class="required">Texte Réponse</label><textarea id="" name="" required="required" class="form-control"></textarea>
+				</div>
+				<div class="form-group"><label for="" class="required">Texte Réponse</label><textarea id="" name="" required="required" class="form-control"></textarea>
+				</div>
+				<div class="form-group"><label for="" class="required">Texte Réponse</label><textarea id="" name="" required="required" class="form-control"></textarea>
+				</div>
+				<div class="form-group"><label for="" class="required">Texte Réponse</label><textarea id="" name="" required="required" class="form-control"></textarea>
+				</div>
+				<div class="form-group">
+					<table>
+					<tr><td>Image à télécharger:</td><td><input type="file" name="file" /></td></tr>
+					<tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+					</table>
+				</div>
+				<div class="form-group">
+					<input type="text" placeholder="Lien de l'article"/>
+				</div>
+				<button type="submit">Ajouter le quiz</button>
+				<button type="submit">Modifier le quiz</button>
+				<input type="hidden" id="chapter__token" name="chapter[_token]" value="lLxNSp0BI5WlsA28dSQ4sU4N8vFueHB6R6veTeaeJAk" />
+			</form> 
+			
+		</div>
+</body>
+</html>

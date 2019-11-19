@@ -109,7 +109,8 @@ public class Question implements Serializable {
 
 	public String getImageEncoded() {
 		Encoder encoder = Base64.getEncoder();
-		return "data:image/png;base64," + encoder.encodeToString(this.image);
+		return "data:image/png;base64,"
+				+ encoder.encodeToString(this.image);
 	}
 
 	public void setImage(byte[] image) {

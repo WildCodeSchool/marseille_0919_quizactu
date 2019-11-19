@@ -1,9 +1,6 @@
 package fr.actuz.quizactu.controller;
 
 import java.security.Principal;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +16,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import fr.actuz.quizactu.business.entity.Account;
 import fr.actuz.quizactu.business.entity.Quiz;
 import fr.actuz.quizactu.business.entity.QuizRecord;
-import fr.actuz.quizactu.business.entity.Response;
 import fr.actuz.quizactu.business.service.AccountService;
 import fr.actuz.quizactu.business.service.ArticleService;
 import fr.actuz.quizactu.business.service.QuizRecordService;
@@ -80,17 +76,19 @@ public class QuizController {
 						.read(principal.getName());
 				model.addAttribute("accountId", account.getId());
 			}
-			List<QuizRecord>records = this.recordService.getByQuizIdAndAccountId(quiz.getId(), accountId);
-			//&& quiz.getPublicationDate().equals(LocalDate.now().atStartOfDay().atZone(ZoneId.of("UTC")))
-			if(records.isEmpty() && type.equals("today")) { 
+			List<QuizRecord> records = this.recordService
+					.getByQuizIdAndAccountId(quiz.getId(), accountId);
+			// &&
+			// quiz.getPublicationDate().equals(LocalDate.now().atStartOfDay().atZone(ZoneId.of("UTC")))
+			if (records.isEmpty() && type.equals("today")) {
 				return "quiz";
-			} else if(type.equals("yesterday")){
+			} else if (type.equals("yesterday")) {
 				return "quiz";
-			} else if(type.equals("dayBeforeYesterday")){
+			} else if (type.equals("dayBeforeYesterday")) {
 				return "quiz";
 			} else {
 				return "quizDone";
-		    }
+			}
 		} else {
 			return "redirect:/";
 		}
@@ -120,11 +118,27 @@ public class QuizController {
 			@ModelAttribute("quiz") Quiz quiz,
 			@ModelAttribute("questionIndex") int index,
 			@ModelAttribute("accountId") Integer accountId) {
-		//Vérifie si l'utilisateur n'a pas déjà répondu à la question avant de lui donner des points
-		if(recordService.compareIfQuestionAlreadyAnswered(quiz.getId(), accountId, responseId, quiz.getQuestions().get(index))) {
+		// Vérifie si l'utilisateur n'a pas déjà répondu à la question avant de lui
+		// donner des points
+		if (this.recordService.compareIfQuestionAlreadyAnswered(
+				quiz.getId(), accountId, questionId)) {
 			this.service.getPoints(accountId, responseId);
-			this.recordService.recordResultQuiz(quiz.getId(), responseId, accountId);	
+			this.recordService.recordResultQuiz(quiz.getId(), questionId,
+					responseId, accountId);
 		}
+		model.addAttribute("validation", true);
+		model.addAttribute("question", quiz.getQuestions().get(index));
+		return "quiz";
+	}
+
+	@GetMapping("validateQuestion/{questionId}")
+	public String validateQuestionWithoutResponse(Model model,
+			@PathVariable Integer questionId,
+			@ModelAttribute("quiz") Quiz quiz,
+			@ModelAttribute("questionIndex") int index,
+			@ModelAttribute("accountId") Integer accountId) {
+		this.recordService.recordResultQuiz(quiz.getId(), questionId, null,
+				accountId);
 		model.addAttribute("validation", true);
 		model.addAttribute("question", quiz.getQuestions().get(index));
 		return "quiz";

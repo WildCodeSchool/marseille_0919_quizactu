@@ -33,8 +33,9 @@
 							th:utext="'Question : ' + ${resp.question.content}"></h3>
 						<p class="card-text mt-3 text-center" 
 							th:utext="'Votre réponse : ' + ${resp.content}"></p>
+						<p th:if="${resp.notAnswered}">Vous n'avez pas répondu à cette question</p>
 					</div>
-					<div th:style="${!resp.isTrue} ? 'display:block' : 'display:none'" class="false-anwser">
+					<div th:if="${!resp.isTrue}" class="false-anwser">
 						<p class="card-text text-center" 
 							th:utext="'La bonne réponse était : ' + ${resp.question.correctResponse.content}"></p>
 						<h5 th:utext="${resp.question.article.title}" 

@@ -1,4 +1,6 @@
-INSERT INTO quiz VALUES (1, CURDATE(), CURDATE(), 'Quiz du jour');
+INSERT INTO quiz (id, creation_date, publication_date, title) VALUES (1, CURDATE(), CURDATE(), "Quiz du jour");
+INSERT INTO quiz (id, creation_date, publication_date, title) VALUES (2, CURDATE(), CURDATE() - 1, "Quiz de la veille");
+INSERT INTO quiz (id, creation_date, publication_date, title) VALUES (3, CURDATE(), CURDATE() - 2, "Quiz de l'avant veille");
 
 INSERT INTO question (content, timer_question, timer_response, quiz_id)
    VALUES ("Qui vient d&#39;être élu à la présidence de Les Républicains ?", 3, 10,1),
@@ -11,6 +13,19 @@ INSERT INTO question (content, timer_question, timer_response, quiz_id)
    ("Kais Saied est devenu président de la Tunisie. Quelle profession exerce-t-il ?", 3, 10, 1),
    ("Quel est le nom du navire qui vient de secourir 176 personnes en Méditerranée ?", 3, 10, 1), 
    ("Quelle équipe affronte Les Bleus ce soir dans le cadre qualifications à l&#39;Euro 2020 ?", 3, 10, 1);
+INSERT INTO question (content, timer_question, timer_response, quiz_id)
+   VALUES 
+   ("Qui vient d&#39;être élu à la présidence de Les Républicains ?", 3, 10,2),
+   ("Au coeur de quelle réserve naturelle un cargo s&#39;est-il échoué ?", 3, 10, 2),
+   ("Quel pourcentage de Français serait « illectroné » (incapable de maîtriser les outils numériques) ?", 3, 10, 2),
+   ("Avec quel pays les Kurdes ont conclu un accord ce week-end ?", 3, 10, 2),
+   ("Quel typhon vient de frapper le Japon causant au moins 26 morts ?", 3, 10, 2);
+
+INSERT INTO question (content, timer_question, timer_response, quiz_id)
+   VALUES 
+   ("Qui vient d&#39;être élu à la présidence de Les Républicains ?", 3, 10,3),
+   ("Au coeur de quelle réserve naturelle un cargo s&#39;est-il échoué ?", 3, 10, 3),
+   ("Quel pourcentage de Français serait « illectroné » (incapable de maîtriser les outils numériques) ?", 3, 10, 3);
 
 
 INSERT INTO response (content, is_true, question_id) VALUES ( "Julien Aubert", b'0', 1), ("Christian Jacob", b'1', 1), ("Guillaume Larrivé", b'0', 1), ("Laurent Wauquiez", b'0', 1);
@@ -23,6 +38,14 @@ INSERT INTO response (content, is_true, question_id) VALUES ( "Berck", b'0', 7),
 INSERT INTO response (content, is_true, question_id) VALUES ( "Avocat", b'0', 8), ("Juge", b'0', 8), ("Juriste", b'1', 8), ("Notaire", b'0', 8);
 INSERT INTO response (content, is_true, question_id) VALUES ( "Rainbow Warrior", b'0', 9), ("Aquarius", b'0', 9), ("Sea Sheperd", b'0', 9), ("Ocean Viking", b'1', 9);
 INSERT INTO response (content, is_true, question_id) VALUES ( "L'Islande", b'0', 10), ("La Turquie", b'1', 10), ("L'Albanie", b'0', 10), ("Andorre", b'0', 10);
+INSERT INTO response (content, is_true, question_id) VALUES ( "Julien Aubert", b'0', 11), ("Christian Jacob", b'1', 11), ("Guillaume Larrivé", b'0', 11), ("Laurent Wauquiez", b'0', 11);
+INSERT INTO response (content, is_true, question_id) VALUES ( "Les Bouches de Bonifacio", b'1', 12), ("Les Bouches de Bonifacio", b'0', 12), ("Les îles Cerbicale", b'0', 12), ("Scandola", b'0', 12);
+INSERT INTO response (content, is_true, question_id) VALUES ( "6 millions", b'0', 13), ("11 millions", b'1', 13), ("16 millions", b'0', 13), ("21 millions", b'0', 13);
+INSERT INTO response (content, is_true, question_id) VALUES ( "L'Arménie", b'0', 14), ("L'Irak", b'0', 14), ("L'Iran", b'0', 14), ("La Syrie", b'1', 14);
+INSERT INTO response (content, is_true, question_id) VALUES ( "Mangkhut", b'0', 15), ("Haiyan", b'0', 15), ("Hagibis", b'1', 15), ("Yolanda", b'0', 15);
+INSERT INTO response (content, is_true, question_id) VALUES ( "Julien Aubert", b'0', 16), ("Christian Jacob", b'1', 16), ("Guillaume Larrivé", b'0', 16), ("Laurent Wauquiez", b'0', 16);
+INSERT INTO response (content, is_true, question_id) VALUES ( "Les Bouches de Bonifacio", b'1', 17), ("Les Bouches de Bonifacio", b'0', 17), ("Les îles Cerbicale", b'0', 17), ("Scandola", b'0', 17);
+INSERT INTO response (content, is_true, question_id) VALUES ( "6 millions", b'0', 18), ("11 millions", b'1', 18), ("16 millions", b'0', 18), ("21 millions", b'0', 18);
 
 INSERT INTO article(link, media, summary, title, question_id) VALUES
 ("https://www.lemonde.fr/societe/live/2019/11/14/crise-des-hopitaux-suivez-en-direct-la-journee-de-mobilisation-nationale_6019142_3224.html", "Le monde","Des médecins aux aides-soignantes, des doyens aux étudiants, un hôpital public à bout de souffle.", "Crise des hôpitaux : suivez en direct la journée de mobilisation nationale", 1);

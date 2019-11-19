@@ -8,6 +8,7 @@
 </head>
 <body>
 	<nav th:replace="fragments/navbar.html :: nav"></nav>
+
 	<div class="container mt-150 result">
 		<h2>Résultats</h2>
 		<div class="result-trophy">
@@ -55,6 +56,34 @@
 			</div>
 		</div>
 	</div>
+
+		<div class="container result">
+			<h1 class="resultat">Resultat</h1>
+			<h2 th:text="${scoreOfQuiz}"></h2>
+			<p th:text="${totalScore}"></p>
+			<div th:each="resp : ${listResponse}" 
+				class="card" 
+				th:classappend="${resp.isTrue} ? bg-success : bg-danger">
+			  <div class="row">
+			    <div class="col-md-4">
+			      <img class="imgQuestion" th:src="@{/images/media.jpg}" style="width:100%;" />
+			    </div>
+			    <div class="col-md-8">
+			      <div class="card-body">
+			        <h5 th:utext="'Question : ' + ${resp.question.content}" class="card-title"></h5>
+			        <p th:utext="'Votre réponse : ' + ${resp.content}" class="card-text"></p>
+			        <p th:utext="'Titre de l\'article : ' + ${resp.question.article.title}" class="card-text"></p>
+			        <a th:href="${resp.question.article.link}" target="_blank">Voir l'article</a>
+			        <a th:onclick="'registerFav(' + ${resp.question.article.id} + ')'">
+						<i th:id="'article-' + ${resp.question.article.id}" class="fa icon" aria-hidden="true"
+							th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'"></i>
+					</a>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+
 </body>
 <script>
 	function registerFav(articleId) {

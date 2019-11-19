@@ -9,20 +9,36 @@
 *		Class "button" à mettre sur les <a> pour que le style s'applique
 *		Class "quizActu-title" à mettre sur les <h2> pour aplkquer le border-bootom
 */
+
+html {
+	min-height:100%;
+}
+
+.green{
+	background: green;
+}
+
+.red{
+	background: red;
+}
+
+
 body {
+	background-image: linear-gradient(to top, #2fa264, #EAF5EF);
+	/*background-color: #85AAA0;*/
 	/* background-color: #91f5ad; */
-	background-color: #fafafa;
+	/*background-color: #fafafa;*/
 	text-align: center;
 	color: #444;
 }
 
 h1, h3 {
 	text-align: center;
-	margin-top: 2em;
+	margin-top: 4em;
 }
 
 h2 {
-	font-size: 4rem;
+	font-size: 3rem;
 }
 
 .mt-150 {
@@ -54,8 +70,8 @@ form {
 	padding: 1rem 0;
 	color: white;
 	border-radius: 10px;
-	border: 1px solid #4381C1; 
-	background-color: #4381C1;
+	border: 1px solid #233f20; 
+	background-color: #233f20;
 	transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
 }
@@ -67,7 +83,7 @@ form {
 }
 
 .quizActu-title {
-	border-bottom: 1px solid #e8e8e8;
+	border-bottom: 1px solid #444;
 	width: 30%;
 	padding: 0 0 .5rem 0;
 	margin: 3rem auto;
@@ -75,7 +91,7 @@ form {
 
 .form-control {
 	font-size: 2rem;
-	margin-top: 10px;
+	margin-top: 60px;
 }
 
 .form-signin {
@@ -114,7 +130,8 @@ form {
 }
 
 .navbar {
-  background-color: #4381C1;
+  /*background-color: #4381C1;*/
+  background-color: #233f20;
 }
 
 .navbar-light .navbar-nav .nav-link, .navbar-light .navbar-brand {
@@ -188,8 +205,75 @@ svg {
   transition: all 1s linear;
 }
 
+.table td, .table th {
+	padding: .75rem;
+	vertical-align: top;
+	border-top: none;
+}
+
+.bg-danger {
+	background-color: #ff101f !important;
+}
+
+.bg-success {
+	background-color: #018e42 !important;
+}
+
+.resultat {
+	margin-top: 4em;
+}
+
+.imgQuestion {
+	border-radius: 10px;
+	width: 115% !important;
+}
+
+.imgQuiz {
+	margin-top: 15%;
+	margin-bottom: 5%;
+}
+
+.imgRow {
+	margin-top: 15%;
+	margin-bottom: 10%;
+}
+
+.reponseQuestion {
+	margin-top: 5%;
+}
+
 @media screen and (max-width: 640px) {
 	.lois {
 		margin-top: 17%;
+	}
+	
+	.quizActu-title {
+		width: 50%;
+	}
+	
+	.imgQuestion {
+		width: 100% !important;
+	}
+	
+	.resultat {
+	margin-top: 4em;
+	}
+	
+	.journaux{
+		position: sticky;
+	}
+	
+	.imgQuestionQuiz {
+		margin-top: 15%;
+		margin-bottom: -18%;
+	}
+	
+	.reponseQuestion {
+		margin-top: 5%;
+	}
+	
+	.titreQuestion {
+		margin-top: 10%;
+		font-size: 2em;
 	}
 }

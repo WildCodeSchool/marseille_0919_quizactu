@@ -54,16 +54,16 @@ form {
 	padding: 1rem 0;
 	color: white;
 	border-radius: 10px;
-	border: 1px solid #4381C1; 
-	background-color: #4381C1;
+	border: 1px solid #9FE6BB;
+	background-color: #9FE6BB;
 	transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
 }
 
 .button:hover {
 	background: white;
-	color: #4381C1;
-	border: 1px solid #4381C1;
+	color: #9FE6BB;
+	border: 1px solid #9FE6BB;
 }
 
 .quizActu-title {
@@ -114,7 +114,7 @@ form {
 }
 
 .navbar {
-  background-color: #4381C1;
+  background-color: #9FE6BB;
 }
 
 .navbar-light .navbar-nav .nav-link, .navbar-light .navbar-brand {

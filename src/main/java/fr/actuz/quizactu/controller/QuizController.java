@@ -53,6 +53,14 @@ public class QuizController {
 		return null;
 	}
 
+	@GetMapping("/quizNotFound")
+	public String quizNotFound(Model model) {
+		model.addAttribute("today", this.service.getTodayQuiz());
+		model.addAttribute("yesterday", this.service.getYesterdayQuiz());
+		model.addAttribute("dayBeforeYesterday", this.service.getDayBeforeYesterdayQuiz());
+		return "quizNotFound";
+	}
+
 	@GetMapping("/quiz/{type}")
 	public String vuQuestion(Model model, @ModelAttribute("accountId") Integer accountId, Principal principal,
 			@PathVariable String type) {
@@ -64,9 +72,11 @@ public class QuizController {
 		} else if (type.equals("dayBeforeYesterday")) {
 			quiz = this.service.getDayBeforeYesterdayQuiz();
 		}
+
 		if (quiz != null) {
 			int index = 0;
 			model.addAttribute("quiz", quiz);
+
 			model.addAttribute("question", quiz.getQuestions().get(index));
 			model.addAttribute("questionIndex", index);
 			model.addAttribute("validation", false);
@@ -74,9 +84,8 @@ public class QuizController {
 				Account account = this.accountService.read(principal.getName());
 				model.addAttribute("accountId", account.getId());
 			}
+
 			List<QuizRecord> records = this.recordService.getByQuizIdAndAccountId(quiz.getId(), accountId);
-			// &&
-			// quiz.getPublicationDate().equals(LocalDate.now().atStartOfDay().atZone(ZoneId.of("UTC")))
 			if (records.isEmpty() && type.equals("today")) {
 				return "quiz";
 			} else if (type.equals("yesterday")) {
@@ -87,7 +96,7 @@ public class QuizController {
 				return "quizDone";
 			}
 		} else {
-			return "redirect:/";
+			return "redirect:/quizNotFound";
 		}
 	}
 

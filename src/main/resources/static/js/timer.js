@@ -14,7 +14,7 @@ var interval = setInterval(function() {
 		if (i == time) {  	
       clearInterval(interval);
       let typeQuiz = $('#typeQuiz')[0].value;
-      setTimeout(() => { document.location.href="/quiz/" + typeQuiz}, 500);
+//      setTimeout(() => { document.location.href="/quiz/" + typeQuiz}, 500);
     }
     $('.circle_animation').css('stroke-dashoffset', initialOffset-((i+1)*(initialOffset/3)));
 		$('.circle_animation').css('stroke-dashoffset', initialOffset - i * initialOffset / init);

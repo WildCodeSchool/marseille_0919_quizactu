@@ -1,0 +1,11 @@
+.timerWrapper {
+	width: 300px;
+	margin: auto;
+}
+
+h2.timer, .timerWrapper {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}

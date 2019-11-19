@@ -23,6 +23,11 @@
 				th:each="article : ${account.articles}">
 				<div class="row no-gutters">
 					<div class="col-md-4">
+<!-- 					<p th:utext="${article.question.content}"></p> -->
+<!-- 					<div th:each="response : ${article.question.responses}"> -->
+<!-- 						<p th:utext="${response.content}"></p> -->
+<!-- 					</div> -->
+
 						​ <small class="text-muted" th:text="${article.media}"></small> <img
 							th:src="${article.question.imageEncoded}" class="card-img"
 							alt="...">

@@ -9,47 +9,34 @@
 <title></title>
 </head>
 <body>
-
 	<nav th:replace="fragments/navbar.html :: nav"></nav>
-	
-		<div class="container">
-		<div class="row imgRow">
-			<div class="col-sm-12 imgQuestionQuiz">
-				<div class="news">
-					<div class="img-figure">
-						<img style="width: 500px; max-height: 350px;" th:src="@{/images/media.jpg}" class="img-responsive">
-					</div>
-				</div>
-			</div>
+	<div class="card" style="width: 100%; padding-top: 6rem;">
+		<div>
+			<img class="img-thumbnail card-img-top"
+				style="width: 500px; max-height: 350px;"
+				th:if="${question.image != null}" th:src="${question.imageEncoded}" />
 		</div>
-		<div class="row justify-content-md-center">
-		<h2 class="titreQuestion" th:utext="${question.getContent()}"></h2>
-			<div class="col-sm-6 reponseQuestion">
-				<div class="reponseQuestion" th:each="response : ${question.getResponses()}">
-					<a th:unless="${validation}" class="btn btn-block button"
-
+		<div class="timer progess">
+			<div class="progress-bar" role="progressbar" aria-valuenow="25" style="width:25%"
+				aria-valuemin="0" aria-valuemax="100"></div>
+		</div>
+		<div class="card-body">
+			<h2 th:utext="${question.getContent()}"></h2>
+			<div th:each="response : ${question.getResponses()}">
+				<a th:unless="${validation}" class="btn btn-block button"
 					th:href="@{/validateQuestion/} + ${question.id} + '/' + ${response.id}"
 					th:utext="${response.getContent()}"></a>
 				<a th:if="${validation}" class="btn btn-block"
 					th:classappend="${response.isTrue} ? btn-success : btn-danger"
 					th:utext="${response.getContent()}"></a>
-
 			</div>
+		</div>
+		<div><a th:if="${validation}" th:href="@{/nextQuestion}" class="button">Continuer</a></div>
 		
-		<div>
-			<a th:if="${validation}" th:href="@{/nextQuestion}" class="button">Continuer</a>
-		</div>
-		</div>
-		<!-- <div class="card-footer text-right">
+		<div class="card-footer text-right">
 			<p th:text="${#temporals.format(quiz.getPublicationDate(), 'dd/MM/yyyy')}"></p>
 		</div>
 		<p th:text="${score}"></p>
 	</div>
-
-				</div>
-			</div>
-		</div>
-		<p th:text="${score}"></p> -->
-
 </body>
 </html>

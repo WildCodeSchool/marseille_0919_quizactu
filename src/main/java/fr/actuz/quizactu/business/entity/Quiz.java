@@ -13,16 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/**
- *
- */
 @Entity
 @Table(name = "QUIZ")
 public class Quiz implements Serializable {
-
-	/**
-	 *
-	 */
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -31,31 +24,16 @@ public class Quiz implements Serializable {
 	public Quiz() {
 	}
 
-	/**
-	 * 
-	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	/**
-	 * 
-	 */
 	private String title;
 
-	/**
-	 * 
-	 */
 	private LocalDate creationDate;
 
-	/**
-	 * 
-	 */
 	private ZonedDateTime publicationDate;
 
-	/**
-	 * 
-	 */
 	@OneToMany(mappedBy = "quiz")
 	private List<Question> questions = new ArrayList<>();
 

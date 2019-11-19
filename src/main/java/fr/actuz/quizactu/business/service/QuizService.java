@@ -69,6 +69,34 @@ public class QuizService {
 		Response resp = this.responseRepo.getOne(id);
 		return resp;
 	}
+
+	
+//	public List<Quiz> getAll() {
+//		return this.quizRepo.findAll();
+//	}
+
+//	public Quiz create(Integer id) {
+//		Quiz quiz = new Quiz();
+//		quiz.setId(this.quizRepo.getOne(id));
+//		return this.quizRepo.save(quiz);
+//	}
+
+	public Quiz read(int id) {
+		return this.quizRepo.getOne(id);
+	}
+
+//	public Quiz update(Integer id, String title, LocalDate creationDate, LocalDate publicationDate) {
+//		Quiz quiz = this.read(id);
+//		quiz.setTitle(title);
+//		quiz.setCreationDate(creationDate);
+//		quiz.setPublicationDate(ZonedDateTime publicationDate);
+//		return this.quizRepo.save(quiz);
+//	}
+
+	public void delete(int id) {
+		this.quizRepo.deleteById(id);
+	}
+
 	
 	public void createQuiz(String title, ZonedDateTime publicationDate, List<Question> questions) {
 		Quiz quiz = new Quiz(title, publicationDate, questions);

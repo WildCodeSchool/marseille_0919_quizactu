@@ -157,4 +157,10 @@ public class QuizController {
 			@PathVariable Integer articleId) {
 		return this.articleService.favoriteArticle(accountId, articleId);
 	}
+
+	
+	@GetMapping("/public/createQuiz") 
+		public String createQuiz() {
+			return "public/createQuiz";
+		}
 }

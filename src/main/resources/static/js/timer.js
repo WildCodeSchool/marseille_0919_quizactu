@@ -1,5 +1,3 @@
-
-     
 var time = 0;
 var initialOffset = '440';
 var init = 3;
@@ -20,3 +18,4 @@ var interval = setInterval(function() {
 		$('.circle_animation').css('stroke-dashoffset', initialOffset - i * initialOffset / init);
     i--;  
 }, 1000);
+     

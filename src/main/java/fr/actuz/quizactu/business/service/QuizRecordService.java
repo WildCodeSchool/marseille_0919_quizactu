@@ -70,7 +70,6 @@ public class QuizRecordService {
 		for (QuizRecord quizRecord : records) {
 			responseRecord = quizService.getResponseById(quizRecord.getResponse().getId());
 			if(responseRecord.getQuestion().getId() == curQuestion.getId()) {
-				System.out.println("c'est égal");
 				return false;
 			}
 		}

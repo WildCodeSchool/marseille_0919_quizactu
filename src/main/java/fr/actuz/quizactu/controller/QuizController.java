@@ -58,7 +58,10 @@ public class QuizController {
 	}
 	
 	@GetMapping("/quizNotFound")
-	public String quizNotFound() {
+	public String quizNotFound(Model model) {
+		model.addAttribute("today", this.service.getTodayQuiz());
+		model.addAttribute("yesterday", this.service.getYesterdayQuiz());
+		model.addAttribute("dayBeforeYesterday", this.service.getDayBeforeYesterdayQuiz());
 		return "quizNotFound";
 	}
 
@@ -74,9 +77,11 @@ public class QuizController {
 		} else if (type.equals("dayBeforeYesterday")) {
 			quiz = this.service.getDayBeforeYesterdayQuiz();
 		}
+		
 		if (quiz != null) {
 			int index = 0;
 			model.addAttribute("quiz", quiz);
+			
 			model.addAttribute("question", quiz.getQuestions().get(index));
 			model.addAttribute("questionIndex", index);
 			model.addAttribute("validation", false);

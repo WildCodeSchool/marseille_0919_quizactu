@@ -3,16 +3,53 @@
 <body>
 	<nav th:replace="fragments/navbar.html :: nav"></nav>
 	<div class="container mt-150">
-		<h1>
-			Oupsie <i class="fa fa-frown-o" aria-hidden="true"></i>
-		</h1>
-		<p>Il y'a une erreur, réessayer plus tard!</p>
-		<p>Ou jouer au quiz de la veille :</p>
-		<div class="row">
-			<div class="col-md-4 ml-auto mr-auto">
-				<a th:href="@{/}" class="button">Retourner à l'accueil</a>
+		<div class="shadow p-3 mb-5 bg-white rounded">
+			<div class="row">
+				<div class="col-md-6">
+					<img th:src="@{/images/oupsie.jpeg}"
+						class="oupsie text-right img-responsive">
+				</div>
+				<div class="col-md-6">
+					<h1 class="text-left font-weight-bolder">Oupsie ! <br>Ce quiz n'existe pas <i class="fa fa-frown-o" aria-hidden="true"></i> Réessayer plus tard!</h1>
+				</div>
+			</div>
+			<div class="container mt-5">
+				<div th:if="${today != null}">
+					<div class="row">
+						<div class="col-md-6">
+							<p class="text-end mt-4">Ou jouer au quiz du jour :</p>
+						</div>
+						<div class="col-md-6">
+							<a th:href="@{/timer/today}" class="button">Jouer</a>
+						</div>
+					</div>
+				</div>
+				<div th:if="${yesterday != null}">
+					<div class="row">
+						<div class="col-md-6">
+							<p class="text-end mt-4">Ou jouer au quiz de la veille :</p>
+						</div>
+						<div class="col-md-6">
+							<a th:href="@{/timer/yesterday}" class="button">Jouer</a>
+						</div>
+					</div>
+				</div>
+				<div th:if="${dayBeforeYesterday != null}">
+					<div class="row">
+						<div class="col-md-6">
+							<p class="text-end mt-4">Ou jouer au quiz de l'avant veille :</p>
+						</div>
+						<div class="col-md-6">
+							<a th:href="@{/timer/dayBeforeYesterday}" class="button">Jouer</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 ml-auto mr-auto mt-5">
+					<a th:href="@{/}" class="button">Retourner à l'accueil</a>
+				</div>
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>

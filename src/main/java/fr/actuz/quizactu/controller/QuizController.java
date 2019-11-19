@@ -56,6 +56,11 @@ public class QuizController {
 	public Integer question() {
 		return null;
 	}
+	
+	@GetMapping("/quizNotFound")
+	public String quizNotFound() {
+		return "quizNotFound";
+	}
 
 	@GetMapping("/quiz/{type}")
 	public String vuQuestion(Model model,
@@ -81,7 +86,6 @@ public class QuizController {
 				model.addAttribute("accountId", account.getId());
 			}
 			List<QuizRecord>records = this.recordService.getByQuizIdAndAccountId(quiz.getId(), accountId);
-			//&& quiz.getPublicationDate().equals(LocalDate.now().atStartOfDay().atZone(ZoneId.of("UTC")))
 			if(records.isEmpty() && type.equals("today")) { 
 				return "quiz";
 			} else if(type.equals("yesterday")){
@@ -92,7 +96,7 @@ public class QuizController {
 				return "quizDone";
 		    }
 		} else {
-			return "redirect:/";
+			return "redirect:/quizNotFound";
 		}
 	}
 

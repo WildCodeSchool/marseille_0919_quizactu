@@ -1,12 +1,15 @@
 package fr.actuz.quizactu.business.service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.actuz.quizactu.business.entity.Account;
+import fr.actuz.quizactu.business.entity.Question;
 import fr.actuz.quizactu.business.entity.Quiz;
 import fr.actuz.quizactu.business.entity.Response;
 import fr.actuz.quizactu.persistence.AccountRepository;
@@ -94,4 +97,10 @@ public class QuizService {
 		this.quizRepo.deleteById(id);
 	}
 
+	
+	public void createQuiz(String title, ZonedDateTime publicationDate, List<Question> questions) {
+		Quiz quiz = new Quiz(title, publicationDate, questions);
+		this.quizRepo.save(quiz);
+	}
+	
 }

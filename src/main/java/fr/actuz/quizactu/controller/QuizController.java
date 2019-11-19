@@ -1,6 +1,10 @@
 package fr.actuz.quizactu.controller;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -14,6 +18,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import fr.actuz.quizactu.business.entity.Account;
 import fr.actuz.quizactu.business.entity.Quiz;
+import fr.actuz.quizactu.business.entity.QuizRecord;
+import fr.actuz.quizactu.business.entity.Response;
 import fr.actuz.quizactu.business.service.AccountService;
 import fr.actuz.quizactu.business.service.ArticleService;
 import fr.actuz.quizactu.business.service.QuizRecordService;
@@ -51,57 +57,104 @@ public class QuizController {
 		return null;
 	}
 
-	@GetMapping("/quiz")
-	public String vuQuestion(Model model, @ModelAttribute("accountId") Integer accountId, Principal principal) {
-		Quiz quiz = this.service.getQuizByPublicationDate();
-		int index = 0;
-		model.addAttribute("quiz", quiz);
-		model.addAttribute("question", quiz.getQuestions().get(index));
-		model.addAttribute("questionIndex", index);
-		if (accountId == null) {
-			Account account = this.accountService.read(principal.getName());
-			model.addAttribute("accountId", account.getId());
+	@GetMapping("/quiz/{type}")
+	public String vuQuestion(Model model,
+			@ModelAttribute("accountId") Integer accountId,
+			Principal principal, @PathVariable String type) {
+		Quiz quiz = null;
+		if (type.equals("today")) {
+			quiz = this.service.getTodayQuiz();
+		} else if (type.equals("yesterday")) {
+			quiz = this.service.getYesterdayQuiz();
+		} else if (type.equals("dayBeforeYesterday")) {
+			quiz = this.service.getDayBeforeYesterdayQuiz();
 		}
-		return "quiz";
-
+		if (quiz != null) {
+			int index = 0;
+			model.addAttribute("quiz", quiz);
+			model.addAttribute("question", quiz.getQuestions().get(index));
+			model.addAttribute("questionIndex", index);
+			model.addAttribute("validation", false);
+			if (accountId == null) {
+				Account account = this.accountService
+						.read(principal.getName());
+				model.addAttribute("accountId", account.getId());
+			}
+			List<QuizRecord>records = this.recordService.getByQuizIdAndAccountId(quiz.getId(), accountId);
+			//&& quiz.getPublicationDate().equals(LocalDate.now().atStartOfDay().atZone(ZoneId.of("UTC")))
+			if(records.isEmpty() && type.equals("today")) { 
+				return "quiz";
+			} else if(type.equals("yesterday")){
+				return "quiz";
+			} else if(type.equals("dayBeforeYesterday")){
+				return "quiz";
+			} else {
+				return "quizDone";
+		    }
+		} else {
+			return "redirect:/";
+		}
 	}
 
-	@GetMapping("nextQuestion/{questionId}/{responseId}")
-	public String nextQuestion(Model model, @PathVariable Integer questionId, @PathVariable Integer responseId,
-			@ModelAttribute("quiz") Quiz quiz, @ModelAttribute("questionIndex") int index,
-			@ModelAttribute("accountId") Integer accountId) {
-		this.service.getPoints(accountId, responseId);
-		this.recordService.recordResultQuiz(quiz.getId(), responseId, accountId);
+	@GetMapping("nextQuestion")
+	public String nextQuestion(Model model,
+			@ModelAttribute("quiz") Quiz quiz,
+			@ModelAttribute("questionIndex") int index) {
 		// Passe à la question suivante tant qu'il reste des questions, sinon passe à
 		// aux resultats.
 		if (index < quiz.getQuestions().size() - 1) {
-			model.addAttribute("question", quiz.getQuestions().get(++index));
+			model.addAttribute("question",
+					quiz.getQuestions().get(++index));
 			model.addAttribute("questionIndex", index);
+			model.addAttribute("validation", false);
 			return "quiz";
 		} else {
 			return "redirect:/result";
 		}
 	}
 
+	@GetMapping("validateQuestion/{questionId}/{responseId}")
+	public String validateQuestion(Model model,
+			@PathVariable Integer questionId,
+			@PathVariable Integer responseId,
+			@ModelAttribute("quiz") Quiz quiz,
+			@ModelAttribute("questionIndex") int index,
+			@ModelAttribute("accountId") Integer accountId) {
+		//Vérifie si l'utilisateur n'a pas déjà répondu à la question avant de lui donner des points
+		if(recordService.compareIfQuestionAlreadyAnswered(quiz.getId(), accountId, responseId, quiz.getQuestions().get(index))) {
+			this.service.getPoints(accountId, responseId);
+			this.recordService.recordResultQuiz(quiz.getId(), responseId, accountId);	
+		}
+		model.addAttribute("validation", true);
+		model.addAttribute("question", quiz.getQuestions().get(index));
+		return "quiz";
+	}
+
 	@GetMapping("/result")
-	public String getResult(Model model, @ModelAttribute("accountId") Integer accountId,
+	public String getResult(Model model,
+			@ModelAttribute("accountId") Integer accountId,
 			@ModelAttribute("quiz") Quiz quiz) {
 		Account account = this.accountService.getById(accountId);
 		model.addAttribute("totalScore", account.getScore());
-		model.addAttribute("scoreOfQuiz", this.recordService.getScoreQuiz(quiz.getId(), accountId));
-		model.addAttribute("listResponse", this.recordService.getQuizResponses(quiz.getId(), accountId));
+		model.addAttribute("scoreOfQuiz",
+				this.recordService.getScoreQuiz(quiz.getId(), accountId));
+		model.addAttribute("listResponse", this.recordService
+				.getQuizResponses(quiz.getId(), accountId));
 		model.addAttribute("articles", account.getArticles());
 		return "result";
 	}
 
-	@GetMapping("/timer")
-	public String timer() {
+	@GetMapping("/timer/{type}")
+	public String timer(@PathVariable String type, Model model) {
+		model.addAttribute("type", type);
 		return "timer";
 	}
 
 	@GetMapping("/favArticle/{articleId}")
 	@ResponseBody
-	public boolean favArticle(@ModelAttribute("accountId") Integer accountId, @PathVariable Integer articleId) {
+	public boolean favArticle(
+			@ModelAttribute("accountId") Integer accountId,
+			@PathVariable Integer articleId) {
 		return this.articleService.favoriteArticle(accountId, articleId);
 	}
 }

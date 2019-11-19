@@ -9,15 +9,6 @@
 *		Class "button" à mettre sur les <a> pour que le style s'applique
 *		Class "quizActu-title" à mettre sur les <h2> pour aplkquer le border-bootom
 */
-
-.green{
-	background: green;
-}
-
-.red{
-	background: red;
-}
-
 body {
 	/* background-color: #91f5ad; */
 	background-color: #fafafa;

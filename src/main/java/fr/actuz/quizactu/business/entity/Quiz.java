@@ -2,7 +2,9 @@ package fr.actuz.quizactu.business.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.*;
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,52 +14,52 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * 
+ *
  */
 @Entity
 @Table(name = "QUIZ")
-public class Quiz implements Serializable{
+public class Quiz implements Serializable {
 
-    /**
-	 * 
+	/**
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
 	/**
-     * Default constructor
-     */
-    public Quiz() {
-    }
+	 * Default constructor
+	 */
+	public Quiz() {
+	}
 
-    /**
-     * 
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+	/**
+	 * 
+	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-    /**
-     * 
-     */
-    private String title;
+	/**
+	 * 
+	 */
+	private String title;
 
-    /**
-     * 
-     */
-    private LocalDate creationDate;
+	/**
+	 * 
+	 */
+	private LocalDate creationDate;
 
-    /**
-     * 
-     */
-    private LocalDate publicationDate;
+	/**
+	 * 
+	 */
+	private ZonedDateTime publicationDate;
 
-    /**
-     * 
-     */
-    @OneToMany(mappedBy = "quiz")
-    private List<Question> questions = new ArrayList<Question>();
+	/**
+	 * 
+	 */
+	@OneToMany(mappedBy = "quiz")
+	private List<Question> questions = new ArrayList<>();
 
-	public Quiz(String title, LocalDate publicationDate, List<Question> questions) {
+	public Quiz(String title, ZonedDateTime publicationDate, List<Question> questions) {
 		super();
 		this.title = title;
 		this.creationDate = LocalDate.now();
@@ -66,7 +68,7 @@ public class Quiz implements Serializable{
 	}
 
 	public Integer getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Integer id) {
@@ -74,7 +76,7 @@ public class Quiz implements Serializable{
 	}
 
 	public String getTitle() {
-		return title;
+		return this.title;
 	}
 
 	public void setTitle(String title) {
@@ -82,23 +84,23 @@ public class Quiz implements Serializable{
 	}
 
 	public LocalDate getCreationDate() {
-		return creationDate;
+		return this.creationDate;
 	}
 
 	public void setCreationDate(LocalDate creationDate) {
 		this.creationDate = creationDate;
 	}
 
-	public LocalDate getPublicationDate() {
-		return publicationDate;
+	public ZonedDateTime getPublicationDate() {
+		return this.publicationDate;
 	}
 
-	public void setPublicationDate(LocalDate publicationDate) {
+	public void setPublicationDate(ZonedDateTime publicationDate) {
 		this.publicationDate = publicationDate;
 	}
 
 	public List<Question> getQuestions() {
-		return questions;
+		return this.questions;
 	}
 
 	public void setQuestions(List<Question> questions) {

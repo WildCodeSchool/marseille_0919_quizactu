@@ -13,13 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import fr.actuz.quizactu.business.entity.Account;
 import fr.actuz.quizactu.business.entity.Quiz;
 import fr.actuz.quizactu.business.entity.QuizRecord;
-import fr.actuz.quizactu.business.entity.Response;
 import fr.actuz.quizactu.business.service.AccountService;
 import fr.actuz.quizactu.business.service.ArticleService;
 import fr.actuz.quizactu.business.service.QuizRecordService;
@@ -170,7 +170,11 @@ public class QuizController {
 	
 	@GetMapping("/public/createQuiz") 
 		public String createQuiz() {
-		
-			return "public/createQuestion";
+		return "public/createQuiz";
 		}
+	
+	@PostMapping("/public/creationQuestion") 
+	public String creationQuestion() {
+		return "/public/creationQuestion";
+	}
 }

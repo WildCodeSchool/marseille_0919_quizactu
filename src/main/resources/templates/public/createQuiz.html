@@ -9,14 +9,14 @@
 	<nav th:replace="fragments/navbar.html :: nav"></nav>
 	 	<div class="container">
             <h1>Ajouter un quiz</h1>
-	        <form name="quiz" method="post" th:action="@{/public/createQuestion}">
+	        <form name="quiz" method="post" th:action="@{/public/creationQuestion}">
 				<div class="form-group"><label for="" class="required">Titre</label><input type="text" id="" name="" required="required" maxlength="255" class="form-control" />
 				</div>
 				<div class="form-group"><label for="" class="required">Date de publication</label><input type="date" id="start" name="trip-start"
        value=th:text="${#temporals.format(quiz.getPublicationDate(), 'dd/MM/yyyy')}">
 				</div>
 				
-				<button type="submit"><a class="button">Ajouter le quiz</a></button>
+				<button type="submit">Ajouter le quiz</button>
 				
 			</form> 
 		</div>

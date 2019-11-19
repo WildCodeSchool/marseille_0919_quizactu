@@ -2,6 +2,7 @@ package fr.actuz.quizactu.business.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +68,7 @@ public class Quiz implements Serializable {
 
 	public void setCreationDate(LocalDate creationDate) {
 		this.creationDate = creationDate;
+		
 	}
 
 	public ZonedDateTime getPublicationDate() {

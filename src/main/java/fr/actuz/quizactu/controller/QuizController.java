@@ -161,6 +161,7 @@ public class QuizController {
 	
 	@GetMapping("/public/createQuiz") 
 		public String createQuiz() {
-			return "public/createQuiz";
+		
+			return "public/createQuestion";
 		}
 }

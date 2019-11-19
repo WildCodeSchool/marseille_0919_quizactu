@@ -57,6 +57,14 @@ public class Quiz implements Serializable{
     @OneToMany(mappedBy = "quiz")
     private List<Question> questions = new ArrayList<Question>();
 
+	public Quiz(String title, LocalDate publicationDate, List<Question> questions) {
+		super();
+		this.title = title;
+		this.creationDate = LocalDate.now();
+		this.publicationDate = publicationDate;
+		this.questions = questions;
+	}
+
 	public Integer getId() {
 		return id;
 	}

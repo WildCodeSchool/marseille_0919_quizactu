@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class ApplicationStartUp {
 
-    @EventListener(ContextRefreshedEvent.class)
-    public void contextRefreshedEvent() {
-        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
-    }
+	@EventListener(ContextRefreshedEvent.class)
+	public void contextRefreshedEvent() {
+		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+	}
 
 }

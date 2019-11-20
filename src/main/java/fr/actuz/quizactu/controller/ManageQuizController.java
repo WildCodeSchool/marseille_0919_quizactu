@@ -21,4 +21,11 @@ public class ManageQuizController {
 		return "public/listResponses";
 	}
 
+	@GetMapping("/public/listQuestion/{id}")
+	public String getQuestions(Model model, @PathVariable Integer id) {
+		model.addAttribute("quiz", this.service.read(id));
+		return "public/listQuestion";
+
+	}
+
 }

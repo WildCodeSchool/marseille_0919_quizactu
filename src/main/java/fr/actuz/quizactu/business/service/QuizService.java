@@ -101,5 +101,9 @@ public class QuizService {
 		quiz.setCreationDate(LocalDate.now());
 		this.quizRepo.save(quiz);
 	}
+//
+//	public List<Question> getQuestionByQuiz(Integer quizId) {
+//		return this.quizRepo.
+//	}
 
 }

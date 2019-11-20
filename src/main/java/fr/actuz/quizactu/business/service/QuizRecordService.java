@@ -36,6 +36,11 @@ public class QuizRecordService {
 		this.recordRepo.save(quizRecord);
 	}
 
+	//Changer comme le update dans ArticleService
+	public void updateResultQuiz(QuizRecord quizRecord) {
+		this.recordRepo.save(quizRecord);
+	}
+	
 	// Method for get the points of quiz that day
 	public Integer getScoreQuiz(Integer quizId, Integer accountId) {
 		List<QuizRecord> quizRecord = this.recordRepo.findAllByQuizIdAndAccountId(quizId, accountId);
@@ -70,10 +75,10 @@ public class QuizRecordService {
 		for (QuizRecord quizRecord : records) {
 			responseRecord = quizService.getResponseById(quizRecord.getResponse().getId());
 			if(responseRecord.getQuestion().getId() == curQuestion.getId()) {
-				return false;
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 	
 	

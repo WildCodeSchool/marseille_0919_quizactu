@@ -121,9 +121,13 @@ public class QuizController {
 			@ModelAttribute("questionIndex") int index,
 			@ModelAttribute("accountId") Integer accountId) {
 		//Vérifie si l'utilisateur n'a pas déjà répondu à la question avant de lui donner des points
-		if(recordService.compareIfQuestionAlreadyAnswered(quiz.getId(), accountId, responseId, quiz.getQuestions().get(index))) {
+		if(!recordService.compareIfQuestionAlreadyAnswered(quiz.getId(), accountId, responseId, quiz.getQuestions().get(index))) {
 			this.service.getPoints(accountId, responseId);
 			this.recordService.recordResultQuiz(quiz.getId(), responseId, accountId);	
+		} else if(recordService.compareIfQuestionAlreadyAnswered(quiz.getId(), accountId, responseId, quiz.getQuestions().get(index))) {
+			QuizRecord newRecord = new QuizRecord(quiz, this.service.getResponseById(responseId), this.accountService.getById(accountId));
+			//MARCHE PAS, IL FAUT QUE CA UPDATE QUAND Y'A UN NOUVEAU
+			this.recordService.updateResultQuiz(newRecord);
 		}
 		model.addAttribute("validation", true);
 		model.addAttribute("question", quiz.getQuestions().get(index));

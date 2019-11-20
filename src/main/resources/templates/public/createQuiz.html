@@ -2,23 +2,27 @@
 
 <head th:replace="head.html :: head"></head>
 
-	<head>
-		<title>Création de quiz</title>
-	</head>
+<head>
+<title>Création de quiz</title>
+</head>
 <body>
 	<nav th:replace="fragments/navbar.html :: nav"></nav>
-	 	<div class="container">
-            <h1>Ajouter un quiz</h1>
-	        <form name="quiz" method="post" th:action="@{/public/creationQuestion}">
-				<div class="form-group"><label for="" class="required">Titre</label><input type="text" id="" name="" required="required" maxlength="255" class="form-control" />
-				</div>
-				<div class="form-group"><label for="" class="required">Date de publication</label><input type="date" id="start" name="trip-start"
-       value=th:text="${#temporals.format(quiz.getPublicationDate(), 'dd/MM/yyyy')}">
-				</div>
-				
-				<button type="submit">Ajouter le quiz</button>
-				
-			</form> 
-		</div>
+	<div class="container">
+		<h1>Ajouter un quiz</h1>
+		<form method="post" th:action="@{/public/createQuiz}" th:object="${quiz}">
+			<div class="form-group">
+				<label for="title" class="required">Titre</label>
+				<input type="text" id="title" th:field="*{title}"
+					required="required" maxlength="255" class="form-control" />
+			</div>
+			<div class="form-group">
+				<label for="start" class="required">Date de publication</label>
+				<input type="date" id="start" th:field="*{publicationDate}">
+			</div>
+
+			<button type="submit">Ajouter le quiz</button>
+
+		</form>
+	</div>
 </body>
 </html>

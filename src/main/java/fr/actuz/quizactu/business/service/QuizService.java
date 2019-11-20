@@ -88,11 +88,12 @@ public class QuizService {
 	}
 
 	
-	public void createQuiz(String title,ZonedDateTime publicationDate, List<Question> questions) {
-		Quiz quiz = new Quiz(title,  publicationDate, questions);
+	public void createQuiz(String title, LocalDate publicationDate) {
+		Quiz quiz = new Quiz();
 		quiz.setTitle(title);
-		quiz.setPublicationDate(publicationDate);
-		this.quizRepo.save(quiz, LocalDate.now().atStartOfDay().atZone(ZoneId.of("UTC")));
+		quiz.setPublicationDate(publicationDate.atStartOfDay().atZone(ZoneId.of("UTC")));
+		quiz.setCreationDate(LocalDate.now());
+		this.quizRepo.save(quiz);
 	}
 	
 }

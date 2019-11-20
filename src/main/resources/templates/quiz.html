@@ -23,16 +23,16 @@
 		<div class="card-body">
 			<h2 th:utext="${question.getContent()}"></h2>
 			<div th:each="response : ${question.getResponses()}">
-				<a th:unless="${validation}" class="btn btn-block button"
+				<a th:unless="${validation}" class="btn btn-block button vraiFaux"
 					th:href="@{/validateQuestion/} + ${question.id} + '/' + ${response.id}"
 					th:utext="${response.getContent()}"></a>
-				<a th:if="${validation}" class="btn btn-block"
+				<a th:if="${validation}" class="btn btn-block vraiFaux"
 					th:classappend="${response.isTrue} ? btn-success : btn-danger"
 					th:utext="${response.getContent()}"></a>
 			</div>
 		</div>
 		<div>
-			<a th:if="${validation}" th:href="@{/nextQuestion}" class="button">Continuer</a>
+			<a th:if="${validation}" th:href="@{/nextQuestion}" class="button vraiFaux">Continuer</a>
 		</div>
 		
 		<div class="card-footer text-right">

@@ -1,5 +1,6 @@
 package fr.actuz.quizactu.business.service;
 
+
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -68,26 +69,23 @@ public class QuizService {
 		Response resp = this.responseRepo.getOne(id);
 		return resp;
 	}
+	
+	public List<Response> getAllResp(int questionId) {
+		return this.responseRepo.findAllResponseByQuestionId(questionId); 
+	}
 
 	public List<Quiz> getAll() {
 		return this.quizRepo.findAll();
 	}
 
-//	public Quiz create(Integer id) {
-//		Quiz quiz = new Quiz();
-//		quiz.setId(this.quizRepo.getOne(id));
-//		return this.quizRepo.save(quiz);
-//	}
-
 	public Quiz read(int id) {
 		return this.quizRepo.getOne(id);
 	}
 
-	public Quiz update(Integer id, String title, LocalDate creationDate, ZonedDateTime publicationDate) {
+	public Quiz update(Integer id, String title, LocalDate publicationDate) {
 		Quiz quiz = this.read(id);
 		quiz.setTitle(title);
-		quiz.setCreationDate(creationDate);
-		quiz.setPublicationDate(publicationDate);
+		quiz.setPublicationDate(publicationDate.atStartOfDay().atZone(ZoneId.of("UTC")));
 		return this.quizRepo.save(quiz);
 	}
 
@@ -95,9 +93,17 @@ public class QuizService {
 		this.quizRepo.deleteById(id);
 	}
 
-	public void createQuiz(String title, ZonedDateTime publicationDate, List<Question> questions) {
-		Quiz quiz = new Quiz(title, publicationDate, questions);
+	
+	public void createQuiz(String title, LocalDate publicationDate) {
+		Quiz quiz = new Quiz();
+		quiz.setTitle(title);
+		quiz.setPublicationDate(publicationDate.atStartOfDay().atZone(ZoneId.of("UTC")));
+		quiz.setCreationDate(LocalDate.now());
 		this.quizRepo.save(quiz);
 	}
+//
+//	public List<Question> getQuestionByQuiz(Integer quizId) {
+//		return this.quizRepo.
+//	}
 
 }

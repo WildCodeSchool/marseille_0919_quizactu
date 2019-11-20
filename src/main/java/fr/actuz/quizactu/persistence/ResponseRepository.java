@@ -1,12 +1,7 @@
 package fr.actuz.quizactu.persistence;
-
-
-import java.time.ZonedDateTime;
 import java.util.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import fr.actuz.quizactu.business.entity.Quiz;
 import fr.actuz.quizactu.business.entity.Response;
 
 /**

@@ -68,6 +68,13 @@ public class QuizController {
 		model.addAttribute("dayBeforeYesterday", this.service.getDayBeforeYesterdayQuiz());
 		return "quizNotFound";
 	}
+	
+	@GetMapping("/quizDone")
+	public String quizDone(Model model) {
+		model.addAttribute("yesterday", this.service.getYesterdayQuiz());
+		model.addAttribute("dayBeforeYesterday", this.service.getDayBeforeYesterdayQuiz());
+		return "quizDone";
+	}
 
 	@GetMapping("/quiz/{type}")
 	public String vuQuestion(Model model, @ModelAttribute("accountId") Integer accountId, Principal principal,
@@ -100,8 +107,9 @@ public class QuizController {
 			} else if (type.equals("dayBeforeYesterday")) {
 				return "quiz";
 			} else {
-				return "quizDone";
-			}
+				return "redirect:/quizDone";
+		    }
+
 		} else {
 			return "redirect:/quizNotFound";
 		}
@@ -128,11 +136,25 @@ public class QuizController {
 			@ModelAttribute("accountId") Integer accountId) {
 		// Vérifie si l'utilisateur n'a pas déjà répondu à la question avant de lui
 		// donner des points
-		if (recordService.compareIfQuestionAlreadyAnswered(quiz.getId(), accountId, responseId,
-				quiz.getQuestions().get(index))) {
+		if (this.recordService.compareIfQuestionAlreadyAnswered(
+				quiz.getId(), accountId, questionId)) {
 			this.service.getPoints(accountId, responseId);
-			this.recordService.recordResultQuiz(quiz.getId(), responseId, accountId);
+			this.recordService.recordResultQuiz(quiz.getId(), questionId,
+					responseId, accountId);
 		}
+		model.addAttribute("validation", true);
+		model.addAttribute("question", quiz.getQuestions().get(index));
+		return "quiz";
+	}
+
+	@GetMapping("validateQuestion/{questionId}")
+	public String validateQuestionWithoutResponse(Model model,
+			@PathVariable Integer questionId,
+			@ModelAttribute("quiz") Quiz quiz,
+			@ModelAttribute("questionIndex") int index,
+			@ModelAttribute("accountId") Integer accountId) {
+		this.recordService.recordResultQuiz(quiz.getId(), questionId, null,
+				accountId);
 		model.addAttribute("validation", true);
 		model.addAttribute("question", quiz.getQuestions().get(index));
 		return "quiz";
@@ -171,5 +193,11 @@ public class QuizController {
 			@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @ModelAttribute LocalDate publicationDate) {
 		this.service.createQuiz(title, publicationDate);
 		return "/public/createQuiz";
+	}
+
+	@GetMapping("/public/homeManager")
+	public String listQuizCreate(Model model) {
+		model.addAttribute("listQuiz", this.service.getAll());
+		return "public/homeManager";
 	}
 }

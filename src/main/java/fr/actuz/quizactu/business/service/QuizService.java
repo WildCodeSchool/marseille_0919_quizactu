@@ -2,9 +2,9 @@ package fr.actuz.quizactu.business.service;
 
 
 import java.time.LocalDate;
-import java.util.List;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,18 +34,17 @@ public class QuizService {
 	}
 
 	public Quiz getTodayQuiz() {
-		return this.quizRepo.findOneByPublicationDate(
-				LocalDate.now().atStartOfDay().atZone(ZoneId.of("UTC")));
+		return this.quizRepo.findOneByPublicationDate(LocalDate.now().atStartOfDay().atZone(ZoneId.of("UTC")));
 	}
 
 	public Quiz getYesterdayQuiz() {
-		return this.quizRepo.findOneByPublicationDate(LocalDate.now()
-				.minusDays(1).atStartOfDay().atZone(ZoneId.of("UTC")));
+		return this.quizRepo
+				.findOneByPublicationDate(LocalDate.now().minusDays(1).atStartOfDay().atZone(ZoneId.of("UTC")));
 	}
 
 	public Quiz getDayBeforeYesterdayQuiz() {
-		return this.quizRepo.findOneByPublicationDate(LocalDate.now()
-				.minusDays(2).atStartOfDay().atZone(ZoneId.of("UTC")));
+		return this.quizRepo
+				.findOneByPublicationDate(LocalDate.now().minusDays(2).atStartOfDay().atZone(ZoneId.of("UTC")));
 	}
 
 	public void getPoints(Integer accountId, Integer responseId) {
@@ -69,6 +68,10 @@ public class QuizService {
 	public Response getResponseById(Integer id) {
 		Response resp = this.responseRepo.getOne(id);
 		return resp;
+	}
+
+	public List<Quiz> getAll() {
+		return this.quizRepo.findAll();
 	}
 
 	public Quiz read(int id) {
@@ -95,5 +98,5 @@ public class QuizService {
 		quiz.setCreationDate(LocalDate.now());
 		this.quizRepo.save(quiz);
 	}
-	
+
 }

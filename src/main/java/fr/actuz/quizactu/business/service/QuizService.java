@@ -78,11 +78,10 @@ public class QuizService {
 		return this.quizRepo.getOne(id);
 	}
 
-	public Quiz update(Integer id, String title, LocalDate creationDate, ZonedDateTime publicationDate) {
+	public Quiz update(Integer id, String title, LocalDate publicationDate) {
 		Quiz quiz = this.read(id);
 		quiz.setTitle(title);
-		quiz.setCreationDate(creationDate);
-		quiz.setPublicationDate(publicationDate);
+		quiz.setPublicationDate(publicationDate.atStartOfDay().atZone(ZoneId.of("UTC")));
 		return this.quizRepo.save(quiz);
 	}
 

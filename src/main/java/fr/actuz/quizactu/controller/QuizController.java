@@ -2,6 +2,8 @@ package fr.actuz.quizactu.controller;
 
 import java.security.Principal;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -54,11 +57,6 @@ public class QuizController {
 	@ModelAttribute("questionIndex")
 	public Integer question() {
 		return null;
-	}
-
-	@ModelAttribute
-	LocalDate initLocalDate() {
-		return LocalDate.now();
 	}
 
 	@GetMapping("/quizNotFound")
@@ -187,12 +185,24 @@ public class QuizController {
 	public String showFormQuiz() {
 		return "public/createQuiz";
 	}
-
+	
+	@GetMapping("public/modifyQuiz/{quizId}")
+	public String showModifyQuiz(@PathVariable Integer quizId, Model model) {
+		Quiz quiz = this.service.read(quizId);
+		model.addAttribute("quizId", quiz.getId());
+		model.addAttribute("title", quiz.getTitle());
+		model.addAttribute("datePublication", quiz.getPublicationDate().toLocalDate());
+		return "public/createQuiz";
+	}
 	@PostMapping("/public/createQuiz")
-	public String submitFormQuiz(String title,
-			@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @ModelAttribute LocalDate publicationDate) {
-		this.service.createQuiz(title, publicationDate);
-		return "/public/createQuiz";
+	public String submitFormQuiz(Integer id, String title, String publicationDate) {
+		LocalDate pubDate = LocalDate.parse(publicationDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		if (id == null) {
+			this.service.createQuiz(title, pubDate);
+		} else {
+			this.service.update(id, title, pubDate);
+		}
+		return "public/homeManager";
 	}
 
 	@GetMapping("/public/homeManager")

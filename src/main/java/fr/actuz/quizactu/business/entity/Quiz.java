@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "QUIZ")
 public class Quiz implements Serializable {
@@ -32,6 +34,7 @@ public class Quiz implements Serializable {
 
 	private LocalDate creationDate;
 
+//	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private ZonedDateTime publicationDate;
 
 	@OneToMany(mappedBy = "quiz")

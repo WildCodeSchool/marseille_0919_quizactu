@@ -124,22 +124,18 @@ public class QuizController {
 	}
 
 	@GetMapping("validateQuestion/{questionId}/{responseId}")
-	public String validateQuestion(Model model, @PathVariable Integer questionId, @PathVariable Integer responseId,
+	public String validateQuestion(Model model, 
+			@PathVariable Integer questionId, @PathVariable Integer responseId,
 			@ModelAttribute("quiz") Quiz quiz, @ModelAttribute("questionIndex") int index,
 			@ModelAttribute("accountId") Integer accountId) {
 		// Vérifie si l'utilisateur n'a pas déjà répondu à la question avant de lui
 		// donner des points
-		if (this.recordService.compareIfQuestionAlreadyAnswered(
-				quiz.getId(), accountId, questionId)) {
+		if (this.recordService.compareIfQuestionAlreadyAnswered(quiz.getId(), accountId, questionId)) {
 			this.service.getPoints(accountId, responseId);
-			this.recordService.recordResultQuiz(quiz.getId(), questionId,
-					responseId, accountId);
+			this.recordService.recordResultQuiz(quiz.getId(), questionId,responseId, accountId);
+		} else if (!this.recordService.compareIfQuestionAlreadyAnswered(quiz.getId(), accountId, questionId)) {
+			this.recordService.updateResultQuiz(questionId, accountId, responseId);
 		}
-        //else if(recordService.compareIfQuestionAlreadyAnswered(quiz.getId(), accountId, responseId, quiz.getQuestions().get(index))) {
-		//	QuizRecord newRecord = new QuizRecord(quiz, this.service.getResponseById(responseId), this.accountService.getById(accountId));
-			//MARCHE PAS, IL FAUT QUE CA UPDATE QUAND Y'A UN NOUVEAU
-		//	this.recordService.updateResultQuiz(newRecord);
-		//}
 		model.addAttribute("validation", true);
 		model.addAttribute("question", quiz.getQuestions().get(index));
 		return "quiz";
@@ -151,9 +147,11 @@ public class QuizController {
 			@ModelAttribute("quiz") Quiz quiz,
 			@ModelAttribute("questionIndex") int index,
 			@ModelAttribute("accountId") Integer accountId) {
-		} 
-		this.recordService.recordResultQuiz(quiz.getId(), questionId, null,
-				accountId);
+		if (this.recordService.compareIfQuestionAlreadyAnswered(quiz.getId(), accountId, questionId)) {
+			this.recordService.recordResultQuiz(quiz.getId(), questionId, null, accountId);
+		} else if (!this.recordService.compareIfQuestionAlreadyAnswered(quiz.getId(), accountId, questionId)) {
+			this.recordService.updateResultQuiz(questionId, accountId, null);
+		}
 		model.addAttribute("validation", true);
 		model.addAttribute("question", quiz.getQuestions().get(index));
 		return "quiz";

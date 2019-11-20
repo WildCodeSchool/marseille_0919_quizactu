@@ -69,6 +69,10 @@ public class QuizService {
 		Response resp = this.responseRepo.getOne(id);
 		return resp;
 	}
+	
+	public List<Response> getAllResp(int questionId) {
+		return this.responseRepo.findAllResponseByQuestionId(questionId); 
+	}
 
 	public List<Quiz> getAll() {
 		return this.quizRepo.findAll();
@@ -97,5 +101,9 @@ public class QuizService {
 		quiz.setCreationDate(LocalDate.now());
 		this.quizRepo.save(quiz);
 	}
+//
+//	public List<Question> getQuestionByQuiz(Integer quizId) {
+//		return this.quizRepo.
+//	}
 
 }

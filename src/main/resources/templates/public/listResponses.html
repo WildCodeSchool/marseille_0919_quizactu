@@ -1,0 +1,12 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head.html :: head"></head>
+<head>
+<title>Timer</title>
+</head>
+<body>
+	<h1>test list</h1>
+	<div th:each="response : ${listResp}">
+		<p th:utext=${response.content}></p>
+	</div>
+</body>
+</html>

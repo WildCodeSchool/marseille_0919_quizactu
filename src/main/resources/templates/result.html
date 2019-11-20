@@ -13,95 +13,105 @@
 		<h2>Résultats</h2>
 		<div class="result-trophy">
 			<div class="result-trophy-score result-trophy-txt">
-				<p>Votre score : </p>
+				<p>Votre score :</p>
 				<p class="result-trophy-txt" th:text="${scoreOfQuiz}"></p>
 			</div>
 			<div class="result-trophy-score result-trophy-txt">
-				<p>Votre score total : </p>
+				<p>Votre score total :</p>
 				<p class="result-trophy-txt" th:text="${totalScore}"></p>
 			</div>
 		</div>
 		<div class="row">
-			<div th:each="resp : ${listResponse}" 
-				th:classappend="${resp.isTrue} ? list-group-item-success : list-group-item-danger" 
+			<div th:each="resp : ${listResponse}"
+				th:classappend="${resp.isTrue} ? list-group-item-success : list-group-item-danger"
 				class="card mb-3">
 				<div class="card-body">
 					<div class="true-anwser">
-						<img class="card-img-top" 
-							th:if="${resp.question.image != null}" 
+						<img class="card-img-top" th:if="${resp.question.image != null}"
 							th:src="${resp.question.imageEncoded}" />
 						<h3 class="card-title text-left mt-3"
 							th:utext="'Question : ' + ${resp.question.content}"></h3>
-						<p class="card-text mt-3 text-center" 
+						<p class="card-text mt-3 text-center"
 							th:utext="'Votre réponse : ' + ${resp.content}"></p>
+						<p th:if="${resp.notAnswered}">Vous n'avez pas répondu à cette question</p>
 					</div>
-					<div th:style="${!resp.isTrue} ? 'display:block' : 'display:none'" class="false-anwser">
+					<div th:if="${!resp.isTrue}" class="false-anwser">
 						<p class="card-text text-center" 
 							th:utext="'La bonne réponse était : ' + ${resp.question.correctResponse.content}"></p>
-						<h5 th:utext="${resp.question.article.title}" 
-							class="text-left false-anwser-article-title"></h5>
-						<p th:utext="${resp.question.article.summary}" 
-							class="text-justify"></p>
-						<a th:onclick="'registerFav(' + ${resp.question.article.id} + ')'"
-							class="onclik-favorite">
-							<i th:id="'article-' + ${resp.question.article.id}"
-								class="fa icon" aria-hidden="true"
-								th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'">
-							</i>
-						</a>
-						<a th:href="${resp.question.article.link}" 
-							target="_blank">Lire la suite</a>
+						<th:block th:if="${resp.question.article != null}">
+							<h5 th:utext="${resp.question.article.title}" 
+								class="text-left false-anwser-article-title"></h5>
+							<p th:utext="${resp.question.article.summary}" 
+								class="text-justify"></p>
+							<a th:onclick="'registerFav(' + ${resp.question.article.id} + ')'"
+								class="onclik-favorite">
+								<i th:id="'article-' + ${resp.question.article.id}"
+									class="fa icon" aria-hidden="true"
+									th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'">
+								</i>
+							</a>
+							<a th:if="${resp.question.article != null}" th:href="${resp.question.article.link}" 
+								target="_blank">Lire la suite</a>
+						</th:block>
+					</div>
+
+					<div th:if="${resp.isTrue}"
+						class="true-awnser">
+						<div class="accordion"></div>
+						<div class="accordion-item">
+							<div class="toggle button">Voir plus</div>
+							<div class="content">
+								<div class="inner">
+									<th:block th:if="${resp.question.article != null}">
+										<p th:utext="${resp.question.article.title}"
+											class="article-title"></p>
+										<p th:utext="${resp.question.article.summary}"
+											class="article-summary"></p>
+										<div class="article-link">
+											<a th:onclick="'registerFav(' + ${resp.question.article.id} + ')'"> 
+												<i th:id="'article-' + ${resp.question.article.id}" class="fa icon"
+													aria-hidden="false"
+													th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'">
+												</i>
+											</a> 
+											<a th:href="${resp.question.article.link}" target="_blank">
+												Lire la suite
+											</a>
+										</div>
+									</th:block>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="container result">
-		<h1 class="resultat">Resultat</h1>
-		<h2 th:text="${scoreOfQuiz}"></h2>
-		<p th:text="${totalScore}"></p>
-		<div th:each="resp : ${listResponse}" 
-			class="card" 
-			th:classappend="${resp.isTrue} ? bg-success : bg-danger">
-			<div class="row">
-			<div class="col-md-4">
-				<img class="imgQuestion" th:src="@{/images/media.jpg}" style="width:100%;" />
-			</div>
-			<div class="col-md-8">
-				<div class="card-body">
-				<h5 th:utext="'Question : ' + ${resp.question.content}" class="card-title"></h5>
-				<p th:utext="'Votre réponse : ' + ${resp.content}" class="card-text"></p>
-				<p th:utext="'Titre de l\'article : ' + ${resp.question.article.title}" class="card-text"></p>
-				<a th:href="${resp.question.article.link}" target="_blank">Voir l'article</a>
-				<a th:onclick="'registerFav(' + ${resp.question.article.id} + ')'">
-					<i th:id="'article-' + ${resp.question.article.id}" class="fa icon" aria-hidden="true"
-						th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'"></i>
-				</a>
-				</div>
-			</div>
+		<div class="row">
+			<div class="col-md-4 ml-auto mr-auto">
+				<a th:href="@{/}" class="button">Retourner à l'accueil</a>
 			</div>
 		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-md-4 ml-auto mr-auto">
-		<a th:href="@{/}" class="button">Retourner à l'accueil</a>
 		</div>
-	</div>
 </body>
 <script>
-	function registerFav(articleId) {
-		$.ajax('http://localhost:8080/favArticle/' + articleId).then((result) => {
-			let i = $('#article-' + articleId);
-			if (result) {
-				i.addClass('fa-star');
-				i.removeClass('fa-star-o');
-			} else {
-				i.removeClass('fa-star');
-				i.addClass('fa-star-o');
-			}
-		});
-	}
+function registerFav(articleId) {
+	$.ajax('http://localhost:8080/favArticle/' + articleId).then((result) => {
+		let i = $('#article-' + articleId);
+		if (result) {
+			i.addClass('fa-star');
+			i.removeClass('fa-star-o');
+		} else {
+			i.removeClass('fa-star');
+			i.addClass('fa-star-o');
+		}
+	});
+};
+
+$('.toggle').on('click', function() {
+	  $(this)
+	    .siblings('.content')
+	    .toggleClass('active');
+})
 </script>
 </html>

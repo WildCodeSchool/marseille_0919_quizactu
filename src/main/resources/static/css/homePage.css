@@ -11,7 +11,7 @@
 	margin: 1rem 0;
 	padding: .3rem .8rem;
 	border-radius: 10px;
-	background-color: #4381C1;
+	background-color: #9FE6BB;
 }
 
 .card-button a {
@@ -29,8 +29,7 @@
 	z-index: 1;
 	transition: all 0.5s ease;
 	color: #4A4A4A;
-	/*border: 1px solid #4381C1;*/
-	border: 1px solid #233f20;
+	border: 1px solid #9FE6BB;
 	border-radius: 3px;
 	margin: 1rem 0;
 }
@@ -39,6 +38,14 @@
 	box-shadow: 0px 21px 36px -14px rgba(220, 220, 220, 1);;
 }
 
+
+.news:hover .title h1 {
+	color: #9FE6BB;
+}
+
+.news  p.description {
+	position: relative;
+	font-weight: normal;
 .news .img-figure {
 	position: relative;
 	max-height: 200px;
@@ -91,12 +98,12 @@
 }
 
 .news:hover .title {
-	color: #4381C1;
+	color: #9FE6BB;
 	cursor: pointer;
 }
 
 .news:hover .title h1 {
-	color: #0085FF;
+	color: #9FE6BB;
 }
 
 .news  p.description {
@@ -126,9 +133,8 @@
 
 .news .button:hover {
 	background-color: white;
-	color: #4381C1;
-	/*border: 1px solid #4381C1;*/
-	border: 1px solid #233f20;
+	color: #929292;
+	border: 1px solid #9FE6BB;
 }
 
 .table {
@@ -137,12 +143,6 @@
 }
 
 thead {
-	/*background-color: #4381c1;*/
-	background-color: #233f20;
+	background-color: #9FE6BB;
 	color: white;
-	
-.table td, .table th {
-	padding: .75rem;
-	vertical-align: top;
-	border-top: none;
 }

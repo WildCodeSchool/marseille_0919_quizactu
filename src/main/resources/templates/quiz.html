@@ -3,53 +3,39 @@
 <head th:insert="/head.html :: head"></head>
 <head>
 <link rel="stylesheet" th:href="@{/css/quiz.css}">
-</head>
-<head>
-<meta charset="UTF-8">
-<title></title>
+<script th:src="@{/js/quiz.js}"></script>
 </head>
 <body>
-
 	<nav th:replace="fragments/navbar.html :: nav"></nav>
-	
-		<div class="container">
-		<div class="row imgRow">
-			<div class="col-sm-12 imgQuestionQuiz">
-				<div class="news">
-					<div class="img-figure">
-						<img style="width: 500px; max-height: 350px;" th:src="@{/images/media.jpg}" class="img-responsive">
-					</div>
+	<div class="container results">
+		<div class="card">
+			<img class="img-thumbnail card-img-top"
+				th:if="${question.image != null}" th:src="${question.imageEncoded}" />
+			<div th:if="${!validation}" class="progress" style="height: 20px;">
+				<div id="questionTimer" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+					aria-valuemin="0" aria-valuemax="100"></div>
+			</div>
+			<div class="card-body">
+				<h2 th:utext="${question.getContent()}"></h2>
+				<div th:each="response : ${question.getResponses()}">
+					<a th:unless="${validation}" class="btn btn-block button vraiFaux"
+						th:href="@{/validateQuestion/} + ${question.id} + '/' + ${response.id}"
+						th:utext="${response.getContent()}"></a>
+					<a th:if="${validation}"
+						class="btn btn-block vraiFaux"
+						th:classappend="${response.isTrue} ? btn-success : btn-danger"
+						th:utext="${response.getContent()}"></a>
 				</div>
 			</div>
+			<input type="hidden" id="questionId" th:value="${question.id}">
 		</div>
-		<div class="row justify-content-md-center">
-		<h2 class="titreQuestion" th:utext="${question.getContent()}"></h2>
-			<div class="col-sm-6 reponseQuestion">
-				<div class="reponseQuestion" th:each="response : ${question.getResponses()}">
-					<a th:unless="${validation}" class="btn btn-block button"
-
-					th:href="@{/validateQuestion/} + ${question.id} + '/' + ${response.id}"
-					th:utext="${response.getContent()}"></a>
-				<a th:if="${validation}" class="btn btn-block"
-					th:classappend="${response.isTrue} ? btn-success : btn-danger"
-					th:utext="${response.getContent()}"></a>
-
-			</div>
-		
 		<div>
-			<a th:if="${validation}" th:href="@{/nextQuestion}" class="button">Continuer</a>
+			<a th:if="${validation}" th:href="@{/nextQuestion}" class="button vraiFaux">Continuer</a>
 		</div>
-		</div>
-		<!-- <div class="card-footer text-right">
+		
+		<div class="card-footer text-right">
 			<p th:text="${#temporals.format(quiz.getPublicationDate(), 'dd/MM/yyyy')}"></p>
 		</div>
-		<p th:text="${score}"></p>
 	</div>
-
-				</div>
-			</div>
-		</div>
-		<p th:text="${score}"></p> -->
-
 </body>
 </html>

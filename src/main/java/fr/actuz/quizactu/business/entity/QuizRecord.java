@@ -15,40 +15,42 @@ import javax.persistence.Table;
 
 public class QuizRecord implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public QuizRecord() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@ManyToOne
-	@JoinColumn(name="QUIZ_ID", nullable=false)
+	@JoinColumn(name = "QUIZ_ID", nullable = false)
 	private Quiz quiz;
 
 	@ManyToOne
-	@JoinColumn(name="RESPONSE_ID", nullable=false)
+	@JoinColumn(name = "QUESTION_ID")
+	private Question question;
+
+	@ManyToOne
+	@JoinColumn(name = "RESPONSE_ID")
 	private Response response;
 
 	@ManyToOne
-	@JoinColumn(name="ACCOUNT_ID", nullable=false)
+	@JoinColumn(name = "ACCOUNT_ID", nullable = false)
 	private Account account;
-	
-	public QuizRecord(Quiz quiz, Response response, Account account) {
+
+	public QuizRecord(Quiz quiz, Question question, Response response,
+			Account account) {
 		super();
 		this.quiz = quiz;
+		this.question = question;
 		this.response = response;
 		this.account = account;
 	}
 
 	public Integer getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Integer id) {
@@ -56,7 +58,7 @@ public class QuizRecord implements Serializable {
 	}
 
 	public Quiz getQuiz() {
-		return quiz;
+		return this.quiz;
 	}
 
 	public void setQuiz(Quiz quiz) {
@@ -64,7 +66,7 @@ public class QuizRecord implements Serializable {
 	}
 
 	public Response getResponse() {
-		return response;
+		return this.response;
 	}
 
 	public void setResponse(Response response) {
@@ -72,13 +74,19 @@ public class QuizRecord implements Serializable {
 	}
 
 	public Account getAccount() {
-		return account;
+		return this.account;
 	}
 
 	public void setAccount(Account account) {
 		this.account = account;
 	}
-	
-	
-}
 
+	public Question getQuestion() {
+		return this.question;
+	}
+
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
+
+}

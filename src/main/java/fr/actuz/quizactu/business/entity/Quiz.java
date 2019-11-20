@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "QUIZ")
 public class Quiz implements Serializable {
@@ -32,10 +34,19 @@ public class Quiz implements Serializable {
 
 	private LocalDate creationDate;
 
+//	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private ZonedDateTime publicationDate;
 
 	@OneToMany(mappedBy = "quiz")
 	private List<Question> questions = new ArrayList<>();
+
+	public Quiz(String title, ZonedDateTime publicationDate, List<Question> questions) {
+		super();
+		this.title = title;
+		this.creationDate = LocalDate.now();
+		this.publicationDate = publicationDate;
+		this.questions = questions;
+	}
 
 	public Integer getId() {
 		return this.id;
@@ -59,6 +70,7 @@ public class Quiz implements Serializable {
 
 	public void setCreationDate(LocalDate creationDate) {
 		this.creationDate = creationDate;
+		
 	}
 
 	public ZonedDateTime getPublicationDate() {

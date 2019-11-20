@@ -50,7 +50,6 @@ public class QuizRecordService {
 		this.recordRepo.save(quizRecord);
 	}
 
-	//Changer comme le update dans ArticleService
 	public void updateResultQuiz(Integer questionId, Integer accountId, Integer responseId) {
 		QuizRecord record = this.recordRepo.findOneByQuestionIdAndAccountId(questionId, accountId);
 		Response response = null;

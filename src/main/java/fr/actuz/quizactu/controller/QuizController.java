@@ -134,7 +134,7 @@ public class QuizController {
 			@ModelAttribute("quiz") Quiz quiz, @ModelAttribute("questionIndex") int index,
 			@ModelAttribute("accountId") Integer accountId) {
 		// Vérifie si l'utilisateur n'a pas déjà répondu à la question avant de lui
-		// donner des points
+		// donner des points.
 		if (this.recordService.compareIfQuestionAlreadyAnswered(quiz.getId(), accountId, questionId)) {
 			this.service.getPoints(accountId, responseId);
 			this.recordService.recordResultQuiz(quiz.getId(), questionId,responseId, accountId);
@@ -152,6 +152,7 @@ public class QuizController {
 			@ModelAttribute("quiz") Quiz quiz,
 			@ModelAttribute("questionIndex") int index,
 			@ModelAttribute("accountId") Integer accountId) {
+		//Si i il n'a pas encore repondu à la question, entre le Record Result, sinon update le
 		if (this.recordService.compareIfQuestionAlreadyAnswered(quiz.getId(), accountId, questionId)) {
 			this.recordService.recordResultQuiz(quiz.getId(), questionId, null, accountId);
 		} else if (!this.recordService.compareIfQuestionAlreadyAnswered(quiz.getId(), accountId, questionId)) {

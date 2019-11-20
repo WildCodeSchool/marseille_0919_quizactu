@@ -18,7 +18,7 @@
 	<div>
 		<h1>Welcome Manager</h1>
 		<div th:each="quiz : ${listQuiz}">
-			<a th:utext="${quiz.title}" th:href="@{/public/createQuiz}"></a>
+			<a th:utext="${quiz.title}" th:href="@{/public/listQuestion/} + ${quiz.id}"></a>
 		</div>
 
 		<a th:href="@{/public/createQuiz}" class="button">Créer un quiz !</a>

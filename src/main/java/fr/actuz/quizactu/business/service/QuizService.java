@@ -99,5 +99,9 @@ public class QuizService {
 		Quiz quiz = new Quiz(title, publicationDate, questions);
 		this.quizRepo.save(quiz);
 	}
+//
+//	public List<Question> getQuestionByQuiz(Integer quizId) {
+//		return this.quizRepo.
+//	}
 
 }

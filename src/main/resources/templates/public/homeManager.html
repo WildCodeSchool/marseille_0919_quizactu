@@ -4,7 +4,7 @@
 
 <head th:insert="/head.html :: head"></head>
 <head>
-<link rel="stylesheet" th:href="@{./css/style.css}">
+<link rel="stylesheet" th:href="@{./css/.css}">
 </head>
 <body>
 	<div>
@@ -12,14 +12,44 @@
 	</div>
 	<div class="msgUser mt-150"
 		th:if="${#httpServletRequest.remoteUser != null}">
-		<h2 th:inline="text" class="quizActu-title">Bienvenue
+		<h2 th:inline="text">Bienvenue
 			[[${#httpServletRequest.remoteUser}]]</h2>
 	</div>
 	<div>
-		<h1>Welcome Manager</h1>
-		<div th:each="quiz : ${listQuiz}">
-			<a th:utext="${quiz.title}" th:href="@{/public/createQuiz}"></a>
-		</div>
+		<h1 class="quizActu-title">Welcome Manager</h1>
+		<h3>Liste de Quiz</h3>
+<!-- 		<table class="tableau"> -->
+<!-- 			<thead> -->
+<!-- 				<tr>Liste de Quiz -->
+<!-- 				</tr> -->
+<!-- 			</thead> -->
+<!-- 			<tbody> -->
+<!-- 				<tr th:each="quiz : ${listQuiz}"> -->
+<!-- 					<td th:utext="${quiz.title}"></td> -->
+<!-- 					<td th:text="${quiz.creationDate}"></td> -->
+<!-- 					<td th:text="${quiz.publicationDate}"></td> -->
+<!-- 					<td><a th:href="@{/public/createQuiz}" class="button">Details</a> -->
+<!-- 					<td> -->
+<!-- 				</tr> -->
+<!-- 			</tbody> -->
+<!-- 		</table> -->
+		<table class="">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Titre du Quiz</th>
+					<th scope="col">Date de création</th>
+					<th scope="col" span="2">Date de publication</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="quiz : ${listQuiz}">
+					<td th:utext="${quiz.title}"></td>
+					<td th:text="${quiz.creationDate}"></td>
+					<td th:text="${quiz.publicationDate}"></td>
+					<th><a th:href="@{/public/createQuiz}" class="button">Details</a></th>
+				</tr>
+			</tbody>
+		</table>
 
 		<a th:href="@{/public/createQuiz}" class="button">Créer un quiz !</a>
 	</div>

@@ -68,6 +68,10 @@ public class QuizService {
 		Response resp = this.responseRepo.getOne(id);
 		return resp;
 	}
+	
+	public List<Response> getAllResp(int questionId) {
+		return this.responseRepo.findAllResponseByQuestionId(questionId); 
+	}
 
 	public List<Quiz> getAll() {
 		return this.quizRepo.findAll();

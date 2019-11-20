@@ -12,27 +12,41 @@ import fr.actuz.quizactu.business.entity.Quiz;
 import fr.actuz.quizactu.business.entity.QuizRecord;
 import fr.actuz.quizactu.business.entity.Response;
 import fr.actuz.quizactu.persistence.AccountRepository;
+import fr.actuz.quizactu.persistence.QuestionRepository;
 import fr.actuz.quizactu.persistence.QuizRecordRepository;
-import fr.actuz.quizactu.persistence.QuizRepository;
+import fr.actuz.quizactu.persistence.ResponseRepository;
 
 @Service
 public class QuizRecordService {
-	
+
 	@Autowired
 	private QuizRecordRepository recordRepo;
-	
+
 	@Autowired
 	private QuizService quizService;
-	
+
 	@Autowired
 	private AccountRepository accountRepo;
-	
-	// Save result quiz 
-	public void recordResultQuiz(Integer quizId, Integer responseId, Integer accountId) {
-		Quiz quiz = quizService.getQuizById(quizId);
-		Response resp = quizService.getResponseById(responseId);
+
+	@Autowired
+	private QuestionRepository questionRepository;
+
+	@Autowired
+	private ResponseRepository responseRepository;
+
+	// Save result quiz
+	public void recordResultQuiz(Integer quizId, Integer questionId, Integer responseId, Integer accountId) {
+		Quiz quiz = this.quizService.getQuizById(quizId);
+		Question question = this.questionRepository.getOne(questionId);
+		Response resp = null;
+		// Ne chercher la réponse en BDD que si l'utilisateur à bien donné une réponse.
+		// Sinon le timer est passé à la suite avant qu'il choisisse une réponse, on
+		// laisse donc la relation null.
+		if (responseId != null) {
+			resp = this.quizService.getResponseById(responseId);
+		}
 		Account acc = this.accountRepo.getOne(accountId);
-		QuizRecord quizRecord = new QuizRecord(quiz, resp, acc);
+		QuizRecord quizRecord = new QuizRecord(quiz, question, resp, acc);
 		this.recordRepo.save(quizRecord);
 	}
 
@@ -46,41 +60,50 @@ public class QuizRecordService {
 		List<QuizRecord> quizRecord = this.recordRepo.findAllByQuizIdAndAccountId(quizId, accountId);
 		Integer score = 0;
 		for (QuizRecord result : quizRecord) {
-			if(result.getResponse().getIsTrue()) {
+			if (result.getResponse() != null && result.getResponse().getIsTrue()) {
 				score += 10;
 			}
 		}
 		return score;
 	}
-	
+
 	public List<Response> getQuizResponses(Integer quizId, Integer accountId) {
 		List<QuizRecord> quizRecord = this.recordRepo.findAllByQuizIdAndAccountId(quizId, accountId);
-		List<Response> responses = new ArrayList<Response>();
-		
+		List<Response> responses = new ArrayList<>();
+
 		for (QuizRecord result : quizRecord) {
-			responses.add(result.getResponse());
+			if (result.getResponse() != null) {
+				responses.add(result.getResponse());
+			} else {
+				Response validResponse = this.responseRepository
+						.findOneByQuestionIdAndIsTrueTrue(result.getQuestion().getId());
+				validResponse.setNotAnswered(true);
+				responses.add(validResponse);
+			}
 		}
-		
+
 		return responses;
 	}
-	
+
 	public List<QuizRecord> getByQuizIdAndAccountId(Integer quizId, Integer accountId) {
 		List<QuizRecord> quizRecord = this.recordRepo.findAllByQuizIdAndAccountId(quizId, accountId);
 		return quizRecord;
 	}
 	
-	public boolean compareIfQuestionAlreadyAnswered(Integer quizId, Integer accountId, Integer responseId, Question curQuestion) {
-		List<QuizRecord> records = this.recordRepo.findAllByQuizIdAndAccountId(quizId, accountId);
-		Response responseRecord;
-		for (QuizRecord quizRecord : records) {
-			responseRecord = quizService.getResponseById(quizRecord.getResponse().getId());
-			if(responseRecord.getQuestion().getId() == curQuestion.getId()) {
-				return true;
-			}
-		}
-		return false;
+//	public boolean compareIfQuestionAlreadyAnswered(Integer quizId, Integer accountId, Integer responseId, Question curQuestion) {
+//		List<QuizRecord> records = this.recordRepo.findAllByQuizIdAndAccountId(quizId, accountId);
+//		Response responseRecord;
+//		for (QuizRecord quizRecord : records) {
+//			responseRecord = quizService.getResponseById(quizRecord.getResponse().getId());
+//			if(responseRecord.getQuestion().getId() == curQuestion.getId()) {
+//				return true;
+//			}
+//		}
+//		return false;
+ //   }
+
+	public boolean compareIfQuestionAlreadyAnswered(Integer quizId, Integer accountId, Integer questionId) {
+		return !this.recordRepo.existsByAccountIdAndQuizIdAndQuestionId(accountId, quizId, questionId);
 	}
-	
-	
-	
+
 }

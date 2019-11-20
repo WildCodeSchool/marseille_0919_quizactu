@@ -1,12 +1,52 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head.html :: head"></head>
 <head>
-<title>Articles</title>
+<link rel="stylesheet" th:href="@{/css/homePage.css}">
 </head>
 <body>
 	<nav th:replace="fragments/navbar.html :: nav"></nav>
-	
-	<h1>Quiz déjà fait aujourd'hui !</h1>
-	
+	<div class="container mt-150">
+		<h2>Le quiz d'aujourd'hui à déjà été fait !</h2>
+		<h3>Vous pouvez faire les autres quiz :</h3>
+	</div>
+	<div class="container mt-5">
+		<div th:if="${yesterday != null}">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="news">
+						<div class="img-figure">
+							<img th:src="@{/images/journalism.jpg}" class="img-responsive">
+						</div>
+						<div class="title">
+							<span>Jeudi 7 Novembre 2019</span>
+							<h1>Quiz de la veille</h1>
+						</div>
+						<a th:href="@{/timer/yesterday}" class="button">Jouer</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div th:if="${dayBeforeYesterday != null}">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="news">
+						<div class="img-figure">
+							<img th:src="@{/images/magazine.jpg}" class="img-responsive">
+						</div>
+						<div class="title">
+							<span>Mercredi 6 Novembre 2019</span>
+							<h1>Quiz de l'avant veille</h1>
+						</div>
+						<a th:href="@{/timer/dayBeforeYesterday}" class="button">Jouer</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 ml-auto mr-auto my-5">
+				<a th:href="@{/}" class="button">Retourner à l'accueil</a>
+			</div>
+		</div>
 </body>
 </html>

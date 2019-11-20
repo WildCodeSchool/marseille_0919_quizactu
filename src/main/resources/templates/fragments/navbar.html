@@ -37,9 +37,9 @@
 						href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"> Quiz </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">Quiz du jour</a><a
-								class="dropdown-item" href="#">Quiz -1</a><a
-								class="dropdown-item" href="#">Quiz -2</a>
+							<a class="dropdown-item" th:href="@{/timer/today}" >Quiz du jour</a><a
+								class="dropdown-item" th:href="@{/timer/yesterday}">Quiz -1</a><a
+								class="dropdown-item" th:href="@{/timer/dayBeforeYesterday}">Quiz -2</a>
 						</div></li>
 					<li class="nav-item mx-0 mx-lg-1" role="presentation"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"

@@ -53,6 +53,7 @@ public class Question implements Serializable {
 	 *
 	 */
 	@Lob
+	@Column(length = 20000000)
 	private byte[] image;
 
 	/**

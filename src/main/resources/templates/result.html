@@ -34,23 +34,26 @@
 							th:utext="'Question : ' + ${resp.question.content}"></h3>
 						<p class="card-text mt-3 text-center" 
 							th:utext="'Votre réponse : ' + ${resp.content}"></p>
+						<p th:if="${resp.notAnswered}">Vous n'avez pas répondu à cette question</p>
 					</div>
-					<div th:style="${!resp.isTrue} ? 'display:block' : 'display:none'" class="false-anwser">
+					<div th:if="${!resp.isTrue}" class="false-anwser">
 						<p class="card-text text-center" 
 							th:utext="'La bonne réponse était : ' + ${resp.question.correctResponse.content}"></p>
-						<h5 th:utext="${resp.question.article.title}" 
-							class="text-left false-anwser-article-title"></h5>
-						<p th:utext="${resp.question.article.summary}" 
-							class="text-justify"></p>
-						<a th:onclick="'registerFav(' + ${resp.question.article.id} + ')'"
-							class="onclik-favorite">
-							<i th:id="'article-' + ${resp.question.article.id}"
-								class="fa icon" aria-hidden="true"
-								th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'">
-							</i>
-						</a>
-						<a th:href="${resp.question.article.link}" 
-							target="_blank">Lire la suite</a>
+						<th:block th:if="${resp.question.article != null}">
+							<h5 th:utext="${resp.question.article.title}" 
+								class="text-left false-anwser-article-title"></h5>
+							<p th:utext="${resp.question.article.summary}" 
+								class="text-justify"></p>
+							<a th:onclick="'registerFav(' + ${resp.question.article.id} + ')'"
+								class="onclik-favorite">
+								<i th:id="'article-' + ${resp.question.article.id}"
+									class="fa icon" aria-hidden="true"
+									th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'">
+								</i>
+							</a>
+							<a th:if="${resp.question.article != null}" th:href="${resp.question.article.link}" 
+								target="_blank">Lire la suite</a>
+						</th:block>
 					</div>
 				</div>
 			</div>

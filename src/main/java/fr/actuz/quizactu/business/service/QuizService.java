@@ -1,9 +1,9 @@
 package fr.actuz.quizactu.business.service;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,18 +33,17 @@ public class QuizService {
 	}
 
 	public Quiz getTodayQuiz() {
-		return this.quizRepo.findOneByPublicationDate(
-				LocalDate.now().atStartOfDay().atZone(ZoneId.of("UTC")));
+		return this.quizRepo.findOneByPublicationDate(LocalDate.now().atStartOfDay().atZone(ZoneId.of("UTC")));
 	}
 
 	public Quiz getYesterdayQuiz() {
-		return this.quizRepo.findOneByPublicationDate(LocalDate.now()
-				.minusDays(1).atStartOfDay().atZone(ZoneId.of("UTC")));
+		return this.quizRepo
+				.findOneByPublicationDate(LocalDate.now().minusDays(1).atStartOfDay().atZone(ZoneId.of("UTC")));
 	}
 
 	public Quiz getDayBeforeYesterdayQuiz() {
-		return this.quizRepo.findOneByPublicationDate(LocalDate.now()
-				.minusDays(2).atStartOfDay().atZone(ZoneId.of("UTC")));
+		return this.quizRepo
+				.findOneByPublicationDate(LocalDate.now().minusDays(2).atStartOfDay().atZone(ZoneId.of("UTC")));
 	}
 
 	public void getPoints(Integer accountId, Integer responseId) {
@@ -70,10 +69,9 @@ public class QuizService {
 		return resp;
 	}
 
-	
-//	public List<Quiz> getAll() {
-//		return this.quizRepo.findAll();
-//	}
+	public List<Quiz> getAll() {
+		return this.quizRepo.findAll();
+	}
 
 //	public Quiz create(Integer id) {
 //		Quiz quiz = new Quiz();
@@ -85,22 +83,21 @@ public class QuizService {
 		return this.quizRepo.getOne(id);
 	}
 
-//	public Quiz update(Integer id, String title, LocalDate creationDate, LocalDate publicationDate) {
-//		Quiz quiz = this.read(id);
-//		quiz.setTitle(title);
-//		quiz.setCreationDate(creationDate);
-//		quiz.setPublicationDate(ZonedDateTime publicationDate);
-//		return this.quizRepo.save(quiz);
-//	}
+	public Quiz update(Integer id, String title, LocalDate creationDate, ZonedDateTime publicationDate) {
+		Quiz quiz = this.read(id);
+		quiz.setTitle(title);
+		quiz.setCreationDate(creationDate);
+		quiz.setPublicationDate(publicationDate);
+		return this.quizRepo.save(quiz);
+	}
 
 	public void delete(int id) {
 		this.quizRepo.deleteById(id);
 	}
 
-	
 	public void createQuiz(String title, ZonedDateTime publicationDate, List<Question> questions) {
 		Quiz quiz = new Quiz(title, publicationDate, questions);
 		this.quizRepo.save(quiz);
 	}
-	
+
 }

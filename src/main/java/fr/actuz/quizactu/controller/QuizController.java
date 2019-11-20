@@ -1,15 +1,21 @@
 package fr.actuz.quizactu.controller;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -82,8 +88,8 @@ public class QuizController {
 
 		if (quiz != null) {
 			int index = 0;
+			model.addAttribute("quiz", quiz);
 
-			model.addAttribute("quiz", quiz);		
 			model.addAttribute("question", quiz.getQuestions().get(index));
 			model.addAttribute("questionIndex", index);
 			model.addAttribute("validation", false);
@@ -91,7 +97,6 @@ public class QuizController {
 				Account account = this.accountService.read(principal.getName());
 				model.addAttribute("accountId", account.getId());
 			}
-
 			List<QuizRecord> records = this.recordService.getByQuizIdAndAccountId(quiz.getId(), accountId);
 			if (records.isEmpty() && type.equals("today")) {
 				return "quiz";
@@ -129,11 +134,25 @@ public class QuizController {
 			@ModelAttribute("accountId") Integer accountId) {
 		// Vérifie si l'utilisateur n'a pas déjà répondu à la question avant de lui
 		// donner des points
-		if (this.recordService.compareIfQuestionAlreadyAnswered(quiz.getId(), accountId, responseId,
-				quiz.getQuestions().get(index))) {
+		if (this.recordService.compareIfQuestionAlreadyAnswered(
+				quiz.getId(), accountId, questionId)) {
 			this.service.getPoints(accountId, responseId);
-			this.recordService.recordResultQuiz(quiz.getId(), responseId, accountId);
+			this.recordService.recordResultQuiz(quiz.getId(), questionId,
+					responseId, accountId);
 		}
+		model.addAttribute("validation", true);
+		model.addAttribute("question", quiz.getQuestions().get(index));
+		return "quiz";
+	}
+
+	@GetMapping("validateQuestion/{questionId}")
+	public String validateQuestionWithoutResponse(Model model,
+			@PathVariable Integer questionId,
+			@ModelAttribute("quiz") Quiz quiz,
+			@ModelAttribute("questionIndex") int index,
+			@ModelAttribute("accountId") Integer accountId) {
+		this.recordService.recordResultQuiz(quiz.getId(), questionId, null,
+				accountId);
 		model.addAttribute("validation", true);
 		model.addAttribute("question", quiz.getQuestions().get(index));
 		return "quiz";
@@ -162,14 +181,33 @@ public class QuizController {
 		return this.articleService.favoriteArticle(accountId, articleId);
 	}
 
+	@GetMapping("/public/createQuiz")
+	public String showFormQuiz() {
+		return "public/createQuiz";
+	}
+	
+	@GetMapping("public/modifyQuiz/{quizId}")
+	public String showModifyQuiz(@PathVariable Integer quizId, Model model) {
+		Quiz quiz = this.service.read(quizId);
+		model.addAttribute("quizId", quiz.getId());
+		model.addAttribute("title", quiz.getTitle());
+		model.addAttribute("datePublication", quiz.getPublicationDate().toLocalDate());
+		return "public/createQuiz";
+	}
+	@PostMapping("/public/createQuiz")
+	public String submitFormQuiz(Integer id, String title, String publicationDate) {
+		LocalDate pubDate = LocalDate.parse(publicationDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		if (id == null) {
+			this.service.createQuiz(title, pubDate);
+		} else {
+			this.service.update(id, title, pubDate);
+		}
+		return "public/homeManager";
+	}
+
 	@GetMapping("/public/homeManager")
 	public String listQuizCreate(Model model) {
 		model.addAttribute("listQuiz", this.service.getAll());
 		return "public/homeManager";
-	}
-
-	@GetMapping("/public/createQuiz")
-	public String createQuiz() {
-		return "public/createQuiz";
 	}
 }

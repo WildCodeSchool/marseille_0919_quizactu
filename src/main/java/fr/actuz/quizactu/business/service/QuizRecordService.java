@@ -12,7 +12,9 @@ import fr.actuz.quizactu.business.entity.Quiz;
 import fr.actuz.quizactu.business.entity.QuizRecord;
 import fr.actuz.quizactu.business.entity.Response;
 import fr.actuz.quizactu.persistence.AccountRepository;
+import fr.actuz.quizactu.persistence.QuestionRepository;
 import fr.actuz.quizactu.persistence.QuizRecordRepository;
+import fr.actuz.quizactu.persistence.ResponseRepository;
 
 @Service
 public class QuizRecordService {
@@ -26,12 +28,25 @@ public class QuizRecordService {
 	@Autowired
 	private AccountRepository accountRepo;
 
+	@Autowired
+	private QuestionRepository questionRepository;
+
+	@Autowired
+	private ResponseRepository responseRepository;
+
 	// Save result quiz
-	public void recordResultQuiz(Integer quizId, Integer responseId, Integer accountId) {
+	public void recordResultQuiz(Integer quizId, Integer questionId, Integer responseId, Integer accountId) {
 		Quiz quiz = this.quizService.getQuizById(quizId);
-		Response resp = this.quizService.getResponseById(responseId);
+		Question question = this.questionRepository.getOne(questionId);
+		Response resp = null;
+		// Ne chercher la réponse en BDD que si l'utilisateur à bien donné une réponse.
+		// Sinon le timer est passé à la suite avant qu'il choisisse une réponse, on
+		// laisse donc la relation null.
+		if (responseId != null) {
+			resp = this.quizService.getResponseById(responseId);
+		}
 		Account acc = this.accountRepo.getOne(accountId);
-		QuizRecord quizRecord = new QuizRecord(quiz, resp, acc);
+		QuizRecord quizRecord = new QuizRecord(quiz, question, resp, acc);
 		this.recordRepo.save(quizRecord);
 	}
 
@@ -40,7 +55,7 @@ public class QuizRecordService {
 		List<QuizRecord> quizRecord = this.recordRepo.findAllByQuizIdAndAccountId(quizId, accountId);
 		Integer score = 0;
 		for (QuizRecord result : quizRecord) {
-			if (result.getResponse().getIsTrue()) {
+			if (result.getResponse() != null && result.getResponse().getIsTrue()) {
 				score += 10;
 			}
 		}
@@ -52,7 +67,14 @@ public class QuizRecordService {
 		List<Response> responses = new ArrayList<>();
 
 		for (QuizRecord result : quizRecord) {
-			responses.add(result.getResponse());
+			if (result.getResponse() != null) {
+				responses.add(result.getResponse());
+			} else {
+				Response validResponse = this.responseRepository
+						.findOneByQuestionIdAndIsTrueTrue(result.getQuestion().getId());
+				validResponse.setNotAnswered(true);
+				responses.add(validResponse);
+			}
 		}
 
 		return responses;
@@ -63,17 +85,8 @@ public class QuizRecordService {
 		return quizRecord;
 	}
 
-	public boolean compareIfQuestionAlreadyAnswered(Integer quizId, Integer accountId, Integer responseId,
-			Question curQuestion) {
-		List<QuizRecord> records = this.recordRepo.findAllByQuizIdAndAccountId(quizId, accountId);
-		Response responseRecord;
-		for (QuizRecord quizRecord : records) {
-			responseRecord = this.quizService.getResponseById(quizRecord.getResponse().getId());
-			if (responseRecord.getQuestion().getId() == curQuestion.getId()) {
-				return false;
-			}
-		}
-		return true;
+	public boolean compareIfQuestionAlreadyAnswered(Integer quizId, Integer accountId, Integer questionId) {
+		return !this.recordRepo.existsByAccountIdAndQuizIdAndQuestionId(accountId, quizId, questionId);
 	}
 
 }

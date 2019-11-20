@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+
 import fr.actuz.quizactu.business.service.QuizService;
 
 @Controller
@@ -19,4 +20,5 @@ public class ManageQuizController {
 		model.addAttribute("listResp", this.service.getAllResp(questionId)); 
 		return "public/listResponses";
 	}
+
 }

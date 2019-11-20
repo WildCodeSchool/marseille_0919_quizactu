@@ -8,6 +8,7 @@
 </head>
 <body>
 	<nav th:replace="fragments/navbar.html :: nav"></nav>
+
 	<div class="container mt-150 result">
 		<h2>Résultats</h2>
 		<div class="result-trophy">
@@ -38,24 +39,27 @@
 					<div th:if="${!resp.isTrue}" class="false-anwser">
 						<p class="card-text text-center" 
 							th:utext="'La bonne réponse était : ' + ${resp.question.correctResponse.content}"></p>
-						<h5 th:utext="${resp.question.article.title}" 
-							class="text-left false-anwser-article-title"></h5>
-						<p th:utext="${resp.question.article.summary}" 
-							class="text-justify"></p>
-						<a th:onclick="'registerFav(' + ${resp.question.article.id} + ')'"
-							class="onclik-favorite">
-							<i th:id="'article-' + ${resp.question.article.id}"
-								class="fa icon" aria-hidden="true"
-								th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'">
-							</i>
-						</a>
-						<a th:href="${resp.question.article.link}" 
-							target="_blank">Lire la suite</a>
+						<th:block th:if="${resp.question.article != null}">
+							<h5 th:utext="${resp.question.article.title}" 
+								class="text-left false-anwser-article-title"></h5>
+							<p th:utext="${resp.question.article.summary}" 
+								class="text-justify"></p>
+							<a th:onclick="'registerFav(' + ${resp.question.article.id} + ')'"
+								class="onclik-favorite">
+								<i th:id="'article-' + ${resp.question.article.id}"
+									class="fa icon" aria-hidden="true"
+									th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'">
+								</i>
+							</a>
+							<a th:if="${resp.question.article != null}" th:href="${resp.question.article.link}" 
+								target="_blank">Lire la suite</a>
+						</th:block>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<div class="row">
 		<div class="col-md-4 ml-auto mr-auto">
 		<a th:href="@{/}" class="button">Retourner à l'accueil</a>

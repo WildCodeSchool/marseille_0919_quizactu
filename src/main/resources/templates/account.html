@@ -1,83 +1,51 @@
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="head.html :: head"></head>
-<head>
-<title>Articles</title>
-</head>
-<body>
-	<nav th:replace="fragments/navbar.html :: nav"></nav>
-	<h1>Mon compte</h1>
 
-<!-- 	<p th:text="${totalScore}"></p> -->
-<!-- 	<div th:each="article : ${account.articles}"> -->
-<!-- 		<p th:text="${article.title}"></p> -->
-<!-- 		<a th:href="${article.link}">Lien</a> -->
-<!-- 		<p th:text="${article.summary}"></p> -->
-<!-- 		<img th:src="${article.question.imageEncoded}"/> -->
-<!-- 	</div> -->
-	
-	<tbody>
-	
-		<p th:text="${totalScore}"></p>
-		<div th:each="article : ${account.articles}">
-			<p th:text="${article.title}"></p>
-			<a th:href="${article.link}">Lien</a>
-			<p th:text="${article.summary}"></p>
-			<img th:src="${article.question.imageEncoded}"/>
-			
-			
-			
-			<body>
-    <div class="projects-horizontal">
-        <div class="container">
-            <div class="intro">
-                <h2 class="text-center">Projects </h2>
-                <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet vitae. </p>
-            </div>
-            <div class="row projects">
-                <div class="col-sm-6 item">
-                    <div class="row">
-                        <div class="col-md-12 col-lg-5"><a href="#"><img class="img-fluid" src="desk.jpg" /></a></div>
-                        <div class="col">
-                            <h3 class="name">Project Name</h3>
-                            <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 item">
-                    <div class="row">
-                        <div class="col-md-12 col-lg-5"><a href="#"><img class="img-fluid" src="building.jpg" /></a></div>
-                        <div class="col">
-                            <h3 class="name">Project Name</h3>
-                            <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 item">
-                    <div class="row">
-                        <div class="col-md-12 col-lg-5"><a href="#"><img class="img-fluid" src="loft.jpg" /></a></div>
-                        <div class="col">
-                            <h3 class="name">Project Name</h3>
-                            <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 item">
-                    <div class="row">
-                        <div class="col-md-12 col-lg-5"><a href="#"><img class="img-fluid" th:src="minibus.jpeg" /></a></div>
-                        <div class="col">
-                            <h3 class="name">Project Name</h3>
-                            <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
-			
-			
-			
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="head.html :: head"></head>
+
+<head>
+
+<title>Articles</title>
+
+</head>
+
+<body>
+
+	<nav th:replace="fragments/navbar.html :: nav"></nav>
+	<div class="msgUser mt-150"
+		th:if="${#httpServletRequest.remoteUser != null}">
+		<h2 th:inline="text" class="quizActu-title">
+			[[${#httpServletRequest.remoteUser}]]</h2>
+		<p th:text="| Score : ${totalScore} |"></p>
+	</div>
+
+	<h3 class="mb-3">Articles favoris</h3>
+	<div class="container">
+		<div class="card mb-3" style="max-width: 750px; margin: auto;"
+			th:each="article : ${account.articles}">
+			<div class="row no-gutters">
+				<div class="col-sm-6">
+					​ <small class="text-muted" th:text="${article.media}"></small> <img
+						th:src="${article.question.imageEncoded}" class="card-img"
+						alt="...">
+				</div>
+				<div class="col-sm-6">
+					<p th:utext="${article.question.content}"></p>
+					<div th:each="response : ${article.question.responses}">
+						<p th:utext="${response.content}" th:if="${response.isTrue}"></p>
+					</div>
+				<div class="col-md-12">
+					<div class="card-body">
+						<h5 class="card-title" th:text="${article.title}"></h5>
+						<p class="card-text" th:text="${article.summary}"></p>
+						<a class="card-text" th:href="${article.link}">Lien</a>
+					</div>
+				</div>
+				</div>
+			</div>
 		</div>
-	</tbody>
+	</div>
 </body>
 </html>
+

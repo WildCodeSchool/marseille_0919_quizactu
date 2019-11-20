@@ -36,6 +36,8 @@ public class AccountController {
 	public String contact() {
 		return "contact";
 	}
+	
+
 
 	@GetMapping("/public/createAccount")
 	public String create() {

@@ -33,6 +33,12 @@
 			</div>
 			<input type="hidden" id="questionId" th:value="${question.id}">
 		</div>
+		<div><a th:if="${validation}" th:href="@{/nextQuestion}" class="button">Continuer</a></div>
+		
+		<div class="card-footer text-right">
+			<p th:text="${#temporals.format(quiz.getPublicationDate(), 'dd/MM/yyyy')}"></p>
+		</div>
+		<p th:text="${score}"></p>
 	</div>
 </body>
 </html>

@@ -6,4 +6,6 @@ div.container.results img {
 	position: relative;
 	top: 0;
 	left: 0;
+	max-width: 300px;
+	margin: auto;
 }

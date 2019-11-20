@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="/head.html :: head"></head>
+<head>
+<link rel="stylesheet" th:href="@{./css/style.css}">
+</head>
+<body>
+	<div>
+		<nav th:replace="fragments/navbar.html :: nav"></nav>
+	</div>
+	<div class="msgUser mt-150"
+		th:if="${#httpServletRequest.remoteUser != null}">
+		<h2 th:inline="text" class="quizActu-title">Bienvenue
+			[[${#httpServletRequest.remoteUser}]]</h2>
+	</div>
+	<div>
+		<h1>Welcome Manager</h1>
+		<div th:each="quiz : ${listQuiz}">
+			<a th:utext="${quiz.title}" th:href="@{/public/createQuiz}"></a>
+		</div>
+
+		<a th:href="@{/public/createQuiz}" class="button">Créer un quiz !</a>
+	</div>
+
+</body>
+</html>

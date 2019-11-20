@@ -1,3 +1,10 @@
+.vraiFaux {
+	display: inline-block;
+	width: 40%;
+	padding: 1%;
+	margin-top:2%;
+}
+
 div.container.results {
 	margin-top: 120px;
 }

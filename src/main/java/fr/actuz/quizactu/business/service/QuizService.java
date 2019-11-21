@@ -108,9 +108,12 @@ public class QuizService {
 		return question;
 	}
 
-	public void updateQuestion(Integer questionId, String content) {
+	public void updateQuestion(Integer questionId, String content, Integer timerQuestion, Integer timerResponse, byte[] image) {
 		Question question = this.getQuestionById(questionId);
 		question.setContent(content);
+		question.setTimerQuestion(timerQuestion);
+		question.setTimerResponse(timerResponse);
+		question.setImage(image);
 		this.questionRepo.save(question);
 	}
 

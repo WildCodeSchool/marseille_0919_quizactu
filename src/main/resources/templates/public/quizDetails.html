@@ -5,19 +5,17 @@
 <body>
 	<div class="container mt-150">
 		<nav th:replace="fragments/navbar.html :: nav"></nav>
-
-		<h1 th:utext="${quiz.title}"></h1>
-
 		<div th:each="question : ${quiz.questions} ">
 			<!-- Start question -->
 			<div class="d-flex flex-row justify-content-center">
 				<p th:utext="${question.content}"></p>
 				<button type="button" class="btn btn-primary" data-toggle="modal"
-					th:data-target="'#' + modalQuestion + ${question.id}" data-whatever="@mdo">editer</button>
+					th:data-target="'#' + modalQuestion + ${question.id}"
+					data-whatever="@mdo">editer</button>
 				<button type="button" class="btn btn-danger">X</button>
-				<div class="modal fade" th:id="modalQuestion + ${question.id}" tabindex="-1"
-					role="dialog" th:aria-labelledby="titleModal + ${question.id}"
-					aria-hidden="true">
+				<div class="modal fade" th:id="modalQuestion + ${question.id}"
+					tabindex="-1" role="dialog"
+					th:aria-labelledby="titleModal + ${question.id}" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -46,7 +44,6 @@
 									</div>
 								</form>
 							</div>
-
 						</div>
 					</div>
 				</div>
@@ -57,10 +54,12 @@
 				<div class="d-flex flex-row justify-content-center">
 					<p th:utext="${resp.content}"></p>
 					<button type="button" class="btn btn-primary" data-toggle="modal"
-						th:data-target="'#' + modalResponse + ${resp.id}" data-whatever="@mdo">editer</button>
+						th:data-target="'#' + modalResponse + ${resp.id}"
+						data-whatever="@mdo">editer</button>
 					<button type="button" class="btn btn-danger">X</button>
 					<div class="modal fade" th:id="modalResponse + ${resp.id}"
-						tabindex="-1" role="dialog" th:aria-labelledby="titleModalResponse + ${resp.id}"
+						tabindex="-1" role="dialog"
+						th:aria-labelledby="titleModalResponse + ${resp.id}"
 						aria-hidden="true">
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
@@ -86,7 +85,6 @@
 											<button type="button" class="btn btn-secondary"
 												data-dismiss="modal">Annuler</button>
 											<button type="submit" class="btn btn-primary">Enregistrer</button>
-
 										</div>
 									</form>
 								</div>
@@ -97,18 +95,18 @@
 			</div>
 		</div>
 	</div>
-	
-				<!-- End div response -->
 
-			<!-- <p th:utext="${question.content}"></p>
+	<!-- End div response -->
+
+	<!-- <p th:utext="${question.content}"></p>
 
 			<div th:each="resp : ${question.responses}">
 				<p th:utext="${resp.content}"></p>
 			</div> -->
 
 
-	
-	
+
+
 
 </body>
 </html>

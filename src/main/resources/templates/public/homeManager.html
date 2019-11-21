@@ -52,6 +52,84 @@
 		</table>
 		<a th:href="@{/public/createQuiz}" class="button">Créer un quiz !</a>
 	</div>
+	
+	
+	
+<!-- 	
+	
+	
+			Start update quiz => title and date
+		<div class="d-flex flex-row justify-content-center">
+
+			<h1 th:utext="${quiz.title}"></h1>
+			<p th:utext="${#temporals.format(quiz.publicationDate, 'dd-MM-yyyy')}"></p>
+
+
+
+
+			<button type="button" class="btn btn-primary" data-toggle="modal"
+				th:data-target="'#' + modalQuiz + ${quiz.id}"
+				data-whatever="@mdo">Editer</button>
+			<div class="modal fade" th:id="modalQuiz + ${quiz.id}"
+				tabindex="-1" role="dialog"
+				th:aria-labelledby="titleModal + ${quiz.id}" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" th:id="titleModal + ${quiz.id}">Modification du quiz</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form method="post"
+								th:action="@{/public/setQuiz/} + ${quiz.id}">
+								<div class="form-group">
+									<label th:for="'#' + content + ${quiz.id}"
+										class="col-form-label">Titre :</label> 
+									<input type="text" class="form-control" th:id="content + ${quiz.id}"
+										name="content" th:value="${quiz.title}">
+										
+									<label th:for="'#' + publicationDate + ${quiz.id}"
+										class="col-form-label">Date :</label> 
+									<input type="date" class="form-control" th:id="publicationDate + ${quiz.id}"
+										name="publicationDate" th:value="${#temporals.format(quiz.publicationDate, 'dd-MM-yyyy')}">
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										data-dismiss="modal">Annuler</button>
+									<button type="submit" class="btn btn-primary">Enregistrer</button>
+
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+
+
+
+
+		</div>
+		End update quiz => title and date
+	
+	
+	
+	
+	 -->
+	
+	
+	
+	
+	
+	
 
 </body>
 </html>

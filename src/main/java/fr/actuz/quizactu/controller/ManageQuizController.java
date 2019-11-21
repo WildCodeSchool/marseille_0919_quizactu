@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
-import fr.actuz.quizactu.business.entity.Article;
 import fr.actuz.quizactu.business.entity.Question;
 import fr.actuz.quizactu.business.entity.Quiz;
 import fr.actuz.quizactu.business.entity.Response;
@@ -40,7 +38,8 @@ public class ManageQuizController {
 	public String getQuestions(Model model, @PathVariable Integer id) {
 		model.addAttribute("quiz", this.service.read(id));
 		return "public/quizDetails";
-
+	}
+		
 	@PostMapping("/public/setQuestion/{questionId}")
 	public String submitUpdateQuestion(@PathVariable Integer questionId, String content, Integer timerQuestion, Integer timerResponse, MultipartFile image) {
 		this.service.updateQuestion(questionId, content, timerQuestion, timerResponse, image);

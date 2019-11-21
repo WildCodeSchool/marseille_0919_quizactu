@@ -47,6 +47,7 @@ public class ManageQuizController {
 	public String getQuestions(Model model, @PathVariable Integer id) {
 		model.addAttribute("quiz", this.service.read(id));
 		return "public/quizDetails";
+	}
 
 	@PostMapping("/public/setQuestion/{questionId}")
 	public String submitUpdateQuestion(@PathVariable Integer questionId, String content, Integer timerQuestion, Integer timerResponse, MultipartFile image) {

@@ -41,6 +41,10 @@ public class ManageQuizController {
 		model.addAttribute("quiz", this.service.read(id));
 		return "public/quizDetails";
 
+	@PostMapping("/public/setQuestion/{questionId}")
+	public String submitUpdateQuestion(@PathVariable Integer questionId, String content, Integer timerQuestion, Integer timerResponse, MultipartFile image) {
+		this.service.updateQuestion(questionId, content, timerQuestion, timerResponse, image);
+		return "redirect:/public/homeManager";
 	}
 	
 	@GetMapping("/public/createQuiz")

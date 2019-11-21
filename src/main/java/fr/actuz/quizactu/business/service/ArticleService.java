@@ -31,4 +31,23 @@ public class ArticleService {
 			return true;
 		}
 	}
+	
+	public Article read(Integer id) {
+		return this.articleRepo.getOne(id);
+	}
+	
+	public void update(Integer articleId, String title, String summary, String media, String link) {
+		Article article = this.read(articleId);
+		article.setTitle(title);
+		article.setSummary(summary);
+		article.setMedia(media);
+		article.setLink(link);
+		this.articleRepo.save(article);
+	}
+//
+//	public List<Article> displayArticleFavorite(Integer articleId, Integer accountId) {
+//		List<Article> art = this.articleRepo.;
+//		return art;
+//
+//	}
 }

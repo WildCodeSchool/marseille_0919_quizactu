@@ -63,7 +63,7 @@ public class QuizController {
 		model.addAttribute("dayBeforeYesterday", this.service.getDayBeforeYesterdayQuiz());
 		return "quizNotFound";
 	}
-
+	
 	@GetMapping("/quizDone")
 	public String quizDone(Model model) {
 		model.addAttribute("yesterday", this.service.getYesterdayQuiz());
@@ -103,7 +103,7 @@ public class QuizController {
 				return "quiz";
 			} else {
 				return "redirect:/quizDone";
-			}
+		    }
 
 		} else {
 			return "redirect:/quizNotFound";
@@ -126,17 +126,16 @@ public class QuizController {
 	}
 
 	@GetMapping("validateQuestion/{questionId}/{responseId}")
-	public String validateQuestion(Model model, 
-			@PathVariable Integer questionId, @PathVariable Integer responseId,
+	public String validateQuestion(Model model, @PathVariable Integer questionId, @PathVariable Integer responseId,
 			@ModelAttribute("quiz") Quiz quiz, @ModelAttribute("questionIndex") int index,
 			@ModelAttribute("accountId") Integer accountId) {
 		// Vérifie si l'utilisateur n'a pas déjà répondu à la question avant de lui
-		// donner des points.
-		if (this.recordService.compareIfQuestionAlreadyAnswered(quiz.getId(), accountId, questionId)) {
+		// donner des points
+		if (this.recordService.compareIfQuestionAlreadyAnswered(
+				quiz.getId(), accountId, questionId)) {
 			this.service.getPoints(accountId, responseId);
-			this.recordService.recordResultQuiz(quiz.getId(), questionId,responseId, accountId);
-		} else if (!this.recordService.compareIfQuestionAlreadyAnswered(quiz.getId(), accountId, questionId)) {
-			this.recordService.updateResultQuiz(questionId, accountId, responseId);
+			this.recordService.recordResultQuiz(quiz.getId(), questionId,
+					responseId, accountId);
 		}
 		model.addAttribute("validation", true);
 		model.addAttribute("question", quiz.getQuestions().get(index));
@@ -144,15 +143,13 @@ public class QuizController {
 	}
 
 	@GetMapping("validateQuestion/{questionId}")
-	public String validateQuestionWithoutResponse(Model model, @PathVariable Integer questionId,
-			@ModelAttribute("quiz") Quiz quiz, @ModelAttribute("questionIndex") int index,
+	public String validateQuestionWithoutResponse(Model model,
+			@PathVariable Integer questionId,
+			@ModelAttribute("quiz") Quiz quiz,
+			@ModelAttribute("questionIndex") int index,
 			@ModelAttribute("accountId") Integer accountId) {
-		//Si i il n'a pas encore repondu à la question, entre le Record Result, sinon update le
-		if (this.recordService.compareIfQuestionAlreadyAnswered(quiz.getId(), accountId, questionId)) {
-			this.recordService.recordResultQuiz(quiz.getId(), questionId, null, accountId);
-		} else if (!this.recordService.compareIfQuestionAlreadyAnswered(quiz.getId(), accountId, questionId)) {
-			this.recordService.updateResultQuiz(questionId, accountId, null);
-		}
+		this.recordService.recordResultQuiz(quiz.getId(), questionId, null,
+				accountId);
 		model.addAttribute("validation", true);
 		model.addAttribute("question", quiz.getQuestions().get(index));
 		return "quiz";
@@ -180,30 +177,4 @@ public class QuizController {
 	public boolean favArticle(@ModelAttribute("accountId") Integer accountId, @PathVariable Integer articleId) {
 		return this.articleService.favoriteArticle(accountId, articleId);
 	}
-
-	@GetMapping("/public/createQuiz")
-	public String showFormQuiz() {
-		return "public/createQuiz";
-	}
-
-	@GetMapping("public/modifyQuiz/{quizId}")
-	public String showModifyQuiz(@PathVariable Integer quizId, Model model) {
-		Quiz quiz = this.service.read(quizId);
-		model.addAttribute("quizId", quiz.getId());
-		model.addAttribute("title", quiz.getTitle());
-		model.addAttribute("datePublication", quiz.getPublicationDate().toLocalDate());
-		return "public/createQuiz";
-	}
-
-	@PostMapping("/public/createQuiz")
-	public String submitFormQuiz(Integer id, String title, String publicationDate) {
-		LocalDate pubDate = LocalDate.parse(publicationDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		if (id == null) {
-			this.service.createQuiz(title, pubDate);
-		} else {
-			this.service.update(id, title, pubDate);
-		}
-		return "public/homeManager";
-	}
-
 }

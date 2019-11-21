@@ -31,8 +31,8 @@
 									th:action="@{/public/setQuestion/} + ${question.id}">
 									<div class="form-group">
 										<label th:for="'#' + content + ${question.id}"
-											class="col-form-label">Question :</label> <input type="text"
-											class="form-control" th:id="content + ${question.id}"
+											class="col-form-label">Question :</label> 
+										<input type="text" class="form-control" th:id="content + ${question.id}"
 											name="content" th:value="${question.content}">
 									</div>
 									<div class="modal-footer">
@@ -76,8 +76,8 @@
 										th:action="@{/public/setResponse/} + ${resp.id}">
 										<div class="form-group">
 											<label th:for="'#' + content + ${resp.id}"
-												class="col-form-label">Réponse :</label> <input type="text"
-												class="form-control" th:id="content + ${resp.id}"
+												class="col-form-label">Réponse :</label> 
+											<input type="text" class="form-control" th:id="content + ${resp.id}"
 												name="content" th:value="${resp.content}">
 										</div>
 										<div class="modal-footer">

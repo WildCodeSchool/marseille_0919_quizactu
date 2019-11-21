@@ -1,5 +1,8 @@
 package fr.actuz.quizactu.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,6 +45,13 @@ public class ManageQuizController {
 	@PostMapping("/public/setResponse/{responseId}")
 	public String submitUpdateResponse(@PathVariable Integer responseId, String content) {
 		this.service.updateResponse(responseId, content);
+		return "redirect:/public/homeManager";
+	}
+
+	@PostMapping("/public/setQuiz/{quizId}")
+	public String submitUpdateQuiz(@PathVariable Integer quizId, String title, String publicationDate) {
+		LocalDate publicationDateParsed = LocalDate.parse(publicationDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		this.service.update(quizId, title, publicationDateParsed);
 		return "redirect:/public/homeManager";
 	}
 

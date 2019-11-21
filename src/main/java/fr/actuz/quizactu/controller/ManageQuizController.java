@@ -123,13 +123,6 @@ public class ManageQuizController {
 return "redirect:/public/homeManager";
     }
 
-	@PostMapping("/public/setQuiz/{quizId}")
-	public String submitUpdateQuiz(@PathVariable Integer quizId, String title, String publicationDate) {
-		LocalDate publicationDateParsed = LocalDate.parse(publicationDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		this.service.update(quizId, title, publicationDateParsed);
-
-		return "redirect:/public/homeManager";
-	}
 
 	@PostMapping("/public/setQuiz/{quizId}")
 	public String submitUpdateQuiz(@PathVariable Integer quizId, String title, String publicationDate) {

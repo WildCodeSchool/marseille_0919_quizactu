@@ -21,9 +21,9 @@
 			th:each="article : ${account.articles}">
 			<div class="row no-gutters">
 				<div class="col-sm-6">
-					​ <img th:src="${article.question.imageEncoded}" class="card-img"
-						alt="..."> <small class="text-muted"
-						th:text="${article.media}"></small>
+						​ <img th:src="${article.question.imageEncoded}"  th:if="${article.question.image != null}" class="card-img"
+							alt="...">
+					<small class="text-muted" th:text="${article.media}"></small>
 				</div>
 				<div class="col-sm-6">
 					<p th:utext="${article.question.content}"></p>

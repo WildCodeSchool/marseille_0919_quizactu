@@ -23,8 +23,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.expressionHandler(this.webExpressionHandler())
 				.antMatchers("/public/**", "/webjars/**", "/images/**","/css/**").permitAll()
 				.anyRequest().authenticated()
+				.antMatchers("/manager").hasAuthority("MANAGER")
 				.and().formLogin().permitAll()
-				.loginPage("/login")
+				.loginPage("/login").successHandler(new LoginHandler())
 				.and().logout().
 				logoutSuccessUrl("/disconnected").permitAll();
 	}

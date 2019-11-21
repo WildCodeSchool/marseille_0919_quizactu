@@ -7,9 +7,9 @@
 <body>
 	<nav th:replace="fragments/navbar.html :: nav"></nav>
 
-	<div class="msgUser mt-150"
-		th:if="${#httpServletRequest.remoteUser != null}">
-		<h3 th:inline="text" class="quizActu-title">
+	<div class="navAccount"
+		th:if="${#httpServletRequest.remoteUser != null}" >
+		<h3 th:inline="text" class="fa fa-user-circle fa-5x icone">
 			[[${#httpServletRequest.remoteUser}]]</h3>
 		<h3 th:text="| Score : ${totalScore} |"></h3>
 	</div>
@@ -21,9 +21,9 @@
 			th:each="article : ${account.articles}">
 			<div class="row no-gutters">
 				<div class="col-sm-6">
-					​ <img th:src="${article.question.imageEncoded}" class="card-img"
-						alt="..."> <small class="text-muted"
-						th:text="${article.media}"></small>
+						​ <img th:src="${article.question.imageEncoded}"  th:if="${article.question.image != null}" class="card-img"
+							alt="...">
+					<small class="text-muted" th:text="${article.media}"></small>
 				</div>
 				<div class="col-sm-6">
 					<p th:utext="${article.question.content}"></p>

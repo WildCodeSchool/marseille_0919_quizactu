@@ -8,7 +8,7 @@
 <body>
 	<nav th:replace="fragments/navbar.html :: nav"></nav>
 	<div class="container">
-	  	<h1 th:if="${quizId==null}">Ajouter un quiz</h1> 
+		<h1 th:if="${quizId==null}">Ajouter un quiz</h1>
 		<h1 th:if="${quizId}">Modifier le quiz</h1>
 		<form method="post" th:action="@{/public/createQuiz}">
 			<input th:if="${quizId}" type="hidden" name="id" th:value="${quizId}">

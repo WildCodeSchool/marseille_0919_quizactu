@@ -122,9 +122,10 @@ public class QuizService {
 		this.questionRepo.save(question);
 	}
 
-	public void updateResponse(Integer responseId, String content) {
+	public void updateResponse(Integer responseId, String content, Boolean radioIsTrue) {
 		Response resp = this.getResponseById(responseId);
 		resp.setContent(content);
+		resp.setIsTrue(radioIsTrue);
 		this.responseRepo.save(resp);
 	}
 

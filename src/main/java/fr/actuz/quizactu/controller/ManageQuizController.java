@@ -112,7 +112,22 @@ public class ManageQuizController {
 	
 	@PostMapping("/public/setArticle/{articleId}")
 	public String submitUpdateArticle(@PathVariable Integer articleId, String title, String summary, String media, String link) {
-		this.articleService.update(articleId, title, summary, media, link);;
+		this.articleService.update(articleId, title, summary, media, link);
+		return "redirect:/public/homeManager";
+	}
+
+
+	@PostMapping("/public/setResponse/{responseId}")
+	public String submitUpdateResponse(@PathVariable Integer responseId, String content, Boolean radioIsTrue) {
+		this.service.updateResponse(responseId, content, radioIsTrue);
+return "redirect:/public/homeManager";
+    }
+
+	@PostMapping("/public/setQuiz/{quizId}")
+	public String submitUpdateQuiz(@PathVariable Integer quizId, String title, String publicationDate) {
+		LocalDate publicationDateParsed = LocalDate.parse(publicationDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		this.service.update(quizId, title, publicationDateParsed);
+
 		return "redirect:/public/homeManager";
 	}
 

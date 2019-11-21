@@ -55,7 +55,6 @@
 										<button type="button" class="btn btn-secondary"
 											data-dismiss="modal">Annuler</button>
 										<button type="submit" class="btn btn-primary">Enregistrer</button>
-
 									</div>
 								</form>
 							</div>
@@ -95,9 +94,17 @@
 												class="col-form-label">Réponse :</label> <input type="text"
 												class="form-control" th:id="responseContent + ${resp.id}"
 												name="content" th:value="${resp.content}">
+											<div class="form-group">
+												<label>Cette réponse est </label> <label class="radio-inline">
+													<input type="radio" name="radioIsTrue"
+													id="optionsRadiosInline1" value="1" th:checked="${resp.isTrue}" />Vraie
+												</label> <label class="radio-inline"> <input type="radio"
+													name="radioIsTrue" id="optionsRadiosInline2"
+													value="0" th:checked="${resp.isTrue} == false" />Fausse
+												</label>
+											</div>
 										</div>
 										<div class="modal-footer">
-
 											<button type="button" class="btn btn-secondary"
 												data-dismiss="modal">Annuler</button>
 											<button type="submit" class="btn btn-primary">Enregistrer</button>
@@ -160,7 +167,6 @@
 											<button type="button" class="btn btn-secondary"
 												data-dismiss="modal">Annuler</button>
 											<button type="submit" class="btn btn-primary">Enregistrer</button>
-
 										</div>
 									</form>
 								</div>
@@ -171,8 +177,6 @@
 			
 		</div>
 	</div>
-	
-				
 
 	<!-- End div response -->
 
@@ -181,10 +185,5 @@
 			<div th:each="resp : ${question.responses}">
 				<p th:utext="${resp.content}"></p>
 			</div> -->
-
-
-
-
-
 </body>
 </html>

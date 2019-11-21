@@ -2,20 +2,17 @@ package fr.actuz.quizactu.controller;
 
 import java.security.Principal;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -66,7 +63,7 @@ public class QuizController {
 		model.addAttribute("dayBeforeYesterday", this.service.getDayBeforeYesterdayQuiz());
 		return "quizNotFound";
 	}
-	
+
 	@GetMapping("/quizDone")
 	public String quizDone(Model model) {
 		model.addAttribute("yesterday", this.service.getYesterdayQuiz());
@@ -106,7 +103,7 @@ public class QuizController {
 				return "quiz";
 			} else {
 				return "redirect:/quizDone";
-		    }
+			}
 
 		} else {
 			return "redirect:/quizNotFound";
@@ -134,11 +131,9 @@ public class QuizController {
 			@ModelAttribute("accountId") Integer accountId) {
 		// Vérifie si l'utilisateur n'a pas déjà répondu à la question avant de lui
 		// donner des points
-		if (this.recordService.compareIfQuestionAlreadyAnswered(
-				quiz.getId(), accountId, questionId)) {
+		if (this.recordService.compareIfQuestionAlreadyAnswered(quiz.getId(), accountId, questionId)) {
 			this.service.getPoints(accountId, responseId);
-			this.recordService.recordResultQuiz(quiz.getId(), questionId,
-					responseId, accountId);
+			this.recordService.recordResultQuiz(quiz.getId(), questionId, responseId, accountId);
 		}
 		model.addAttribute("validation", true);
 		model.addAttribute("question", quiz.getQuestions().get(index));
@@ -146,13 +141,10 @@ public class QuizController {
 	}
 
 	@GetMapping("validateQuestion/{questionId}")
-	public String validateQuestionWithoutResponse(Model model,
-			@PathVariable Integer questionId,
-			@ModelAttribute("quiz") Quiz quiz,
-			@ModelAttribute("questionIndex") int index,
+	public String validateQuestionWithoutResponse(Model model, @PathVariable Integer questionId,
+			@ModelAttribute("quiz") Quiz quiz, @ModelAttribute("questionIndex") int index,
 			@ModelAttribute("accountId") Integer accountId) {
-		this.recordService.recordResultQuiz(quiz.getId(), questionId, null,
-				accountId);
+		this.recordService.recordResultQuiz(quiz.getId(), questionId, null, accountId);
 		model.addAttribute("validation", true);
 		model.addAttribute("question", quiz.getQuestions().get(index));
 		return "quiz";
@@ -185,7 +177,7 @@ public class QuizController {
 	public String showFormQuiz() {
 		return "public/createQuiz";
 	}
-	
+
 	@GetMapping("public/modifyQuiz/{quizId}")
 	public String showModifyQuiz(@PathVariable Integer quizId, Model model) {
 		Quiz quiz = this.service.read(quizId);
@@ -194,6 +186,7 @@ public class QuizController {
 		model.addAttribute("datePublication", quiz.getPublicationDate().toLocalDate());
 		return "public/createQuiz";
 	}
+
 	@PostMapping("/public/createQuiz")
 	public String submitFormQuiz(Integer id, String title, String publicationDate) {
 		LocalDate pubDate = LocalDate.parse(publicationDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -205,9 +198,4 @@ public class QuizController {
 		return "public/homeManager";
 	}
 
-	@GetMapping("/public/homeManager")
-	public String listQuizCreate(Model model) {
-		model.addAttribute("listQuiz", this.service.getAll());
-		return "public/homeManager";
-	}
 }

@@ -31,10 +31,4 @@ public class ArticleService {
 			return true;
 		}
 	}
-//
-//	public List<Article> displayArticleFavorite(Integer articleId, Integer accountId) {
-//		List<Article> art = this.articleRepo.;
-//		return art;
-//
-//	}
 }

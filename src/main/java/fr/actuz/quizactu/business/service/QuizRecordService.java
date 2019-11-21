@@ -50,6 +50,16 @@ public class QuizRecordService {
 		this.recordRepo.save(quizRecord);
 	}
 
+	public void updateResultQuiz(Integer questionId, Integer accountId, Integer responseId) {
+		QuizRecord record = this.recordRepo.findOneByQuestionIdAndAccountId(questionId, accountId);
+		Response response = null;
+		if (responseId != null) {
+			response = this.quizService.getResponseById(responseId);
+		}
+		record.setResponse(response);
+		this.recordRepo.save(record);
+	}
+	
 	// Method for get the points of quiz that day
 	public Integer getScoreQuiz(Integer quizId, Integer accountId) {
 		List<QuizRecord> quizRecord = this.recordRepo.findAllByQuizIdAndAccountId(quizId, accountId);
@@ -84,7 +94,7 @@ public class QuizRecordService {
 		List<QuizRecord> quizRecord = this.recordRepo.findAllByQuizIdAndAccountId(quizId, accountId);
 		return quizRecord;
 	}
-
+	
 	public boolean compareIfQuestionAlreadyAnswered(Integer quizId, Integer accountId, Integer questionId) {
 		return !this.recordRepo.existsByAccountIdAndQuizIdAndQuestionId(accountId, quizId, questionId);
 	}

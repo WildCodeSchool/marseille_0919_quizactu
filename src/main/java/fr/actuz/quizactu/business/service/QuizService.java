@@ -1,9 +1,7 @@
 package fr.actuz.quizactu.business.service;
 
-
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +12,7 @@ import fr.actuz.quizactu.business.entity.Question;
 import fr.actuz.quizactu.business.entity.Quiz;
 import fr.actuz.quizactu.business.entity.Response;
 import fr.actuz.quizactu.persistence.AccountRepository;
+import fr.actuz.quizactu.persistence.QuestionRepository;
 import fr.actuz.quizactu.persistence.QuizRepository;
 import fr.actuz.quizactu.persistence.ResponseRepository;
 
@@ -22,6 +21,9 @@ public class QuizService {
 
 	@Autowired
 	private QuizRepository quizRepo;
+
+	@Autowired
+	private QuestionRepository questionRepo;
 
 	@Autowired
 	private ResponseRepository responseRepo;
@@ -69,9 +71,9 @@ public class QuizService {
 		Response resp = this.responseRepo.getOne(id);
 		return resp;
 	}
-	
+
 	public List<Response> getAllResp(int questionId) {
-		return this.responseRepo.findAllResponseByQuestionId(questionId); 
+		return this.responseRepo.findAllResponseByQuestionId(questionId);
 	}
 
 	public List<Quiz> getAll() {
@@ -93,7 +95,6 @@ public class QuizService {
 		this.quizRepo.deleteById(id);
 	}
 
-	
 	public void createQuiz(String title, LocalDate publicationDate) {
 		Quiz quiz = new Quiz();
 		quiz.setTitle(title);
@@ -101,9 +102,22 @@ public class QuizService {
 		quiz.setCreationDate(LocalDate.now());
 		this.quizRepo.save(quiz);
 	}
-//
-//	public List<Question> getQuestionByQuiz(Integer quizId) {
-//		return this.quizRepo.
-//	}
+
+	public Question getQuestionById(Integer id) {
+		Question question = this.questionRepo.getOne(id);
+		return question;
+	}
+
+	public void updateQuestion(Integer questionId, String content) {
+		Question question = this.getQuestionById(questionId);
+		question.setContent(content);
+		this.questionRepo.save(question);
+	}
+
+	public void updateResponse(Integer responseId, String content) {
+		Response resp = this.getResponseById(responseId);
+		resp.setContent(content);
+		this.responseRepo.save(resp);
+	}
 
 }

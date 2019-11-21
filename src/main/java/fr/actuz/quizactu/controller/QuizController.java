@@ -126,14 +126,17 @@ public class QuizController {
 	}
 
 	@GetMapping("validateQuestion/{questionId}/{responseId}")
-	public String validateQuestion(Model model, @PathVariable Integer questionId, @PathVariable Integer responseId,
+	public String validateQuestion(Model model, 
+			@PathVariable Integer questionId, @PathVariable Integer responseId,
 			@ModelAttribute("quiz") Quiz quiz, @ModelAttribute("questionIndex") int index,
 			@ModelAttribute("accountId") Integer accountId) {
 		// Vérifie si l'utilisateur n'a pas déjà répondu à la question avant de lui
-		// donner des points
+		// donner des points.
 		if (this.recordService.compareIfQuestionAlreadyAnswered(quiz.getId(), accountId, questionId)) {
 			this.service.getPoints(accountId, responseId);
-			this.recordService.recordResultQuiz(quiz.getId(), questionId, responseId, accountId);
+			this.recordService.recordResultQuiz(quiz.getId(), questionId,responseId, accountId);
+		} else if (!this.recordService.compareIfQuestionAlreadyAnswered(quiz.getId(), accountId, questionId)) {
+			this.recordService.updateResultQuiz(questionId, accountId, responseId);
 		}
 		model.addAttribute("validation", true);
 		model.addAttribute("question", quiz.getQuestions().get(index));
@@ -144,7 +147,12 @@ public class QuizController {
 	public String validateQuestionWithoutResponse(Model model, @PathVariable Integer questionId,
 			@ModelAttribute("quiz") Quiz quiz, @ModelAttribute("questionIndex") int index,
 			@ModelAttribute("accountId") Integer accountId) {
-		this.recordService.recordResultQuiz(quiz.getId(), questionId, null, accountId);
+		//Si i il n'a pas encore repondu à la question, entre le Record Result, sinon update le
+		if (this.recordService.compareIfQuestionAlreadyAnswered(quiz.getId(), accountId, questionId)) {
+			this.recordService.recordResultQuiz(quiz.getId(), questionId, null, accountId);
+		} else if (!this.recordService.compareIfQuestionAlreadyAnswered(quiz.getId(), accountId, questionId)) {
+			this.recordService.updateResultQuiz(questionId, accountId, null);
+		}
 		model.addAttribute("validation", true);
 		model.addAttribute("question", quiz.getQuestions().get(index));
 		return "quiz";

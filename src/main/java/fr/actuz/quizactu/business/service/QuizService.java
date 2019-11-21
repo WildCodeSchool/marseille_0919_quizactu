@@ -1,13 +1,18 @@
 package fr.actuz.quizactu.business.service;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import fr.actuz.quizactu.business.entity.Account;
+import fr.actuz.quizactu.business.entity.Article;
 import fr.actuz.quizactu.business.entity.Question;
 import fr.actuz.quizactu.business.entity.Quiz;
 import fr.actuz.quizactu.business.entity.Response;
@@ -95,12 +100,12 @@ public class QuizService {
 		this.quizRepo.deleteById(id);
 	}
 
-	public void createQuiz(String title, LocalDate publicationDate) {
+	public Quiz createQuiz(String title, LocalDate publicationDate) {
 		Quiz quiz = new Quiz();
 		quiz.setTitle(title);
 		quiz.setPublicationDate(publicationDate.atStartOfDay().atZone(ZoneId.of("UTC")));
 		quiz.setCreationDate(LocalDate.now());
-		this.quizRepo.save(quiz);
+		return this.quizRepo.save(quiz);
 	}
 
 	public Question getQuestionById(Integer id) {
@@ -123,4 +128,24 @@ public class QuizService {
 		this.responseRepo.save(resp);
 	}
 
+	public Question createQuestion(Integer quizId, Question question, MultipartFile image) {
+		Quiz quiz = this.read(quizId);
+		question.setQuiz(quiz);
+		if (question.getArticle() != null) {
+			question.getArticle().setQuestion(question);			
+		}
+		try {
+			question.setImage(image.getBytes());
+			this.questionRepo.save(question);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return this.questionRepo.save(question);
+	}
+	
+	public void createResponse(Integer questionId, Response response) {
+		Question question = this.questionRepo.getOne(questionId);
+		response.setQuestion(question);
+		this.responseRepo.save(response);
+	}
 }

@@ -51,11 +51,7 @@ public class ManageQuizController {
 
 	@PostMapping("/public/setQuestion/{questionId}")
 	public String submitUpdateQuestion(@PathVariable Integer questionId, String content, Integer timerQuestion, Integer timerResponse, MultipartFile image) {
-		try {
-			this.service.updateQuestion(questionId, content, timerQuestion, timerResponse, image.getBytes());
-		} catch (IOException e){
-			e.printStackTrace();
-		}
+		this.service.updateQuestion(questionId, content, timerQuestion, timerResponse, image);
 		return "redirect:/public/homeManager";
 	}
 	

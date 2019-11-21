@@ -46,7 +46,7 @@
 					<td th:utext="${quiz.title}"></td>
 					<td th:text="${quiz.creationDate}"></td>
 					<td th:text="${quiz.publicationDate}"></td>
-					<th><a th:href="@{/public/listQuestion/} + ${quiz.id}" class="button">Details</a></th>
+					<th><a th:href="@{/public/quizDetails/} + ${quiz.id}" class="button">Details</a></th>
 				</tr>
 			</tbody>
 		</table>

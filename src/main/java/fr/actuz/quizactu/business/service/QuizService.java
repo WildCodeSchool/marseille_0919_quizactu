@@ -1,6 +1,5 @@
 package fr.actuz.quizactu.business.service;
 
-
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -27,13 +26,13 @@ public class QuizService {
 	private QuizRepository quizRepo;
 
 	@Autowired
+	private QuestionRepository questionRepo;
+
+	@Autowired
 	private ResponseRepository responseRepo;
 
 	@Autowired
 	private AccountRepository accountRepo;
-	
-	@Autowired
-	private QuestionRepository questionRepo;
 
 	public Quiz getQuizById(Integer id) {
 		return this.quizRepo.getOne(id);
@@ -75,9 +74,9 @@ public class QuizService {
 		Response resp = this.responseRepo.getOne(id);
 		return resp;
 	}
-	
+
 	public List<Response> getAllResp(int questionId) {
-		return this.responseRepo.findAllResponseByQuestionId(questionId); 
+		return this.responseRepo.findAllResponseByQuestionId(questionId);
 	}
 
 	public List<Quiz> getAll() {
@@ -105,6 +104,23 @@ public class QuizService {
 		quiz.setPublicationDate(publicationDate.atStartOfDay().atZone(ZoneId.of("UTC")));
 		quiz.setCreationDate(LocalDate.now());
 		this.quizRepo.save(quiz);
+	}
+
+	public Question getQuestionById(Integer id) {
+		Question question = this.questionRepo.getOne(id);
+		return question;
+	}
+
+	public void updateQuestion(Integer questionId, String content) {
+		Question question = this.getQuestionById(questionId);
+		question.setContent(content);
+		this.questionRepo.save(question);
+	}
+
+	public void updateResponse(Integer responseId, String content) {
+		Response resp = this.getResponseById(responseId);
+		resp.setContent(content);
+		this.responseRepo.save(resp);
 	}
 
 	public void createQuestion(Integer quizId, String content, byte[] image) 	{

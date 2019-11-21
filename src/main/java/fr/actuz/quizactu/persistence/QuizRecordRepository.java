@@ -14,6 +14,8 @@ public interface QuizRecordRepository extends JpaRepository<QuizRecord, Integer>
 	List<QuizRecord> findAllByQuizIdAndAccountId(Integer quizId, Integer accountId);
 
 	ArrayList<QuizRecord> findAllByAccountId(Integer accountId);
+	
+	QuizRecord findOneByQuestionIdAndAccountId(Integer questionId, Integer accountId);
 
 	boolean existsByAccountIdAndQuizIdAndQuestionId(Integer accountId, Integer quizId, Integer questionId);
 }

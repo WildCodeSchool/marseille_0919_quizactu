@@ -10,6 +10,36 @@
 		<div th:each="question : ${quiz.questions} ">
 			
 			<p th:utext="${question.content}"></p>
+			<span>
+				<button type="button" class="btn btn-primary" data-toggle="modal" th:data-target="'#' + modal + ${question.id}" data-whatever="@mdo" >Editer</button>
+			</span>
+			
+			<div class="modal fade" th:id="modal + ${question.id}" tabindex="-1" role="dialog" th:aria-labelledby="${question.id}" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" th:id="${question.id}">Modifier votre question</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        <form>
+			          <div class="form-group">
+			            <label for="recipient-name" class="col-form-label">Recipient:</label>
+			            <input type="text" class="form-control" id="recipient-name" th:value="${question.content}">
+			          </div>
+			        </form>
+			      </div>
+			      <div class="modal-footer">
+			     
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			        <a th:href="@{/homePage}"><button type="button" class="btn btn-primary" th:action="@{/homePage}">Send message</button>
+					</a>      
+			      </div>
+			    </div>
+			  </div>
+			</div>
 			
 			<div th:each="resp : ${question.responses}">
 				<p th:utext="${resp.content}"></p>

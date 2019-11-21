@@ -31,7 +31,7 @@
 					<tr th:each="quiz : ${listQuiz}">
 						<td th:utext="${quiz.title}"></td>
 						<td th:text="${quiz.creationDate}"></td>
-						<td th:text="${quiz.publicationDate}"></td>
+						<td th:text="${#temporals.format(quiz.publicationDate, 'dd-MM-yyyy')}"></td>
 						<th>
 							<button type="button" class="btn btn-primary" data-toggle="modal"
 								th:data-target="'#' + modalQuiz + ${quiz.id}"

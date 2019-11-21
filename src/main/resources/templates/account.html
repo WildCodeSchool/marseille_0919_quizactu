@@ -7,9 +7,10 @@
 <body>
 	<nav th:replace="fragments/navbar.html :: nav"></nav>
 
-	<div class="msgUser mt-150"
-		th:if="${#httpServletRequest.remoteUser != null}">
-		<h3 th:inline="text" class="quizActu-title">
+	<div class="navAccount"
+		th:if="${#httpServletRequest.remoteUser != null}" >
+		<i class="fa fa-user-circle fa-5x icone"></i>
+		<h3 th:inline="text">
 			[[${#httpServletRequest.remoteUser}]]</h3>
 		<h3 th:text="| Score : ${totalScore} |"></h3>
 	</div>

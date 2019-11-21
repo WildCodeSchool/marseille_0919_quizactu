@@ -4,7 +4,7 @@
 
 <head th:insert="/head.html :: head"></head>
 <head>
-<link rel="stylesheet" th:href="@{./css/.css}">
+<link rel="stylesheet" th:href="@{/css/homeManager.css}">
 </head>
 <body>
 	<div>
@@ -18,23 +18,23 @@
 	<div>
 		<h1 class="quizActu-title">Welcome Manager</h1>
 		<h3>Liste de Quiz</h3>
-<!-- 		<table class="tableau"> -->
-<!-- 			<thead> -->
-<!-- 				<tr>Liste de Quiz -->
-<!-- 				</tr> -->
-<!-- 			</thead> -->
-<!-- 			<tbody> -->
-<!-- 				<tr th:each="quiz : ${listQuiz}"> -->
-<!-- 					<td th:utext="${quiz.title}"></td> -->
-<!-- 					<td th:text="${quiz.creationDate}"></td> -->
-<!-- 					<td th:text="${quiz.publicationDate}"></td> -->
-<!-- 					<td><a th:href="@{/public/createQuiz}" class="button">Details</a> -->
-<!-- 					<td> -->
-<!-- 				</tr> -->
-<!-- 			</tbody> -->
-<!-- 		</table> -->
-		<table class="">
-			<thead class="thead-dark">
+		<!-- 		<table class="tableau"> -->
+		<!-- 			<thead> -->
+		<!-- 				<tr>Liste de Quiz -->
+		<!-- 				</tr> -->
+		<!-- 			</thead> -->
+		<!-- 			<tbody> -->
+		<!-- 				<tr th:each="quiz : ${listQuiz}"> -->
+		<!-- 					<td th:utext="${quiz.title}"></td> -->
+		<!-- 					<td th:text="${quiz.creationDate}"></td> -->
+		<!-- 					<td th:text="${quiz.publicationDate}"></td> -->
+		<!-- 					<td><a th:href="@{/public/createQuiz}" class="button">Details</a> -->
+		<!-- 					<td> -->
+		<!-- 				</tr> -->
+		<!-- 			</tbody> -->
+		<!-- 		</table> -->
+		<table class="table table-bordered tableau">
+			<thead class="upTable">
 				<tr>
 					<th scope="col">Titre du Quiz</th>
 					<th scope="col">Date de création</th>
@@ -46,7 +46,8 @@
 					<td th:utext="${quiz.title}"></td>
 					<td th:text="${quiz.creationDate}"></td>
 					<td th:text="${quiz.publicationDate}"></td>
-					<th><a th:href="@{/public/listQuestion/} + ${quiz.id}" class="button">Details</a></th>
+					<th><a th:href="@{/public/listQuestion/} + ${quiz.id}"
+						class="button">Details</a></th>
 				</tr>
 			</tbody>
 		</table>

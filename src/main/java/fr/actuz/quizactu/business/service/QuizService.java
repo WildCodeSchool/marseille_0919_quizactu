@@ -4,16 +4,19 @@ package fr.actuz.quizactu.business.service;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.actuz.quizactu.business.entity.Account;
+import fr.actuz.quizactu.business.entity.Article;
 import fr.actuz.quizactu.business.entity.Question;
 import fr.actuz.quizactu.business.entity.Quiz;
 import fr.actuz.quizactu.business.entity.Response;
 import fr.actuz.quizactu.persistence.AccountRepository;
+import fr.actuz.quizactu.persistence.QuestionRepository;
 import fr.actuz.quizactu.persistence.QuizRepository;
 import fr.actuz.quizactu.persistence.ResponseRepository;
 
@@ -28,6 +31,9 @@ public class QuizService {
 
 	@Autowired
 	private AccountRepository accountRepo;
+	
+	@Autowired
+	private QuestionRepository questionRepo;
 
 	public Quiz getQuizById(Integer id) {
 		return this.quizRepo.getOne(id);
@@ -93,7 +99,6 @@ public class QuizService {
 		this.quizRepo.deleteById(id);
 	}
 
-	
 	public void createQuiz(String title, LocalDate publicationDate) {
 		Quiz quiz = new Quiz();
 		quiz.setTitle(title);
@@ -101,9 +106,13 @@ public class QuizService {
 		quiz.setCreationDate(LocalDate.now());
 		this.quizRepo.save(quiz);
 	}
-//
-//	public List<Question> getQuestionByQuiz(Integer quizId) {
-//		return this.quizRepo.
-//	}
 
+	public void createQuestion(Integer quizId, String content, byte[] image) 	{
+		Quiz quiz = this.read(quizId);
+		Question question = new Question();
+		question.setContent(content);
+		question.setQuiz(quiz);
+		question.setImage(image);
+		this.questionRepo.save(question);
+	}
 }

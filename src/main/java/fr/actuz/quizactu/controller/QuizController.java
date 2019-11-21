@@ -199,7 +199,7 @@ public class QuizController {
 		} else {
 			this.service.update(id, title, pubDate);
 		}
-		return "public/homeManager";
+		return "public/createQuestion";
 	}
 
 	@GetMapping("/public/homeManager")
@@ -207,4 +207,6 @@ public class QuizController {
 		model.addAttribute("listQuiz", this.service.getAll());
 		return "public/homeManager";
 	}
+	
+	
 }

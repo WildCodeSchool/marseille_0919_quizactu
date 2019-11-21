@@ -6,6 +6,7 @@ import java.util.Base64;
 import java.util.Base64.Encoder;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -53,8 +54,8 @@ public class Question implements Serializable {
 	 *
 	 */
 	@Lob
-	@Column(length = 20000000)
-	private byte[] image;
+	@Column(length = 20000000) // 20Mo
+	private byte[] image; 
 
 	/**
 	 *
@@ -84,7 +85,7 @@ public class Question implements Serializable {
 	/**
 	 *
 	 */
-	@OneToOne(mappedBy = "question")
+	@OneToOne(mappedBy = "question", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Article article;
 
 	public Integer getId() {

@@ -7,6 +7,7 @@ import fr.actuz.quizactu.business.entity.Account;
 import fr.actuz.quizactu.business.entity.Article;
 import fr.actuz.quizactu.persistence.AccountRepository;
 import fr.actuz.quizactu.persistence.ArticleRepository;
+import fr.actuz.quizactu.persistence.QuestionRepository;
 
 @Service
 public class ArticleService {
@@ -14,6 +15,9 @@ public class ArticleService {
 	@Autowired
 	private ArticleRepository articleRepo;
 
+	@Autowired
+	private QuestionRepository questionRepo;
+	
 	@Autowired
 	private AccountRepository accountRepo;
 
@@ -43,6 +47,13 @@ public class ArticleService {
 		article.setMedia(media);
 		article.setLink(link);
 		this.articleRepo.save(article);
+	}
+	
+	public void delete(Integer id) {
+		Article article = this.read(id);
+		article.getQuestion().setArticle(null);
+		this.questionRepo.save(article.getQuestion());
+		this.articleRepo.deleteById(id);
 	}
 //
 //	public List<Article> displayArticleFavorite(Integer articleId, Integer accountId) {

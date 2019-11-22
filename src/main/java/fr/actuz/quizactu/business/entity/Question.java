@@ -55,7 +55,7 @@ public class Question implements Serializable {
 	 */
 	@Lob
 	@Column(length = 20000000) // 20Mo
-	private byte[] image; 
+	private byte[] image;
 
 	/**
 	 *
@@ -85,7 +85,7 @@ public class Question implements Serializable {
 	/**
 	 *
 	 */
-	@OneToOne(mappedBy = "question", cascade = CascadeType.ALL , orphanRemoval = true )
+	@OneToOne(mappedBy = "question", cascade = CascadeType.ALL)
 	private Article article;
 
 	public Integer getId() {

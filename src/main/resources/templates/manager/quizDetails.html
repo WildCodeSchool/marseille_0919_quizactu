@@ -30,7 +30,7 @@
 							</div>
 							<div class="modal-body">
 								<form method="post"
-									th:action="@{/public/setQuestion/} + ${question.id}" 
+									th:action="@{/manager/setQuestion/} + ${question.id}" 
 									enctype="multipart/form-data">
 									<div class="form-group">
 										<label th:for="'#' + questionContent + ${question.id}"
@@ -88,7 +88,7 @@
 								</div>
 								<div class="modal-body">
 									<form method="post"
-										th:action="@{/public/setResponse/} + ${resp.id}">
+										th:action="@{/manager/setResponse/} + ${resp.id}">
 										<div class="form-group">
 											<label th:for="'#' + responseContent + ${resp.id}"
 												class="col-form-label">Réponse :</label> <input type="text"
@@ -143,7 +143,7 @@
 								</div>
 								<div class="modal-body">
 									<form method="post"
-										th:action="@{/public/setArticle/} + ${question.article.id}">
+										th:action="@{/manager/setArticle/} + ${question.article.id}">
 										<div class="form-group">
 											<label th:for="articleTitle + ${question.article.id}"
 												class="col-form-label">Titre :</label> <input type="text"

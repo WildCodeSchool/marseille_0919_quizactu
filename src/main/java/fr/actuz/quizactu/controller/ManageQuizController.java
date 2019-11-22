@@ -59,7 +59,7 @@ public class ManageQuizController {
 		return "manager/createQuiz";
 	}
 
-	@GetMapping("manager/modifyQuiz/{quizId}")
+	@GetMapping("/modifyQuiz/{quizId}")
 	public String showModifyQuiz(@PathVariable Integer quizId, Model model) {
 		Quiz quiz = this.service.read(quizId);
 		model.addAttribute("quizId", quiz.getId());
@@ -101,7 +101,7 @@ public class ManageQuizController {
 		return "manager/createResponse";
 	}
 
-	@PostMapping("manager/createResponse/{questionId}")
+	@PostMapping("/createResponse/{questionId}")
 	public String submitFormResponse(@PathVariable Integer questionId, Response response) {
 		this.service.createResponse(questionId, response);
 		return "manager/createResponse";

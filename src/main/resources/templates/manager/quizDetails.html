@@ -18,7 +18,7 @@
 					<button type="button" class="btn btn-primary" data-toggle="modal"
 						th:data-target="'#' + modalQuestion + ${question.id}"
 						data-whatever="@mdo">editer</button>
-					<button type="button" class="btn btn-danger">X</button>
+					<a class="btn btn-danger" th:href="@{/manager/deleteQuestion/} + ${question.id}">X</a>
 					<div class="modal fade" th:id="modalQuestion + ${question.id}"
 						tabindex="-1" role="dialog"
 						th:aria-labelledby="titleModal + ${question.id}"
@@ -79,7 +79,7 @@
 						<button type="button" class="btn btn-primary" data-toggle="modal"
 							th:data-target="'#' + modalResponse + ${resp.id}"
 							data-whatever="@mdo">editer</button>
-						<button type="button" class="btn btn-danger">X</button>
+						<a class="btn btn-danger" th:href="@{/manager/deleteResponse/} + ${resp.id}">X</a>
 						<div class="modal fade" th:id="modalResponse + ${resp.id}"
 							tabindex="-1" role="dialog"
 							th:aria-labelledby="titleModalResponse + ${resp.id}"
@@ -138,7 +138,7 @@
 					<button type="button" class="btn btn-primary" data-toggle="modal"
 						th:data-target="'#'+  modalArticle + ${question.article.id}"
 						data-whatever="@mdo">editer</button>
-					<button type="button" class="btn btn-danger">X</button>
+					<a class="btn btn-danger" th:href="@{/manager/deleteArticle/} + ${question.article.id}">X</a>
 					<div class="modal fade"
 						th:id="modalArticle + ${question.article.id}" tabindex="-1"
 						role="dialog"

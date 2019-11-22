@@ -36,6 +36,7 @@
 							<button type="button" class="btn btn-primary" data-toggle="modal"
 								th:data-target="'#' + modalQuiz + ${quiz.id}"
 								data-whatever="@mdo">Editer</button>
+							<a class="btn btn-danger" th:href="@{/manager/deleteQuiz/} + ${quiz.id}">X</a>
 							<div class="modal fade" th:id="modalQuiz + ${quiz.id}"
 								tabindex="-1" role="dialog"
 								th:aria-labelledby="titleModal + ${quiz.id}" aria-hidden="true">

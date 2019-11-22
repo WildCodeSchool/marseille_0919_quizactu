@@ -6,6 +6,7 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -37,7 +38,7 @@ public class Quiz implements Serializable {
 //	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private ZonedDateTime publicationDate;
 
-	@OneToMany(mappedBy = "quiz")
+	@OneToMany(mappedBy = "quiz", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<Question> questions = new ArrayList<>();
 
 	public Quiz(String title, ZonedDateTime publicationDate, List<Question> questions) {

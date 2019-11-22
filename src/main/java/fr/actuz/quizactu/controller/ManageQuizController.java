@@ -51,7 +51,7 @@ public class ManageQuizController {
 	public String submitUpdateQuestion(@PathVariable Integer questionId, String content, Integer timerQuestion,
 			Integer timerResponse, MultipartFile image) {
 		this.service.updateQuestion(questionId, content, timerQuestion, timerResponse, image);
-		return "redirect:/home";
+		return "redirect:/manager/home";
 	}
 
 	@GetMapping("/createQuiz")
@@ -73,10 +73,10 @@ public class ManageQuizController {
 		LocalDate pubDate = LocalDate.parse(publicationDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		if (id == null) {
 			Quiz quiz = this.service.createQuiz(title, pubDate);
-			return "redirect:/createQuestion/" + quiz.getId();
+			return "redirect:/manager/createQuestion/" + quiz.getId();
 		} else {
 			this.service.update(id, title, pubDate);
-			return "redirect:/home";
+			return "redirect:/manager/home";
 		}
 	}
 
@@ -91,7 +91,7 @@ public class ManageQuizController {
 	public String submitFormQuestion(@PathVariable Integer quizId, Question question,
 			@RequestParam MultipartFile questionImage) {
 		question = this.service.createQuestion(quizId, question, questionImage);
-		return "redirect:/createResponse/" + question.getId();
+		return "redirect:/manager/createResponse/" + question.getId();
 	}
 
 	@GetMapping("/createResponse/{questionId}")
@@ -111,20 +111,43 @@ public class ManageQuizController {
 	public String submitUpdateArticle(@PathVariable Integer articleId, String title, String summary, String media,
 			String link) {
 		this.articleService.update(articleId, title, summary, media, link);
-		return "redirect:/home";
+		return "redirect:/manager/home";
 	}
 
 	@PostMapping("/setResponse/{responseId}")
 	public String submitUpdateResponse(@PathVariable Integer responseId, String content, Boolean radioIsTrue) {
 		this.service.updateResponse(responseId, content, radioIsTrue);
-		return "redirect:/home";
+		return "redirect:/manager/home";
 	}
 
 	@PostMapping("/setQuiz/{quizId}")
 	public String submitUpdateQuiz(@PathVariable Integer quizId, String title, String publicationDate) {
 		LocalDate publicationDateParsed = LocalDate.parse(publicationDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		this.service.update(quizId, title, publicationDateParsed);
-		return "redirect:/home";
+		return "redirect:/manager/home";
 	}
-
+	
+	@GetMapping("/deleteQuiz/{quizId}")
+	public String deleteQuiz(@PathVariable Integer quizId) {
+		this.service.delete(quizId);
+		return "redirect:/manager/home";
+	}
+	
+	@GetMapping("/deleteQuestion/{questionId}")
+	public String deleteQuestion(@PathVariable Integer questionId) {
+		this.service.deleteQuestion(questionId);
+		return "redirect:/manager/home";
+	}
+	
+	@GetMapping("/deleteResponse/{responseId}")
+	public String deleteResponse(@PathVariable Integer responseId) {
+		this.service.deleteResponse(responseId);
+		return "redirect:/manager/home";
+	}
+	
+	@GetMapping("/deleteArticle/{articleId}")
+	public String deleteArticle(@PathVariable Integer articleId) {
+		this.articleService.delete(articleId);
+		return "redirect:/manager/home";
+	}
 }

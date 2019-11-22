@@ -10,7 +10,7 @@
 	<div class="container">
 		<h1 th:if="${quizId==null}">Ajouter un quiz</h1>
 		<h1 th:if="${quizId}">Modifier le quiz</h1>
-		<form method="post" th:action="@{/public/createQuiz}">
+		<form method="post" th:action="@{/manager/createQuiz}">
 			<input th:if="${quizId}" type="hidden" name="id" th:value="${quizId}">
 			<div class="form-group">
 				<label for="title" class="required">Titre</label>

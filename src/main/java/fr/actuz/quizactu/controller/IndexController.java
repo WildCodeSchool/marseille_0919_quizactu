@@ -24,6 +24,7 @@ public class IndexController {
 
 	@GetMapping("/ranking")
 	public String ranking(Model model) {
+
 		model.addAttribute("usersScore", this.accountServ.getScoreOnRankingPage());
 		return "ranking";
 	}

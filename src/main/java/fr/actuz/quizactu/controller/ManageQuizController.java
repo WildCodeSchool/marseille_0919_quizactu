@@ -126,5 +126,28 @@ public class ManageQuizController {
 		this.service.update(quizId, title, publicationDateParsed);
 		return "redirect:/manager/home";
 	}
-
+	
+	@GetMapping("/deleteQuiz/{quizId}")
+	public String deleteQuiz(@PathVariable Integer quizId) {
+		this.service.delete(quizId);
+		return "redirect:/manager/home";
+	}
+	
+	@GetMapping("/deleteQuestion/{questionId}")
+	public String deleteQuestion(@PathVariable Integer questionId) {
+		this.service.deleteQuestion(questionId);
+		return "redirect:/manager/home";
+	}
+	
+	@GetMapping("/deleteResponse/{responseId}")
+	public String deleteResponse(@PathVariable Integer responseId) {
+		this.service.deleteResponse(responseId);
+		return "redirect:/manager/home";
+	}
+	
+	@GetMapping("/deleteArticle/{articleId}")
+	public String deleteArticle(@PathVariable Integer articleId) {
+		this.articleService.delete(articleId);
+		return "redirect:/manager/home";
+	}
 }

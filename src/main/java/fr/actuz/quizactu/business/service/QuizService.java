@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,7 +83,9 @@ public class QuizService {
 	}
 
 	public List<Quiz> getAll() {
-		return this.quizRepo.findAll();
+		List<Quiz> quiz = this.quizRepo.findAll();
+		Collections.reverse(quiz);
+		return quiz;
 	}
 
 	public Quiz read(int id) {
@@ -127,6 +130,10 @@ public class QuizService {
 		}
 		this.questionRepo.save(question);
 	}
+	
+	public void deleteQuestion(Integer id) {
+		this.questionRepo.deleteById(id);
+	}
 
 	public void updateResponse(Integer responseId, String content, Boolean radioIsTrue) {
 		Response resp = this.getResponseById(responseId);
@@ -154,5 +161,9 @@ public class QuizService {
 		Question question = this.questionRepo.getOne(questionId);
 		response.setQuestion(question);
 		this.responseRepo.save(response);
+	}
+	
+	public void deleteResponse(Integer id) {
+		this.responseRepo.deleteById(id);
 	}
 }

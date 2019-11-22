@@ -10,15 +10,14 @@
 	<nav th:replace="fragments/navbar.html :: nav"></nav>
 
 	<div class="container mt-150 result">
-		<h2>Résultats</h2>
+		<h2 class="quizActu-title">Résultats</h2>
 		<div class="result-trophy">
-			<div class="result-trophy-score result-trophy-txt">
-				<p>Votre score :</p>
-				<p class="result-trophy-txt" th:text="${scoreOfQuiz}"></p>
+			<div class="result-trophy-score result-trophy-txt result-trophy-txt-quiz">
+				<p class="result-trophy-txt-quiz" th:text="${scoreOfQuiz}"></p>
 			</div>
 			<div class="result-trophy-score result-trophy-txt">
-				<p>Votre score total :</p>
-				<p class="result-trophy-txt" th:text="${totalScore}"></p>
+				<p>Votre score total : </p>
+				<p class="result-trophy-txt result-trophy-txt-total" th:text="${totalScore}"></p>
 			</div>
 		</div>
 		<div class="row">
@@ -43,15 +42,20 @@
 								class="text-left false-anwser-article-title"></h5>
 							<p th:utext="${resp.question.article.summary}" 
 								class="text-justify"></p>
-							<a th:onclick="'registerFav(' + ${resp.question.article.id} + ')'"
-								class="onclik-favorite">
-								<i th:id="'article-' + ${resp.question.article.id}"
-									class="fa icon" aria-hidden="true"
-									th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'">
-								</i>
-							</a>
-							<a th:if="${resp.question.article != null}" th:href="${resp.question.article.link}" 
-								target="_blank">Lire la suite</a>
+							<div class="article-link">
+								<a th:onclick="'registerFav(' + ${resp.question.article.id} + ')'"
+									class="onclik-favorite">
+									<i th:id="'article-' + ${resp.question.article.id}"
+										class="fa icon" aria-hidden="true"
+										th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'">
+									</i>
+								</a>
+								<a th:href="${share}" >
+									<i class="fa fa-share-alt" aria-hidden="true"></i>
+								</a> 
+								<a th:if="${resp.question.article != null}" th:href="${resp.question.article.link}" 
+									target="_blank">Lire la suite</a>
+							</div>
 						</th:block>
 					</div>
 
@@ -59,7 +63,7 @@
 						class="true-awnser">
 						<div class="accordion"></div>
 						<div class="accordion-item">
-							<div class="toggle button">Voir plus</div>
+							<div class="toggle button inner-html" >Voir plus</div>
 							<div class="content">
 								<div class="inner">
 									<th:block th:if="${resp.question.article != null}">
@@ -73,6 +77,9 @@
 													aria-hidden="false"
 													th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'">
 												</i>
+											</a>
+											<a th:href="${share}" >
+												<i class="fa fa-share-alt" aria-hidden="true"></i>
 											</a> 
 											<a th:href="${resp.question.article.link}" target="_blank">
 												Lire la suite
@@ -88,8 +95,8 @@
 		</div>
 
 		<div class="row">
-			<div class="col-md-4 ml-auto mr-auto">
-				<a th:href="@{/}" class="button">Retourner à l'accueil</a>
+			<div class="w-100">
+				<a th:href="@{/}" class="button back-home">Retourner à l'accueil</a>
 			</div>
 		</div>
 		</div>
@@ -112,6 +119,18 @@ $('.toggle').on('click', function() {
 	  $(this)
 	    .siblings('.content')
 	    .toggleClass('active');
-})
+});
+
+$( ".inner-html" ).click(function() {
+	var htmlString = $( this ).html();
+	if(htmlString == "Voir plus"){
+		$(this).html("Voir moins");
+	} else {
+		$(this).html("Voir plus");
+	}
+});
+
+
+
 </script>
 </html>

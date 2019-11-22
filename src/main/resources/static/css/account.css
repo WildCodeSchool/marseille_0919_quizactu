@@ -1,11 +1,31 @@
 .navAccount{
     border: solid 1px white;
-    background: #9FE6BB;
     margin-top: 97px;
+    margin-right: 45%;
     border-radius: 50px;
-    
+    display: inline-flex;
 }
 
-.icone {
-	display:inline;
+
+.fa-5x{
+    font-size: 170px;
+}
+
+.fa{
+    padding: 25px;
+}
+
+.navAccount h3{
+	display: inline-grid;
+}
+
+.placeCard {
+	width: 100%;
+}
+
+.sizePolice p{
+	font-size:20px;
+	margin: 0 auto;
+    width: 100px;
+	
 }

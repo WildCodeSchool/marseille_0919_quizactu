@@ -1,3 +1,7 @@
+html {
+	width: 100%;
+}
+
 .card {
 	margin: 1rem 0;
 	color: black;
@@ -46,6 +50,8 @@
 .news  p.description {
 	position: relative;
 	font-weight: normal;
+}
+
 .news .img-figure {
 	position: relative;
 	max-height: 200px;

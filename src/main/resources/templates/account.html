@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html class="html" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head.html :: head"></head>
 <head>
 <title>Articles</title>
@@ -6,49 +6,40 @@
 </head>
 <body>
 	<nav th:replace="fragments/navbar.html :: nav"></nav>
-
-	<div class="navAccount"
-		th:if="${#httpServletRequest.remoteUser != null}">
-		<span class="fa fa-user-circle fa-5x icone"></span>
-		<h3  th:inline="text">
-			[[${#httpServletRequest.remoteUser}]]<i th:text="| Score : ${totalScore} |"></i></h3>
-		
-	</div>
-
-
-	<h3 class="mb-3">Articles favoris</h3>
 	<div class="container">
-		<div class="card mb-3 placeCard"
-			th:each="article : ${account.articles}">
+		<div class="navAccount"
+			th:if="${#httpServletRequest.remoteUser != null}">
+			<span class="fa fa-user-circle fa-5x icone"></span>
+			<h3  th:inline="text">
+				[[${#httpServletRequest.remoteUser}]]<i th:text="| Score : ${totalScore} |"></i></h3>
+		</div>
+		<h1 class="mb-3 favoris">Articles favoris</h1>
+		<div class="card mb-3 placeCard" th:each="article : ${account.articles}">
 			<div class="row no-gutters ">
 				<div class="col-sm-6">
 					​ <img th:src="${article.question.imageEncoded}"
 						th:if="${article.question.image != null}" class="card-img"
-						alt="..."> <small class="text-muted"
-						th:text="${article.media}"></small>
+						alt="..."><p class="text-muted"
+						th:text="${article.media}"></p>
 				</div>
-				<div class="col-sm-6">
-				
-					<p th:utext="'Question : ' + ${article.question.content}"></p>
+				<div class="col-sm-6 questionReponse">
+				<h1 class="question" th:utext="'Question : ' + ${article.question.content}"></h1>
 					<div th:each="response : ${article.question.responses}">
-						<span th:utext="'Reponse : ' + ${response.content}" th:if="${response.isTrue}"></span>
+						<h3 class="reponseCard" th:utext="'Reponse : ' + ${response.content}" th:if="${response.isTrue}"></h3>
 					</div>
 					<div class="col-md-12">
 						<div class="card-body">
 							<h4 class="card-title" th:text="${article.title}"></h4>
 							<p class="card-text" th:text="${article.summary}"></p>
-							<a class="card-text" th:href="${article.link}">Lien</a>
-							<div class="sharethis-inline-share-buttons"
+							<a class="card-text lien" th:href="${article.link}">Lire l'article....</a>
+							<div class="sharethis-inline-share-buttons reseaux"
 								data-title="Article Quiz'Actu :" th:data-url="${article.link}"></div>
 						</div>
 					</div>
-					
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
-<script type="text/javascript"
-	src="https://platform-api.sharethis.com/js/sharethis.js#property=5dd7baf9576b27001242093f&product=inline-share-buttons"
-	async="async"></script>
+<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5dd9376ef3c12d0012bb8072&product=inline-share-buttons" async="async"></script>
 </html>

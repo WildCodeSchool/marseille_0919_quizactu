@@ -1,28 +1,25 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-
 <head th:insert="/head.html :: head"></head>
-<body>
+<body class="body">
 	<nav th:replace="fragments/navbar.html :: nav"></nav>
 	<div class="container mt-150">
-		<h2 class="quizActu-title">Classement</h2>
+		<h1 class="quizActu-title bienvenue">Classement</h1>
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>Rank</th>
 					<th>Pseudo</th>
+					<th>Classement</th>
 				</tr>
 			</thead>
 			<tbody>
-				
 				<tr th:each="userScore: ${usersScore}">
 					<th:block th:if="${userScore.role.id == 3}">
 					<td th:text="${userScore.getUsername()}" />
 					<td th:text="${userScore.getScore()}" />
 					</th:block>
 				</tr>
-				
 			</tbody>
 		</table>
 	</div>

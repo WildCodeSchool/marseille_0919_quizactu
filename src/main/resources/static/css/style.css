@@ -1,20 +1,6 @@
-/*
-*	COLORS :
-*		Ecru : #fafafa;
-*		Gris Clair : #e8e8e8;
-*		Gris foncé : #444;
-*		Bleu : #4381C1;
-*
-* 	CLASS :
-*		Class "button" à mettre sur les <a> pour que le style s'applique
-*		Class "quizActu-title" à mettre sur les <h2> pour aplkquer le border-bootom
-*/
-html {
-	width: 100%;
-}
-
 body {
- 	background-image: linear-gradient(to top, #2fa264, #EAF5EF); 
+	min-height:100%;
+	background-image: linear-gradient(to top, #2fa264, #EAF5EF);
 	text-align: center;
 	color: #444;
 }
@@ -40,6 +26,14 @@ a:hover {
 	text-decoration: none;
 }
 
+.motDePasse {
+	color: #9FE6BB;
+}
+
+.creationCompte {
+	color: #9FE6BB;
+}
+
 form {
 	margin-top: 50px;
 }
@@ -54,7 +48,8 @@ form {
 	width: auto;
 	font-size: 1.3rem;
 	margin: 5px auto;
-	padding: 1rem 0;
+	margin-top: 3rem;
+	padding: 0.3rem 4rem;
 	color: white;
 	border-radius: 10px;
  	border: 1px solid #233f20;  
@@ -71,9 +66,13 @@ form {
 
 .quizActu-title {
 	border-bottom: 1px solid #e8e8e8;
-	width: 30%;
 	padding: 0 0 .5rem 0;
 	margin: 3rem auto;
+}
+
+.bienvenue {
+	border-bottom: 1px solid #444;
+	margin-top: 2em;
 }
 
 .form-control {
@@ -122,7 +121,6 @@ form {
 }
 
 .navbar {
-  /*background-color: #4381C1;*/
    background-color: #233f20; 
 }
 
@@ -197,9 +195,17 @@ svg {
   transition: all 1s linear;
 }
 
+#newPassword {
+	border-radius: 10px;
+}
+
 @media screen and (max-width: 640px) {
 	.lois {
 		margin-top: 17%;
+	}
+	
+	.news .img-figure img {
+		position: sticky !important;
 	}
 	
 }

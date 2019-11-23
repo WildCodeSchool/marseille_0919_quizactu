@@ -4,13 +4,16 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import fr.actuz.quizactu.business.entity.Question;
@@ -21,6 +24,8 @@ import fr.actuz.quizactu.business.service.QuizService;
 
 @Controller
 @RequestMapping("/manager")
+@SessionAttributes({ "quizId" })
+@Scope("session")
 public class ManageQuizController {
 
 	@Autowired
@@ -28,6 +33,11 @@ public class ManageQuizController {
 
 	@Autowired
 	private ArticleService articleService;
+
+	@ModelAttribute("quizId")
+	public Integer quizId() {
+		return null;
+	}
 
 	@GetMapping("/home")
 	public String listQuizCreate(Model model) {
@@ -43,15 +53,17 @@ public class ManageQuizController {
 
 	@GetMapping("/quizDetails/{id}")
 	public String getQuestions(Model model, @PathVariable Integer id) {
-		model.addAttribute("quiz", this.service.read(id));
+		Quiz quiz = this.service.read(id);
+		model.addAttribute("quiz", quiz);
+		model.addAttribute("quizId", quiz.getId());
 		return "manager/quizDetails";
 	}
 
 	@PostMapping("/setQuestion/{questionId}")
 	public String submitUpdateQuestion(@PathVariable Integer questionId, String content, Integer timerQuestion,
-			Integer timerResponse, MultipartFile image) {
+			Integer timerResponse, MultipartFile image, @ModelAttribute("quizId") Integer quizId) {
 		this.service.updateQuestion(questionId, content, timerQuestion, timerResponse, image);
-		return "redirect:/manager/home";
+		return "redirect:/manager/quizDetails/" + quizId;
 	}
 
 	@GetMapping("/createQuiz")
@@ -69,10 +81,11 @@ public class ManageQuizController {
 	}
 
 	@PostMapping("/createQuiz")
-	public String submitFormQuiz(Integer id, String title, String publicationDate) {
+	public String submitFormQuiz(Integer id, String title, String publicationDate, Model model) {
 		LocalDate pubDate = LocalDate.parse(publicationDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		if (id == null) {
 			Quiz quiz = this.service.createQuiz(title, pubDate);
+			model.addAttribute("quizId", quiz.getId());
 			return "redirect:/manager/createQuestion/" + quiz.getId();
 		} else {
 			this.service.update(id, title, pubDate);
@@ -95,29 +108,33 @@ public class ManageQuizController {
 	}
 
 	@GetMapping("/createResponse/{questionId}")
-	public String showFormResponse(@PathVariable Integer questionId, Model model) {
+	public String showFormResponse(@PathVariable Integer questionId, Model model,
+			@ModelAttribute("quizId") Integer quizId) {
 		model.addAttribute("response", new Response());
 		model.addAttribute("questionId", questionId);
+		model.addAttribute("quizId", quizId);
 		return "manager/createResponse";
 	}
 
 	@PostMapping("/createResponse/{questionId}")
-	public String submitFormResponse(@PathVariable Integer questionId, Response response) {
+	public String submitFormResponse(@PathVariable Integer questionId, Response response, Model model) {
 		this.service.createResponse(questionId, response);
+		model.addAttribute("response", new Response());
 		return "manager/createResponse";
 	}
 
 	@PostMapping("/setArticle/{articleId}")
 	public String submitUpdateArticle(@PathVariable Integer articleId, String title, String summary, String media,
-			String link) {
+			String link, @ModelAttribute("quizId") Integer quizId) {
 		this.articleService.update(articleId, title, summary, media, link);
-		return "redirect:/manager/home";
+		return "redirect:/manager/quizDetails/" + quizId;
 	}
 
 	@PostMapping("/setResponse/{responseId}")
-	public String submitUpdateResponse(@PathVariable Integer responseId, String content, Boolean radioIsTrue) {
+	public String submitUpdateResponse(@PathVariable Integer responseId, String content, Boolean radioIsTrue,
+			@ModelAttribute("quizId") Integer quizId) {
 		this.service.updateResponse(responseId, content, radioIsTrue);
-		return "redirect:/manager/home";
+		return "redirect:/manager/quizDetails/" + quizId;
 	}
 
 	@PostMapping("/setQuiz/{quizId}")
@@ -126,28 +143,28 @@ public class ManageQuizController {
 		this.service.update(quizId, title, publicationDateParsed);
 		return "redirect:/manager/home";
 	}
-	
+
 	@GetMapping("/deleteQuiz/{quizId}")
 	public String deleteQuiz(@PathVariable Integer quizId) {
 		this.service.delete(quizId);
 		return "redirect:/manager/home";
 	}
-	
+
 	@GetMapping("/deleteQuestion/{questionId}")
-	public String deleteQuestion(@PathVariable Integer questionId) {
+	public String deleteQuestion(@PathVariable Integer questionId, @ModelAttribute("quizId") Integer quizId) {
 		this.service.deleteQuestion(questionId);
-		return "redirect:/manager/home";
+		return "redirect:/manager/quizDetails/" + quizId;
 	}
-	
+
 	@GetMapping("/deleteResponse/{responseId}")
-	public String deleteResponse(@PathVariable Integer responseId) {
+	public String deleteResponse(@PathVariable Integer responseId, @ModelAttribute("quizId") Integer quizId) {
 		this.service.deleteResponse(responseId);
-		return "redirect:/manager/home";
+		return "redirect:/manager/quizDetails/" + quizId;
 	}
-	
+
 	@GetMapping("/deleteArticle/{articleId}")
-	public String deleteArticle(@PathVariable Integer articleId) {
+	public String deleteArticle(@PathVariable Integer articleId, @ModelAttribute("quizId") Integer quizId) {
 		this.articleService.delete(articleId);
-		return "redirect:/manager/home";
+		return "redirect:/manager/quizDetails/" + quizId;
 	}
 }

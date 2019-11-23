@@ -17,14 +17,14 @@ public class ArticleService {
 
 	@Autowired
 	private QuestionRepository questionRepo;
-	
+
 	@Autowired
 	private AccountRepository accountRepo;
 
 	public boolean favoriteArticle(Integer accountId, Integer articleId) {
 		Article art = this.articleRepo.getOne(articleId);
 		Account acc = this.accountRepo.getOne(accountId);
-		
+
 		if (acc.getArticles().contains(art)) {
 			acc.getArticles().remove(art);
 			this.accountRepo.save(acc);
@@ -35,11 +35,11 @@ public class ArticleService {
 			return true;
 		}
 	}
-	
+
 	public Article read(Integer id) {
 		return this.articleRepo.getOne(id);
 	}
-	
+
 	public void update(Integer articleId, String title, String summary, String media, String link) {
 		Article article = this.read(articleId);
 		article.setTitle(title);
@@ -48,7 +48,7 @@ public class ArticleService {
 		article.setLink(link);
 		this.articleRepo.save(article);
 	}
-	
+
 	public void delete(Integer id) {
 		Article article = this.read(id);
 		article.getQuestion().setArticle(null);

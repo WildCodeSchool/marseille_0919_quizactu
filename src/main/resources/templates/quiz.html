@@ -7,35 +7,47 @@
 </head>
 <body>
 	<nav th:replace="fragments/navbar.html :: nav"></nav>
-	<div class="container results">
+	<div class="container mt-150">
 		<div class="card">
-			<img class="img-thumbnail card-img-top"
+			<img class="card-img-top"
 				th:if="${question.image != null}" th:src="${question.imageEncoded}" />
-			<div th:if="${!validation}" class="progress" style="height: 20px;">
+			<!-- <div th:if="${!validation}" class="progress" style="height: 20px;">
 				<div id="questionTimer" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
 					aria-valuemin="0" aria-valuemax="100"></div>
+			</div> -->
+			
+			<!-- 
+			<div class="progress" style="height: 20px;">
+				<div id="questionTimer" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+					></div>
 			</div>
+			 -->
+			
 			<div class="card-body">
 				<h2 th:utext="${question.getContent()}"></h2>
-				<div th:each="response : ${question.getResponses()}">
-					<a th:unless="${validation}" class="btn btn-block button vraiFaux"
-						th:href="@{/validateQuestion/} + ${question.id} + '/' + ${response.id}"
-						th:utext="${response.getContent()}"></a>
-					<a th:if="${validation}"
-						class="btn btn-block vraiFaux"
-						th:classappend="${response.isTrue} ? btn-success : btn-danger"
-						th:utext="${response.getContent()}"></a>
+				<div class="response d-flex justify-content-between align-items-center d-flex flex-wrap">
+					<div th:each="response : ${question.getResponses()}" class="mb-2">
+						<a th:unless="${validation}" class="btn btn-block button vraiFaux"
+							th:href="@{/validateQuestion/} + ${question.id} + '/' + ${response.id}"
+							th:utext="${response.getContent()}"></a> 
+						<a th:if="${validation}"
+							class="btn btn-block vraiFaux"
+							th:classappend="${response.isTrue} ? list-group-item-success : list-group-item-danger"
+							th:utext="${response.getContent()}"></a>
+					</div>
+				</div>
+				<div>
+					<a th:if="${validation}" th:href="@{/nextQuestion}"
+						class="button">Continuer</a>
 				</div>
 			</div>
 			<input type="hidden" id="questionId" th:value="${question.id}">
+			<div class="card-footer text-center">
+				<p class="mb-0"
+					th:utext="${#temporals.format(quiz.getPublicationDate(), 'EEEE dd MMMM yyyy')}"></p>
+			</div>
 		</div>
-		<div>
-			<a th:if="${validation}" th:href="@{/nextQuestion}" class="button vraiFaux">Continuer</a>
-		</div>
-		
-		<div class="card-footer text-right">
-			<p th:text="${#temporals.format(quiz.getPublicationDate(), 'dd/MM/yyyy')}"></p>
-		</div>
-	</div>	
+
+	</div>
 </body>
 </html>

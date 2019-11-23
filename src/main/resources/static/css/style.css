@@ -9,24 +9,31 @@
 *		Class "button" à mettre sur les <a> pour que le style s'applique
 *		Class "quizActu-title" à mettre sur les <h2> pour aplkquer le border-bootom
 */
+html {
+	font-size: 1rem;  /* 16px */
+	width: 100%;
+
+}
+
 body {
-	/* background-color: #91f5ad; */
-	background-color: #fafafa;
+    font-size: 100%;     /* flexible baseline */
+    line-height: 1.4;
+    background-color: #fafafa;
 	text-align: center;
 	color: #444;
 }
 
-h1, h3 {
+h1 {
 	text-align: center;
 	margin-top: 2em;
 }
 
-h2 {
-	font-size: 4rem;
+h3 {
+	font-size: 1.2rem
 }
 
 .mt-150 {
-	margin-top: 150px;
+	margin-top: 6rem;
 }
 
 a {
@@ -49,7 +56,6 @@ form {
 	display: flex;
 	justify-content: center;
 	width: auto;
-	font-size: 1.3rem;
 	margin: 5px auto;
 	padding: 1rem 0;
 	color: white;
@@ -68,9 +74,6 @@ form {
 
 .quizActu-title {
 	border-bottom: 1px solid #e8e8e8;
-	width: 30%;
-	padding: 0 0 .5rem 0;
-	margin: 3rem auto;
 }
 
 .form-control {
@@ -128,11 +131,11 @@ form {
 }
 
 .logo {
-	height: 70px;
+	height: 50px;
 }
 
 .title-nav {
-	font-size: 36px;
+	font-size: 1.8rem;
 }
 
 /* nav hover */

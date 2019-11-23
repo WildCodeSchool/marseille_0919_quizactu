@@ -1,18 +1,60 @@
+.mt-150 {
+	margin-top: 5rem;
+}
+
 .vraiFaux {
 	display: inline-block;
-	width: 40%;
-	padding: 1%;
-	margin-top:2%;
+	width: 100%;
+	padding: 0.5rem;
+	margin-top: 0.3rem;
 }
 
-div.container.results {
-	margin-top: 120px;
+h2 {
+	font-size: 1.2rem;
+	text-align: justify;
 }
 
-div.container.results img {
-	position: relative;
-	top: 0;
-	left: 0;
-	max-width: 300px;
+.card {
+	height: calc(100vh - 5rem);
+}
+
+.card-body {
+	padding: .5rem;
+}
+
+.card img {
+	max-width: 150px;
 	margin: auto;
+}
+
+.progress {
+	height: 15px;
+	margin: 1rem;
+}
+
+.response div {
+	width: 49%;
+}
+
+.response div>a {
+	max-height: 100px;
+	min-height: 100px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.button {
+	margin: .3rem 0;
+	padding: 0.5rem;
+}
+
+.list-group-item-danger {
+	border: 1px solid red;
+	border-radius: 10px;
+}
+
+.list-group-item-success {
+	border: 1px solid green;
+	border-radius: 10px;
 }

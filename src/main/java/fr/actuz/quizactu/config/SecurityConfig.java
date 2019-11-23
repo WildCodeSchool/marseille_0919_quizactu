@@ -10,37 +10,29 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 
-
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-				.expressionHandler(this.webExpressionHandler())
-				.antMatchers("/public/**", "/webjars/**", "/images/**","/css/**").permitAll()
-				.anyRequest().authenticated()
-				.and().formLogin().permitAll()
-				.loginPage("/login")
-				.and().logout().
-				logoutSuccessUrl("/disconnected").permitAll();
+		http.authorizeRequests().expressionHandler(this.webExpressionHandler())
+				.antMatchers("/public/**", "/webjars/**", "/images/**", "/css/**").permitAll().anyRequest()
+				.authenticated().antMatchers("/manager").hasAuthority("MANAGER").and().formLogin().permitAll()
+				.loginPage("/login").successHandler(new LoginHandler()).and().logout().logoutSuccessUrl("/disconnected")
+				.permitAll();
 	}
-	
+
 	@Bean
 	public RoleHierarchyImpl roleHierarchy() {
 		RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
-		roleHierarchy
-				.setHierarchy("ROLE_ADMIN > ROLE_MANAGER > ROLE_USER");
+		roleHierarchy.setHierarchy("ROLE_ADMIN > ROLE_MANAGER > ROLE_USER");
 		return roleHierarchy;
 	}
-	
+
 	private SecurityExpressionHandler<FilterInvocation> webExpressionHandler() {
 		DefaultWebSecurityExpressionHandler defaultWebSecurityExpressionHandler = new DefaultWebSecurityExpressionHandler();
-		defaultWebSecurityExpressionHandler
-				.setRoleHierarchy(this.roleHierarchy());
+		defaultWebSecurityExpressionHandler.setRoleHierarchy(this.roleHierarchy());
 		return defaultWebSecurityExpressionHandler;
 	}
 }

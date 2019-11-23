@@ -10,7 +10,7 @@
 	<div class="container">
 		<h1>Création des réponses</h1>
 		<form method="post" th:object="${response}"
-			th:action="@{/public/createResponse/} + ${questionId}">
+			th:action="@{/manager/createResponse/} + ${questionId}">
 			<div class="form-group">
 				<label for="content" class="required">Contenu</label>
 				<input id="content" th:field="*{content}">
@@ -20,7 +20,7 @@
 				<input id="isTrue" type="checkbox" th:field="*{isTrue}">
 			</div>
 			<button type="submit">Ajouter une réponse</button>
-			<button><a th:href="@{/public/homeManager }">Terminer!!!!</a></button>
+			<button><a th:href="@{/manager/quizDetails/} + ${quizId}">Revenir aux questions</a></button>
 		</form>
 	</div>
 </body>

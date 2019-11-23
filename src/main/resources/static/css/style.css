@@ -110,6 +110,11 @@ form {
 	margin-left: 550px;
 }
 
+/* Page edition quiz */
+.reponse_tr th:first-child {
+	width: 80%;
+}
+
 /* navbar */
 
 .navbar-connexion {

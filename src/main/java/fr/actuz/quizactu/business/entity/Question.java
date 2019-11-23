@@ -55,7 +55,7 @@ public class Question implements Serializable {
 	 */
 	@Lob
 	@Column(length = 20000000) // 20Mo
-	private byte[] image; 
+	private byte[] image;
 
 	/**
 	 *
@@ -72,7 +72,7 @@ public class Question implements Serializable {
 	/**
 	 *
 	 */
-	@OneToMany(mappedBy = "question", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "question", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<Response> responses = new ArrayList<>();
 
 	/**
@@ -85,7 +85,7 @@ public class Question implements Serializable {
 	/**
 	 *
 	 */
-	@OneToOne(mappedBy = "question", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@OneToOne(mappedBy = "question", cascade = CascadeType.ALL)
 	private Article article;
 
 	public Integer getId() {

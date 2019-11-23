@@ -36,6 +36,7 @@
 							<button type="button" class="btn btn-primary" data-toggle="modal"
 								th:data-target="'#' + modalQuiz + ${quiz.id}"
 								data-whatever="@mdo">Editer</button>
+							<a class="btn btn-danger" th:href="@{/manager/deleteQuiz/} + ${quiz.id}">X</a>
 							<div class="modal fade" th:id="modalQuiz + ${quiz.id}"
 								tabindex="-1" role="dialog"
 								th:aria-labelledby="titleModal + ${quiz.id}" aria-hidden="true">
@@ -51,7 +52,7 @@
 										</div>
 										<div class="modal-body">
 											<form method="post"
-												th:action="@{/public/setQuiz/} + ${quiz.id}">
+												th:action="@{/manager/setQuiz/} + ${quiz.id}">
 												<div class="form-group">
 													<label th:for="title + ${quiz.id}" class="col-form-label">Titre
 														:</label> <input type="text" class="form-control"
@@ -73,13 +74,13 @@
 										</div>
 									</div>
 								</div>
-							</div> <a th:href="@{/public/quizDetails/} + ${quiz.id}" class="button">Details</a>
+							</div> <a th:href="@{/manager/quizDetails/} + ${quiz.id}" class="button">Details</a>
 						</th>
 
 					</tr>
 				</tbody>
 			</table>
-			<a th:href="@{/public/createQuiz}" class="button">Créer un quiz !</a>
+			<a th:href="@{/manager/createQuiz}" class="button">Créer un quiz !</a>
 		</div>
 	</div>
 </body>

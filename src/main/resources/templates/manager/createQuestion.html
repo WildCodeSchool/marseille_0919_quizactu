@@ -10,12 +10,12 @@
 	<div class="container">
 		<h1>Création des questions</h1>
 		<form method="post" th:object="${question}"
-			th:action="@{/public/createQuestion/} + ${quizId}"
+			th:action="@{/manager/createQuestion/} + ${quizId}"
 			enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="content" class="required">Texte Question</label>
-				<textarea id="content" th:field="*{content}" required="required"
-					class="form-control"></textarea>
+				<input id="content" th:field="*{content}" required="required"
+					class="form-control">
 				<div class="form-group">
 					<table>
 						<tr>
@@ -52,6 +52,7 @@
 						th:field="*{article.link}" />
 				</div>
 				<button type="submit">Ajouter la question</button>
+			</div>
 		</form>
 	</div>
 </body>

@@ -1,3 +1,36 @@
+/*------------------------------------- GLOBAL PAGE RESULT -------------------------------------------*/
+.result a {
+	display: block;
+	width: 100%;
+	color: grey;
+	padding: 1rem 0;
+	transition: 0.8s;
+}
+
+.result a:hover {
+	color: black;
+}
+
+.result .quizActu-title {
+	width: auto;
+	margin: 0;
+}
+
+.result .card .card-title, .result .card .card-text, .false-anwser,
+	.false-anwser h5 {
+	font-size: 2.5rem;
+}
+
+.result .card .card-title {
+	font-weight: normal;
+}
+
+.result .card .card-text {
+	font-weight: bold;
+}
+
+/*------------------------------------- END GLOBAL PAGE RESULT ---------------------------------------*/
+/*----------------------------------------- RESULT QUIZ ----------------------------------------------*/
 html {
 	width: 100%;
 }
@@ -5,19 +38,23 @@ html {
 .result .result-trophy {
 	width: 100%;
 	margin: 0 auto;
-	display: inline-block;
+	display: flex;
+	flex-direction: column;
 }
 
 .result-trophy:before {
 	font-family: "FontAwesome";
-	content: '\f091';
-	display: block;
-	height: auto;
-	width: auto;
-	color: #9FE6BB;
-	font-size: 15rem;
-	line-height: 1;
-	float: left;
+    content: '\f091';
+    display: block;
+    height: auto;
+    width: auto;
+    color: #9fe6bb;
+    font-size: 20rem;
+    line-height: 1;
+    float: left;
+    cursor: pointer;
+    margin: 0 auto;
+    padding: 2rem;
 }
 
 .result-trophy-score {
@@ -29,35 +66,29 @@ html {
 
 .result-trophy-txt {
 	font-size: 2.5rem;
-	margin: 0;
+	margin: 0 auto;
+	padding: 0;
 }
 
-.result .card .card-title, .result .card .card-text, .false-anwser,
-	.false-anwser h5 {
-	font-size: 2.5rem;
-}
-
-.card .card-body .onclik-favorite {
+.result-trophy-txt-quiz {
 	position: absolute;
-	font-size: 5rem;
-	right: 86%;
-	bottom: 0;
-	color: gold;
-	width: auto;
+    left: 50%;
+    transform: translate(-50%, 2vh);
+    text-shadow: 2px 2px 6px rgba(52,52,52,0.8);
+    font-size: 3.5rem;
+    color: #3c3c3c;
 }
 
-.card .card-body .onclik-favorite i {
-	cursor: pointer;
-}
-
-.result .card .card-title {
-	font-weight: normal;
-}
-
-.result .card .card-text {
+.result-trophy-txt-total {
+	padding-left: 1rem;
 	font-weight: bold;
 }
 
+/*----------------------------------------- END RESULT QUIZ ------------------------------------------*/
+/*----------------------------------------- START TRUE ANSWER ----------------------------------------*/
+
+/*----------------------------------------- END TRUE ANSWER ----------------------------------------*/
+/*------------------------------------- FALSE ANWSER -----------------------------------------------*/
 .false-anwser-article-title {
 	font-size: 3rem;
 	font-style: italic;
@@ -66,23 +97,32 @@ html {
 	transition-duration: 0.8s;
 }
 
-.false-anwser a {
-	display: block;
-	width: 100%;
-	text-align: right;
-	color: grey;
-	padding: 1rem 0;
-	transition: 0.8s;
+.false-anwser .article-link {
+	display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    font-size: 2.5rem;
+    color:grey;
+    cursor: pointer;
 }
 
-.false-anwser a:hover {
+.false-anwser .article-link a {
+	width: auto;
+	transition: 0.8s;
+	padding: 0 1rem;
+}
+
+.false-anwser .article-link a:hover {
 	color: black;
 }
-
+/*------------------------------------- END FALSE ANWSER -----------------------------------------*/
+/*------------------------------------- ACCORDION -----------------------------------------------*/
 .accordion {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	border-bottom: 1px solid grey;
+    padding: 0 0 1rem 0;
 }
 
 .accordion-item {
@@ -99,6 +139,9 @@ html {
 	color: #2b5724;
 	border: 1px solid grey;
 	transition: 0.5s;
+	font-size: 2rem;
+	margin: 1rem auto 0 auto;
+	width: max-content;
 }
 
 .accordion-item .toggle:hover {
@@ -113,7 +156,7 @@ html {
 }
 
 .accordion-item .content.active .inner {
-	max-height: 300px;
+	max-height: 600px;
 }
 
 .accordion-item .content .inner .article-title {
@@ -122,17 +165,31 @@ html {
 }
 
 .accordion-item .content .inner .article-summary {
-	font-size: 1.5rem;
+	font-size: 1.8rem;
 }
 
-.accordion-item .content .inner .article-link{
+.accordion-item .content .inner .article-link {
 	display: flex;
-    width: 50%;
-    margin: 0 auto;
-    justify-content: space-evenly;
-    font-size: 1.5rem;
+    width: 100%;
+    justify-content: flex-end;
+    font-size: 2.5rem;
+    color:grey;
+    cursor: pointer;
 }
 
+.accordion-item .content .inner .article-link a {
+	width: auto;
+	transition: 0.8s;
+	padding: 0 1rem;
+}
+
+.accordion-item .content .inner .article-link a:hover {
+	color: black;
+}
+/*------------------------------------- END ACCORDION --------------------------------------------*/
+.back-home {
+	margin-bottom: 2rem;
+}
 
 
 

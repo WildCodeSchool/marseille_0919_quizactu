@@ -3,8 +3,7 @@ package fr.actuz.quizactu.business.service;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import fr.actuz.quizactu.business.entity.Account;
-import fr.actuz.quizactu.business.entity.Article;
 import fr.actuz.quizactu.business.entity.Question;
 import fr.actuz.quizactu.business.entity.Quiz;
 import fr.actuz.quizactu.business.entity.Response;
@@ -82,7 +80,9 @@ public class QuizService {
 	}
 
 	public List<Quiz> getAll() {
-		return this.quizRepo.findAll();
+		List<Quiz> quiz = this.quizRepo.findAll();
+		Collections.reverse(quiz);
+		return quiz;
 	}
 
 	public Quiz read(int id) {
@@ -113,19 +113,24 @@ public class QuizService {
 		return question;
 	}
 
-	public void updateQuestion(Integer questionId, String content, Integer timerQuestion, Integer timerResponse, MultipartFile image) {
+	public void updateQuestion(Integer questionId, String content, Integer timerQuestion, Integer timerResponse,
+			MultipartFile image) {
 		Question question = this.getQuestionById(questionId);
 		question.setContent(content);
 		question.setTimerQuestion(timerQuestion);
 		question.setTimerResponse(timerResponse);
-		if(!image.getOriginalFilename().isEmpty()) {
+		if (!image.getOriginalFilename().isEmpty()) {
 			try {
 				question.setImage(image.getBytes());
-			} catch (IOException e){
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 		this.questionRepo.save(question);
+	}
+
+	public void deleteQuestion(Integer id) {
+		this.questionRepo.deleteById(id);
 	}
 
 	public void updateResponse(Integer responseId, String content, Boolean radioIsTrue) {
@@ -139,20 +144,26 @@ public class QuizService {
 		Quiz quiz = this.read(quizId);
 		question.setQuiz(quiz);
 		if (question.getArticle() != null) {
-			question.getArticle().setQuestion(question);			
+			question.getArticle().setQuestion(question);
 		}
-		try {
-			question.setImage(image.getBytes());
-			this.questionRepo.save(question);
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (!image.getOriginalFilename().isEmpty()) {
+			try {
+				question.setImage(image.getBytes());
+				this.questionRepo.save(question);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		return this.questionRepo.save(question);
 	}
-	
+
 	public void createResponse(Integer questionId, Response response) {
 		Question question = this.questionRepo.getOne(questionId);
 		response.setQuestion(question);
 		this.responseRepo.save(response);
+	}
+
+	public void deleteResponse(Integer id) {
+		this.responseRepo.deleteById(id);
 	}
 }

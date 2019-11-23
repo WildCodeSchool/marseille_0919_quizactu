@@ -11,47 +11,46 @@ import fr.actuz.quizactu.business.entity.Role;
 import fr.actuz.quizactu.persistence.AccountRepository;
 
 @Service
-public class AccountService  {
-	
+public class AccountService {
+
 	@Autowired
 	private AccountRepository accountRepo;
-	
-	@Autowired
-	private  BCryptPasswordEncoder bCrypt;
 
-	public List<Account> getAll(){
+	@Autowired
+	private BCryptPasswordEncoder bCrypt;
+
+	public List<Account> getAll() {
 		return this.accountRepo.findAll();
 	}
-	
+
 	public void create(String userName, String email, String password) {
 		final String hashedPassword = this.bCrypt.encode(password);
 		Account account = new Account(userName, email, hashedPassword);
 		account.setRole(new Role(3)); // => a utiliser pour les admin et manager
 		this.accountRepo.save(account);
 	}
-	
 
 	public Account read(String userName) {
 		return this.accountRepo.findOneByUserName(userName);
 
 	}
-	
+
 	public void update(Account account) {
 		this.accountRepo.save(account);
 	}
-	
+
 	public void delete(int id) {
 		this.accountRepo.deleteById(id);
 	}
-	
+
 	public Account getById(Integer id) {
 		return this.accountRepo.getOne(id);
 	}
-	
+
 	public List<Account> getScoreLimitTen() {
 		return this.accountRepo.findTop10ByOrderByScoreDesc();
 	}
-	
+
 	public List<Account> getScoreOnRankingPage() {
 		return this.accountRepo.findByOrderByScoreDesc();
 	}
@@ -62,5 +61,5 @@ public class AccountService  {
 		acc.setPassword(hashedPassword);
 		this.accountRepo.save(acc);
 	}
-	
+
 }

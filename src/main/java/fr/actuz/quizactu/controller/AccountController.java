@@ -60,12 +60,8 @@ public class AccountController {
 	}
 
 	@PostMapping("/changedPassword")
-//	@PreAuthorize("hasRole('READ_PRIVILEGE')")
 	public String newPassword(Integer id, String newPassword) {
-
-		// Logger LOG = LoggerFactory.getLogger("Wilder");
 		this.service.updatePassword(id, newPassword);
-
 		return "redirect:/";
 	}
 

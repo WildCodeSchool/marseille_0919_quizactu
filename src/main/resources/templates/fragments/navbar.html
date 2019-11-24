@@ -68,9 +68,9 @@
 		</div>
 	</nav>
 
-	<!-- NAV NOT LOGGED MANAGER -->
+	<!-- <!-- NAV LOGGED MANAGER 
 	<nav class="navbar navbar-light navbar-expand-lg fixed-top"
-		id="mainNav" th:if="${#httpServletRequest.remoteUser == (role_id == 2)}">
+		id="mainNav" th:if="${#httpServletRequest.remoteUser != null}">
 		<div class="container ctn-nav">
 			<a class="navbar-brand js-scroll-trigger title-nav" th:href="@{/}"><img
 				class="logo mr-2" th:src="@{/images/logo6.png}" alt="">Quiz'Actu</a>
@@ -107,6 +107,6 @@
 				</ul>
 			</div>
 		</div>
-	</nav>
+	</nav> -->
 </body>
 </html>

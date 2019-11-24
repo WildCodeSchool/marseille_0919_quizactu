@@ -7,80 +7,77 @@
 <link rel="stylesheet" th:href="@{/css/homeManager.css}">
 </head>
 <body>
-	<div>
-		<nav th:replace="fragments/navbar.html :: nav"></nav>
-	</div>
+	<nav th:replace="fragments/navbar.html :: nav"></nav>
 	<div class="mt-150 container">
 		<div class="msgUser" th:if="${#httpServletRequest.remoteUser != null}">
-			<h2 th:inline="text">Bienvenue
-				[[${#httpServletRequest.remoteUser}]]</h2>
+			<h2 th:inline="text">Bienvenue Manager <br>[[${#httpServletRequest.remoteUser}]]</h2>
 		</div>
 		<div>
-			<h1 class="quizActu-title">Welcome Manager</h1>
-			<h3>Liste de Quiz</h3>
-			<table class="table table-bordered tableau">
-				<thead class="upTable">
-					<tr>
-						<th scope="col">Titre du Quiz</th>
-						<th scope="col">Date de création</th>
-						<th scope="col">Date de publication</th>
-						<th scope="col">Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="quiz : ${listQuiz}">
-						<td th:utext="${quiz.title}"></td>
-						<td th:text="${quiz.creationDate}"></td>
-						<td th:text="${#temporals.format(quiz.publicationDate, 'dd-MM-yyyy')}"></td>
-						<th>
-							<button type="button" class="btn btn-primary" data-toggle="modal"
-								th:data-target="'#' + modalQuiz + ${quiz.id}"
-								data-whatever="@mdo">Editer</button>
-							<a class="btn btn-danger" th:href="@{/manager/deleteQuiz/} + ${quiz.id}">X</a>
-							<div class="modal fade" th:id="modalQuiz + ${quiz.id}"
-								tabindex="-1" role="dialog"
-								th:aria-labelledby="titleModal + ${quiz.id}" aria-hidden="true">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" th:id="titleModal + ${quiz.id}">Modification
-												du quiz</h5>
-											<button type="button" class="close" data-dismiss="modal"
-												aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-											<form method="post"
-												th:action="@{/manager/setQuiz/} + ${quiz.id}">
-												<div class="form-group">
-													<label th:for="title + ${quiz.id}" class="col-form-label">Titre
-														:</label> <input type="text" class="form-control"
-														th:id="title + ${quiz.id}" name="title"
-														th:value="${quiz.title}"> <label
-														th:for="publicationDate + ${quiz.id}"
-														class="col-form-label">Date :</label> <input type="date"
-														class="form-control" th:id="publicationDate + ${quiz.id}"
-														name="publicationDate"
-														th:value="${#temporals.format(quiz.publicationDate, 'yyyy-MM-dd')}">
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary"
-														data-dismiss="modal">Annuler</button>
-													<button type="submit" class="btn btn-primary">Enregistrer</button>
-
-												</div>
-											</form>
+			
+			<h1>Liste de Quiz</h1>
+			<div class="table-responsive-sm">
+				<table class="table table-striped ">
+					<thead>
+						<tr>
+							<th>Titre du Quiz</th>
+							<th>Date de création</th>
+							<th>Date de publication</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="quiz : ${listQuiz}">
+							<td th:utext="${quiz.title}"></td>
+							<td th:text="${quiz.creationDate}"></td>
+							<td th:text="${#temporals.format(quiz.publicationDate, 'dd-MM-yyyy')}"></td>
+							<th>
+								<button type="button" class="btn btn-outline-success" data-placement="right" data-toggle="modal"
+									th:data-target="'#' + modalQuiz + ${quiz.id}"
+									data-whatever="@mdo"><i class="fa fa-edit text-warning"></i></button>
+								<a class="btn btn-outline-success"  th:href="@{/manager/deleteQuiz/} + ${quiz.id}">
+									<i class="fa fa-trash text-warning"></i>
+								</a>
+								<div class="modal fade" th:id="modalQuiz + ${quiz.id}" tabindex="-1" role="dialog" th:aria-labelledby="titleModal + ${quiz.id}" aria-hidden="true">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" th:id="titleModal + ${quiz.id}">Modification
+													du quiz</h5>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<form method="post" th:action="@{/manager/setQuiz/} + ${quiz.id}">
+													<div class="form-group">
+														<label th:for="title + ${quiz.id}" class="col-form-label">Titre
+															:</label> <input type="text" class="form-control"
+															th:id="title + ${quiz.id}" name="title"
+															th:value="${quiz.title}"> <label
+															th:for="publicationDate + ${quiz.id}"
+															class="col-form-label">Date :</label> <input type="date"
+															class="form-control" th:id="publicationDate + ${quiz.id}"
+															name="publicationDate"
+															th:value="${#temporals.format(quiz.publicationDate, 'yyyy-MM-dd')}">
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary"
+															data-dismiss="modal">Annuler</button>
+														<button type="submit" class="btn btn-primary">Enregistrer</button>
+													</div>
+												</form>
+											</div>
 										</div>
 									</div>
-								</div>
-							</div> <a th:href="@{/manager/quizDetails/} + ${quiz.id}" class="button">Details</a>
-						</th>
-
-					</tr>
-				</tbody>
-			</table>
-			<a th:href="@{/manager/createQuiz}" class="button">Créer un quiz !</a>
+								</div> 
+								<a th:href="@{/manager/quizDetails/} + ${quiz.id}" class="button details">Details</a>
+							</th>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<a th:href="@{/manager/createQuiz}" class="button creationQuiz">Créer un quiz !</a>
 		</div>
 	</div>
 </body>

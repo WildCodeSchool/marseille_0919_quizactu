@@ -1,31 +1,26 @@
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head th:replace="head.html :: head"></head>
-
 <head>
 <title>Création de quiz</title>
-<link rel="stylesheet" th:href="@{/css/homePage.css}">
-<link rel="stylesheet" th:href="@{/css/style.css}">
+<link rel="stylesheet" th:href="@{/css/homeManager.css}">
 </head>
 <body>
 	<nav th:replace="fragments/navbar.html :: nav"></nav>
 	<div class="container">
-		<h1 th:if="${quizId==null}">Ajouter un quiz</h1>
+		<h1 th:if="${quizId==null}" class="ajoutQuiz">Ajouter un quiz</h1>
 		<h1 th:if="${quizId}">Modifier le quiz</h1>
 		<form method="post" th:action="@{/manager/createQuiz}">
 			<input th:if="${quizId}" type="hidden" name="id" th:value="${quizId}">
 			<div class="form-group">
-				<label for="title" class="required">Titre</label>
+				<label for="title" class="required titreLabel">Titre</label>
 				<input type="text" id="title" name="title" th:value="${title}"
-					required="required" maxlength="255" class="form-control" />
+					required="required" maxlength="255" class="form-control titreQuiz" />
 			</div>
 			<div class="form-group">
-				<label for="start" class="required">Date de publication</label>
-				<input type="date" id="start" name="publicationDate" th:value="${datePublication}">
+				<label for="start" class="required titreLabel">Date de publication : </label>
+				<input type="date" id="start" name="publicationDate" th:value="${datePublication}" class="date">
 			</div>
-
-			<button type="submit">Ajouter le quiz</button>
-			
+			<button type="submit" class="button">Ajouter le quiz</button>
 		</form>
 	</div>
 </body>

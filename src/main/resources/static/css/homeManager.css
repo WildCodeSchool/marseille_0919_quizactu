@@ -8,10 +8,35 @@
 	background: #D3D3D3;
 }
 
-/////A voir {
+.details {
+	width: 40%;
+}
+
+.creationQuiz {
+	width: 50%;
+}
+
+.titreQuiz {
+	border-radius: 10px !important;
+}
+
+.titreLabel {
+	font-size: 2em;
+}
+
+input[type="date"] {
+	font-size: 2em !important;
+}
+
+input[type=checkbox] {
+	width: 3mm;
+    height: 10mm;
+}
+
+/* A voir {
 	display: inline;
 	border: solid 2px black;
     border-radius: 40px;
     background: #9FE6BB;
     margin-top: 95px;
-}
+} */

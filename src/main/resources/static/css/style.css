@@ -195,6 +195,11 @@ svg {
   transition: all 1s linear;
 }
 
+.ajoutQuiz {
+	margin-top: 4em;
+	border-bottom: 1px solid #444;
+}
+
 #newPassword {
 	border-radius: 10px;
 }

@@ -13,7 +13,8 @@
 }
 
 .creationQuiz {
-	width: 50%;
+	width: 40%;
+	margin-bottom: 2em;
 }
 
 .titreQuiz {
@@ -31,6 +32,10 @@ input[type="date"] {
 input[type=checkbox] {
 	width: 3mm;
     height: 10mm;
+}
+
+input[type="checkbox"]{
+ 
 }
 
 /* A voir {

@@ -7,6 +7,11 @@ html {
 	color: black;
 }
 
+/* .cardQuiz {
+	width: 50%;
+	margin-left: 16em;
+} */
+
 .card-title {
 	margin: 0;
 }
@@ -149,4 +154,9 @@ html {
 thead {
 	background-color: #9FE6BB;
 	color: white;
+}
+
+.table td, .table th {
+	vertical-align: center !important;
+	border-top: 1px solid #9fe66bb !important;
 }

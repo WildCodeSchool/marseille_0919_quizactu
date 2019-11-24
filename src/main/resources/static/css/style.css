@@ -75,6 +75,10 @@ form {
 	margin-top: 2em;
 }
 
+.listQuiz {
+	margin-bottom: 1em;
+}
+
 .form-control {
 	font-size: 2rem;
 	margin-top: 10px;
@@ -202,6 +206,10 @@ svg {
 
 #newPassword {
 	border-radius: 10px;
+}
+
+.vraiFaux {
+	
 }
 
 @media screen and (max-width: 640px) {

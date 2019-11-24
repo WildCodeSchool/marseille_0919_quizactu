@@ -73,8 +73,10 @@
 				</thead>
 				<tbody>
 					<tr th:each="user: ${users}">
-						<td th:text="${user.getUsername()}" />
-						<td th:text="${user.getScore()}" />
+						<th:block th:if="${user.role.id == 3}">
+							<td th:text="${user.getUsername()}" />
+							<td th:text="${user.getScore()}" />
+						</th:block>
 					</tr>
 				</tbody>
 			</table>

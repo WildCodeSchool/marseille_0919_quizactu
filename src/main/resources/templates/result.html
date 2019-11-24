@@ -44,18 +44,21 @@
 								<p th:utext="${resp.question.article.summary}"
 									class="text-justify"></p>
 								<div class="article-link">
-									<a
-										th:onclick="'registerFav(' + ${resp.question.article.id} + ')'"
-										class="onclik-favorite"> <i
-										th:id="'article-' + ${resp.question.article.id}"
-										class="fa icon" aria-hidden="true"
-										th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'">
-									</i>
-									</a> <a th:href="${share}"> <i class="fa fa-share-alt"
-										aria-hidden="true"></i>
-									</a> <a th:if="${resp.question.article != null}"
-										th:href="${resp.question.article.link}" target="_blank">Lire
-										la suite</a>
+									<a th:onclick="'registerFav(' + ${resp.question.article.id} + ')'"
+										class="onclik-favorite"> 
+										<i th:id="'article-' + ${resp.question.article.id}"
+											class="fa icon" aria-hidden="true"
+											th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'">
+										</i>
+									</a> 
+									<a th:if="${resp.question.article != null}"
+										th:href="${resp.question.article.link}" target="_blank">
+										Lire la suite
+									</a>
+								</div>
+								<div class="sharethis-inline-share-buttons"
+									data-title="Article Quiz'Actu :" 
+									th:data-url="${resp.question.article.link}">
 								</div>
 							</th:block>
 						</div>
@@ -72,16 +75,19 @@
 											<p th:utext="${resp.question.article.summary}"
 												class="article-summary"></p>
 											<div class="article-link">
+												<a th:href="${resp.question.article.link}" target="_blank">
+													Lire la suite </a>
 												<a
 													th:onclick="'registerFav(' + ${resp.question.article.id} + ')'">
 													<i th:id="'article-' + ${resp.question.article.id}"
 													class="fa icon" aria-hidden="false"
 													th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'">
 												</i>
-												</a> <a th:href="${share}"> <i class="fa fa-share-alt"
-													aria-hidden="true"></i>
-												</a> <a th:href="${resp.question.article.link}" target="_blank">
-													Lire la suite </a>
+												</a> 
+											</div>
+											<div class="sharethis-inline-share-buttons"
+												data-title="Article Quiz'Actu :" 
+												th:data-url="${resp.question.article.link}">
 											</div>
 										</th:block>
 									</div>
@@ -93,13 +99,16 @@
 			</div>
 		</div>
 
-		<div class="row">
-			<div class="w-50 mx-auto">
+		<div>
+			<div class="w-100 mx-auto">
 				<a th:href="@{/}" class="button back-home">Retourner à l'accueil</a>
 			</div>
 		</div>
 	</div>
 </body>
+<script type="text/javascript"
+	src="https://platform-api.sharethis.com/js/sharethis.js#property=5dd7baf9576b27001242093f&product=inline-share-buttons"
+	async="async"></script>
 <script>
 function registerFav(articleId) {
 	$.ajax('http://localhost:8080/favArticle/' + articleId).then((result) => {

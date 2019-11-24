@@ -3,22 +3,37 @@
 *		Ecru : #fafafa;
 *		Gris Clair : #e8e8e8;
 *		Gris foncé : #444;
-*		Bleu : #4381C1;
+*		Vert menthe : #9FE6BB;
 *
 * 	CLASS :
 *		Class "button" à mettre sur les <a> pour que le style s'applique
-*		Class "quizActu-title" à mettre sur les <h2> pour aplkquer le border-bootom
+*		Class "quizActu-title" à mettre sur les <h2> pour appliquer le border-bottom
+*
+*	README :
+*		Pensez à intégrer vos pages en MOBIL FIRST merci
+*		Pensez à respecter l'ordre logique de votre code 
+*		Pensez à regrouper votre code de la même page ensemble en ajoutant un block de commentaire
+*			début et fin pour que tout le monde s'y retrouve
+*		Merci de mettre les media queries en bas de fichier
+*
+*	BREAKPOINT :
+*		Tablette : 768px
+*		Large devices : 992px
+*		XLarge device : 1200px
+*
 */
+/* ----------------------------------------------------------------------------------------------------------- 
+----------------------------------------------- GLOBAL -------------------------------------------------------
+------------------------------------------------------------------------------------------------------------*/
 html {
-	font-size: 1rem;  /* 16px */
+	font-size: 1rem; /* 16px */
 	width: 100%;
-
 }
 
 body {
-    font-size: 100%;     /* flexible baseline */
-    line-height: 1.4;
-    background-color: #fafafa;
+	font-size: 100%; /* flexible baseline */
+	line-height: 1.4;
+	background-color: #fafafa;
 	text-align: center;
 	color: #444;
 }
@@ -92,11 +107,15 @@ form {
 	margin-top: 2rem;
 }
 
+/* ----------------------------------------------------------------------------------------------------------- 
+----------------------------------------------- END GLOBAL ---------------------------------------------------
+------------------------------------------------------------------------------------------------------------*/
+
 .lois {
 	margin-top: 4%;
 }
 
-#logout-btn{
+#logout-btn {
 	margin: 0;
 	border: none;
 	background: none;
@@ -115,14 +134,15 @@ form {
 	width: 80%;
 }
 
-/* navbar */
-
+/* ----------------------------------------------------------------------------------------------------------- 
+----------------------------------------------- navbar -------------------------------------------------------
+------------------------------------------------------------------------------------------------------------*/
 .navbar-connexion {
 	width: 100%;
 }
 
 .navbar {
-  background-color: #9FE6BB;
+	background-color: #9FE6BB;
 }
 
 .navbar-light .navbar-nav .nav-link, .navbar-light .navbar-brand {
@@ -139,77 +159,142 @@ form {
 }
 
 /* nav hover */
+.nav-item {
+	position: relative;
+}
 
-.nav-item{
-    position: relative;
+.nav-link, .nav-link::before {
+	-webkit-transition: all .5s ease-in;
+	-o-transition: all .5s ease-in;
+	transition: all .5s ease-in;
 }
-.nav-link, .nav-link::before{
-    -webkit-transition: all .5s ease-in;
-   -o-transition: all .5s ease-in;
-   transition: all .5s ease-in;
+
+.nav-link::before {
+	content: "";
+    background: #fff;
+    height: 2px;
+    width: 50%;
+    position: absolute;
+    left: 50%;
+    right: 0;
+    bottom: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, 0);
 }
-.nav-link::before{
-     content: "";
-   background: #fff;
-   height: 2px;
-   width: 0;
-   position: absolute;
-   left: 0;
-   right: 0;
-   bottom: 0;
-   opacity: 0;
-   visibility: hidden;
+
+.navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:active,
+	.navbar-light .navbar-nav .nav-link:visited {
+	color: #fff !important;
 }
-.navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:active, .navbar-light .navbar-nav .nav-link:visited{
-    color: #fff !important;
+
+.navbar-light .navbar-nav .active>.nav-link, 
+.navbar-light .navbar-nav .nav-link.active, 
+.navbar-light .navbar-nav .nav-link.show, 
+.navbar-light .navbar-nav .show>.nav-link {
+	color: #fff !important;
 }
-.nav-link:hover::before{
-   opacity: 1;
-   visibility: visible;
-   width: 100%;
+
+.nav-link:hover::before {
+	opacity: 1;
+	visibility: visible;
+	width: 50%;
+	margin: 0 auto;
 }
 
 .navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
-    color: #fff;
+	color: #fff;
 }
 
+.drop-menu {
+	border: none;
+    background-color: #9fe6bb;
+}
+
+.drop-menu .dropdown-item {
+	display: flex;
+	justify-content: center;
+	color: white;
+	transition: .8s;
+	width: 40%;
+	margin: 0 auto;
+	border-radius: 10px;
+	padding: 0.5rem;
+}
+
+.drop-menu .dropdown-item:hover {
+	background-color: #80808026;
+}
+
+#logout-btn {
+	color: #fff;
+}
+
+/* ----------------------------------------------------------------------------------------------------------- 
+----------------------------------------------- end navbar ---------------------------------------------------
+------------------------------------------------------------------------------------------------------------*/
+
 .item {
-    position: relative;
-    float: left;
-    margin:40%;
+	position: relative;
+	float: left;
+	margin: 40%;
 }
 
 .item h2 {
-    text-align:center;
-    position: absolute;
-    line-height: 125px;
-    width: 100%;
+	text-align: center;
+	position: absolute;
+	line-height: 125px;
+	width: 100%;
 }
 
 svg {
-    transform: rotate(-90deg);
+	transform: rotate(-90deg);
 }
 
 .circle_animation {
-  stroke-dasharray: 440; /* this value is the pixel circumference of the circle */
-  stroke-dashoffset: 440;
-  transition: all 1s linear;
+	stroke-dasharray: 440;
+	/* this value is the pixel circumference of the circle */
+	stroke-dashoffset: 440;
+	transition: all 1s linear;
 }
 
+/* Page chagedPassword */
+.changedPwd .button {
+	width: 100%;
+}
+
+/* page not found */
+.oupsie {
+	width: 300px;
+}
+
+.text-end {
+	text-align: end;
+}
+
+/* ----------------------------------------------------------------------------------------------------------- 
+----------------------------------------------- media queries -----------------------------------------------
+------------------------------------------------------------------------------------------------------------*/
 @media screen and (max-width: 640px) {
 	.lois {
 		margin-top: 17%;
 	}
-	
 }
 
-/* page not found */
-
-.oupsie {
-	width: 300px;
+@media screen and (min-width: 992px) {
+	/*navbar*/
+	.navbar .nav-link:hover::before {
+		width: 100%;
+	}
+	.navbar-expand-lg .navbar-nav .dropdown-menu {
+		left: -50%;
+		padding: 1rem;
+	}
+	.drop-menu .dropdown-item {
+		width: 100%;
+	}
+	.drop-menu .dropdown-item:hover {
+/* 		border-radius: 0px;		 */
+		
+	}
 }
-.text-end {
-	text-align: end;
-}
-}
-

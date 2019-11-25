@@ -83,14 +83,17 @@ public class ManageQuizController {
 	@PostMapping("/createQuiz")
 	public String submitFormQuiz(Integer id, String title, String publicationDate, Model model) {
 		LocalDate pubDate = LocalDate.parse(publicationDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		if (id == null) {
+//		if (id == null) {
 			Quiz quiz = this.service.createQuiz(title, pubDate);
 			model.addAttribute("quizId", quiz.getId());
+			System.out.println(quiz.getId());
 			return "redirect:/manager/createQuestion/" + quiz.getId();
-		} else {
-			this.service.update(id, title, pubDate);
-			return "redirect:/manager/home";
-		}
+//		} else {
+//			this.service.update(id, title, pubDate);
+//			System.out.println(id);
+//			System.out.println("update");
+//			return "redirect:/manager/home";
+//		}
 	}
 
 	@GetMapping("/createQuestion/{quizId}")

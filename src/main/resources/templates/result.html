@@ -30,11 +30,18 @@
 								th:src="${resp.question.imageEncoded}" />
 							<h3 class="card-title text-center mt-3"
 								th:utext="'Question : ' + ${resp.question.content}"></h3>
-							<p class="card-text mt-3 mb-3 text-center"
-								th:utext="'Votre réponse : ' + ${resp.content}"></p>
-							<p th:if="${resp.notAnswered}" class="not-answered">Vous
-								n'avez pas répondu à cette question</p>
+							<div th:if="${!resp.notAnswered}">
+								<p class="card-text mt-3 mb-3 text-center"
+									th:utext="'Votre réponse : ' + ${resp.content}"></p>	
+							</div>
+							<!-- RESPONSE NULL -->					
+							<div th:if="${resp.notAnswered}" class="not-answered">
+								<p>Vous	n'avez pas répondu à cette question</p>
+								<p class="card-text mt-3 mb-3 text-center"
+									th:utext="'La bonne réponse était : ' + ${resp.content}"></p>	
+							</div>
 						</div>
+						<!-- RESPONSE FALSE -->
 						<div th:if="${!resp.isTrue}" class="false-anwser">
 							<p class="card-text text-center"
 								th:utext="'La bonne réponse était : ' + ${resp.question.correctResponse.content}"></p>
@@ -44,6 +51,10 @@
 								<p th:utext="${resp.question.article.summary}"
 									class="text-justify"></p>
 								<div class="article-link">
+									<a th:if="${resp.question.article != null}"
+										th:href="${resp.question.article.link}" target="_blank">
+										Lire la suite
+									</a>
 									<a th:onclick="'registerFav(' + ${resp.question.article.id} + ')'"
 										class="onclik-favorite"> 
 										<i th:id="'article-' + ${resp.question.article.id}"
@@ -51,10 +62,6 @@
 											th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'">
 										</i>
 									</a> 
-									<a th:if="${resp.question.article != null}"
-										th:href="${resp.question.article.link}" target="_blank">
-										Lire la suite
-									</a>
 								</div>
 								<div class="sharethis-inline-share-buttons"
 									data-title="Article Quiz'Actu :" 
@@ -62,7 +69,7 @@
 								</div>
 							</th:block>
 						</div>
-
+						<!-- RESPONSE TRUE -->
 						<div th:if="${resp.isTrue}" class="true-awnser">
 							<div class="accordion"></div>
 							<div class="accordion-item">

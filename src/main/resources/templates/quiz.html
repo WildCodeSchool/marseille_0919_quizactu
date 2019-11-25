@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:insert="/head.html :: head"></head>
 <body>
-	<nav th:replace="fragments/navbar.html :: nav"></nav>
+	<nav th:replace="fragments/navbar.html :: navCreate"></nav>
 	<div class="container results">
 		<div class="card">
 			<img class="img-thumbnail card-img-top" th:if="${question.image != null}" th:src="${question.imageEncoded}"/>

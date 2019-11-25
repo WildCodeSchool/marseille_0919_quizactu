@@ -86,7 +86,6 @@ public class ManageQuizController {
 //		if (id == null) {
 			Quiz quiz = this.service.createQuiz(title, pubDate);
 			model.addAttribute("quizId", quiz.getId());
-			System.out.println(quiz.getId());
 			return "redirect:/manager/createQuestion/" + quiz.getId();
 //		} else {
 //			this.service.update(id, title, pubDate);

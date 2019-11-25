@@ -5,7 +5,7 @@
 <link rel="stylesheet" th:href="@{/css/account.css}">
 </head>
 <body>
-	<nav th:replace="fragments/navbar.html :: nav"></nav>
+	<nav th:replace="fragments/navbar.html :: navUser"></nav>
 	<div class="container">
 		<div class="navAccount"
 			th:if="${#httpServletRequest.remoteUser != null}">

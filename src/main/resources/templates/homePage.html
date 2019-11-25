@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head th:insert="/head.html :: head"></head>
 <body>
-	<nav th:replace="fragments/navbar.html :: nav"></nav>
+	<nav th:replace="fragments/navbar.html :: navUser"></nav>
 	<div class="container">
 		<div class="msgUser mt-150"
 			th:if="${#httpServletRequest.remoteUser != null}">

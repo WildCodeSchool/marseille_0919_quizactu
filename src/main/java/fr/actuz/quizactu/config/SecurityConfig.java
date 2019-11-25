@@ -18,7 +18,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().expressionHandler(this.webExpressionHandler())
 				.antMatchers("/public/**", "/webjars/**", "/images/**", "/css/**").permitAll().anyRequest()
-				.authenticated().antMatchers("/manager").hasAuthority("MANAGER").and().formLogin().permitAll()
+				.authenticated().antMatchers("/manager/home").hasAuthority("MANAGER").and().formLogin().permitAll()
 				.loginPage("/login").successHandler(new LoginHandler()).and().logout().logoutSuccessUrl("/disconnected")
 				.permitAll();
 	}

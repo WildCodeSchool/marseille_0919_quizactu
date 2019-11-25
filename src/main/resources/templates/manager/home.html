@@ -7,7 +7,7 @@
 <link rel="stylesheet" th:href="@{/css/homeManager.css}">
 </head>
 <body>
-	<nav th:replace="fragments/navbar.html :: nav"></nav>
+	<nav th:replace="fragments/navbar.html :: navManager"></nav>
 	<div class="mt-150 container">
 		<div class="msgUser" th:if="${#httpServletRequest.remoteUser != null}">
 			<h2 th:inline="text">Bienvenue Manager <br>[[${#httpServletRequest.remoteUser}]]</h2>

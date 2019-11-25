@@ -10,7 +10,7 @@
 
 	<!-- NAV NOT LOGGED IN -->
 	<nav class="navbar navbar-light navbar-expand-lg fixed-top"
-		id="mainNav" th:if="${#httpServletRequest.remoteUser == null}">
+		id="mainNav" th:fragment="navCreate">
 		<div class="container ctn-nav ">
 			<a class="navbar-brand js-scroll-trigger title-nav navbar-connexion"
 				th:href="@{/}"><img class="logo mr-2 "
@@ -20,7 +20,7 @@
 
 	<!-- NAV LOGGED IN -->
 	<nav class="navbar navbar-light navbar-expand-lg fixed-top"
-		id="mainNav" th:if="${#httpServletRequest.remoteUser != null}">
+		id="mainNav" th:fragment="navUser">
 		<div class="container ctn-nav">
 			<a class="navbar-brand js-scroll-trigger title-nav" th:href="@{/}"><img
 				class="logo mr-2" th:src="@{/images/logo6.png}" alt="">Quiz'Actu</a>
@@ -68,9 +68,9 @@
 		</div>
 	</nav>
 
-	<!-- <!-- NAV LOGGED MANAGER 
+	 <!-- NAV LOGGED MANAGER  -->
 	<nav class="navbar navbar-light navbar-expand-lg fixed-top"
-		id="mainNav" th:if="${#httpServletRequest.remoteUser != null}">
+		id="mainNav" th:fragment="navManager">
 		<div class="container ctn-nav">
 			<a class="navbar-brand js-scroll-trigger title-nav" th:href="@{/}"><img
 				class="logo mr-2" th:src="@{/images/logo6.png}" alt="">Quiz'Actu</a>
@@ -107,6 +107,6 @@
 				</ul>
 			</div>
 		</div>
-	</nav> -->
+	</nav>
 </body>
 </html>

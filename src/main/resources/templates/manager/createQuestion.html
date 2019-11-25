@@ -5,7 +5,7 @@
 <link rel="stylesheet" th:href="@{/css/homeManager.css}">
 </head>
 <body>
-	<nav th:replace="fragments/navbar.html :: nav"></nav>
+	<nav th:replace="fragments/navbar.html :: navManager"></nav>
 	<div class="container">
 		<h1 class="ajoutQuiz">Création des questions</h1>
 		<form method="post" th:object="${question}"

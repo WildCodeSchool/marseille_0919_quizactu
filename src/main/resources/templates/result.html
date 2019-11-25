@@ -72,8 +72,8 @@
 						<!-- RESPONSE TRUE -->
 						<div th:if="${resp.isTrue}" class="true-awnser">
 							<div class="accordion"></div>
-							<div class="accordion-item">
-								<div class="toggle button inner-html">Voir plus</div>
+							<div th:classappend="${resp.notAnswered} ? none : accordion-item">
+								<div th:if="${!resp.notAnswered}" class="toggle button inner-html">Voir plus</div>
 								<div class="content">
 									<div class="inner">
 										<th:block th:if="${resp.question.article != null}">

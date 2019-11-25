@@ -4,7 +4,7 @@
 <link rel="stylesheet" th:href="@{/css/homePage.css}">
 </head>
 <body>
-	<nav th:replace="fragments/navbar.html :: nav"></nav>
+	<nav th:replace="fragments/navbar.html :: navUser"></nav>
 	<div class="container mt-150">
 		<h2>Le quiz d'aujourd'hui à déjà été fait !</h2>
 		<h3>Vous pouvez faire les autres quiz :</h3>
@@ -26,7 +26,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div th:if="${dayBeforeYesterday != null}">
 			<div class="row">
 				<div class="col-lg-12">

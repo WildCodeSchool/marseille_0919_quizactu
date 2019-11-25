@@ -7,15 +7,14 @@
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-	<div class="container mt-150">
-		<nav th:replace="fragments/navbar.html :: nav"></nav>
-
-		<h1 th:utext="${quiz.title}"></h1>
-		<div th:each="question : ${quiz.questions} ">
-			<p th:utext="${question.content}"></p>
-
+	<nav th:replace="fragments/navbar.html :: navManager"></nav>
+		<div class="container mt-150">
+			<h1 th:utext="${quiz.title}"></h1>
+			<div th:each="question : ${quiz.questions} ">
+				<p th:utext="${question.content}"></p>
+	
+			</div>
 		</div>
-	</div>
 
 </body>
 </html>

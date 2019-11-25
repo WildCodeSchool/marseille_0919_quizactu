@@ -5,8 +5,7 @@
 		<title>Connexion</title>
 	</head>
 	<body>
-		<nav th:replace="fragments/navbar.html :: nav"></nav>
-		
+		<nav th:replace="fragments/navbar.html :: navCreate"></nav>
 		<div class="container login mt-150">
 		<h1>Connexion</h1>
 			<form class="form-signin" th:action="@{/login}" method="post">

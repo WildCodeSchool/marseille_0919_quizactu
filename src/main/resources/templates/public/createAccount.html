@@ -7,8 +7,7 @@
 <link rel="stylesheet" th:href="@{./css/style.css}">
 </head>
 <body>
-	<nav th:replace="fragments/navbar.html :: nav"></nav>
-	
+	<nav th:replace="fragments/navbar.html :: navCreate"></nav>
 	<div class="mt-150 container">
 	<h1>Veuillez créer votre compte</h1>
 		<form class="form-signin" th:action="@{/public/form}" method="post">

@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-
 <head th:insert="/head.html :: head"></head>
 <head>
 <link rel="stylesheet" th:href="@{/css/homePage.css}">
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-	<nav th:replace="fragments/navbar.html :: nav"></nav>
-	
+	<nav th:replace="fragments/navbar.html :: navUser"></nav>
 	<div class="container mt-150">
 		<div class="msgUser"
 			th:if="${#httpServletRequest.remoteUser != null}">
@@ -31,7 +29,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="row">
 			<div class="col-lg-6">
 				<div class="news">
@@ -43,7 +40,6 @@
 						<h3>Quiz de la veille</h3>
 						<a th:href="@{/timer/yesterday}" class="button">Jouer</a>
 					</div>
-					
 				</div>
 			</div>
 			<div class="col-lg-6">
@@ -56,11 +52,9 @@
 						<h3>Quiz de l'avant veille</h3>
 						<a th:href="@{/timer/dayBeforeYesterday}" class="button">Jouer</a>
 					</div>
-					
 				</div>
 			</div>
 		</div>
-
 		<div class="dashboard-ranking">
 			<h2 class="quizActu-title">Classement</h2>
 			<h3>Top 10</h3>

@@ -74,12 +74,13 @@
 	justify-content: flex-end;
 	color: grey;
 	cursor: pointer;
+	margin-bottom: 1rem;
 }
 
 .false-anwser .article-link a {
 	width: auto;
 	transition: 0.8s;
-	padding: 0 1rem;
+	padding: 0 .5rem;
 }
 
 .false-anwser .article-link a:hover {
@@ -140,12 +141,13 @@
 	justify-content: flex-end;
 	color: grey;
 	cursor: pointer;
+	margin-bottom: 1rem;
 }
 
 .accordion-item .content .inner .article-link a {
 	width: auto;
 	transition: 0.8s;
-	padding: 0 1rem;
+	padding: 0 .5rem;
 }
 
 .accordion-item .content .inner .article-link a:hover {

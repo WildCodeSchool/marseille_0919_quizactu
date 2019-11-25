@@ -95,6 +95,7 @@
 						</tr>
 					</tbody>
 				</table>
+				
 
 				<!-- ************** MODAL RESPONSE ********** -->
 				<div class="modal fade" th:id="modalResponse + ${resp.id}" tabindex="-1" role="dialog"
@@ -130,6 +131,7 @@
 					</div>
 				</div>
 			</div>
+			<a th:href="@{/manager/createResponse/} + ${question.id}">Ajouter une réponse</a>
 
 			<!-- End div response -->
 

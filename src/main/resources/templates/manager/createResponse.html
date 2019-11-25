@@ -20,7 +20,7 @@
 				<input id="isTrue" type="checkbox" th:field="*{isTrue}">
 			</div>
 			<button type="submit">Ajouter une réponse</button>
-			<button><a th:href="@{/manager/quizDetails/} + ${quizId}">Revenir aux questions</a></button>
+			<a th:href="@{/manager/quizDetails/} + ${quizId}">Revenir aux questions</a>
 		</form>
 	</div>
 </body>

@@ -7,7 +7,7 @@
 		<h2>Modification du quiz</h2>
 		<hr>
 		<h1 th:utext="${quiz.title}"></h1>
-		<p th:utext="${#temporals.format(quiz.publicationDate, 'dd-MM-yyyy')}"></p>
+		<p th:utext="${#temporals.format(quizYesterday, 'EEEE dd MMMM yyyy')}"></p>
 		<div th:each="question : ${quiz.questions}">
 			<!-- Start question -->
 
@@ -95,6 +95,7 @@
 						</tr>
 					</tbody>
 				</table>
+				
 
 				<!-- ************** MODAL RESPONSE ********** -->
 				<div class="modal fade" th:id="modalResponse + ${resp.id}" tabindex="-1" role="dialog"
@@ -130,6 +131,7 @@
 					</div>
 				</div>
 			</div>
+			<a th:href="@{/manager/createResponse/} + ${question.id}">Ajouter une réponse</a>
 
 			<!-- End div response -->
 

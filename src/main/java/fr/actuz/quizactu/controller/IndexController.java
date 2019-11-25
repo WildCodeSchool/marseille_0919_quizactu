@@ -1,6 +1,8 @@
 package fr.actuz.quizactu.controller;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,9 @@ public class IndexController {
 	@GetMapping("/")
 	public String user(Model model) {
 		model.addAttribute("users", this.accountServ.getScoreLimitTen());
+		model.addAttribute("quizToday", LocalDate.now().atStartOfDay().atZone(ZoneId.of("UTC")));
+		model.addAttribute("quizYesterday", LocalDate.now().minusDays(1).atStartOfDay().atZone(ZoneId.of("UTC")));
+		model.addAttribute("quizBeforeYesterday", LocalDate.now().minusDays(2).atStartOfDay().atZone(ZoneId.of("UTC")));
 		return "homePage";
 	}
 

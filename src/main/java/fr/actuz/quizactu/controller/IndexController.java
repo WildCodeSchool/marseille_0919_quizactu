@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import fr.actuz.quizactu.business.entity.Account;
 import fr.actuz.quizactu.business.service.AccountService;
+import fr.actuz.quizactu.business.service.QuizService;
 
 @Controller
 public class IndexController {
@@ -16,9 +17,15 @@ public class IndexController {
 	@Autowired
 	private AccountService accountServ;
 
+	@Autowired
+	private QuizService quizServ;
+
 	@GetMapping("/")
 	public String user(Model model) {
 		model.addAttribute("users", this.accountServ.getScoreLimitTen());
+		model.addAttribute("quizToday", this.quizServ.getTodayQuiz().getPublicationDate());
+		model.addAttribute("quizYesterday", this.quizServ.getYesterdayQuiz().getPublicationDate());
+		model.addAttribute("quizBeforeYesterday", this.quizServ.getDayBeforeYesterdayQuiz().getPublicationDate());
 		return "homePage";
 	}
 

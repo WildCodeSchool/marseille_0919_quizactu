@@ -7,7 +7,7 @@
 		<h2>Modification du quiz</h2>
 		<hr>
 		<h1 th:utext="${quiz.title}"></h1>
-		<p th:utext="${#temporals.format(quiz.publicationDate, 'dd-MM-yyyy')}"></p>
+		<p th:utext="${#temporals.format(quizYesterday, 'EEEE dd MMMM yyyy')}"></p>
 		<div th:each="question : ${quiz.questions}">
 			<!-- Start question -->
 

@@ -9,12 +9,13 @@
 </head>
 <body>
 	<nav th:replace="fragments/navbar.html :: nav"></nav>
-	<div class="msgUser mt-150"
-		th:if="${#httpServletRequest.remoteUser != null}">
-		<h2 th:inline="text" class="quizActu-title">Bienvenue
-			[[${#httpServletRequest.remoteUser}]]</h2>
-	</div>
-	<div class="container">
+	
+	<div class="container mt-150">
+		<div class="msgUser"
+			th:if="${#httpServletRequest.remoteUser != null}">
+			<h2 th:inline="text" class="quizActu-title">Bienvenue
+				[[${#httpServletRequest.remoteUser}]]</h2>
+		</div>
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="news">
@@ -22,10 +23,11 @@
 						<img th:src="@{/images/media.jpg}" class="img-responsive">
 					</div>
 					<div class="title">
-						<span>Vendredi 8 Novembre 2019</span>
-						<h1>Quiz du jour</h1>
+						<span th:utext="${#temporals.format(quizToday, 'EEEE dd MMMM yyyy')}"></span>
+						<h3>Quiz du jour</h3>
+						<a th:href="@{/timer/today}" class="button">Jouer</a>
 					</div>
-					<a th:href="@{/timer/today}" class="button">Jouer</a>
+					
 				</div>
 			</div>
 		</div>
@@ -37,10 +39,11 @@
 						<img th:src="@{/images/journalism.jpg}" class="img-responsive">
 					</div>
 					<div class="title">
-						<span>Jeudi 7 Novembre 2019</span>
-						<h1>Quiz de la veille</h1>
+						<span th:utext="${#temporals.format(quizYesterday, 'EEEE dd MMMM yyyy')}"></span>
+						<h3>Quiz de la veille</h3>
+						<a th:href="@{/timer/yesterday}" class="button">Jouer</a>
 					</div>
-					<a th:href="@{/timer/yesterday}" class="button">Jouer</a>
+					
 				</div>
 			</div>
 			<div class="col-lg-6">
@@ -49,15 +52,16 @@
 						<img th:src="@{/images/magazine.jpg}" class="img-responsive">
 					</div>
 					<div class="title">
-						<span>Mercredi 6 Novembre 2019</span>
-						<h1>Quiz de l'avant veille</h1>
+						<span th:utext="${#temporals.format(quizBeforeYesterday, 'EEEE dd MMMM yyyy')}"></span>
+						<h3>Quiz de l'avant veille</h3>
+						<a th:href="@{/timer/dayBeforeYesterday}" class="button">Jouer</a>
 					</div>
-					<a th:href="@{/timer/dayBeforeYesterday}" class="button">Jouer</a>
+					
 				</div>
 			</div>
 		</div>
 
-		<div class="dashboard_ranking">
+		<div class="dashboard-ranking">
 			<h2 class="quizActu-title">Classement</h2>
 			<h3>Top 10</h3>
 			<table class="table table-striped">
@@ -69,8 +73,10 @@
 				</thead>
 				<tbody>
 					<tr th:each="user: ${users}">
-						<td th:text="${user.getUsername()}" />
-						<td th:text="${user.getScore()}" />
+						<th:block th:if="${user.role.id == 3}">
+							<td th:text="${user.getUsername()}" />
+							<td th:text="${user.getScore()}" />
+						</th:block>
 					</tr>
 				</tbody>
 			</table>

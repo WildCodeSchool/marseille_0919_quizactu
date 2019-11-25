@@ -12,80 +12,85 @@
 	<div class="container mt-150 result">
 		<h2 class="quizActu-title">Résultats</h2>
 		<div class="result-trophy">
-			<div class="result-trophy-score result-trophy-txt result-trophy-txt-quiz">
-				<p class="result-trophy-txt-quiz" th:text="${scoreOfQuiz}"></p>
-			</div>
-			<div class="result-trophy-score result-trophy-txt">
-				<p>Votre score total : </p>
-				<p class="result-trophy-txt result-trophy-txt-total" th:text="${totalScore}"></p>
+			<div class="result-trophy-score">
+				<p class="result-trophy-score-txt" th:text="${scoreOfQuiz}"></p>
 			</div>
 		</div>
+		<div class="result-score">
+			<p>Votre score total :</p>
+			<p class="result-score-txt" th:text="${totalScore}"></p>
+		</div>
 		<div class="row">
-			<div th:each="resp : ${listResponse}"
-				th:classappend="${resp.isTrue} ? list-group-item-success : list-group-item-danger"
-				class="card mb-3">
-				<div class="card-body">
-					<div class="true-anwser">
-						<img class="card-img-top" th:if="${resp.question.image != null}"
-							th:src="${resp.question.imageEncoded}" />
-						<h3 class="card-title text-left mt-3"
-							th:utext="'Question : ' + ${resp.question.content}"></h3>
-						<p class="card-text mt-3 text-center"
-							th:utext="'Votre réponse : ' + ${resp.content}"></p>
-						<p th:if="${resp.notAnswered}">Vous n'avez pas répondu à cette question</p>
-					</div>
-					<div th:if="${!resp.isTrue}" class="false-anwser">
-						<p class="card-text text-center" 
-							th:utext="'La bonne réponse était : ' + ${resp.question.correctResponse.content}"></p>
-						<th:block th:if="${resp.question.article != null}">
-							<h5 th:utext="${resp.question.article.title}" 
-								class="text-left false-anwser-article-title"></h5>
-							<p th:utext="${resp.question.article.summary}" 
-								class="text-justify"></p>
-							<div class="article-link">
-								<a th:onclick="'registerFav(' + ${resp.question.article.id} + ')'"
-									class="onclik-favorite">
-									<i th:id="'article-' + ${resp.question.article.id}"
-										class="fa icon" aria-hidden="true"
-										th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'">
-									</i>
-								</a>
-								<a th:href="${share}" >
-									<i class="fa fa-share-alt" aria-hidden="true"></i>
-								</a> 
-								<a th:if="${resp.question.article != null}" th:href="${resp.question.article.link}" 
-									target="_blank">Lire la suite</a>
-							</div>
-						</th:block>
-					</div>
+			<div class="col-lg-4 pb-3" th:each="resp : ${listResponse}">
+				<div th:classappend="${resp.isTrue} ? ( ${resp.notAnswered} ? list-group-item-danger : list-group-item-success) : list-group-item-danger"
+					class="card">
+					<div class="card-body">
+						<div class="true-anwser">
+							<img class="card-img-top" th:if="${resp.question.image != null}"
+								th:src="${resp.question.imageEncoded}" />
+							<h3 class="card-title text-center mt-3"
+								th:utext="'Question : ' + ${resp.question.content}"></h3>
+							<p class="card-text mt-3 mb-3 text-center"
+								th:utext="'Votre réponse : ' + ${resp.content}"></p>
+							<p th:if="${resp.notAnswered}" class="not-answered">Vous
+								n'avez pas répondu à cette question</p>
+						</div>
+						<div th:if="${!resp.isTrue}" class="false-anwser">
+							<p class="card-text text-center"
+								th:utext="'La bonne réponse était : ' + ${resp.question.correctResponse.content}"></p>
+							<th:block th:if="${resp.question.article != null}">
+								<h5 th:utext="${resp.question.article.title}"
+									class="text-center false-anwser-article-title"></h5>
+								<p th:utext="${resp.question.article.summary}"
+									class="text-justify"></p>
+								<div class="article-link">
+									<a th:onclick="'registerFav(' + ${resp.question.article.id} + ')'"
+										class="onclik-favorite"> 
+										<i th:id="'article-' + ${resp.question.article.id}"
+											class="fa icon" aria-hidden="true"
+											th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'">
+										</i>
+									</a> 
+									<a th:if="${resp.question.article != null}"
+										th:href="${resp.question.article.link}" target="_blank">
+										Lire la suite
+									</a>
+								</div>
+								<div class="sharethis-inline-share-buttons"
+									data-title="Article Quiz'Actu :" 
+									th:data-url="${resp.question.article.link}">
+								</div>
+							</th:block>
+						</div>
 
-					<div th:if="${resp.isTrue}"
-						class="true-awnser">
-						<div class="accordion"></div>
-						<div class="accordion-item">
-							<div class="toggle button inner-html" >Voir plus</div>
-							<div class="content">
-								<div class="inner">
-									<th:block th:if="${resp.question.article != null}">
-										<p th:utext="${resp.question.article.title}"
-											class="article-title"></p>
-										<p th:utext="${resp.question.article.summary}"
-											class="article-summary"></p>
-										<div class="article-link">
-											<a th:onclick="'registerFav(' + ${resp.question.article.id} + ')'"> 
-												<i th:id="'article-' + ${resp.question.article.id}" class="fa icon"
-													aria-hidden="false"
+						<div th:if="${resp.isTrue}" class="true-awnser">
+							<div class="accordion"></div>
+							<div class="accordion-item">
+								<div class="toggle button inner-html">Voir plus</div>
+								<div class="content">
+									<div class="inner">
+										<th:block th:if="${resp.question.article != null}">
+											<p th:utext="${resp.question.article.title}"
+												class="article-title"></p>
+											<p th:utext="${resp.question.article.summary}"
+												class="article-summary"></p>
+											<div class="article-link">
+												<a th:href="${resp.question.article.link}" target="_blank">
+													Lire la suite </a>
+												<a
+													th:onclick="'registerFav(' + ${resp.question.article.id} + ')'">
+													<i th:id="'article-' + ${resp.question.article.id}"
+													class="fa icon" aria-hidden="false"
 													th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'">
 												</i>
-											</a>
-											<a th:href="${share}" >
-												<i class="fa fa-share-alt" aria-hidden="true"></i>
-											</a> 
-											<a th:href="${resp.question.article.link}" target="_blank">
-												Lire la suite
-											</a>
-										</div>
-									</th:block>
+												</a> 
+											</div>
+											<div class="sharethis-inline-share-buttons"
+												data-title="Article Quiz'Actu :" 
+												th:data-url="${resp.question.article.link}">
+											</div>
+										</th:block>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -94,13 +99,16 @@
 			</div>
 		</div>
 
-		<div class="row">
-			<div class="w-100">
+		<div>
+			<div class="w-100 mx-auto">
 				<a th:href="@{/}" class="button back-home">Retourner à l'accueil</a>
 			</div>
 		</div>
-		</div>
+	</div>
 </body>
+<script type="text/javascript"
+	src="https://platform-api.sharethis.com/js/sharethis.js#property=5dd7baf9576b27001242093f&product=inline-share-buttons"
+	async="async"></script>
 <script>
 function registerFav(articleId) {
 	$.ajax('http://localhost:8080/favArticle/' + articleId).then((result) => {

@@ -11,18 +11,11 @@
 		<div class="card">
 			<img class="card-img-top"
 				th:if="${question.image != null}" th:src="${question.imageEncoded}" />
-			<!-- <div th:if="${!validation}" class="progress" style="height: 20px;">
-				<div id="questionTimer" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-					aria-valuemin="0" aria-valuemax="100"></div>
-			</div> -->
-			
-			<!-- 
-			<div class="progress" style="height: 20px;">
-				<div id="questionTimer" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-					></div>
-			</div>
-			 -->
-			
+				<div th:if="${!validation}" class="progress" style="height: 20px;">
+					<div id="questionTimer" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+						aria-valuemin="0" aria-valuemax="100"></div>
+				</div>
+		
 			<div class="card-body">
 				<h2 th:utext="${question.getContent()}"></h2>
 				<div class="response d-flex justify-content-between align-items-center d-flex flex-wrap">
@@ -47,7 +40,7 @@
 					th:utext="${#temporals.format(quiz.getPublicationDate(), 'EEEE dd MMMM yyyy')}"></p>
 			</div>
 		</div>
-
+	</div>
 	</div>
 </body>
 </html>

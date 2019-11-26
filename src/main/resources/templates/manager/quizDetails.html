@@ -4,13 +4,13 @@
 <head th:insert="/head.html :: head"></head>
 <body>
 	<nav th:replace="fragments/navbar.html :: navManager"></nav>
-	<div class="container mt-150">
+	<div class="container">
 		<h1>Modification du quiz</h1>
 
 		<p th:utext="${#temporals.format(quizYesterday, 'EEEE dd MMMM yyyy')}"></p>
 		<div th:each="question : ${quiz.questions}">
 			<!-- Start question -->
-			<h2 class="mt-150 shadow-sm p-3 mb-5 bg-white rounded border border-dark">Modifier la question</h2>
+			<h2 class="shadow-sm p-3 mb-5 bg-white rounded border border-dark">Modifier la question</h2>
 			<hr>
 			<div class="row mt-5 shadow-sm p-3 mb-5 bg-white rounded">
 				<div class="col-12">
@@ -254,5 +254,6 @@
 		<a class="button btn-details" th:href="@{/manager/createQuestion/} + ${quiz.id}">Ajouter une
 			question</a>
 	</div>
+	<footer th:replace="fragments/navbar.html :: footer"></footer>
 </body>
 </html>

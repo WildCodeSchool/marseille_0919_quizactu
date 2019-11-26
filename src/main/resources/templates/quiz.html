@@ -7,7 +7,7 @@
 </head>
 <body>
 	<nav th:replace="fragments/navbar.html :: navCreate"></nav>
-	<div class="container mt-150">
+	<div class="container">
 		<div class="card">
 			<div class="img-copyright">
 				<img class="card-img-top" th:if="${question.image != null}"
@@ -46,5 +46,6 @@
 			</div>
 		</div>
 	</div>
+	<footer th:replace="fragments/navbar.html :: footer"></footer>
 </body>
 </html>

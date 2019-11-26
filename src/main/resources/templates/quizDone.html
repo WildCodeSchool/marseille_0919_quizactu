@@ -5,7 +5,7 @@
 </head>
 <body>
 	<nav th:replace="fragments/navbar.html :: navUser"></nav>
-	<div class="container mt-150">
+	<div class="container">
 		<h2>Le quiz d'aujourd'hui à déjà été fait !</h2>
 		<h3>Vous pouvez faire les autres quiz :</h3>
 	</div>
@@ -47,5 +47,7 @@
 				<a th:href="@{/}" class="button">Retourner à l'accueil</a>
 			</div>
 		</div>
+	</div>
+	<footer th:replace="fragments/navbar.html :: footer"></footer>
 </body>
 </html>

@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -34,6 +35,9 @@ public class Quiz implements Serializable {
 	private String title;
 
 	private LocalDate creationDate;
+	
+	@Transient
+	private boolean notEditable;
 
 //	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private ZonedDateTime publicationDate;
@@ -90,4 +94,11 @@ public class Quiz implements Serializable {
 		this.questions = questions;
 	}
 
+	public boolean isNotEditable() {
+		return notEditable;
+	}
+
+	public void setNotEditable(boolean notEditable) {
+		this.notEditable = notEditable;
+	}
 }

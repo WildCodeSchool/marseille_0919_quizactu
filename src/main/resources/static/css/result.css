@@ -30,23 +30,22 @@
 /*------------------------------------- END GLOBAL PAGE RESULT ---------------------------------------*/
 /*----------------------------------------- RESULT QUIZ ----------------------------------------------*/
 .result-trophy-score {
-	line-height: 1;
+	position: relative;
 }
 
-.result-trophy-score:before {
-	font-family: "FontAwesome";
-	content: '\f091';
-	color: #9fe6bb;
-	font-size: 15rem;
+.result-trophy-score img {
+	width: 100%;
+    position: relative;
+    margin: 2rem 0;
 }
 
 .result-trophy-score-txt {
 	position: absolute;
-	left: 50%;
-	transform: translate(-50%, -12rem);
-	text-shadow: 2px 2px 6px rgba(52, 52, 52, 0.8);
-	font-size: 3.5rem;
-	color: #3c3c3c;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+    text-shadow: 2px 4px 6px rgba(95,95,95,0.74);
 }
 
 .result-score {

@@ -12,7 +12,24 @@
 		<h2 class="quizActu-title">Résultats</h2>
 		<div class="result-trophy">
 			<div class="result-trophy-score">
+				<img alt="" th:src="@{/images/trophy.png}">
 				<p class="result-trophy-score-txt" th:text="${scoreOfQuiz}"></p>
+				
+				<!-- CONDITION DE PHRASE DE SCORE -->
+				<div th:if="${scoreOfQuiz} <= 30">
+					<p>Peut mieux faire</p>
+				</div>
+				<div th:if="${scoreOfQuiz} >= 30 and ${scoreOfQuiz} <= 50">
+					<p>Encore un petit effort !</p>
+				</div>
+				<div th:if="${scoreOfQuiz} >= 50 and ${scoreOfQuiz} <= 80">
+					<p>Bravo !</p>
+				</div>
+				<div th:if="${scoreOfQuiz} >= 80 and ${scoreOfQuiz} <= 100">
+					<p>Excellent !</p>
+				</div>
+
+
 			</div>
 		</div>
 		<div class="result-score">
@@ -21,7 +38,8 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-4 pb-3" th:each="resp : ${listResponse}">
-				<div th:classappend="${resp.isTrue} ? ( ${resp.notAnswered} ? list-group-item-danger : list-group-item-success) : list-group-item-danger"
+				<div
+					th:classappend="${resp.isTrue} ? ( ${resp.notAnswered} ? list-group-item-danger : list-group-item-success) : list-group-item-danger"
 					class="card">
 					<div class="card-body">
 						<div class="true-anwser">
@@ -31,13 +49,13 @@
 								th:utext="'Question : ' + ${resp.question.content}"></h3>
 							<div th:if="${!resp.notAnswered}">
 								<p class="card-text mt-3 mb-3 text-center"
-									th:utext="'Votre réponse : ' + ${resp.content}"></p>	
+									th:utext="'Votre réponse : ' + ${resp.content}"></p>
 							</div>
-							<!-- RESPONSE NULL -->					
+							<!-- RESPONSE NULL -->
 							<div th:if="${resp.notAnswered}" class="not-answered">
-								<p>Vous	n'avez pas répondu à cette question</p>
+								<p>Vous n'avez pas répondu à cette question</p>
 								<p class="card-text mt-3 mb-3 text-center"
-									th:utext="'La bonne réponse était : ' + ${resp.content}"></p>	
+									th:utext="'La bonne réponse était : ' + ${resp.content}"></p>
 							</div>
 						</div>
 						<!-- RESPONSE FALSE -->
@@ -52,27 +70,26 @@
 								<div class="article-link">
 									<a th:if="${resp.question.article != null}"
 										th:href="${resp.question.article.link}" target="_blank">
-										Lire la suite
+										Lire la suite </a> <a
+										th:onclick="'registerFav(' + ${resp.question.article.id} + ')'"
+										class="onclik-favorite"> <i
+										th:id="'article-' + ${resp.question.article.id}"
+										class="fa icon" aria-hidden="true"
+										th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'">
+									</i>
 									</a>
-									<a th:onclick="'registerFav(' + ${resp.question.article.id} + ')'"
-										class="onclik-favorite"> 
-										<i th:id="'article-' + ${resp.question.article.id}"
-											class="fa icon" aria-hidden="true"
-											th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'">
-										</i>
-									</a> 
 								</div>
 								<div class="sharethis-inline-share-buttons"
-									data-title="Article Quiz'Actu :" 
-									th:data-url="${resp.question.article.link}">
-								</div>
+									data-title="Article Quiz'Actu :"
+									th:data-url="${resp.question.article.link}"></div>
 							</th:block>
 						</div>
 						<!-- RESPONSE TRUE -->
 						<div th:if="${resp.isTrue}" class="true-awnser">
 							<div class="accordion"></div>
 							<div th:classappend="${resp.notAnswered} ? none : accordion-item">
-								<div th:if="${!resp.notAnswered}" class="toggle button inner-html">Voir plus</div>
+								<div th:if="${!resp.notAnswered}"
+									class="toggle button inner-html">Voir plus</div>
 								<div class="content">
 									<div class="inner">
 										<th:block th:if="${resp.question.article != null}">
@@ -82,19 +99,17 @@
 												class="article-summary"></p>
 											<div class="article-link">
 												<a th:href="${resp.question.article.link}" target="_blank">
-													Lire la suite </a>
-												<a
+													Lire la suite </a> <a
 													th:onclick="'registerFav(' + ${resp.question.article.id} + ')'">
 													<i th:id="'article-' + ${resp.question.article.id}"
 													class="fa icon" aria-hidden="false"
 													th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'">
 												</i>
-												</a> 
+												</a>
 											</div>
 											<div class="sharethis-inline-share-buttons"
-												data-title="Article Quiz'Actu :" 
-												th:data-url="${resp.question.article.link}">
-											</div>
+												data-title="Article Quiz'Actu :"
+												th:data-url="${resp.question.article.link}"></div>
 										</th:block>
 									</div>
 								</div>

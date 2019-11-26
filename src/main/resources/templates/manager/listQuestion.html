@@ -12,9 +12,7 @@
 			<h1 th:utext="${quiz.title}"></h1>
 			<div th:each="question : ${quiz.questions} ">
 				<p th:utext="${question.content}"></p>
-	
 			</div>
 		</div>
-
 </body>
 </html>

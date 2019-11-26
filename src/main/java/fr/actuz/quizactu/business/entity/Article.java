@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -45,6 +46,7 @@ public class Article implements Serializable {
 	/**
 	 * 
 	 */
+	@Lob
 	private String summary;
 
 	/**

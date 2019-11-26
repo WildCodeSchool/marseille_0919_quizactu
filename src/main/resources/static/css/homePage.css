@@ -107,3 +107,12 @@ thead {
 .dashboard-ranking {
 	margin: 1rem 0;
 }
+
+/*------------------------------------- MEDIA QUERIES --------------------------------------------*/
+
+@media screen and (min-width: 992px) {
+	.news .quiz-of-day {
+		max-height:300px;
+		bottom: 4rem;
+	}
+}

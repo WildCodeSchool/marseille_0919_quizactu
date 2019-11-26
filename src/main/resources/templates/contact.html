@@ -1,36 +1,31 @@
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head th:replace="head.html :: head"></head>
-
-	<head>
-		<title>À propos</title>
-	</head>
-
+<head>
+	<title>À propos</title>
+</head>
 <body>
-	<nav th:replace="fragments/navbar.html :: nav"></nav>
+	<nav th:replace="fragments/navbar.html :: navUser"></nav>
 	<div class="mt-150 container">
 		<h1>À propos</h1>
 		<img th:src="@{/images/agathe2.png}" alt="">
 		<img class="lois" th:src="@{/images/lois2.png}" alt="">
-			<div>
-		<h3>Qui sommes nous et comment est née l'idée ?</h3>
-		<p>Agathe Perrier et Loïs Elziere, tous deux journalistes à Marseille depuis trois ans, nous nous sommes
-rencontrés dans le cadre professionnel. Notre travail nous pousse à nous intéresser aux technologies de
-l’information, et nous avons évoqué de nombreuses idées de création d’activité dans ce domaine.
-Actu’z est une idée qui remonte à l’école de journalisme. Chaque matin, nous devions répondre à un quiz
-d’actualité noté, pour nous habituer à faire notre revue de presse quotidienne. Un jeu ludique et informatif
-pour lequel une application serait bienvenue.
-D’autre part, notre milieu professionnel subit une crise et cherche à augmenter la proximité et l’interactivité
-avec son lectorat. Dans le même temps, la « gamification » de l’information se développe et les experts
-s’accordent à dire qu’elle jouera un rôle majeur dans le futur des médias. Un jeu accessible, sur l’information,
-nous a donc semblé répondre à ces problématiques.
-Cette application correspond à notre domaine de compétences et nous serions capables de la faire fonctionner
-une fois développée. Elle ne nécessite pas un investissement démesuré. Enfin, cela correspond à un désir de
-développer notre propre activité, générer nos propres revenus, nous confronter à l’entreprenariat en
-répondant à une volonté d’indépendance.</p>
+		<div>
+			<h3>Qui sommes nous et comment est née l'idée ?</h3>
+			<p>Agathe Perrier et Loïs Elziere, tous deux journalistes à Marseille depuis trois ans, nous nous sommes
+	rencontrés dans le cadre professionnel. Notre travail nous pousse à nous intéresser aux technologies de
+	l’information, et nous avons évoqué de nombreuses idées de création d’activité dans ce domaine.
+	Actu’z est une idée qui remonte à l’école de journalisme. Chaque matin, nous devions répondre à un quiz
+	d’actualité noté, pour nous habituer à faire notre revue de presse quotidienne. Un jeu ludique et informatif
+	pour lequel une application serait bienvenue.
+	D’autre part, notre milieu professionnel subit une crise et cherche à augmenter la proximité et l’interactivité
+	avec son lectorat. Dans le même temps, la « gamification » de l’information se développe et les experts
+	s’accordent à dire qu’elle jouera un rôle majeur dans le futur des médias. Un jeu accessible, sur l’information,
+	nous a donc semblé répondre à ces problématiques.
+	Cette application correspond à notre domaine de compétences et nous serions capables de la faire fonctionner
+	une fois développée. Elle ne nécessite pas un investissement démesuré. Enfin, cela correspond à un désir de
+	développer notre propre activité, générer nos propres revenus, nous confronter à l’entreprenariat en
+	répondant à une volonté d’indépendance.</p>
+		</div>
 	</div>
-	</div>
-
 </body>
-
 </html>

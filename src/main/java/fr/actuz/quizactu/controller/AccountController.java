@@ -29,6 +29,9 @@ public class AccountController {
 		String user = request.getUserPrincipal().getName();
 		Account acc = this.service.read(user);
 		model.addAttribute("connectedId", acc.getId());
+		model.addAttribute("account", acc);
+//		model.addAttribute("totalScore", acc.getScore());
+//		model.addAttribute("mailaddress", acc.getEmail());
 		return "changedPassword";
 	}
 
@@ -36,8 +39,6 @@ public class AccountController {
 	public String contact() {
 		return "contact";
 	}
-	
-
 
 	@GetMapping("/public/createAccount")
 	public String create() {
@@ -62,10 +63,7 @@ public class AccountController {
 	@PostMapping("/changedPassword")
 //	@PreAuthorize("hasRole('READ_PRIVILEGE')")
 	public String newPassword(Integer id, String newPassword) {
-
-		// Logger LOG = LoggerFactory.getLogger("Wilder");
 		this.service.updatePassword(id, newPassword);
-
 		return "redirect:/";
 	}
 

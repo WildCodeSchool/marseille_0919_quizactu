@@ -7,12 +7,12 @@
 <link rel="stylesheet" th:href="@{/css/result.css}">
 </head>
 <body>
-	<nav th:replace="fragments/navbar.html :: nav"></nav>
-
+	<nav th:replace="fragments/navbar.html :: navUser"></nav>
 	<div class="container mt-150 result">
 		<h2 class="quizActu-title">Résultats</h2>
 		<div class="result-trophy">
 			<div class="result-trophy-score">
+				<img alt="" th:src="@{/images/trophy.png}">
 				<p class="result-trophy-score-txt" th:text="${scoreOfQuiz}"></p>
 				
 				<!-- CONDITION DE PHRASE DE SCORE -->
@@ -119,7 +119,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div>
 			<div class="w-100 mx-auto">
 				<a th:href="@{/}" class="button back-home">Retourner à l'accueil</a>
@@ -158,8 +157,5 @@ $( ".inner-html" ).click(function() {
 		$(this).html("Voir plus");
 	}
 });
-
-
-
 </script>
 </html>

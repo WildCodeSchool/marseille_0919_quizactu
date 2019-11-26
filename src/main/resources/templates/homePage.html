@@ -36,7 +36,6 @@
 						<img th:src="@{/images/journalism.jpg}" class="img-responsive">
 					</div>
 					<div class="title">
-						<span th:utext="${#temporals.format(quizYesterday, 'EEEE dd MMMM yyyy')}"></span>
 						<h3>Quiz de la veille</h3>
 						<a th:href="@{/timer/yesterday}" class="button">Jouer</a>
 					</div>
@@ -48,7 +47,6 @@
 						<img th:src="@{/images/magazine.jpg}" class="img-responsive">
 					</div>
 					<div class="title">
-						<span th:utext="${#temporals.format(quizBeforeYesterday, 'EEEE dd MMMM yyyy')}"></span>
 						<h3>Quiz de l'avant veille</h3>
 						<a th:href="@{/timer/dayBeforeYesterday}" class="button">Jouer</a>
 					</div>

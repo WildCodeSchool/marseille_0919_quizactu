@@ -17,7 +17,7 @@
 
 .news .img-figure {
 	position: relative;
-	max-height: 400px;
+	max-height: 200px;
 }
 
 .news .img-figure .img-responsive {
@@ -112,6 +112,7 @@ thead {
 
 @media screen and (min-width: 992px) {
 	.news .quiz-of-day {
-		bottom: 3rem;
+		max-height:300px;
+		bottom: 4rem;
 	}
 }

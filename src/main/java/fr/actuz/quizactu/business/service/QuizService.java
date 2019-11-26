@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import fr.actuz.quizactu.business.entity.Account;
 import fr.actuz.quizactu.business.entity.Question;
 import fr.actuz.quizactu.business.entity.Quiz;
+import fr.actuz.quizactu.business.entity.QuizRecord;
 import fr.actuz.quizactu.business.entity.Response;
 import fr.actuz.quizactu.persistence.AccountRepository;
 import fr.actuz.quizactu.persistence.QuestionRepository;
@@ -33,6 +35,9 @@ public class QuizService {
 
 	@Autowired
 	private AccountRepository accountRepo;
+	
+	@Autowired
+	private QuizRecordService recordService;
 
 	public Quiz getQuizById(Integer id) {
 		return this.quizRepo.getOne(id);
@@ -81,10 +86,22 @@ public class QuizService {
 
 	public List<Quiz> getAll() {
 		List<Quiz> quiz = this.quizRepo.findAll();
-		Collections.reverse(quiz);
 		return quiz;
 	}
-
+	
+	public List<Quiz> getAllManager(){
+		List<Quiz> quizList = this.quizRepo.findAll();
+		for (Quiz quiz : quizList) {
+			if(recordService.hasQuizAlreadyBeenPlayed(quiz.getId())) {
+				quiz.setNotEditable(true);
+			} else {
+				quiz.setNotEditable(false);
+			}
+		}
+		Collections.reverse(quizList);
+		return quizList;
+	}
+	
 	public Quiz read(int id) {
 		return this.quizRepo.getOne(id);
 	}

@@ -18,4 +18,10 @@ public interface QuizRecordRepository extends JpaRepository<QuizRecord, Integer>
 	QuizRecord findOneByQuestionIdAndAccountId(Integer questionId, Integer accountId);
 
 	boolean existsByAccountIdAndQuizIdAndQuestionId(Integer accountId, Integer quizId, Integer questionId);
+	
+	boolean existsByQuizId(Integer quizId);
+	
+	boolean existsByQuestionId(Integer questionId);
+	
+	boolean existsByResponseId(Integer responseId);
 }

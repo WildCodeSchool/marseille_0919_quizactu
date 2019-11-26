@@ -9,5 +9,6 @@
 	<div th:each="response : ${listResp}">
 		<p th:utext=${response.content}></p>
 	</div>
+	<footer th:replace="fragments/navbar.html :: footer"></footer>
 </body>
 </html>

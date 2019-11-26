@@ -20,6 +20,7 @@ import fr.actuz.quizactu.business.entity.Question;
 import fr.actuz.quizactu.business.entity.Quiz;
 import fr.actuz.quizactu.business.entity.Response;
 import fr.actuz.quizactu.business.service.ArticleService;
+import fr.actuz.quizactu.business.service.QuizRecordService;
 import fr.actuz.quizactu.business.service.QuizService;
 
 @Controller
@@ -33,15 +34,21 @@ public class ManageQuizController {
 
 	@Autowired
 	private ArticleService articleService;
+	
+	@Autowired
+	private QuizRecordService recordService;
 
 	@ModelAttribute("quizId")
 	public Integer quizId() {
 		return null;
 	}
 
-	@GetMapping("/home")
-	public String listQuizCreate(Model model) {
-		model.addAttribute("listQuiz", this.service.getAll());
+	@GetMapping(value= {"/home", "/home/{isPlayed}"})
+	public String listQuizCreate(Model model, @PathVariable(required = false) Boolean isPlayed) {
+		model.addAttribute("listQuiz", this.service.getAllManager());
+		if (isPlayed != null) {
+			model.addAttribute("quizPlayed", isPlayed);
+		}
 		return "manager/home";
 	}
 
@@ -51,11 +58,14 @@ public class ManageQuizController {
 		return "manager/listResponses";
 	}
 
-	@GetMapping("/quizDetails/{id}")
-	public String getQuestions(Model model, @PathVariable Integer id) {
+	@GetMapping(value= {"/quizDetails/{id}", "/quizDetails/{id}/{questionAnswered}"})
+	public String getQuestions(Model model, @PathVariable Integer id,@PathVariable(required = false) Boolean questionAnswered) {
 		Quiz quiz = this.service.read(id);
 		model.addAttribute("quiz", quiz);
 		model.addAttribute("quizId", quiz.getId());
+		if (questionAnswered != null) {
+			model.addAttribute("questionAnswered", questionAnswered);
+		}
 		return "manager/quizDetails";
 	}
 
@@ -148,20 +158,35 @@ public class ManageQuizController {
 
 	@GetMapping("/deleteQuiz/{quizId}")
 	public String deleteQuiz(@PathVariable Integer quizId) {
-		this.service.delete(quizId);
-		return "redirect:/manager/home";
+		if (this.recordService.hasQuizAlreadyBeenPlayed(quizId)) {
+			Boolean isPlayed = this.recordService.hasQuizAlreadyBeenPlayed(quizId);
+			return "redirect:/manager/home/" + isPlayed;
+		} else {
+			this.service.delete(quizId);
+			return "redirect:/manager/home";
+		}
 	}
 
 	@GetMapping("/deleteQuestion/{questionId}")
 	public String deleteQuestion(@PathVariable Integer questionId, @ModelAttribute("quizId") Integer quizId) {
-		this.service.deleteQuestion(questionId);
-		return "redirect:/manager/quizDetails/" + quizId;
+		if(this.recordService.hasQuestionAlreadyBeenAnswered(questionId)) {
+			Boolean isAnwsered = this.recordService.hasQuestionAlreadyBeenAnswered(questionId);
+			return "redirect:/manager/quizDetails/" + quizId + "/" + isAnwsered;
+		} else {
+			this.service.deleteQuestion(questionId);
+			return "redirect:/manager/quizDetails/" + quizId;
+		}
 	}
 
 	@GetMapping("/deleteResponse/{responseId}")
 	public String deleteResponse(@PathVariable Integer responseId, @ModelAttribute("quizId") Integer quizId) {
-		this.service.deleteResponse(responseId);
-		return "redirect:/manager/quizDetails/" + quizId;
+		if(this.recordService.hasQuestionAlreadyBeenAnswered(service.getResponseById(responseId).getQuestion().getId())) {
+			Boolean isAnswered = this.recordService.hasQuestionAlreadyBeenAnswered(service.getResponseById(responseId).getQuestion().getId());
+			return "redirect:/manager/quizDetails/" + quizId + "/" + isAnswered;
+		} else {
+			this.service.deleteResponse(responseId);
+			return "redirect:/manager/quizDetails/" + quizId;
+		}
 	}
 
 	@GetMapping("/deleteArticle/{articleId}")

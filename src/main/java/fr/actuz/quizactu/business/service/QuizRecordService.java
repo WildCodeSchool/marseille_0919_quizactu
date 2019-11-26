@@ -98,5 +98,18 @@ public class QuizRecordService {
 	public boolean compareIfQuestionAlreadyAnswered(Integer quizId, Integer accountId, Integer questionId) {
 		return !this.recordRepo.existsByAccountIdAndQuizIdAndQuestionId(accountId, quizId, questionId);
 	}
+	
+	public Boolean hasQuizAlreadyBeenPlayed(Integer quizId) {
+		return this.recordRepo.existsByQuizId(quizId);
+	}
+	
+	public Boolean hasQuestionAlreadyBeenAnswered(Integer questionId) {
+		return this.recordRepo.existsByQuestionId(questionId);
+	}
+	
+	public List<QuizRecord> getAll(){
+		List<QuizRecord> records = this.recordRepo.findAll();
+		return records;
+	}
 
 }

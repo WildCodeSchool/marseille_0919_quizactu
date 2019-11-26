@@ -8,11 +8,12 @@
 </head>
 <body>
 	<nav th:replace="fragments/navbar.html :: navManager"></nav>
-		<div class="container mt-150">
+		<div class="container">
 			<h1 th:utext="${quiz.title}"></h1>
 			<div th:each="question : ${quiz.questions} ">
 				<p th:utext="${question.content}"></p>
 			</div>
 		</div>
+		<footer th:replace="fragments/navbar.html :: footer"></footer>
 </body>
 </html>

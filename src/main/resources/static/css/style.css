@@ -38,6 +38,13 @@ body {
 	background-color: #fafafa;
 	text-align: center;
 	color: #444;
+	margin-bottom: 100px;
+	height : 100vh;
+	padding-top: 150px;
+}
+
+body > div.container {
+	padding-bottom: 150px;
 }
 
 h1 {
@@ -47,10 +54,6 @@ h1 {
 
 h3 {
 	font-size: 1.2rem
-}
-
-.mt-150 {
-	margin-top: 6rem;
 }
 
 a {
@@ -268,6 +271,16 @@ svg {
 	/* this value is the pixel circumference of the circle */
 	stroke-dashoffset: 440;
 	transition: all 1s linear;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	background-color: #9fe6bb;
+}
+
+.footer {
+	color: #fff;
 }
 
 /* Page chagedPassword */

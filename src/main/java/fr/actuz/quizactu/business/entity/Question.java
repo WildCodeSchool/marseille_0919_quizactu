@@ -158,12 +158,12 @@ public class Question implements Serializable {
 		this.article = article;
 	}
 
-	public Response getCorrectResponse() {
-		Response result = null;
+	public List<Response> getCorrectResponses() {
+		List<Response> result = new ArrayList<>();
 		for (Response resp : this.responses) {
 			// Chercher la bonne réponse et si trouvée remplir result.
 			if (resp.getIsTrue()) {
-				result = resp;
+				result.add(resp);
 			}
 		}
 		return result;

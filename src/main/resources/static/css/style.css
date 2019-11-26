@@ -8,6 +8,7 @@
 * 	CLASS :
 *		Class "button" à mettre sur les <a> pour que le style s'applique
 *		Class "quizActu-title" à mettre sur les <h2> pour appliquer le border-bottom
+*		Class "strong" pour afficher le text en bold
 *
 *	README :
 *		Pensez à intégrer vos pages en MOBIL FIRST merci
@@ -90,6 +91,10 @@ form {
 
 .quizActu-title {
 	border-bottom: 1px solid #e8e8e8;
+}
+
+.strong {
+	font-weight: bold;
 }
 
 .form-control {

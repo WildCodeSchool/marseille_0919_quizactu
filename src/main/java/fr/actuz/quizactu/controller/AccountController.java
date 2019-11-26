@@ -36,8 +36,6 @@ public class AccountController {
 	public String contact() {
 		return "contact";
 	}
-	
-
 
 	@GetMapping("/public/createAccount")
 	public String create() {
@@ -63,9 +61,7 @@ public class AccountController {
 //	@PreAuthorize("hasRole('READ_PRIVILEGE')")
 	public String newPassword(Integer id, String newPassword) {
 
-		// Logger LOG = LoggerFactory.getLogger("Wilder");
 		this.service.updatePassword(id, newPassword);
-
 		return "redirect:/";
 	}
 

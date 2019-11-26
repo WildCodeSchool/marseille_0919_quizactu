@@ -46,9 +46,9 @@
 					<li class="nav-item mx-0 mx-lg-1" role="presentation"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						th:href="@{/ranking}">Classement</a></li>
-					<li class="nav-item mx-0 mx-lg-1" role="presentation"><a
+					<li class="nav-item mx-0 mx-lg-1" role="presentation"><a href="#"
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						th:href="@{/changedPassword}">Paramètres</a>
+						th:href="@{/favoriteArticles}">Articles Favoris</a>
 					<li class="nav-item mx-0 mx-lg-1 dropdown"><a
 						class="nav-link dropdown-toggle nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -57,16 +57,18 @@
 							[[${#httpServletRequest.remoteUser}]]</a>
 						<div class="dropdown-menu drop-menu"
 							aria-labelledby="navbarDropdown">
-							<a th:href="@{/favoriteArticles}" class="dropdown-item" href="#"> <i
-								class="fa fa-user pr-1"></i> Articles Favoris
+							<a class="dropdown-item" href="#" th:href="@{/changedPassword}"> <i
+								class="fa fa-user pr-1"></i>
+								Mon compte
 							</a> <a class="dropdown-item" href="#">
 								<form th:action="@{/logout}" class="mt-0" method="post">
-									
-									<button id="logout-btn"><i class="fa fa-power-off"></i> Se déconnecter</button>
+
+									<button id="logout-btn">
+										<i class="fa fa-power-off"></i> Se déconnecter
+									</button>
 								</form>
 							</a>
-						</div>
-					</li>
+						</div></li>
 				</ul>
 			</div>
 		</div>

@@ -1,9 +1,13 @@
 .navAccount {
 	border: solid 1px white;
 	margin-top: 97px;
-	margin-right: 45%;
 	border-radius: 50px;
-	display: inline-flex;
+}
+
+.headUser {
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .fa-5x {

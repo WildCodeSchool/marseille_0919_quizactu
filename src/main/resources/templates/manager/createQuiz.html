@@ -6,7 +6,7 @@
 <title>Création de quiz</title>
 </head>
 <body>
-	<nav th:replace="fragments/navbar.html :: nav"></nav>
+	<nav <nav th:replace="fragments/navbar.html :: navManager"></nav>></nav>
 	<div class="container">
 		<h1 th:if="${quizId==null}">Ajouter un quiz</h1>
 		<h1 th:if="${quizId}">Modifier le quiz</h1>

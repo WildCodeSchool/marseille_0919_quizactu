@@ -14,10 +14,6 @@ h2 {
 	text-align: justify;
 }
 
-.card {
-	height: calc(100vh - 5rem);
-}
-
 .card-body {
 	padding: .5rem;
 }
@@ -28,7 +24,9 @@ h2 {
 
 .progress {
 	height: 15px;
-	margin: 1rem;
+	position: relative;
+	top: 0;
+	z-index: 99999999999999;
 }
 
 .response div {
@@ -40,7 +38,7 @@ h2 {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-    word-break: break-word;
+	word-break: break-word;
 }
 
 .button {
@@ -58,21 +56,36 @@ h2 {
 	border-radius: 10px;
 }
 
+.copyright {
+	background-color: black;
+	color: white;
+	padding: 5px;
+	position:absolute;
+	bottom: 0%;
+	left:50%;
+	margin:0px;
+	    transform: translate(-50%, 0);
+}
+.img-copyright{
+	position: relative
+}
+
+@media screen and (min-width: 768px) {
+	.card img {
+		width: auto;
+	}
 @media screen and (min-width: 992px) {
 	.card img {
 		width: 50%;
 	}
-	
 	.card-body {
 		width: 70%;
 		margin: 0 auto;
 	}
-	
 	.progress {
 		width: 70%;
 		margin: 0 auto;
 	}
-	
 	.card-body h2 {
 		text-align: center;
 	}

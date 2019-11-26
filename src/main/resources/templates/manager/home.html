@@ -11,6 +11,8 @@
 		<nav th:replace="fragments/navbar.html :: nav"></nav>
 	</div>
 	<div class="mt-150 container">
+		<h3 th:if="${quizPlayed}">Quiz déja fait par un utilisateur, impossible de le supprimer</h3>
+	
 		<div class="msgUser" th:if="${#httpServletRequest.remoteUser != null}">
 			<h2 th:inline="text">Bienvenue
 				[[${#httpServletRequest.remoteUser}]]</h2>
@@ -55,14 +57,20 @@
 												th:action="@{/manager/setQuiz/} + ${quiz.id}">
 												<div class="form-group">
 													<label th:for="title + ${quiz.id}" class="col-form-label">Titre
-														:</label> <input type="text" class="form-control"
-														th:id="title + ${quiz.id}" name="title"
-														th:value="${quiz.title}"> <label
-														th:for="publicationDate + ${quiz.id}"
-														class="col-form-label">Date :</label> <input type="date"
-														class="form-control" th:id="publicationDate + ${quiz.id}"
-														name="publicationDate"
-														th:value="${#temporals.format(quiz.publicationDate, 'yyyy-MM-dd')}">
+														:</label> 
+													<input type="text" class="form-control"
+													th:id="title + ${quiz.id}" name="title"
+													th:value="${quiz.title}"> 
+													<label
+													th:for="publicationDate + ${quiz.id}"
+													class="col-form-label">Date :</label> 
+													<p th:if="${quiz.notEditable}">Quiz déjà fait, date de publication 
+													non modifiable</p>
+													<input type="date"
+													th:if="${!quiz.notEditable}"
+													class="form-control" th:id="publicationDate + ${quiz.id}"
+													name="publicationDate"
+													th:value="${#temporals.format(quiz.publicationDate, 'yyyy-MM-dd')}">
 												</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary"

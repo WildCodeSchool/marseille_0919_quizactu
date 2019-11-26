@@ -4,6 +4,7 @@
 <body>
 	<nav th:replace="fragments/navbar.html :: nav"></nav>
 	<div class="container mt-150">
+		<h3 th:if="${questionAnswered}">Question / Réponse déjà répondue par un utilisateur, impossible de la supprimer</h3>
 		<h2>Modification du quiz</h2>
 		<hr>
 		<h1 th:utext="${quiz.title}"></h1>

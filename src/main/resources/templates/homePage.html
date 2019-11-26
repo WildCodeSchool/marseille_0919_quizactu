@@ -17,8 +17,8 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="news">
-					<div class="img-figure">
-						<img th:src="@{/images/media.jpg}" class="img-responsive">
+					<div class="img-figure quiz-of-day">
+						<img th:src="${firstPictureOfQuizOfTheDay}" class="img-responsive">
 					</div>
 					<div class="title">
 						<span th:utext="${#temporals.format(quizToday, 'EEEE dd MMMM yyyy')}"></span>
@@ -33,7 +33,7 @@
 			<div class="col-lg-6">
 				<div class="news">
 					<div class="img-figure">
-						<img th:src="@{/images/journalism.jpg}" class="img-responsive">
+						<img th:src="${firstPictureOfQuizYesterday}" class="img-responsive">
 					</div>
 					<div class="title">
 						<h3>Quiz de la veille</h3>
@@ -44,7 +44,7 @@
 			<div class="col-lg-6">
 				<div class="news">
 					<div class="img-figure">
-						<img th:src="@{/images/magazine.jpg}" class="img-responsive">
+						<img th:src="${firstPictureOfQuizBeforeYesterday}" class="img-responsive">
 					</div>
 					<div class="title">
 						<h3>Quiz de l'avant veille</h3>

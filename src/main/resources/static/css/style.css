@@ -297,4 +297,12 @@ svg {
 /* 		border-radius: 0px;		 */
 		
 	}
+
+
+.table .thead-light th {
+	background-color: #9fe6bb;
+}
+.btn-details {
+	width: 170px;
+}
 }

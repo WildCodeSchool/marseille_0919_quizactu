@@ -33,12 +33,12 @@ public class IndexController {
 		return "ranking";
 	}
 
-	@GetMapping("/account")
+	@GetMapping("/favoriteArticles")
 	public String accountProfile(Model model, Integer accountId, Integer articleId, Principal principal) {
 		Account account = this.accountServ.read(principal.getName());
 		model.addAttribute("account", account);
 		model.addAttribute("totalScore", account.getScore());
-		return "account";
+		return "favoriteArticles";
 	}
 
 }

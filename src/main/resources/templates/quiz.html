@@ -9,7 +9,6 @@
 	<nav th:replace="fragments/navbar.html :: navCreate"></nav>
 	<div class="container mt-150">
 		<div class="card">
-<<<<<<< HEAD
 			<div class="img-copyright">
 				<img class="card-img-top" th:if="${question.image != null}"
 					th:src="${question.imageEncoded}" />
@@ -23,19 +22,6 @@
 					role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
 
-=======
-			<img class="card-img-top"
-				th:if="${question.image != null}" th:src="${question.imageEncoded}" />
-				<div th:if="${!validation}" class="progress">
-					<div id="questionTimer" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-						aria-valuemin="0" aria-valuemax="100"></div>
-				</div>
-<!-- 	<div class="progress" style="height: 20px;"> -->
-<!-- 		<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" -->
-<!-- 			></div> -->
-<!-- 	</div> -->
-		
->>>>>>> 51f38b1c1dd8e9f839bff859086553f71be19944
 			<div class="card-body">
 				<h2 th:utext="${question.getContent()}"></h2>
 				<div

@@ -10,7 +10,7 @@
 
 	<!-- NAV NOT LOGGED IN -->
 	<nav class="navbar navbar-light navbar-expand-lg fixed-top"
-		id="mainNav" th:if="${#httpServletRequest.remoteUser == null}">
+		id="mainNav" th:fragment="navCreate">
 		<div class="container ctn-nav ">
 			<a class="navbar-brand js-scroll-trigger title-nav navbar-connexion"
 				th:href="@{/}"><img class="logo mr-2 "
@@ -20,7 +20,7 @@
 
 	<!-- NAV LOGGED IN -->
 	<nav class="navbar navbar-light navbar-expand-lg fixed-top"
-		id="mainNav" th:if="${#httpServletRequest.remoteUser != null}">
+		id="mainNav" th:fragment="navUser">
 		<div class="container ctn-nav">
 			<a class="navbar-brand js-scroll-trigger title-nav" th:href="@{/}"><img
 				class="logo mr-2" th:src="@{/images/logo6.png}" alt="">Quiz'Actu</a>
@@ -46,9 +46,9 @@
 					<li class="nav-item mx-0 mx-lg-1" role="presentation"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						th:href="@{/ranking}">Classement</a></li>
-					<li class="nav-item mx-0 mx-lg-1" role="presentation"><a
+					<li class="nav-item mx-0 mx-lg-1" role="presentation"><a href="#"
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						th:href="@{/changedPassword}">Paramètres</a>
+						th:href="@{/favoriteArticles}">Mes Articles</a>
 					<li class="nav-item mx-0 mx-lg-1 dropdown"><a
 						class="nav-link dropdown-toggle nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -57,18 +57,39 @@
 							[[${#httpServletRequest.remoteUser}]]</a>
 						<div class="dropdown-menu drop-menu"
 							aria-labelledby="navbarDropdown">
-							<a th:href="@{/account}" class="dropdown-item" href="#"> <i
-								class="fa fa-user pr-1"></i> Mon compte
+							<a class="dropdown-item" href="#" th:href="@{/changedPassword}"> <i
+								class="fa fa-user pr-1"></i>
+								Mon compte
 							</a> <a class="dropdown-item" href="#">
 								<form th:action="@{/logout}" class="mt-0" method="post">
-									
 									<button id="logout-btn"><i class="fa fa-power-off"></i> Se déconnecter</button>
 								</form>
 							</a>
-						</div>
-					</li>
+						</div></li>
 				</ul>
 			</div>
+		</div>
+	</nav>
+	 <!-- NAV LOGGED MANAGER  -->
+	<nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav" th:fragment="navManager">
+		<div class="container ctn-nav">
+			<a class="navbar-brand js-scroll-trigger title-nav" th:href="@{/manager/home}">
+				<img class="logo mr-2" th:src="@{/images/logo6.png}" alt="">Quiz'Actu
+			</a>
+			<button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right text-uppercase text-white rounded" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+				<i class="fa fa-bars"></i>
+			</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="nav navbar-nav ml-auto">
+				<li class="nav-item" role="presentation">
+					<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" th:href="@{/manager/createQuiz}">Ajouter un quiz</a>
+				<li class="nav-item " role="presentation">	
+					<form th:action="@{/logout}" class="mt-0" method="post">
+						<button id="logout-btn" th:style="|margin-top:1em;|" class="rounded js-scroll-trigger"><i class="fa fa-power-off"></i> Se déconnecter</button>
+					</form>
+				</li>
+			</ul>
+		</div>
 		</div>
 	</nav>
 </body>

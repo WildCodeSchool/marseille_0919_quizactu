@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head th:insert="/head.html :: head"></head>
 <body>
-	<nav th:replace="fragments/navbar.html :: nav"></nav>
+	<nav th:replace="fragments/navbar.html :: navManager"></nav>
 	<div class="container mt-150">
 		<h3 th:if="${questionAnswered}">Question / Réponse déjà répondue par un utilisateur, impossible de la supprimer</h3>
 		<h2>Modification du quiz</h2>
@@ -11,24 +12,28 @@
 		<p th:utext="${#temporals.format(quizYesterday, 'EEEE dd MMMM yyyy')}"></p>
 		<div th:each="question : ${quiz.questions}">
 			<!-- Start question -->
+			<h2 class="mt-150 shadow-sm p-3 mb-5 bg-white rounded border border-dark">Modifier la question</h2>
+			<hr>
+			<div class="row mt-5 shadow-sm p-3 mb-5 bg-white rounded">
+				<div class="col-12">
 
-			<div class="row mt-5 shadow-lg p-3 mb-5 bg-white rounded">
-				<div class="col-6">
-					<div class="card mb-3 border-0" style="width: 1000px;">
-						<div class="row no-gutters">
-							<div class="col-md-4">
-								<img class="img-thumbnail border-0" th:if="${question.image != null}" th:src="${question.imageEncoded}" />
-							</div>
-							<div class="col-md-8 ">
-								<div class="card-body">
-									<div class="card-title">
-										<h3>Modifier la question</h3>
-										<p class="card-text" th:utext="${question.content}"></p>
-										<button type="button" class="button btn-primary px-5" data-toggle="modal"
-											th:data-target="'#' + modalQuestion + ${question.id}" data-whatever="@mdo">Modifier</button>
-										<a class="btn btn-danger" th:href="@{/manager/deleteQuestion/} + ${question.id}">X</a>
-									</div>
-								</div>
+					<div class="row no-gutters">
+						<div class="col-md-6">
+							<img class="img-thumbnail border-0"
+								th:if="${question.image != null}"
+								th:src="${question.imageEncoded}" />
+						</div>
+						<div class="col-md-4">
+							<div class="card-body">
+
+								<h2 class="card-text" th:utext="${question.content}"></h2>
+								<button type="button" class="button btn-primary px-5"
+									data-toggle="modal"
+									th:data-target="'#' + modalQuestion + ${question.id}"
+									data-whatever="@mdo">Modifier</button>
+
+								<a class="btn btn-danger"
+									th:href="@{/manager/deleteQuestion/} + ${question.id}">X</a>
 							</div>
 						</div>
 					</div>
@@ -37,33 +42,47 @@
 
 
 				<!-- ********** MODAL QUESTION ************ -->
-				<div class="modal fade" th:id="modalQuestion + ${question.id}" tabindex="-1" role="dialog"
+				<div class="modal fade" th:id="modalQuestion + ${question.id}"
+					tabindex="-1" role="dialog"
 					th:aria-labelledby="titleModal + ${question.id}" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" th:id="titleModal + ${question.id}">Modification de la question</h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<h5 class="modal-title" th:id="titleModal + ${question.id}">Modification
+									de la question</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
 							<div class="modal-body">
-								<form method="post" th:action="@{/manager/setQuestion/} + ${question.id}" enctype="multipart/form-data">
+								<form method="post"
+									th:action="@{/manager/setQuestion/} + ${question.id}"
+									enctype="multipart/form-data">
 									<div class="form-group">
-										<label th:for="'#' + questionContent + ${question.id}" class="col-form-label">Question :</label> <input
-											type="text" class="form-control" th:id="questionContent + ${question.id}" name="content"
-											th:value="${question.content}"> <label th:for="'#' + timerQuestion + ${question.id}"
-											class="col-form-label">Timer Question :</label> <input type="number" class="form-control"
-											th:id="timerQuestion + ${question.id}" name="timerQuestion" th:value="${question.timerQuestion}"> <label
-											th:for="'#' + timerResponse + ${question.id}" class="col-form-label">Timer Réponse :</label> <input
-											type="number" class="form-control" th:id="timerResponse + ${question.id}" name="timerResponse"
-											th:value="${question.timerResponse}"> <label th:for="'#' + image + ${question.id}"
-											class="col-form-label">Image :</label> <input type="file" class="form-control" th:id="image + ${question.id}"
-											name="image" accept="image/png, image/jpeg">
+										<label th:for="'#' + questionContent + ${question.id}"
+											class="col-form-label">Question :</label> <input type="text"
+											class="form-control" th:id="questionContent + ${question.id}"
+											name="content" th:value="${question.content}"> <label
+											th:for="'#' + timerQuestion + ${question.id}"
+											class="col-form-label">Timer Question :</label> <input
+											type="number" class="form-control"
+											th:id="timerQuestion + ${question.id}" name="timerQuestion"
+											th:value="${question.timerQuestion}"> <label
+											th:for="'#' + timerResponse + ${question.id}"
+											class="col-form-label">Timer Réponse :</label> <input
+											type="number" class="form-control"
+											th:id="timerResponse + ${question.id}" name="timerResponse"
+											th:value="${question.timerResponse}"> <label
+											th:for="'#' + image + ${question.id}" class="col-form-label">Image
+											:</label> <input type="file" class="form-control"
+											th:id="image + ${question.id}" name="image"
+											accept="image/png, image/jpeg">
 									</div>
 									<div class="modal-footer">
 
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+										<button type="button" class="btn btn-secondary"
+											data-dismiss="modal">Annuler</button>
 										<button type="submit" class="btn btn-primary">Enregistrer</button>
 									</div>
 								</form>
@@ -72,13 +91,15 @@
 					</div>
 				</div>
 			</div>
+			<h3 class="mt-5">Modifier les réponses</h3>
 			<!-- End div question -->
 
 
 
 
 			<!-- Start div response -->
-			<div th:each="resp : ${question.responses}">
+			<div class="box-resp shadow-sm p-3 mb-5 bg-white rounded"
+				th:each="resp : ${question.responses}">
 				<table class="table">
 					<thead class="thead-light">
 						<tr>
@@ -86,44 +107,58 @@
 						</tr>
 					</thead>
 					<tbody>
-
+						<tr><th><span th:if="${resp.isTrue} == true"
+							class="badge badge-success">Vraie</span> <span
+							th:if="${resp.isTrue} == false" class="badge badge-danger">Fausse</span></th></tr>
 						<tr class="reponse_tr">
-
 							<th scope="row" th:utext="${resp.content}"></th>
-							<th><button type="button" class="btn btn-primary" data-toggle="modal"
-									th:data-target="'#' + modalResponse + ${resp.id}" data-whatever="@mdo">editer</button></th>
-							<th><a class="btn btn-danger" th:href="@{/manager/deleteResponse/} + ${resp.id}">X</a></th>
-						</tr>
+							<th><button type="button" class="btn btn-primary"
+									data-toggle="modal"
+									th:data-target="'#' + modalResponse + ${resp.id}"
+									data-whatever="@mdo">editer</button></th>
+							<th><a class="btn btn-danger"
+								th:href="@{/manager/deleteResponse/} + ${resp.id}">X</a></th>
 					</tbody>
+
 				</table>
-				
+
 
 				<!-- ************** MODAL RESPONSE ********** -->
-				<div class="modal fade" th:id="modalResponse + ${resp.id}" tabindex="-1" role="dialog"
-					th:aria-labelledby="titleModalResponse + ${resp.id}" aria-hidden="true">
+				<div class="modal fade" th:id="modalResponse + ${resp.id}"
+					tabindex="-1" role="dialog"
+					th:aria-labelledby="titleModalResponse + ${resp.id}"
+					aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" th:id="titleModalResponse + ${resp.id}">Modification de la réponse</h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<h5 class="modal-title" th:id="titleModalResponse + ${resp.id}">Modification
+									de la réponse</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
 							<div class="modal-body">
-								<form method="post" th:action="@{/manager/setResponse/} + ${resp.id}">
+								<form method="post"
+									th:action="@{/manager/setResponse/} + ${resp.id}">
 									<div class="form-group">
-										<label th:for="'#' + responseContent + ${resp.id}" class="col-form-label">Réponse :</label> <input type="text"
-											class="form-control" th:id="responseContent + ${resp.id}" name="content" th:value="${resp.content}">
+										<label th:for="'#' + responseContent + ${resp.id}"
+											class="col-form-label">Réponse :</label> <input type="text"
+											class="form-control" th:id="responseContent + ${resp.id}"
+											name="content" th:value="${resp.content}">
 										<div class="form-group">
-											<label>Cette réponse est </label> <label class="radio-inline"> <input type="radio" name="radioIsTrue"
-												id="optionsRadiosInline1" value="1" th:checked="${resp.isTrue}" />Vraie
-											</label> <label class="radio-inline"> <input type="radio" name="radioIsTrue" id="optionsRadiosInline2"
-												value="0" th:checked="${resp.isTrue} == false" />Fausse
-											</label>
+											<label>Cette réponse est </label> <label class="radio-inline">
+												<input type="radio" name="radioIsTrue"
+												id="optionsRadiosInline1" value="1"
+												th:checked="${resp.isTrue}" />Vraie
+											</label><label class="radio-inline"><input type="radio"
+												name="radioIsTrue" id="optionsRadiosInline2" value="0"
+												th:checked="${resp.isTrue} == false" />Fausse </label>
 										</div>
 									</div>
 									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+										<button type="button" class="btn btn-secondary"
+											data-dismiss="modal">Annuler</button>
 										<button type="submit" class="btn btn-primary">Enregistrer</button>
 									</div>
 								</form>
@@ -132,7 +167,8 @@
 					</div>
 				</div>
 			</div>
-			<a th:href="@{/manager/createResponse/} + ${question.id}">Ajouter une réponse</a>
+			<a class="button btn-details" th:href="@{/manager/createResponse/} + ${question.id}">Ajouter
+				une réponse</a>
 
 			<!-- End div response -->
 
@@ -158,40 +194,56 @@
 						<td>
 							<button type="button" class="btn btn-primary" data-toggle="modal"
 								th:data-target="'#'+  modalArticle + ${question.article.id}"
-								data-whatever="@mdo">editer</button>
-							<a class="btn btn-danger" th:href="@{/manager/deleteArticle/} + ${question.article.id}">X</a>
+								data-whatever="@mdo">editer</button> <a class="btn btn-danger"
+							th:href="@{/manager/deleteArticle/} + ${question.article.id}">X</a>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 			<th:block th:if="${question.article}">
-				<div class="modal fade" th:id="modalArticle + ${question.article.id}" tabindex="-1" role="dialog"
-					th:aria-labelledby="titleModalArticle + ${question.article.id}" aria-hidden="true">
+				<div class="modal fade"
+					th:id="modalArticle + ${question.article.id}" tabindex="-1"
+					role="dialog"
+					th:aria-labelledby="titleModalArticle + ${question.article.id}"
+					aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" th:id="titleModalArticle + ${question.article.id}">Modification de l'article</h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<h5 class="modal-title"
+									th:id="titleModalArticle + ${question.article.id}">Modification
+									de l'article</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
 							<div class="modal-body">
-								<form method="post" th:action="@{/manager/setArticle/} + ${question.article.id}">
+								<form method="post"
+									th:action="@{/manager/setArticle/} + ${question.article.id}">
 									<div class="form-group">
-										<label th:for="articleTitle + ${question.article.id}" class="col-form-label">Titre :</label> <input type="text"
-											class="form-control" th:id="articleTitle + ${question.article.id}" name="title"
-											th:value="${question.article.title}"> <label th:for="articleMedia + ${question.article.id}"
-											class="col-form-label">Titre :</label> <input type="text" class="form-control"
-											th:id="articleMedia + ${question.article.id}" name="media" th:value="${question.article.media}"> <label
-											th:for="articleLink + ${question.article.id}" class="col-form-label">Titre :</label> <input type="text"
-											class="form-control" th:id="articleLink + ${question.article.id}" name="link"
-											th:value="${question.article.link}"> <label th:for="articleSummary + ${question.article.id}"
-											class="col-form-label">Titre :</label> <input type="text" class="form-control"
-											th:id="articleSummary + ${question.article.id}" name="summary" th:value="${question.article.summary}">
+										<label th:for="articleTitle + ${question.article.id}"
+											class="col-form-label">Titre de l'article :</label> <input type="text"
+											class="form-control"
+											th:id="articleTitle + ${question.article.id}" name="title"
+											th:value="${question.article.title}"> <label
+											th:for="articleMedia + ${question.article.id}"
+											class="col-form-label">Media :</label> <input type="text"
+											class="form-control"
+											th:id="articleMedia + ${question.article.id}" name="media"
+											th:value="${question.article.media}"> <label
+											th:for="articleLink + ${question.article.id}"
+											class="col-form-label">Lien :</label> <input type="text"
+											class="form-control"
+											th:id="articleLink + ${question.article.id}" name="link"
+											th:value="${question.article.link}"> <label
+											th:for="articleSummary + ${question.article.id}"
+											class="col-form-label">Résumé :</label> <textarea											class="form-control"
+											th:id="articleSummary + ${question.article.id}"
+											name="summary" th:value="${question.article.summary}"></textarea>
 									</div>
 									<div class="modal-footer">
-	
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+										<button type="button" class="btn btn-secondary"
+											data-dismiss="modal">Annuler</button>
 										<button type="submit" class="btn btn-primary">Enregistrer</button>
 									</div>
 								</form>
@@ -201,14 +253,8 @@
 				</div>
 			</th:block>
 		</div>
-		<a th:href="@{/manager/createQuestion/} + ${quiz.id}">Ajouter une question</a>
+		<a class="button btn-details" th:href="@{/manager/createQuestion/} + ${quiz.id}">Ajouter une
+			question</a>
 	</div>
-	<!-- End div response -->
-
-	<!-- <p th:utext="${question.content}"></p>
-
-			<div th:each="resp : ${question.responses}">
-				<p th:utext="${resp.content}"></p>
-			</div> -->
 </body>
 </html>

@@ -1,29 +1,37 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-	<head th:replace="head.html :: head"></head>
-	<head>
-		<title>Connexion</title>
-	</head>
-	<body>
-		<nav th:replace="fragments/navbar.html :: nav"></nav>
-		
-		<div class="container login mt-150">
-		<h1>Connexion</h1>
-			<form class="form-signin" th:action="@{/login}" method="post">
-				<div class="form-group">
-					<label for="username">Nom d'utilisateur</label> <input id="username"
-						name="username" class="form-control" required>
-				</div>
-				<div class="form-group">
-					<label for="password">Mot de passe</label> <input id="password"
-						name="password" type="password" class="form-control" required>
-				</div>
-				<a th:href="@{/public/forgotPassword}">mot de passe oublié</a>
-				<button class="btn btn-lg btn-block button">Valider</button>
-			</form>
-			<h3>
-				<a th:href="@{/public/createAccount}">Créer un compte</a>
-			</h3>
-		</div>
-	</body>
+<<<<<<< HEAD
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head.html :: head"></head>
+<head>
+<title>Connexion</title>
+</head>
+<body>
+<div class="container login mt-150">
+	<nav th:replace="fragments/navbar.html :: nav"></nav>
+		<div class="row">
+			<div class="col-6">
+				<div class="text-log"></div>
+			</div>
+			<div class="col-6">
+				<h1>Connexion</h1>
+				<form class="form-signin" th:action="@{/login}" method="post">
+					<div class="form-group">
+						<label for="username">Nom d'utilisateur</label> <input
+							id="username" name="username" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label for="password">Mot de passe</label> <input id="password"
+							name="password" type="password" class="form-control" required>
+					</div>
+					<a th:href="@{/public/forgotPassword}">mot de passe oublié</a>
+					<button class="btn btn-lg btn-block button">Valider</button>
+				</form>
+				<h3>
+					<a th:href="@{/public/createAccount}">Créer un compte</a>
+				</h3>
+			</div>
+	</div>
+	</div>
+</body>
 </html>

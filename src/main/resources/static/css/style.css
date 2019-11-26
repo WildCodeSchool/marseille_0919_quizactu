@@ -28,6 +28,7 @@
 html {
 	font-size: 1rem; /* 16px */
 	width: 100%;
+	height: 100v;
 }
 
 body {
@@ -132,6 +133,12 @@ form {
 /* Page edition quiz */
 .reponse_tr th:first-child {
 	width: 80%;
+}
+
+.login {
+	height:100vh;
+	
+	background-image: linear-gradient(to right top, #9fe6bb, #96e0b9, #8edab8, #86d4b6, #7fceb4, #7bd0b7, #77d1bb, #73d3bf, #70ddcb, #6ce7d7, #66f1e4, #5ffbf1);
 }
 
 /* ----------------------------------------------------------------------------------------------------------- 
@@ -297,4 +304,12 @@ svg {
 /* 		border-radius: 0px;		 */
 		
 	}
+
+
+.table .thead-light th {
+	background-color: #9fe6bb;
+}
+.btn-details {
+	width: 170px;
+}
 }

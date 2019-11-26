@@ -7,9 +7,7 @@
 <link rel="stylesheet" th:href="@{/css/homeManager.css}">
 </head>
 <body>
-	<div>
-		<nav th:replace="fragments/navbar.html :: nav"></nav>
-	</div>
+	<nav th:replace="fragments/navbar.html :: navManager"></nav>
 	<div class="mt-150 container">
 		<h3 th:if="${quizPlayed}">Quiz déja fait par un utilisateur, impossible de le supprimer</h3>
 	

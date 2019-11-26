@@ -5,8 +5,7 @@
 <link rel="stylesheet" th:href="@{/css/favoriteArticle.css}">
 </head>
 <body>
-	<nav th:replace="fragments/navbar.html :: nav"></nav>
-
+	<nav th:replace="fragments/navbar.html :: navUser"></nav>
 	<div class="container mt-150">
 		<h1 class="mb-3 quizActu-title">Articles favoris</h1>
 		<div class="container placeCard">
@@ -20,8 +19,7 @@
 							th:text="${article.media}"></small>
 					</div>
 					<div class="col-sm-6">
-
-						<p th:utext="'Question : ' + ${article.question.content}"></p>
+					<p th:utext="'Question : ' + ${article.question.content}"></p>
 						<div th:each="response : ${article.question.responses}">
 							<span th:utext="'Reponse : ' + ${response.content}"
 								th:if="${response.isTrue}"></span>

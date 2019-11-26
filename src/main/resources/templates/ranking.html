@@ -4,7 +4,7 @@
 
 <head th:insert="/head.html :: head"></head>
 <body>
-	<nav th:replace="fragments/navbar.html :: nav"></nav>
+	<nav th:replace="fragments/navbar.html :: navUser"></nav>
 	<div class="container mt-150">
 		<h2 class="quizActu-title">Classement</h2>
 		<table class="table table-striped">
@@ -15,14 +15,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				
 				<tr th:each="userScore: ${usersScore}">
 					<th:block th:if="${userScore.role.id == 3}">
 					<td th:text="${userScore.getUsername()}" />
 					<td th:text="${userScore.getScore()}" />
 					</th:block>
 				</tr>
-				
 			</tbody>
 		</table>
 	</div>

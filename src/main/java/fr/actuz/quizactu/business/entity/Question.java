@@ -48,6 +48,7 @@ public class Question implements Serializable {
 	/**
 	 *
 	 */
+	@Lob
 	private String content;
 
 	/**

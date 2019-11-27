@@ -1,5 +1,6 @@
 $(document).ready(() => {
-	let duration = 10000;
+	let bddTimer = $('#timerQuestion').val();
+	let duration = bddTimer ? bddTimer * 1000 : 10000;
 	let timer = $('#questionTimer');
 	if (timer.length > 0) {
 		let oldProgress = 0;

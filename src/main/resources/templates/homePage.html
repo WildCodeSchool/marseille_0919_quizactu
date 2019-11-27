@@ -8,7 +8,7 @@
 </head>
 <body>
 	<nav th:replace="fragments/navbar.html :: navUser"></nav>
-	<div class="container">
+	<div class="container homePage">
 		<div class="msgUser" th:if="${#httpServletRequest.remoteUser != null}">
 			<h2 th:inline="text" class="quizActu-title">Bienvenue
 				[[${#httpServletRequest.remoteUser}]]</h2>
@@ -17,9 +17,11 @@
 			<!-- Quiz of the day -->
 			<div class="col-sm-12">
 				<div class="news" th:if="${quizOfTheDay != null}">
-					<div th:if="${defaultPicture != 'Impossible d afficher l image'}"
-						class="img-figure quiz-of-day">
-						<img th:src="${firstPictureOfQuizOfTheDay}" class="img-responsive">
+					<div class="img-figure quiz-of-day">
+						<img th:if="${firstPictureOfQuizOfTheDay != null}"
+							th:src="${firstPictureOfQuizOfTheDay}" class="img-responsive">
+						<img th:if="${firstPictureOfQuizOfTheDay == null}"
+							th:src="@{/images/logo6.png}" />
 					</div>
 					<div class="title">
 						<span
@@ -28,12 +30,12 @@
 						<a th:href="@{/timer/today}" class="button">Jouer</a>
 					</div>
 				</div>
-				<div class="news" th:if="${quizOfTheDay == null}">
+				<div class="news not-quiz" th:if="${quizOfTheDay == null}">
 					<div class="img-figure quiz-of-day">
 						<img th:src="@{/images/logo6.png}" class="img-responsive" />
 					</div>
 					<div class="title">
-						<p>PAS DE QUIZ AUJOURD'HUI</p>
+						<p class="strong">Désolé, il n'y a pas de quiz aujourd'hui.</p>
 					</div>
 				</div>
 			</div>
@@ -54,12 +56,12 @@
 						<a th:href="@{/timer/yesterday}" class="button">Jouer</a>
 					</div>
 				</div>
-				<div class="news" th:if="${quizOfYesterday == null}">
+				<div class="news not-quiz" th:if="${quizOfYesterday == null}">
 					<div class="img-figure quiz-of-day">
 						<img th:src="@{/images/logo6.png}" class="img-responsive" />
 					</div>
 					<div class="title">
-						<p>PAS DE QUIZ D'HIER</p>
+						<p class="strong">Désolé, il n'y a pas de quiz pour ce jour.</p>
 					</div>
 				</div>
 			</div>
@@ -78,12 +80,12 @@
 						<a th:href="@{/timer/dayBeforeYesterday}" class="button">Jouer</a>
 					</div>
 				</div>
-				<div class="news" th:if="${quizOfBeforeYesterday == null}">
+				<div class="news not-quiz" th:if="${quizOfBeforeYesterday == null}">
 					<div class="img-figure quiz-of-day">
 						<img th:src="@{/images/logo6.png}" class="img-responsive" />
 					</div>
 					<div class="title">
-						<p>PAS DE QUIZ D'AVANT HIER</p>
+						<p class="strong">Désolé, il n'y a pas de quiz pour ce jour.</p>
 					</div>
 				</div>
 			</div>
@@ -101,10 +103,8 @@
 				</thead>
 				<tbody>
 					<tr th:each="user: ${users}">
-						<th:block th:if="${user.role.id == 3}">
-							<td th:text="${user.getUsername()}" />
-							<td th:text="${user.getScore()}" />
-						</th:block>
+						<td th:text="${user.getUsername()}" />
+						<td th:text="${user.getScore()}" />
 					</tr>
 				</tbody>
 			</table>

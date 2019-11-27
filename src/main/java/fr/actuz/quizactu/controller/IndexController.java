@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import fr.actuz.quizactu.business.entity.Account;
+import fr.actuz.quizactu.business.entity.Question;
+import fr.actuz.quizactu.business.entity.Quiz;
 import fr.actuz.quizactu.business.service.AccountService;
 import fr.actuz.quizactu.business.service.QuizService;
 
@@ -32,11 +34,18 @@ public class IndexController {
 		model.addAttribute("quizOfYesterday", this.quizServ.getYesterdayQuiz());
 		model.addAttribute("quizOfBeforeYesterday", this.quizServ.getDayBeforeYesterdayQuiz());
 
-		try {
-			model.addAttribute("firstPictureOfQuizOfTheDay",
-					this.quizServ.getTodayQuiz().getQuestions().get(0).getImageEncoded());
-		} catch (NullPointerException e) {
-			model.addAttribute("defaultPicture", "Impossible d afficher l image");
+//		try {
+//			model.addAttribute("firstPictureOfQuizOfTheDay",
+//					this.quizServ.getTodayQuiz().getQuestions().get(0).getImageEncoded());
+//		} catch (NullPointerException e) {
+//			model.addAttribute("defaultPicture", "Impossible d afficher l image");
+//		}
+		Quiz todayQuiz = this.quizServ.getTodayQuiz();
+		if (todayQuiz != null && todayQuiz.getQuestions().size() > 0) {
+			Question question = todayQuiz.getQuestions().get(0);
+			if (question.getImageEncoded() != null) {
+				model.addAttribute("firstPictureOfQuizOfTheDay", question.getImageEncoded());
+			}
 		}
 
 		try {
@@ -58,6 +67,7 @@ public class IndexController {
 
 	@GetMapping("/ranking")
 	public String ranking(Model model) {
+		System.out.println(this.accountServ.getScoreOnRankingPage());
 		model.addAttribute("usersScore", this.accountServ.getScoreOnRankingPage());
 		return "ranking";
 	}

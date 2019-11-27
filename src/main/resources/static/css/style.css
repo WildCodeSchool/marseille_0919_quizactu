@@ -344,6 +344,10 @@ svg {
 	width: 50%;
 }
 
+.texteQuestion {
+	margin-top: 1em;
+}
+
 footer {
 	padding: 1rem 0;
 	background-color: #9fe6bb;
@@ -376,6 +380,10 @@ footer {
 @media screen and (max-width: 640px) {
 	.lois {
 		margin-top: 17%;
+	}
+	
+	.buttonQuiz {
+		width: 100%;
 	}
 }
 

@@ -124,6 +124,7 @@ form {
 
 .form-signin .button {
 	width: 100%;
+	margin: 30px 0;
 }
 /* ----------------------------------------------------------------------------------------------------------- 
 ----------------------------------------------- END GLOBAL ---------------------------------------------------
@@ -196,7 +197,7 @@ form {
 }
 
 .form-connect {
-	margin-bottom: 2rem;
+	margin-bottom: 3rem;
 }
 
 /* ----------------------------------------------------------------------------------------------------------- 
@@ -225,6 +226,11 @@ form {
 
 .small-logo {
 	height: 40px;
+}
+
+.footer-logo{
+	float: left;
+	margin-right: 11px;
 }
 
 .title-nav {
@@ -341,6 +347,10 @@ footer {
 
 .footer {
 	color: #fff;
+}
+
+.footer-description{
+	text-align: justify;
 }
 
 /* Page chagedPassword */

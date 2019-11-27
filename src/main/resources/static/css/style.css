@@ -104,12 +104,6 @@ form {
 	margin-top: 10px;
 }
 
-.form-signin {
-	max-width: 330px;
-	padding: 15px;
-	margin: 0 auto;
-}
-
 .login .button {
 	width: 100%;
 	margin-top: 2rem;
@@ -123,7 +117,11 @@ form {
 }
 
 .form-signin {
-	margin-top: 50px;
+	margin-top: 2rem;
+}
+
+.form-signin .button {
+	width: 100%;
 }
 /* ----------------------------------------------------------------------------------------------------------- 
 ----------------------------------------------- END GLOBAL ---------------------------------------------------
@@ -154,18 +152,24 @@ form {
 
 /* Page edition log */
 .text-log {
-	height: 76vh;
 	background-image: linear-gradient(to bottom, #9fe6bb, #9be1b7, #98dcb2, #94d7ae, #91d2aa);
+	box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
 }
 .link-creat-account{
 	font-size: 28px;
+	color: grey;
+	transition: 0.8s;
+}
+
+.link-creat-account:hover {
+	color: black;
 }
 
 .title-log {
 	margin-top: 5%;
-	padding: 60px;
+	padding: 1rem 0;
 	color: #fff;
-	font-size: 68px;
+	font-size: 3rem;
 	font-weight: bold;
 }
 
@@ -178,12 +182,15 @@ form {
 }
 
 .sub-title {
-	font-size: 50px;
+	font-size: 2rem;
 }
 
-.ctn-log {
-	height:76vh;
-	box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+.connexion {
+	margin-top: 1.5rem;
+}
+
+.form-connect {
+	margin-bottom: 2rem;
 }
 
 /* ----------------------------------------------------------------------------------------------------------- 
@@ -338,13 +345,18 @@ footer {
 	.lois {
 		margin-top: 17%;
 	}
-	/*LOG*/
-	.text-log {
-		display: none;
-	}
+}
+
+@media screen and (min-width: 768px) {
 	.ctn-log {
-		height: 100vh;
-		box-shadow: 0 0rem 0rem rgba(0, 0, 0, 0);
+		margin: 25% auto 0;
+		box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+	}
+	.text-log {
+		box-shadow: none;
+	}
+	.title-log {
+	    margin-top: 20%;
 	}
 }
 
@@ -360,20 +372,15 @@ footer {
 	.drop-menu .dropdown-item {
 		width: 100%;
 	}
-	.drop-menu .dropdown-item:hover {
-		/* 		border-radius: 0px;		 */
-		
-	}
 	.table .thead-light th {
 		background-color: #9fe6bb;
 	}
 	.btn-details {
 		width: 170px;
 	}
+	/*Page de login*/
 	.ctn-log {
-		height: 76vh;
-
-
+		margin: 20% auto 0;
 	}
 	.sub-title {
 		font-size: 36px;
@@ -382,3 +389,18 @@ footer {
 		font-size: 46px;
 	}
 }
+
+@media screen and (min-width: 1200px) {
+	/*Page de login*/
+	.ctn-log {
+		margin: 16% auto 0;
+	}
+	.title-log {
+	    margin-top: 15%;
+	}
+}
+
+
+
+
+

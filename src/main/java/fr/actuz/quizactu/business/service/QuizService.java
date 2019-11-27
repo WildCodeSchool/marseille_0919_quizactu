@@ -130,12 +130,10 @@ public class QuizService {
 		return question;
 	}
 
-	public void updateQuestion(Integer questionId, String content, Integer timerQuestion, Integer timerResponse,
-			MultipartFile image) {
+	public void updateQuestion(Integer questionId, String content, Integer timerQuestion, MultipartFile image) {
 		Question question = this.getQuestionById(questionId);
 		question.setContent(content);
 		question.setTimerQuestion(timerQuestion);
-		question.setTimerResponse(timerResponse);
 		if (!image.getOriginalFilename().isEmpty()) {
 			try {
 				question.setImage(image.getBytes());
@@ -157,9 +155,10 @@ public class QuizService {
 		this.responseRepo.save(resp);
 	}
 
-	public Question createQuestion(Integer quizId, Question question, MultipartFile image) {
+	public Question createQuestion(Integer quizId, Question question, MultipartFile image, Integer timerQuestion) {
 		Quiz quiz = this.read(quizId);
 		question.setQuiz(quiz);
+		question.setTimerQuestion(timerQuestion);
 		if (question.getArticle() != null) {
 			question.getArticle().setQuestion(question);
 		}

@@ -6,16 +6,16 @@
 <title>Connexion</title>
 </head>
 <body>
-	<div class="container ctn-log  mt-150 mb-5 bg-white rounded">
+	<div class="container ctn-log bg-white rounded">
 		<div class="row">
 			<div class="col-md-6 col-sm-12 text-log">
 				<h1 class="title-log">QUIZ'ACTU</h1>
 				<img class="logo-login" th:src="@{/images/logo6.png}" />
-				<h2 class="sub-title text-white p-5">Défiez vos connaissances
+				<h2 class="sub-title text-white p-2">Défiez vos connaissances
 					sur l'actualité !</h2>
 			</div>
-			<div class="col-md-6 col-sm-12">
-				<h1 class="mt-150">Connexion</h1>
+			<div class="col-md-6 col-sm-12 form-connect">
+				<h1 class="connexion quizActu-title">Connexion</h1>
 				<form class="form-signin" th:action="@{/login}" method="post">
 					<div class="form-group">
 						<label for="username">Nom d'utilisateur</label> <input
@@ -25,12 +25,9 @@
 						<label for="password">Mot de passe</label> <input id="password"
 							name="password" type="password" class="form-control" required>
 					</div>
-					<a th:href="@{/public/forgotPassword}">Mot de passe oublié</a>
 					<button class="btn-log btn-lg btn-block button">Valider</button>
 				</form>
-				<h3>
-					<a class="link-creat-account" th:href="@{/public/createAccount}">Créer un compte</a>
-				</h3>
+				<a class="link-creat-account" th:href="@{/public/createAccount}">Créer un compte</a>
 			</div>
 		</div>
 	</div>

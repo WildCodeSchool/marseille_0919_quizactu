@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import fr.actuz.quizactu.business.entity.Account;
+import fr.actuz.quizactu.business.entity.Question;
 import fr.actuz.quizactu.business.entity.Quiz;
 import fr.actuz.quizactu.business.entity.QuizRecord;
 import fr.actuz.quizactu.business.service.AccountService;
@@ -65,6 +66,24 @@ public class QuizController {
 	public String quizDone(Model model) {
 		model.addAttribute("yesterday", this.service.getYesterdayQuiz());
 		model.addAttribute("dayBeforeYesterday", this.service.getDayBeforeYesterdayQuiz());
+		model.addAttribute("quizOfYesterday", this.service.getYesterdayQuiz());
+		model.addAttribute("quizOfBeforeYesterday", this.service.getDayBeforeYesterdayQuiz());
+
+		Quiz yesterdayQuiz = this.service.getYesterdayQuiz();
+		if (yesterdayQuiz != null && yesterdayQuiz.getQuestions().size() > 0) {
+			Question question = yesterdayQuiz.getQuestions().get(0);
+			if (question.getImageEncoded() != null) {
+				model.addAttribute("firstPictureOfQuizYesterday", question.getImageEncoded());
+			}
+		}
+			
+		Quiz beforeYesterdayQuiz = this.service.getDayBeforeYesterdayQuiz();
+		if (beforeYesterdayQuiz != null && beforeYesterdayQuiz.getQuestions().size() > 0) {
+			Question question = beforeYesterdayQuiz.getQuestions().get(0);
+			if (question.getImageEncoded() != null) {
+				model.addAttribute("firstPictureOfQuizBeforeYesterday", question.getImageEncoded());
+			}
+		}
 		return "quizDone";
 	}
 

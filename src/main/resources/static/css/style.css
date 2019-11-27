@@ -367,6 +367,9 @@ footer {
 	.create-account {
 		margin: 2rem auto;
 	}
+	.create-account-text {
+		padding-top: 9rem;
+	}
 	
 }
 
@@ -388,10 +391,6 @@ footer {
 	.btn-details {
 		width: 170px;
 	}
-	/*Page de login*/
-	.ctn-log {
-/* 		margin: 3rem auto; */
-	}
 	.sub-title {
 		font-size: 36px;
 	}
@@ -404,13 +403,13 @@ footer {
 	/*Page de login*/
 	.ctn-log {
 		margin: 4.5rem auto;
-    	height: 85vh;
+    	height: auto;
 	}
 	.text-log {
-		height: 85vh;
+		height: auto;
 	}
 	.title-log {
-	    margin-top: 50%;
+	    margin-top: 5rem;
 	}
 	.form-connect {
     	display: flex;

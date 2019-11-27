@@ -17,9 +17,11 @@
 			<!-- Quiz of the day -->
 			<div class="col-sm-12">
 				<div class="news" th:if="${quizOfTheDay != null}">
-					<div th:if="${defaultPicture != 'Impossible d afficher l image'}"
-						class="img-figure quiz-of-day">
-						<img th:src="${firstPictureOfQuizOfTheDay}" class="img-responsive">
+					<div class="img-figure quiz-of-day">
+						<img th:if="${firstPictureOfQuizOfTheDay != null}"
+							th:src="${firstPictureOfQuizOfTheDay}" class="img-responsive">
+						<img th:if="${firstPictureOfQuizOfTheDay == null}"
+							th:src="@{/images/logo6.png}" />
 					</div>
 					<div class="title">
 						<span
@@ -41,13 +43,12 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
-				<!-- Start quiz of yesterday -->
 				<div class="news" th:if="${quizOfYesterday != null}">
-					<div
-						th:if="${defaultPictureTwo != 'Impossible d afficher l image'}"
-						class="img-figure">
-						<img th:src="${firstPictureOfQuizYesterday}"
-							class="img-responsive">
+					<div class="img-figure quiz-of-day">
+						<img th:if="${firstPictureOfQuizYesterday != null}"
+							th:src="${firstPictureOfQuizYesterday}" class="img-responsive">
+						<img th:if="${firstPictureOfQuizYesterday == null}"
+							th:src="@{/images/logo6.png}" />
 					</div>
 					<div class="title">
 						<h3>Quiz de la veille</h3>
@@ -67,11 +68,11 @@
 			<div class="col-lg-6">
 				<!-- start quiz of before yesterday -->
 				<div class="news" th:if="${quizOfBeforeYesterday != null}">
-					<div
-						th:if="${defaultPictureThree != 'Impossible d afficher l image'}"
-						class="img-figure">
-						<img th:src="${firstPictureOfQuizBeforeYesterday}"
-							class="img-responsive">
+					<div class="img-figure quiz-of-day">
+						<img th:if="${firstPictureOfQuizBeforeYesterday != null}"
+							th:src="${firstPictureOfQuizBeforeYesterday}" class="img-responsive">
+						<img th:if="${firstPictureOfQuizBeforeYesterday == null}"
+							th:src="@{/images/logo6.png}" />
 					</div>
 					<div class="title">
 						<h3>Quiz de l'avant veille</h3>
@@ -101,10 +102,8 @@
 				</thead>
 				<tbody>
 					<tr th:each="user: ${users}">
-						<th:block th:if="${user.role.id == 3}">
-							<td th:text="${user.getUsername()}" />
-							<td th:text="${user.getScore()}" />
-						</th:block>
+						<td th:text="${user.getUsername()}" />
+						<td th:text="${user.getScore()}" />
 					</tr>
 				</tbody>
 			</table>

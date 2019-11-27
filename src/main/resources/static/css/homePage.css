@@ -128,7 +128,6 @@ thead {
 @media screen and (min-width: 992px) {
 	.news .quiz-of-day {
 		max-height: 300px;
-		bottom: 4rem;
 	}
 	.not-quiz .img-figure {
 		bottom: 0;

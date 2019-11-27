@@ -16,9 +16,9 @@
 			</thead>
 			<tbody>
 				<tr th:each="userScore: ${usersScore}">
-					<th:block th:if="${userScore.role.id == 3}">
-					<td th:text="${userScore.getUsername()}" />
-					<td th:text="${userScore.getScore()}" />
+					<th:block th:if="${userScore.role.name == 'USER'}">
+						<td th:text="${userScore.getUsername()}" />
+						<td th:text="${userScore.getScore()}" />
 					</th:block>
 				</tr>
 			</tbody>

@@ -7,7 +7,7 @@
 <body>
 	<nav th:replace="fragments/navbar.html :: navUser"></nav>
 	<div class="container">
-		<h1 class="quizActu-title">Articles favoris</h1>
+		<h2 class="quizActu-title">Articles favoris</h2>
 		
 		<div class="row">
 			<div class="col-lg-6 pb-3" th:each="article : ${account.articles}">

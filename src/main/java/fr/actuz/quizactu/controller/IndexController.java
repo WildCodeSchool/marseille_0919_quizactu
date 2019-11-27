@@ -48,10 +48,4 @@ public class IndexController {
 		model.addAttribute("account", account);
 		return "favoriteArticles";
 	}
-	
-	@GetMapping("/public/policy")
-	public String policy() {
-		return "public/policy";
-	}
-
 }

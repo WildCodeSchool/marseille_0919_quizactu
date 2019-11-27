@@ -16,26 +16,26 @@
 					sur l'actualité !</h2>
 			</div>
 			<div class="col-md-6 col-sm-12">
-			<form class="form-signin " th:action="@{/public/form}" method="post">
-				<div class="form-group">
-					<label for="email">Votre email</label><input id="email"
-						name="email" type="email" class="form-control" required>
-				</div>
-				<div class="form-group">
-					<label for="username">Nom d'utilisateur</label> <input
-						id="username" name="userName" class="form-control" required>
-				</div>
-				<div class="form-group">
-					<label for="password">Mot de passe</label> <input id="password"
-						name="password" type="password" class="form-control" required>
-				</div>
-				<div class="form-group">
-					<label for="confirmPassword">Confirmer le mot de passe</label> <input
-						id="confirmPassword" name="confirmPassword" type="password"
-						class="form-control" required>
-				</div>
-				<button class="button btn btn-lg btn-primary btn-block w-100">Valider</button>
-			</form>
+				<form class="form-signin " th:action="@{/public/form}" method="post">
+					<div class="form-group">
+						<label for="email">Votre email</label><input id="email"
+							name="email" type="email" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label for="username">Nom d'utilisateur</label> <input
+							id="username" name="userName" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label for="password">Mot de passe</label> <input id="password"
+							name="password" type="password" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label for="confirmPassword">Confirmer le mot de passe</label> <input
+							id="confirmPassword" name="confirmPassword" type="password"
+							class="form-control" required>
+					</div>
+					<button class="button btn btn-lg btn-primary btn-block w-100">Valider</button>
+				</form>
 				<h3>
 					<a class="link-creat-account" th:href="@{/public/createAccount}">Créer
 						un compte</a>
@@ -43,5 +43,6 @@
 			</div>
 		</div>
 	</div>
+	<footer th:replace="fragments/navbar.html :: footer"></footer>
 </body>
 </html>

@@ -5,7 +5,7 @@
 </head>
 <body>
 	<nav th:replace="fragments/navbar.html :: navUser"></nav>
-	<div class="mt-150 container">
+	<div class="container">
 		<h1>À propos</h1>
 		<img th:src="@{/images/agathe2.png}" alt="">
 		<img class="lois" th:src="@{/images/lois2.png}" alt="">
@@ -27,5 +27,6 @@
 	répondant à une volonté d’indépendance.</p>
 		</div>
 	</div>
+	<footer th:replace="fragments/navbar.html :: footer"></footer>
 </body>
 </html>

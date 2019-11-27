@@ -8,7 +8,7 @@
 </head>
 <body>
 	<nav th:replace="fragments/navbar.html :: navUser"></nav>
-	<div class="container mt-150">
+	<div class="container">
 		<div class="msgUser"
 			th:if="${#httpServletRequest.remoteUser != null}">
 			<h2 th:inline="text" class="quizActu-title">Bienvenue
@@ -75,5 +75,6 @@
 			<a th:href="@{/ranking}" class="button">Voir le classement</a>
 		</div>
 	</div>
+	<footer th:replace="fragments/navbar.html :: footer"></footer>
 </body>
 </html>

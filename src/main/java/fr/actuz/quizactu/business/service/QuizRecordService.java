@@ -59,7 +59,7 @@ public class QuizRecordService {
 		record.setResponse(response);
 		this.recordRepo.save(record);
 	}
-	
+
 	// Method for get the points of quiz that day
 	public Integer getScoreQuiz(Integer quizId, Integer accountId) {
 		List<QuizRecord> quizRecord = this.recordRepo.findAllByQuizIdAndAccountId(quizId, accountId);
@@ -81,7 +81,7 @@ public class QuizRecordService {
 				responses.add(result.getResponse());
 			} else {
 				Response validResponse = this.responseRepository
-						.findOneByQuestionIdAndIsTrueTrue(result.getQuestion().getId());
+						.findAllByQuestionIdAndIsTrueTrue(result.getQuestion().getId()).get(0);
 				validResponse.setNotAnswered(true);
 				responses.add(validResponse);
 			}
@@ -94,9 +94,22 @@ public class QuizRecordService {
 		List<QuizRecord> quizRecord = this.recordRepo.findAllByQuizIdAndAccountId(quizId, accountId);
 		return quizRecord;
 	}
-	
+
 	public boolean compareIfQuestionAlreadyAnswered(Integer quizId, Integer accountId, Integer questionId) {
 		return !this.recordRepo.existsByAccountIdAndQuizIdAndQuestionId(accountId, quizId, questionId);
+	}
+	
+	public Boolean hasQuizAlreadyBeenPlayed(Integer quizId) {
+		return this.recordRepo.existsByQuizId(quizId);
+	}
+	
+	public Boolean hasQuestionAlreadyBeenAnswered(Integer questionId) {
+		return this.recordRepo.existsByQuestionId(questionId);
+	}
+	
+	public List<QuizRecord> getAll(){
+		List<QuizRecord> records = this.recordRepo.findAll();
+		return records;
 	}
 
 }

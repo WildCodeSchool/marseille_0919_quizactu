@@ -1,4 +1,7 @@
 /*------------------------------------- GLOBAL PAGE RESULT -------------------------------------------*/
+.result {
+    margin-top: 6rem;
+}
 .result a {
 	display: block;
 	width: 100%;
@@ -24,8 +27,23 @@
 	padding: .5rem
 }
 
-.result .card .card-text {
-	font-weight: bold;
+.article-link {
+	display: flex;
+	width: 100%;
+	justify-content: flex-end;
+	color: grey;
+	cursor: pointer;
+	margin-bottom: 1rem;
+}
+
+.article-link a {
+	width: auto;
+	transition: 0.8s;
+	padding: 0 .5rem;
+}
+
+.article-link a:hover {
+	color: black;
 }
 /*------------------------------------- END GLOBAL PAGE RESULT ---------------------------------------*/
 /*----------------------------------------- RESULT QUIZ ----------------------------------------------*/
@@ -43,8 +61,8 @@
 	position: absolute;
     top: 25%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 4rem;
+    transform: translate(-50%, -40%);
+    font-size: 6rem;
     text-shadow: 2px 4px 6px rgba(95,95,95,0.74);
 }
 
@@ -57,6 +75,11 @@
 	font-weight: bold;
 	margin-left: .8rem;
 }
+
+.score-total > p {
+	font-size: 1.5rem;
+	line-height: 0;
+}
 /*----------------------------------------- END RESULT QUIZ ------------------------------------------*/
 /*------------------------------------- FALSE ANWSER -----------------------------------------------*/
 .false-anwser-article-title {
@@ -67,24 +90,6 @@
 	padding: 1rem 0;
 }
 
-.false-anwser .article-link {
-	display: flex;
-	width: 100%;
-	justify-content: flex-end;
-	color: grey;
-	cursor: pointer;
-	margin-bottom: 1rem;
-}
-
-.false-anwser .article-link a {
-	width: auto;
-	transition: 0.8s;
-	padding: 0 .5rem;
-}
-
-.false-anwser .article-link a:hover {
-	color: black;
-}
 /*------------------------------------- END FALSE ANWSER -----------------------------------------*/
 /*------------------------------------- ACCORDION -----------------------------------------------*/
 .accordion {
@@ -158,8 +163,14 @@
 }
 
 /*------------------------------------- MEDIA QUERIES --------------------------------------------*/
-/*
-*
-* NOT MEDIA QUERIES ; ALL RESPONSIVE IS GENERATED WITH BOOTSTRAP CLASSES IN HTML
-*
-*/
+@media screen and (min-width: 768px) {
+	.result-trophy .result-trophy-score img  {
+		width: 60%;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.result-trophy .result-trophy-score img  {
+		width: 40%;
+	}
+}

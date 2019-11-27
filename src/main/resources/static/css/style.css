@@ -124,6 +124,7 @@ form {
 
 .form-signin .button {
 	width: 100%;
+	margin: 30px 0;
 }
 /* ----------------------------------------------------------------------------------------------------------- 
 ----------------------------------------------- END GLOBAL ---------------------------------------------------
@@ -196,7 +197,7 @@ form {
 }
 
 .form-connect {
-	margin-bottom: 2rem;
+	margin-bottom: 3rem;
 }
 
 /* ----------------------------------------------------------------------------------------------------------- 
@@ -204,10 +205,14 @@ form {
 ------------------------------------------------------------------------------------------------------------*/
 .navbar-connexion {
 	width: 100%;
+	padding-top: 0;
+	padding-bottom: 0;
+	margin-bottom: 0;
 }
 
 .navbar {
 	background-color: #9FE6BB;
+	position: sticky;
 }
 
 .navbar-light .navbar-nav .nav-link, .navbar-light .navbar-brand {
@@ -219,8 +224,22 @@ form {
 	height: 50px;
 }
 
+.small-logo {
+	height: 40px;
+}
+
+.footer-logo{
+	float: left;
+	height: 100px;
+	margin-right: 20px;
+}
+
 .title-nav {
 	font-size: 1.8rem;
+}
+
+.title-small{
+	font-size: 1.5rem;
 }
 
 /* nav hover */
@@ -322,12 +341,22 @@ svg {
 }
 
 footer {
-	padding: 1rem 0;
+	padding: 1rem 5rem;
+	padding-top: 3rem;
 	background-color: #9fe6bb;
+	margin-top:	70px;
 }
 
-.footer {
+footer i{
 	color: #fff;
+}
+
+.footer-link {
+	color: #fff;
+}
+
+.footer-description{
+	text-align: justify;
 }
 
 /* Page chagedPassword */
@@ -342,6 +371,10 @@ footer {
 
 .text-end {
 	text-align: end;
+}
+
+.no-border{
+	border: none;
 }
 
 /* ----------------------------------------------------------------------------------------------------------- 

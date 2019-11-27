@@ -12,9 +12,11 @@
 	<nav class="navbar navbar-light navbar-expand-lg fixed-top"
 		id="mainNav" th:fragment="navCreate">
 		<div class="container ctn-nav ">
-			<p class="navbar-brand js-scroll-trigger title-nav navbar-connexion"
-				><img class="logo mr-2 "
-				th:src="@{/images/logo6.png}" alt="">Quiz'Actu</p>
+			<p
+				class="navbar-brand js-scroll-trigger title-small navbar-connexion">
+				<img class="logo mr-2 small-logo" th:src="@{/images/logo6.png}"
+					alt="">Quiz'Actu
+			</p>
 		</div>
 	</nav>
 
@@ -46,7 +48,8 @@
 					<li class="nav-item mx-0 mx-lg-1" role="presentation"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						th:href="@{/ranking}">Classement</a></li>
-					<li class="nav-item mx-0 mx-lg-1" role="presentation"><a href="#"
+					<li class="nav-item mx-0 mx-lg-1" role="presentation"><a
+						href="#"
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						th:href="@{/favoriteArticles}">Mes Articles</a>
 					<li class="nav-item mx-0 mx-lg-1 dropdown"><a
@@ -57,12 +60,13 @@
 							[[${#httpServletRequest.remoteUser}]]</a>
 						<div class="dropdown-menu drop-menu"
 							aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#" th:href="@{/changedPassword}"> <i
-								class="fa fa-user pr-1"></i>
-								Mon compte
+							<a class="dropdown-item" href="#" th:href="@{/changedPassword}">
+								<i class="fa fa-user pr-1"></i> Mon compte
 							</a> <a class="dropdown-item" href="#">
 								<form th:action="@{/logout}" class="mt-0" method="post">
-									<button id="logout-btn"><i class="fa fa-power-off"></i> Se déconnecter</button>
+									<button id="logout-btn">
+										<i class="fa fa-power-off"></i> Se déconnecter
+									</button>
 								</form>
 							</a>
 						</div></li>
@@ -70,36 +74,65 @@
 			</div>
 		</div>
 	</nav>
-	 <!-- NAV LOGGED MANAGER  -->
-	<nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav" th:fragment="navManager">
+	<!-- NAV LOGGED MANAGER  -->
+	<nav class="navbar navbar-light navbar-expand-lg fixed-top"
+		id="mainNav" th:fragment="navManager">
 		<div class="container ctn-nav">
-			<a class="navbar-brand js-scroll-trigger title-nav" th:href="@{/manager/home}">
-				<img class="logo mr-2" th:src="@{/images/logo6.png}" alt="">Quiz'Actu
+			<a class="navbar-brand js-scroll-trigger title-nav"
+				th:href="@{/manager/home}"> <img class="logo mr-2"
+				th:src="@{/images/logo6.png}" alt="">Quiz'Actu
 			</a>
-			<button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right text-uppercase text-white rounded" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+			<button data-toggle="collapse" data-target="#navbarResponsive"
+				class="navbar-toggler navbar-toggler-right text-uppercase text-white rounded"
+				aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
 				<i class="fa fa-bars"></i>
 			</button>
-		<div class="collapse navbar-collapse" id="navbarResponsive">
-			<ul class="nav navbar-nav ml-auto">
-				<li class="nav-item" role="presentation">
-					<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" th:href="@{/manager/createQuiz}">Ajouter un quiz</a>
-				<li class="nav-item " role="presentation">	
-					<form th:action="@{/logout}" class="mt-0" method="post">
-						<button id="logout-btn" th:style="|margin-top:1em;|" class="rounded js-scroll-trigger"><i class="fa fa-power-off"></i> Se déconnecter</button>
-					</form>
-				</li>
-			</ul>
-		</div>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="nav navbar-nav ml-auto">
+					<li class="nav-item" role="presentation"><a
+						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+						th:href="@{/manager/createQuiz}">Créer un quiz</a>
+					<li class="nav-item " role="presentation">
+						<form th:action="@{/logout}" class="mt-0" method="post">
+							<button id="logout-btn" th:style="|margin-top:1em;|"
+								class="rounded js-scroll-trigger">
+								<i class="fa fa-power-off"></i> Se déconnecter
+							</button>
+						</form>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</nav>
-<footer th:fragment="footer">
-<a class="footer" th:href="@{/contact}">À propos  |  </a>
-<a class="footer" th:href="@{/public/policy}" target="_blank"> CGU </a>
-<p>Quiz'Actu est un jeu Smartphone de questions d’actualité. Chaque jour, un challenge de 10 questions sous forme de QCM est proposé. Ces questions concernent l’actualité du jour. À la fin du quiz, un récap' permet d'approfondir les sujets traités grâce à des articles de presse associés à chacune des réponses.
-Quiz'Actu est né de la volonté de deux journalistes de mettre l'actualité à la portée de tous dans un format ludique.
-<br>
-Contact : quizactu@gmail.com
-</p>
-</footer>
+	
+	<footer th:fragment="footer">
+		<div class="row">
+			<div class="footer-description col-md-5">
+				<img class="logo footer-logo" th:src="@{/images/logo6.png}"
+						alt="Logo Quiz Actu">
+				<p>
+					Quiz'Actu est un jeu Smartphone de questions d’actualité. Chaque
+					jour, un challenge de 10 questions sous forme de QCM est proposé. Ces
+					questions concernent l’actualité du jour. À la fin du quiz, un récap'
+					permet d'approfondir les sujets traités grâce à des articles de
+					presse associés à chacune des réponses. Quiz'Actu est né de la
+					volonté de deux journalistes de mettre l'actualité à la portée de
+					tous dans un format ludique.
+				</p>
+			</div>
+			
+			<div class="col-md-2 col-md-offset-1">
+				<h4>Liens</h4>
+				<a class="footer-link" th:href="@{/contact}">À propos | </a> 
+				<a class="footer-link" th:href="@{/public/policy}" target="_blank"> CGU </a>
+			</div>
+			
+			<div class="col-md-4">
+				<h4>Contact</h4>
+				<p><i class="fa fa-envelope-o"></i> quizactu@gmail.com</p>
+			</div>
+		</div>
+	</footer>
 </body>
 </html>

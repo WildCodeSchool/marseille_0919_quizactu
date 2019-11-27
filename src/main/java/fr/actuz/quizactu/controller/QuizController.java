@@ -80,7 +80,7 @@ public class QuizController {
 			quiz = this.service.getDayBeforeYesterdayQuiz();
 		}
 
-		if (quiz != null) {
+		if (quiz != null && quiz.getQuestions().size() > 0) {
 			int index = 0;
 			model.addAttribute("quiz", quiz);
 

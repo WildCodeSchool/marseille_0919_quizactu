@@ -48,11 +48,11 @@ public class AccountService {
 	}
 
 	public List<Account> getScoreLimitTen() {
-		return this.accountRepo.findTop10ByOrderByScoreDesc();
+		return this.accountRepo.findTop10ByRoleNameOrderByScoreDesc("USER");
 	}
 
 	public List<Account> getScoreOnRankingPage() {
-		return this.accountRepo.findByOrderByScoreDesc();
+		return this.accountRepo.findByRoleNameOrderByScoreDesc("USER");
 	}
 
 	public void updatePassword(int id, String password) {

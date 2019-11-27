@@ -1,3 +1,7 @@
+.homePage {
+	margin-top: 6rem;
+}
+
 .news {
 	background: #e8e8e8;
 	position: relative;
@@ -21,6 +25,11 @@
 
 .news .img-figure .img-responsive {
 	width: 100%;
+}
+
+.not-quiz .img-figure .img-responsive {
+	width: 40%;
+	bottom: 0;
 }
 
 .news .img-figure img {
@@ -81,11 +90,11 @@
 
 .news .button {
 	position: relative;
-    background-color: #9FE6BB;
-    border-color: #9FE6BB;
-    width: fit-content;
-    width: -moz-fit-content;
-    padding: 0.3rem 4rem;
+	background-color: #9FE6BB;
+	border-color: #9FE6BB;
+	width: fit-content;
+	width: -moz-fit-content;
+	padding: 0.3rem 4rem;
 }
 
 .news .button:hover {
@@ -103,15 +112,52 @@ thead {
 	background-color: #9FE6BB;
 	color: white;
 }
+
 .dashboard-ranking {
 	margin: 1rem 0;
 }
 
 /*------------------------------------- MEDIA QUERIES --------------------------------------------*/
+@media screen and (min-width: 768px) {
+	.not-quiz .img-figure .img-responsive {
+		width: 30%;
+		bottom: 0rem
+	}
+}
 
 @media screen and (min-width: 992px) {
 	.news .quiz-of-day {
-		max-height:300px;
+		max-height: 300px;
 		bottom: 4rem;
+	}
+	.not-quiz .img-figure {
+		bottom: 0;
+	}
+	.not-quiz .img-figure .img-responsive {
+		width: 55%;
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	.news .quiz-of-day {
+		max-height: 300px;
+		bottom: 4rem;
+	}
+	.not-quiz .img-figure {
+		bottom: 0;
+	}
+	.not-quiz .img-figure .img-responsive {
+		width: 40%;
+	}
+	.not-quiz .title {
+		padding: 2rem 0;
+	}
+	.not-quiz .title p {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		align-content: center;
+		padding: 0;
+		margin: 0;
 	}
 }

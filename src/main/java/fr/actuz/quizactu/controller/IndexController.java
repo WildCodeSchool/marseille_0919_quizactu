@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import fr.actuz.quizactu.business.entity.Account;
+import fr.actuz.quizactu.business.entity.Question;
+import fr.actuz.quizactu.business.entity.Quiz;
 import fr.actuz.quizactu.business.service.AccountService;
 import fr.actuz.quizactu.business.service.QuizService;
 
@@ -32,32 +34,38 @@ public class IndexController {
 		model.addAttribute("quizOfYesterday", this.quizServ.getYesterdayQuiz());
 		model.addAttribute("quizOfBeforeYesterday", this.quizServ.getDayBeforeYesterdayQuiz());
 
-		try {
-			model.addAttribute("firstPictureOfQuizOfTheDay",
-					this.quizServ.getTodayQuiz().getQuestions().get(0).getImageEncoded());
-		} catch (NullPointerException e) {
-			model.addAttribute("defaultPicture", "Impossible d afficher l image");
+		
+		Quiz todayQuiz = this.quizServ.getTodayQuiz();
+		if (todayQuiz != null && todayQuiz.getQuestions().size() > 0) {
+			Question question = todayQuiz.getQuestions().get(0);
+			if (question.getImageEncoded() != null) {
+				model.addAttribute("firstPictureOfQuizOfTheDay", question.getImageEncoded());
+			}
 		}
 
-		try {
-			model.addAttribute("firstPictureOfQuizYesterday",
-					this.quizServ.getYesterdayQuiz().getQuestions().get(0).getImageEncoded());
-		} catch (NullPointerException e) {
-			model.addAttribute("defaultPictureTwo", "Impossible d afficher l image");
+		Quiz yesterdayQuiz = this.quizServ.getYesterdayQuiz();
+		if (yesterdayQuiz != null && yesterdayQuiz.getQuestions().size() > 0) {
+			Question question = yesterdayQuiz.getQuestions().get(0);
+			if (question.getImageEncoded() != null) {
+				model.addAttribute("firstPictureOfQuizYesterday", question.getImageEncoded());
+			}
+		}
+			
+		Quiz beforeYesterdayQuiz = this.quizServ.getDayBeforeYesterdayQuiz();
+		if (beforeYesterdayQuiz != null && beforeYesterdayQuiz.getQuestions().size() > 0) {
+			Question question = beforeYesterdayQuiz.getQuestions().get(0);
+			if (question.getImageEncoded() != null) {
+				model.addAttribute("firstPictureOfQuizBeforeYesterday", question.getImageEncoded());
+			}
 		}
 
-		try {
-			model.addAttribute("firstPictureOfQuizBeforeYesterday",
-					this.quizServ.getDayBeforeYesterdayQuiz().getQuestions().get(0).getImageEncoded());
-		} catch (NullPointerException e) {
-			model.addAttribute("defaultPictureThree", "Impossible d afficher l image");
-		}
 
 		return "homePage";
 	}
 
 	@GetMapping("/ranking")
 	public String ranking(Model model) {
+		System.out.println(this.accountServ.getScoreOnRankingPage());
 		model.addAttribute("usersScore", this.accountServ.getScoreOnRankingPage());
 		return "ranking";
 	}
@@ -68,7 +76,7 @@ public class IndexController {
 		model.addAttribute("account", account);
 		return "favoriteArticles";
 	}
-
+	
 	@GetMapping("/public/policy")
 	public String policy() {
 		return "public/policy";

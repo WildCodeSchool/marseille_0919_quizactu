@@ -402,7 +402,6 @@ footer {
 @media screen and (min-width: 1200px) {
 	/*Page de login*/
 	.ctn-log {
-		margin: 4.5rem auto;
     	height: auto;
 	}
 	.text-log {

@@ -7,16 +7,17 @@
 <link rel="stylesheet" th:href="@{./css/style.css}">
 </head>
 <body>
-	<div class="container ctn-log mt-150 mb-5 bg-white rounded">
+	<div class="container ctn-log bg-white rounded create-account">
 		<div class="row">
-			<div class="col-md-6 col-sm-12 text-log">
+			<div class="col-md-6 col-sm-12 text-log create-account-text">
 				<h1 class="title-log">QUIZ'ACTU</h1>
 				<img class="logo-login" th:src="@{/images/logo6.png}" />
-				<h2 class="sub-title text-white p-5">Défiez vos connaissances
+				<h2 class="sub-title text-white p-2">Défiez vos connaissances
 					sur l'actualité !</h2>
 			</div>
 			<div class="col-md-6 col-sm-12">
-				<form class="form-signin " th:action="@{/public/form}" method="post">
+				<h1 class="connexion quizActu-title">Création de compte</h1>
+				<form class="form-signin" th:action="@{/public/form}" method="post">
 					<div class="form-group">
 						<label for="email">Votre email</label><input id="email"
 							name="email" type="email" class="form-control" required>
@@ -36,10 +37,7 @@
 					</div>
 					<button class="button btn btn-lg btn-primary btn-block w-100">Valider</button>
 				</form>
-				<h3>
-					<a class="link-creat-account" th:href="@{/public/createAccount}">Créer
-						un compte</a>
-				</h3>
+				<a class="link-creat-account" th:href="@{/}">Se connecter</a>
 			</div>
 		</div>
 	</div>

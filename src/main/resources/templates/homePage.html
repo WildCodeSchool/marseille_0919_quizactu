@@ -15,9 +15,10 @@
 				[[${#httpServletRequest.remoteUser}]]</h2>
 		</div>
 		<div class="row">
+			<!-- Quiz of the day -->
 			<div class="col-sm-12">
-				<div class="news">
-					<div class="img-figure quiz-of-day">
+				<div class="news" th:if="${quizOfTheDay != null}">
+					<div th:if="${defaultPicture != 'Pouet'}" class="img-figure quiz-of-day">
 						<img th:src="${firstPictureOfQuizOfTheDay}" class="img-responsive">
 					</div>
 					<div class="title">
@@ -25,14 +26,22 @@
 						<h3>Quiz du jour</h3>
 						<a th:href="@{/timer/today}" class="button">Jouer</a>
 					</div>
-					
+				</div>
+				<div class="news" th:if="${quizOfTheDay == null}">
+					<div class="img-figure quiz-of-day">
+						<img th:src="@{/images/logo6.png}" class="img-responsive"/>
+					</div>
+					<div class="title">
+						<p>PAS DE QUIZ AUJOURD'HUI</p>
+					</div>
 				</div>
 			</div>
+			<!-- End quiz of the day -->
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
-				<div class="news">
-					<div class="img-figure">
+				<div class="news" th:if="${quizOfYesterday != null}">
+					<div th:if="${defaultPictureTwo != 'Pouet2'}" class="img-figure">
 						<img th:src="${firstPictureOfQuizYesterday}" class="img-responsive">
 					</div>
 					<div class="title">
@@ -40,10 +49,24 @@
 						<a th:href="@{/timer/yesterday}" class="button">Jouer</a>
 					</div>
 				</div>
+		
+			<div class="news" th:if="${quizOfYesterday == null}">
+				<div class="img-figure quiz-of-day">
+					<img th:src="@{/images/logo6.png}" class="img-responsive"/>
+				</div>
+				<div class="title">
+					<p>PAS DE QUIZ D'HIER</p>
+				</div>
 			</div>
+				</div>
+			
+			
+
+			
+			
 			<div class="col-lg-6">
-				<div class="news">
-					<div class="img-figure">
+				<div class="news" th:if="${quizOfBeforeYesterday != null}">
+					<div th:if="${defaultPictureThree != 'Pouet3'}" class="img-figure">
 						<img th:src="${firstPictureOfQuizBeforeYesterday}" class="img-responsive">
 					</div>
 					<div class="title">
@@ -51,6 +74,14 @@
 						<a th:href="@{/timer/dayBeforeYesterday}" class="button">Jouer</a>
 					</div>
 				</div>
+				<div class="news" th:if="${quizOfBeforeYesterday == null}">
+					<div class="img-figure quiz-of-day">
+						<img th:src="@{/images/logo6.png}" class="img-responsive"/>
+					</div>
+				<div class="title">
+					<p>PAS DE QUIZ D'AVANT HIER</p>
+				</div>
+			</div>
 			</div>
 		</div>
 		<div class="dashboard-ranking">

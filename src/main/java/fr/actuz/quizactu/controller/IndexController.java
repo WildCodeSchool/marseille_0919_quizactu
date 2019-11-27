@@ -25,13 +25,33 @@ public class IndexController {
 	@GetMapping("/")
 	public String homePage(Model model) {
 		model.addAttribute("users", this.accountServ.getScoreLimitTen());
+
 		model.addAttribute("quizToday", LocalDate.now().atStartOfDay().atZone(ZoneId.of("UTC")));
-		model.addAttribute("firstPictureOfQuizOfTheDay",
-				this.quizServ.getTodayQuiz().getQuestions().get(0).getImageEncoded());
-		model.addAttribute("firstPictureOfQuizYesterday",
-				this.quizServ.getYesterdayQuiz().getQuestions().get(0).getImageEncoded());
-		model.addAttribute("firstPictureOfQuizBeforeYesterday",
-				this.quizServ.getDayBeforeYesterdayQuiz().getQuestions().get(0).getImageEncoded());
+
+		model.addAttribute("quizOfTheDay", this.quizServ.getTodayQuiz());
+		model.addAttribute("quizOfYesterday", this.quizServ.getYesterdayQuiz());
+		model.addAttribute("quizOfBeforeYesterday", this.quizServ.getDayBeforeYesterdayQuiz());
+
+		try {
+			model.addAttribute("firstPictureOfQuizOfTheDay",
+					this.quizServ.getTodayQuiz().getQuestions().get(0).getImageEncoded());
+		} catch (NullPointerException e) {
+			model.addAttribute("defaultPicture", "Pouet");
+		}
+
+		try {
+			model.addAttribute("firstPictureOfQuizYesterday",
+					this.quizServ.getYesterdayQuiz().getQuestions().get(0).getImageEncoded());
+		} catch (NullPointerException e) {
+			model.addAttribute("defaultPictureTwo", "Pouet2");
+		}
+
+		try {
+			model.addAttribute("firstPictureOfQuizBeforeYesterday",
+					this.quizServ.getDayBeforeYesterdayQuiz().getQuestions().get(0).getImageEncoded());
+		} catch (NullPointerException e) {
+			model.addAttribute("defaultPictureThree", "Pouet3");
+		}
 
 		return "homePage";
 	}
@@ -48,7 +68,7 @@ public class IndexController {
 		model.addAttribute("account", account);
 		return "favoriteArticles";
 	}
-	
+
 	@GetMapping("/public/policy")
 	public String policy() {
 		return "public/policy";

@@ -36,21 +36,21 @@ public class IndexController {
 			model.addAttribute("firstPictureOfQuizOfTheDay",
 					this.quizServ.getTodayQuiz().getQuestions().get(0).getImageEncoded());
 		} catch (NullPointerException e) {
-			model.addAttribute("defaultPicture", "Pouet");
+			model.addAttribute("defaultPicture", "Impossible d afficher l image");
 		}
 
 		try {
 			model.addAttribute("firstPictureOfQuizYesterday",
 					this.quizServ.getYesterdayQuiz().getQuestions().get(0).getImageEncoded());
 		} catch (NullPointerException e) {
-			model.addAttribute("defaultPictureTwo", "Pouet2");
+			model.addAttribute("defaultPictureTwo", "Impossible d afficher l image");
 		}
 
 		try {
 			model.addAttribute("firstPictureOfQuizBeforeYesterday",
 					this.quizServ.getDayBeforeYesterdayQuiz().getQuestions().get(0).getImageEncoded());
 		} catch (NullPointerException e) {
-			model.addAttribute("defaultPictureThree", "Pouet3");
+			model.addAttribute("defaultPictureThree", "Impossible d afficher l image");
 		}
 
 		return "homePage";

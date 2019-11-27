@@ -29,7 +29,6 @@
 html {
 	font-size: 1rem; /* 16px */
 	width: 100%;
-	height: 100v;
 }
 
 body {
@@ -38,14 +37,14 @@ body {
 	background-color: #fafafa;
 	text-align: center;
 	color: #444;
-	margin-bottom: 100px;
-	height : 100vh;
-	padding-top: 150px;
+/* 	margin-bottom: 100px; */
+/* 	height : 100vh; */
+/* 	padding-top: 150px; */
 }
 
-body > div.container {
-	padding-bottom: 150px;
-}
+/* body > div.container { */
+/* 	padding-bottom: 150px; */
+/* } */
 
 h1 {
 	text-align: center;
@@ -310,8 +309,7 @@ svg {
 }
 
 footer {
-	position: fixed;
-	bottom: 0;
+	padding: 1rem 0;
 	background-color: #9fe6bb;
 }
 

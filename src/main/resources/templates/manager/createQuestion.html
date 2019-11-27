@@ -7,15 +7,15 @@
 </head>
 <body>
 	<nav th:replace="fragments/navbar.html :: navManager"></nav>
-	<div class="container">
-		<h1>Création des questions</h1>
+	<div class="container  bg-white">
+		<h1>Créer la question</h1>
 		<form method="post" th:object="${question}"
 			th:action="@{/manager/createQuestion/} + ${quizId}"
 			enctype="multipart/form-data">
 			<div class="form-group">
-				<label for="content" class="required">Texte Question</label>
-				<input id="content" th:field="*{content}" required="required"
-					class="form-control">
+				<label for="content" class="required">Texte Question</label> <input
+					id="content" th:field="*{content}" required="required"
+					class="form-control"></input>
 				<div class="form-group">
 					<table>
 						<tr>
@@ -32,24 +32,29 @@
 					</table>
 				</div>
 				<div class="form-group">
-					<label for="articleTitle" class="required">Titre de l'article</label> <input
-						id="articleTitle" required="required" class="form-control"
-						th:field="*{article.title}" />
+					<label for="articleTitle" class="required">Titre de
+						l'article</label> <input id="articleTitle" required="required"
+						class="form-control" th:field="*{article.title}" />
+				</div>
+				<div class="form-row">
+					<div class="col-md-6 mb-3">
+						<label for="articleMedia" class="required">Nom du média</label> <input
+							id="articleMedia" required="required" class="form-control"
+							th:field="*{article.media}" />
+
+					</div>
+					<div class="col-md-6 mb-3">
+						<label for="articleLink" class="required">Lien du média</label> <input
+							id="articleLink" required="required" class="form-control"
+							th:field="*{article.link}" />
+					</div>
 				</div>
 				<div class="form-group">
-					<label for="articleSummary" class="required">Résumé de  l'article</label> <input
-						id="articleSummary" required="required" class="form-control"
-						th:field="*{article.summary}" />
-				</div>
-				<div class="form-group">
-					<label for="articleMedia" class="required">Nom du média</label> <input
-						id="articleMedia" required="required" class="form-control"
-						th:field="*{article.media}" />
-				</div>
-				<div class="form-group">
-					<label for="articleLink" class="required">Lien du média</label> <input
-						id="articleLink" required="required" class="form-control"
-						th:field="*{article.link}" />
+					<label for="articleSummary" class="required">Résumé de
+						l'article</label>
+					<textarea id="articleSummary" required="required"
+						class="form-control" th:field="*{article.summary}" rows="5"
+						cols="20"></textarea>
 				</div>
 				<button type="submit">Ajouter la question</button>
 			</div>

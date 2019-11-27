@@ -123,7 +123,7 @@ form {
 }
 
 .form-signin {
-	margin-top: 50px;
+	margin-top: 18px;
 }
 /* ----------------------------------------------------------------------------------------------------------- 
 ----------------------------------------------- END GLOBAL ---------------------------------------------------
@@ -154,7 +154,7 @@ form {
 
 /* Page edition log */
 .text-log {
-	height: 76vh;
+	height: 85vh;
 	background-image: linear-gradient(to bottom, #9fe6bb, #9be1b7, #98dcb2, #94d7ae, #91d2aa);
 }
 .link-creat-account{
@@ -182,8 +182,9 @@ form {
 }
 
 .ctn-log {
-	height:76vh;
+	height:85vh;
 	box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+	margin-top: 50px;
 }
 
 /* ----------------------------------------------------------------------------------------------------------- 
@@ -191,10 +192,14 @@ form {
 ------------------------------------------------------------------------------------------------------------*/
 .navbar-connexion {
 	width: 100%;
+	padding-top: 0;
+	padding-bottom: 0;
+	margin-bottom: 0;
 }
 
 .navbar {
 	background-color: #9FE6BB;
+	position: sticky;
 }
 
 .navbar-light .navbar-nav .nav-link, .navbar-light .navbar-brand {
@@ -206,8 +211,16 @@ form {
 	height: 50px;
 }
 
+.small-logo {
+	height: 40px;
+}
+
 .title-nav {
 	font-size: 1.8rem;
+}
+
+.title-small{
+	font-size: 1.5rem;
 }
 
 /* nav hover */
@@ -311,6 +324,7 @@ svg {
 footer {
 	padding: 1rem 0;
 	background-color: #9fe6bb;
+	margin-top:	50px;
 }
 
 .footer {
@@ -331,6 +345,10 @@ footer {
 	text-align: end;
 }
 
+.no-border{
+	border: none;
+}
+
 /* ----------------------------------------------------------------------------------------------------------- 
 ----------------------------------------------- media queries -----------------------------------------------
 ------------------------------------------------------------------------------------------------------------*/
@@ -343,8 +361,9 @@ footer {
 		display: none;
 	}
 	.ctn-log {
-		height: 100vh;
+		height: auto;
 		box-shadow: 0 0rem 0rem rgba(0, 0, 0, 0);
+		margin-top: 0;
 	}
 }
 
@@ -371,7 +390,7 @@ footer {
 		width: 170px;
 	}
 	.ctn-log {
-		height: 76vh;
+		height: 85vh;
 
 
 	}

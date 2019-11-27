@@ -2,6 +2,10 @@
 	margin-top: 5rem;
 }
 
+.mt-10{
+	margin-top: 10px;
+}
+
 .vraiFaux {
 	display: inline-block;
 	width: 100%;

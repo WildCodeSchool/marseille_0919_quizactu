@@ -8,8 +8,8 @@
 <body>
 	<nav th:replace="fragments/navbar.html :: navCreate"></nav>
 	<div class="container">
-		<div class="card">
-			<div class="img-copyright">
+		<div class="card mt-3">
+			<div class="img-copyright mt-10">
 				<img class="card-img-top" th:if="${question.image != null}"
 					th:src="${question.imageEncoded}" />
 				<p class="copyright"
@@ -45,6 +45,5 @@
 			</div>
 		</div>
 	</div>
-	<footer th:replace="fragments/navbar.html :: footer"></footer>
 </body>
 </html>

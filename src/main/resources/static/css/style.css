@@ -29,7 +29,6 @@
 html {
 	font-size: 1rem; /* 16px */
 	width: 100%;
-	height: 100v;
 }
 
 body {
@@ -38,14 +37,14 @@ body {
 	background-color: #fafafa;
 	text-align: center;
 	color: #444;
-	margin-bottom: 100px;
-	height : 100vh;
-	padding-top: 150px;
+/* 	margin-bottom: 100px; */
+/* 	height : 100vh; */
+/* 	padding-top: 150px; */
 }
 
-body > div.container {
-	padding-bottom: 150px;
-}
+/* body > div.container { */
+/* 	padding-bottom: 150px; */
+/* } */
 
 h1 {
 	text-align: center;
@@ -116,10 +115,19 @@ form {
 	margin-top: 2rem;
 }
 
+/* CREATE LOG */ 
+.ctn-creat{
+	background-image: linear-gradient(to bottom, #9fe6bb, #9be1b7, #98dcb2, #94d7ae, #91d2aa);
+	width: 100%;
+	height: auto;
+}
+
+.form-signin {
+	margin-top: 50px;
+}
 /* ----------------------------------------------------------------------------------------------------------- 
 ----------------------------------------------- END GLOBAL ---------------------------------------------------
 ------------------------------------------------------------------------------------------------------------*/
-
 .lois {
 	margin-top: 4%;
 }
@@ -143,10 +151,39 @@ form {
 	width: 80%;
 }
 
-.login {
-	height:100vh;
-	
-	background-image: linear-gradient(to right top, #9fe6bb, #96e0b9, #8edab8, #86d4b6, #7fceb4, #7bd0b7, #77d1bb, #73d3bf, #70ddcb, #6ce7d7, #66f1e4, #5ffbf1);
+
+/* Page edition log */
+.text-log {
+	height: 76vh;
+	background-image: linear-gradient(to bottom, #9fe6bb, #9be1b7, #98dcb2, #94d7ae, #91d2aa);
+}
+.link-creat-account{
+	font-size: 28px;
+}
+
+.title-log {
+	margin-top: 5%;
+	padding: 60px;
+	color: #fff;
+	font-size: 68px;
+	font-weight: bold;
+}
+
+.logo-login {
+	height: 90px;
+}
+
+.btn-log {
+	padding: 15px 120px;
+}
+
+.sub-title {
+	font-size: 50px;
+}
+
+.ctn-log {
+	height:76vh;
+	box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
 }
 
 /* ----------------------------------------------------------------------------------------------------------- 
@@ -186,16 +223,16 @@ form {
 
 .nav-link::before {
 	content: "";
-    background: #fff;
-    height: 2px;
-    width: 50%;
-    position: absolute;
-    left: 50%;
-    right: 0;
-    bottom: 10px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translate(-50%, 0);
+	background: #fff;
+	height: 2px;
+	width: 50%;
+	position: absolute;
+	left: 50%;
+	right: 0;
+	bottom: 10px;
+	opacity: 0;
+	visibility: hidden;
+	transform: translate(-50%, 0);
 }
 
 .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:active,
@@ -203,10 +240,9 @@ form {
 	color: #fff !important;
 }
 
-.navbar-light .navbar-nav .active>.nav-link, 
-.navbar-light .navbar-nav .nav-link.active, 
-.navbar-light .navbar-nav .nav-link.show, 
-.navbar-light .navbar-nav .show>.nav-link {
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active,
+	.navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link
+	{
 	color: #fff !important;
 }
 
@@ -223,7 +259,7 @@ form {
 
 .drop-menu {
 	border: none;
-    background-color: #9fe6bb;
+	background-color: #9fe6bb;
 }
 
 .drop-menu .dropdown-item {
@@ -248,7 +284,6 @@ form {
 /* ----------------------------------------------------------------------------------------------------------- 
 ----------------------------------------------- end navbar ---------------------------------------------------
 ------------------------------------------------------------------------------------------------------------*/
-
 .item {
 	position: relative;
 	float: left;
@@ -274,8 +309,7 @@ svg {
 }
 
 footer {
-	position: fixed;
-	bottom: 0;
+	padding: 1rem 0;
 	background-color: #9fe6bb;
 }
 
@@ -304,6 +338,14 @@ footer {
 	.lois {
 		margin-top: 17%;
 	}
+	/*LOG*/
+	.text-log {
+		display: none;
+	}
+	.ctn-log {
+		height: 100vh;
+		box-shadow: 0 0rem 0rem rgba(0, 0, 0, 0);
+	}
 }
 
 @media screen and (min-width: 992px) {
@@ -319,15 +361,24 @@ footer {
 		width: 100%;
 	}
 	.drop-menu .dropdown-item:hover {
-/* 		border-radius: 0px;		 */
+		/* 		border-radius: 0px;		 */
 		
 	}
+	.table .thead-light th {
+		background-color: #9fe6bb;
+	}
+	.btn-details {
+		width: 170px;
+	}
+	.ctn-log {
+		height: 76vh;
 
 
-.table .thead-light th {
-	background-color: #9fe6bb;
-}
-.btn-details {
-	width: 170px;
-}
+	}
+	.sub-title {
+		font-size: 36px;
+	}
+	.title-log {
+		font-size: 46px;
+	}
 }

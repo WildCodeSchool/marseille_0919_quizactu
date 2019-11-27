@@ -34,7 +34,7 @@ public class ManageQuizController {
 
 	@Autowired
 	private ArticleService articleService;
-	
+
 	@Autowired
 	private QuizRecordService recordService;
 
@@ -43,7 +43,7 @@ public class ManageQuizController {
 		return null;
 	}
 
-	@GetMapping(value= {"/home", "/home/{isPlayed}"})
+	@GetMapping(value = { "/home", "/home/{isPlayed}" })
 	public String listQuizCreate(Model model, @PathVariable(required = false) Boolean isPlayed) {
 		model.addAttribute("listQuiz", this.service.getAllManager());
 		if (isPlayed != null) {
@@ -58,8 +58,9 @@ public class ManageQuizController {
 		return "manager/listResponses";
 	}
 
-	@GetMapping(value= {"/quizDetails/{id}", "/quizDetails/{id}/{questionAnswered}"})
-	public String getQuestions(Model model, @PathVariable Integer id,@PathVariable(required = false) Boolean questionAnswered) {
+	@GetMapping(value = { "/quizDetails/{id}", "/quizDetails/{id}/{questionAnswered}" })
+	public String getQuestions(Model model, @PathVariable Integer id,
+			@PathVariable(required = false) Boolean questionAnswered) {
 		Quiz quiz = this.service.read(id);
 		model.addAttribute("quiz", quiz);
 		model.addAttribute("quizId", quiz.getId());
@@ -94,9 +95,9 @@ public class ManageQuizController {
 	public String submitFormQuiz(Integer id, String title, String publicationDate, Model model) {
 		LocalDate pubDate = LocalDate.parse(publicationDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 //		if (id == null) {
-			Quiz quiz = this.service.createQuiz(title, pubDate);
-			model.addAttribute("quizId", quiz.getId());
-			return "redirect:/manager/createQuestion/" + quiz.getId();
+		Quiz quiz = this.service.createQuiz(title, pubDate);
+		model.addAttribute("quizId", quiz.getId());
+		return "redirect:/manager/createQuestion/" + quiz.getId();
 //		} else {
 //			this.service.update(id, title, pubDate);
 //			System.out.println(id);
@@ -169,7 +170,7 @@ public class ManageQuizController {
 
 	@GetMapping("/deleteQuestion/{questionId}")
 	public String deleteQuestion(@PathVariable Integer questionId, @ModelAttribute("quizId") Integer quizId) {
-		if(this.recordService.hasQuestionAlreadyBeenAnswered(questionId)) {
+		if (this.recordService.hasQuestionAlreadyBeenAnswered(questionId)) {
 			Boolean isAnwsered = this.recordService.hasQuestionAlreadyBeenAnswered(questionId);
 			return "redirect:/manager/quizDetails/" + quizId + "/" + isAnwsered;
 		} else {
@@ -180,8 +181,10 @@ public class ManageQuizController {
 
 	@GetMapping("/deleteResponse/{responseId}")
 	public String deleteResponse(@PathVariable Integer responseId, @ModelAttribute("quizId") Integer quizId) {
-		if(this.recordService.hasQuestionAlreadyBeenAnswered(service.getResponseById(responseId).getQuestion().getId())) {
-			Boolean isAnswered = this.recordService.hasQuestionAlreadyBeenAnswered(service.getResponseById(responseId).getQuestion().getId());
+		if (this.recordService
+				.hasQuestionAlreadyBeenAnswered(this.service.getResponseById(responseId).getQuestion().getId())) {
+			Boolean isAnswered = this.recordService
+					.hasQuestionAlreadyBeenAnswered(this.service.getResponseById(responseId).getQuestion().getId());
 			return "redirect:/manager/quizDetails/" + quizId + "/" + isAnswered;
 		} else {
 			this.service.deleteResponse(responseId);

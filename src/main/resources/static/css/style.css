@@ -230,7 +230,8 @@ form {
 
 .footer-logo{
 	float: left;
-	margin-right: 11px;
+	height: 100px;
+	margin-right: 20px;
 }
 
 .title-nav {
@@ -340,12 +341,17 @@ svg {
 }
 
 footer {
-	padding: 1rem 0;
+	padding: 1rem 5rem;
+	padding-top: 3rem;
 	background-color: #9fe6bb;
-	margin-top:	50px;
+	margin-top:	70px;
 }
 
-.footer {
+footer i{
+	color: #fff;
+}
+
+.footer-link {
 	color: #fff;
 }
 

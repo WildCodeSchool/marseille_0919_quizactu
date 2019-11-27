@@ -107,12 +107,10 @@
 	</nav>
 	
 	<footer th:fragment="footer">
-		<a class="footer" th:href="@{/contact}">À propos | </a> <a
-			class="footer" th:href="@{/public/policy}" target="_blank"> CGU </a>
 		<div class="row">
-			<div class="footer-description col-md-6">
-				<img class="logo mr-2 footer-logo" th:src="@{/images/logo6.png}"
-						alt="">
+			<div class="footer-description col-md-5">
+				<img class="logo footer-logo" th:src="@{/images/logo6.png}"
+						alt="Logo Quiz Actu">
 				<p>
 					Quiz'Actu est un jeu Smartphone de questions d’actualité. Chaque
 					jour, un challenge de 10 questions sous forme de QCM est proposé. Ces
@@ -123,10 +121,18 @@
 					tous dans un format ludique.
 				</p>
 			</div>
+			
+			<div class="col-md-2 col-md-offset-1">
+				<h4>Liens</h4>
+				<a class="footer-link" th:href="@{/contact}">À propos | </a> 
+				<a class="footer-link" th:href="@{/public/policy}" target="_blank"> CGU </a>
+			</div>
+			
+			<div class="col-md-4">
+				<h4>Contact</h4>
+				<p><i class="fa fa-envelope-o"></i> quizactu@gmail.com</p>
+			</div>
 		</div>
-		
-		
-		<p>Contact : quizactu@gmail.com</p>
 	</footer>
 </body>
 </html>

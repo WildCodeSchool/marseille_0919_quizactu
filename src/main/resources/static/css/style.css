@@ -341,23 +341,61 @@ svg {
 }
 
 footer {
-	padding: 1rem 5rem;
+	padding: 2rem 5rem;
 	padding-top: 3rem;
-	background-color: #9fe6bb;
-	margin-top:	70px;
+	background-color: #d4f0e0;
+	margin-top:	100px;
+	border-top: 4px #9FE6BB solid;
+}
+
+footer ul{
+	margin: 0;
+	padding: 0;
+}
+
+footer ul li{
+	list-style: none;
 }
 
 footer i{
-	color: #fff;
+	color: #78bd97;
+	margin-right: 9px;
 }
 
 .footer-link {
+	color: #444;
+	transition: all .2s ease-in;
+}
+
+.footer-link:hover {
 	color: #fff;
+}
+
+.footer-rs{
+	margin-top: 10px;
+}
+
+.footer-rs a{
+	font-size: 22px;
+	
+}
+
+.footer-rs a:hover i{
+	color: #fff;
+	transition: all .2s ease-in;
 }
 
 .footer-description{
 	text-align: justify;
 }
+
+/* footer .col-md-2, footer .col-md-4{
+	text-align: justify;
+}
+
+footer .col-md-2 h5, footer .col-md-4 h5{
+	text-align: justify;
+} */
 
 /* Page chagedPassword */
 .changedPwd .button {
@@ -403,7 +441,30 @@ footer i{
 	.create-account-text {
 		padding-top: 9rem;
 	}
+
 	
+}
+
+@media screen and (max-width: 768px){
+	footer{
+		padding: 2rem 1rem;
+	}
+	
+	.row div{
+		margin-bottom: 2rem;
+	}
+	
+	.row div:last-child{
+		margin-bottom: 0;
+	}
+	
+	.footer-description p{
+    	margin-bottom: 0;
+	}
+	
+	.row .col-md-1{
+	display: none;
+	}
 }
 
 @media screen and (min-width: 992px) {

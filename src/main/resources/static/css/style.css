@@ -348,7 +348,9 @@ svg {
 }
 
 .ajoutQuiz {
-	margin-top: 4em;
+	margin-top: 2em;
+	padding-top: 25px;
+	
 }
 
 .titleQuiz {
@@ -421,13 +423,14 @@ footer i{
 	text-align: justify;
 }
 
-/* footer .col-md-2, footer .col-md-4{
-	text-align: justify;
+.form-group #isTrue{
+	transform: scale(1.5);
+	margin-left: 8px;
 }
 
-footer .col-md-2 h5, footer .col-md-4 h5{
-	text-align: justify;
-} */
+.form-group #labelIsTrue{
+	font-size: 1.3rem;
+}
 
 /* Page chagedPassword */
 .changedPwd .button {

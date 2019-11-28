@@ -1,5 +1,5 @@
 .homePage {
-	margin-top: 6rem;
+	margin-top: 2rem;
 }
 
 .news {
@@ -15,7 +15,7 @@
 }
 
 .news:hover {
-	box-shadow: 0px 21px 36px -14px rgba(220, 220, 220, 1);;
+	box-shadow: 0px 21px 36px -14px rgba(220, 220, 220, 1);
 }
 
 .news .img-figure {
@@ -49,7 +49,7 @@
 	left: 0;
 	background: #fff;
 	width: 100%;
-	height: 100%;
+	height: auto;
 	transition: all 0.5s ease;
 }
 
@@ -128,7 +128,6 @@ thead {
 @media screen and (min-width: 992px) {
 	.news .quiz-of-day {
 		max-height: 300px;
-		bottom: 4rem;
 	}
 	.not-quiz .img-figure {
 		bottom: 0;

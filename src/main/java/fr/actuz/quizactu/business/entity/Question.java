@@ -48,6 +48,7 @@ public class Question implements Serializable {
 	/**
 	 *
 	 */
+	@Lob
 	private String content;
 
 	/**
@@ -63,11 +64,6 @@ public class Question implements Serializable {
 	@Column(name = "TIMER_QUESTION")
 	private Integer timerQuestion;
 
-	/**
-	 *
-	 */
-	@Column(name = "TIMER_RESPONSE")
-	private Integer timerResponse;
 
 	/**
 	 *
@@ -124,14 +120,6 @@ public class Question implements Serializable {
 
 	public void setTimerQuestion(Integer timerQuestion) {
 		this.timerQuestion = timerQuestion;
-	}
-
-	public Integer getTimerResponse() {
-		return this.timerResponse;
-	}
-
-	public void setTimerResponse(Integer timerResponse) {
-		this.timerResponse = timerResponse;
 	}
 
 	public List<Response> getResponses() {

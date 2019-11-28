@@ -31,12 +31,6 @@ html {
 	width: 100%;
 }
 
-.footer-page {
-	padding: 1rem;
-	background-color: #efefef;
-	text-align: center;
-}
-
 body {
 	font-size: 100%; /* flexible baseline */
 	line-height: 1.4;
@@ -44,16 +38,12 @@ body {
 	text-align: center;
 	color: #444;
 	width: 100%;
-	height : 100vh; 
-	padding-top: 150px;
+	height: 100%;
 }
 
- body > div.container { 
- 	padding-bottom: 300px; 
- } 
 h1 {
 	text-align: center;
-	margin-top: 2em;
+	margin: 1em;
 }
 
 h3 {
@@ -109,12 +99,6 @@ form {
 	margin-top: 10px;
 }
 
-.form-signin {
-	max-width: 330px;
-	padding: 15px;
-	margin: 0 auto;
-}
-
 .login .button {
 	width: 100%;
 	margin-top: 2rem;
@@ -128,7 +112,12 @@ form {
 }
 
 .form-signin {
-	margin-top: 50px;
+	margin-top: 2rem;
+}
+
+.form-signin .button {
+	width: 100%;
+	margin: 30px 0;
 }
 /* ----------------------------------------------------------------------------------------------------------- 
 ----------------------------------------------- END GLOBAL ---------------------------------------------------
@@ -158,19 +147,29 @@ form {
 
 /* Page edition log */
 .text-log {
-	height: 76vh;
 	background-image: linear-gradient(to bottom, #9fe6bb, #9be1b7, #98dcb2, #94d7ae, #91d2aa);
+	box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
 }
 
 .link-creat-account {
 	font-size: 28px;
+	color: grey;
+	transition: 0.8s;
+}
+
+.link-creat-account:hover {
+	color: black;
+}
+
+.ctn-log {
+	margin-bottom: 2rem;
 }
 
 .title-log {
 	margin-top: 5%;
-	padding: 60px;
+	padding: 1rem 0;
 	color: #fff;
-	font-size: 68px;
+	font-size: 3rem;
 	font-weight: bold;
 }
 
@@ -183,12 +182,15 @@ form {
 }
 
 .sub-title {
-	font-size: 50px;
+	font-size: 2rem;
 }
 
-.ctn-log {
-	height: 76vh;
-	box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+.connexion {
+	margin-top: 2.5rem;
+}
+
+.form-connect {
+	margin-bottom: 3rem;
 }
 
 /* ----------------------------------------------------------------------------------------------------------- 
@@ -196,10 +198,14 @@ form {
 ------------------------------------------------------------------------------------------------------------*/
 .navbar-connexion {
 	width: 100%;
+	padding-top: 0;
+	padding-bottom: 0;
+	margin-bottom: 0;
 }
 
 .navbar {
 	background-color: #9FE6BB;
+	position: sticky;
 }
 
 .navbar-light .navbar-nav .nav-link, .navbar-light .navbar-brand {
@@ -211,8 +217,27 @@ form {
 	height: 50px;
 }
 
+.small-logo {
+	height: 40px;
+}
+
+.footer-logo{
+	float: left;
+	height: 100px;
+	margin-right: 20px;
+}
+
 .title-nav {
 	font-size: 1.8rem;
+}
+
+.title-small{
+	font-size: 1.5rem;
+}
+/*Boutton deconnecté*/
+.deconnect {
+	margin: 0;
+	padding: 0;
 }
 
 /* nav hover */
@@ -313,14 +338,58 @@ svg {
 	transition: all 1s linear;
 }
 
+/* <<<<<<< HEAD */
 /* footer {
 	padding: 1rem 0;
-	background-color: #9fe6bb;
+=======
+.ajoutQuiz {
+	margin-top: 4em;
 }
 
-.footer {
+.titleQuiz {
+	font-size: 2em;
+}
+
+.buttonQuiz {
+	width: 50%;
+	margin-top: 4em;
+}
+
+.date {
+	font-size: 2em;
+}
+
+.retour {
+	width: 50%;
+}
+
+.texteQuestion {
+	margin-top: 1em;
+}
+
+footer {
+	padding: 1rem 5rem;
+	padding-top: 3rem;
+>>>>>>> 10abd30f7a3cf99eac5fec925b3585f6e89f1ca2
+	background-color: #9fe6bb;
+	margin-top: 200px;
+	height: 200px;
+	position: relative;
+
+	margin-top:	70px;
+}
+
+footer i{
+	color: #fff;
+}
+
+.footer-link {
 	color: #fff;
 } */
+
+.footer-description{
+	text-align: justify;
+}
 
 /* Page chagedPassword */
 .changedPwd .button {
@@ -336,6 +405,10 @@ svg {
 	text-align: end;
 }
 
+.no-border{
+	border: none;
+}
+
 /* ----------------------------------------------------------------------------------------------------------- 
 ----------------------------------------------- media queries -----------------------------------------------
 ------------------------------------------------------------------------------------------------------------*/
@@ -343,13 +416,33 @@ svg {
 	.lois {
 		margin-top: 17%;
 	}
-	/*LOG*/
-	.text-log {
-		display: none;
+	
+	.buttonQuiz {
+		width: 100%;
 	}
+}
+
+@media screen and (min-width: 768px) {
 	.ctn-log {
-		height: 100vh;
-		box-shadow: 0 0rem 0rem rgba(0, 0, 0, 0);
+		margin: 10rem auto;
+		box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+	}
+	.text-log {
+		box-shadow: none;
+	}
+	.title-log {
+	    margin-top: 20%;
+	}
+	.create-account {
+		margin: 2rem auto;
+	}
+	.create-account-text {
+		padding-top: 9rem;
+	}
+	
+	
+	.retour, .buttonQuiz {
+		width: 100%;
 	}
 }
 
@@ -365,18 +458,11 @@ svg {
 	.drop-menu .dropdown-item {
 		width: 100%;
 	}
-	.drop-menu .dropdown-item:hover {
-		/* 		border-radius: 0px;		 */
-		
-	}
 	.table .thead-light th {
 		background-color: #9fe6bb;
 	}
 	.btn-details {
 		width: 170px;
-	}
-	.ctn-log {
-		height: 76vh;
 	}
 	.sub-title {
 		font-size: 36px;
@@ -385,3 +471,31 @@ svg {
 		font-size: 46px;
 	}
 }
+
+@media screen and (min-width: 1200px) {
+	/*Page de login*/
+	.ctn-log {
+    	height: auto;
+	}
+	.text-log {
+		height: auto;
+	}
+	.title-log {
+	    margin-top: 5rem;
+	}
+	.form-connect {
+    	display: flex;
+    	flex-direction: column;
+    	align-items: center;
+    	align-self: center;
+	}
+	/*Page de création de compte*/
+	.create-account {
+	    margin-bottom: 6rem;
+	}
+}
+
+
+
+
+

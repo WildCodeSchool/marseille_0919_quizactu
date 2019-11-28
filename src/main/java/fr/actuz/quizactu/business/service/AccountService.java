@@ -9,14 +9,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import fr.actuz.quizactu.business.entity.Account;
+import fr.actuz.quizactu.business.entity.Article;
 import fr.actuz.quizactu.business.entity.Role;
 import fr.actuz.quizactu.persistence.AccountRepository;
+import fr.actuz.quizactu.persistence.ArticleRepository;
 
 @Service
 public class AccountService {
 
 	@Autowired
 	private AccountRepository accountRepo;
+
+	@Autowired
+	private ArticleRepository articleRepo;
 
 	@Autowired
 	private BCryptPasswordEncoder bCrypt;
@@ -77,6 +82,23 @@ public class AccountService {
 		final String hashedPassword = this.bCrypt.encode(password);
 		acc.setPassword(hashedPassword);
 		this.accountRepo.save(acc);
+	}
+
+	public void deleteFavoriteArticle(String username, Integer id) {
+		Account acc = this.accountRepo.findOneByUserName(username);
+		int index = -1;
+		for (Article article : acc.getArticles()) {
+			if (article.getId().equals(id)) {
+				index = acc.getArticles().indexOf(article);
+				break;
+			}
+		}
+		if (index >= 0) {
+			Article removed = acc.getArticles().remove(index);
+			System.out.println(acc.getArticles());
+			removed.getAccounts().remove(acc);
+			this.accountRepo.save(acc);
+		}
 	}
 
 }

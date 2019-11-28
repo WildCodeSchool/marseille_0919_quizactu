@@ -9,3 +9,7 @@ h2.timer, .timerWrapper {
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
+
+h2.timer{
+	top: 29%;
+}

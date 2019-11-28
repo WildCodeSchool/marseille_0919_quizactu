@@ -12,12 +12,12 @@
 		<h3 th:if="${quizPlayed}">Quiz déja fait par un utilisateur, impossible de le supprimer</h3>
 	
 		<div class="msgUser" th:if="${#httpServletRequest.remoteUser != null}">
-			<h2 th:inline="text">Bienvenue
-				[[${#httpServletRequest.remoteUser}]]</h2>
+			<h1 th:inline="text">Bienvenue
+				[[${#httpServletRequest.remoteUser}]]</h1>
 		</div>
 		<div>
-			<h1 class="quizActu-title">Welcome Manager</h1>
-			<h3>Liste de Quiz</h3>
+			
+			<h2>Liste de Quiz</h2>
 			<table class="table table-bordered tableau">
 				<thead class="upTable">
 					<tr>

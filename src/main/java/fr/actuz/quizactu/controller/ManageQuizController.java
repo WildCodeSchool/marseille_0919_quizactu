@@ -72,8 +72,8 @@ public class ManageQuizController {
 
 	@PostMapping("/setQuestion/{questionId}")
 	public String submitUpdateQuestion(@PathVariable Integer questionId, String content, Integer timerQuestion,
-			Integer timerResponse, MultipartFile image, @ModelAttribute("quizId") Integer quizId) {
-		this.service.updateQuestion(questionId, content, timerQuestion, timerResponse, image);
+			 MultipartFile image, @ModelAttribute("quizId") Integer quizId) {
+		this.service.updateQuestion(questionId, content, timerQuestion, image);
 		return "redirect:/manager/quizDetails/" + quizId;
 	}
 
@@ -115,8 +115,8 @@ public class ManageQuizController {
 
 	@PostMapping("/createQuestion/{quizId}")
 	public String submitFormQuestion(@PathVariable Integer quizId, Question question,
-			@RequestParam MultipartFile questionImage) {
-		question = this.service.createQuestion(quizId, question, questionImage);
+			@RequestParam MultipartFile questionImage, Integer timerQuestion) {
+		question = this.service.createQuestion(quizId, question, questionImage, timerQuestion);
 		return "redirect:/manager/createResponse/" + question.getId();
 	}
 

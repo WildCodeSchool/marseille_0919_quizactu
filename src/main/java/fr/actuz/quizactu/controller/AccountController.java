@@ -36,9 +36,6 @@ public class AccountController {
 		model.addAttribute("connectedId", acc.getId());
 		model.addAttribute("account", acc);
 		model.addAttribute("imgAvatar", acc.getAvatarEncoded());
-
-//		model.addAttribute("totalScore", acc.getScore());
-//		model.addAttribute("mailaddress", acc.getEmail());
 		return "changedPassword";
 	}
 

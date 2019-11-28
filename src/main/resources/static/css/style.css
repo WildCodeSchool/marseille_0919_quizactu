@@ -241,6 +241,11 @@ form {
 .title-small{
 	font-size: 1.5rem;
 }
+/*Boutton deconnecté*/
+.deconnect {
+	margin: 0;
+	padding: 0;
+}
 
 /* nav hover */
 .nav-item {

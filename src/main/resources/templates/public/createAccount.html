@@ -7,32 +7,40 @@
 <link rel="stylesheet" th:href="@{./css/style.css}">
 </head>
 <body>
-	<nav th:replace="fragments/navbar.html :: nav"></nav>
-	
-	<div class="mt-150 container">
-	<h1>Veuillez créer votre compte</h1>
-		<form class="form-signin" th:action="@{/public/form}" method="post">
-			<div class="form-group">
-				<label for="email">Votre email</label> <input id="email"
-					name="email" type="email" class="form-control" required>
+	<div class="container ctn-log bg-white rounded create-account">
+		<div class="row">
+			<div class="col-md-6 col-sm-12 text-log create-account-text">
+				<h1 class="title-log">QUIZ'ACTU</h1>
+				<img class="logo-login" th:src="@{/images/logo6.png}" />
+				<h2 class="sub-title text-white p-2">Défiez vos connaissances
+					sur l'actualité !</h2>
 			</div>
-			<div class="form-group">
-				<label for="username">Nom d'utilisateur</label> <input id="username"
-					name="userName" class="form-control" required>
+			<div class="col-md-6 col-sm-12 form-connect">
+				<h1 class="connexion quizActu-title">Création de compte</h1>
+				<form class="form-signin" th:action="@{/public/form}" method="post">
+					<div class="form-group">
+						<label for="email">Votre email</label><input id="email"
+							name="email" type="email" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label for="username">Nom d'utilisateur</label> <input
+							id="username" name="userName" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label for="password">Mot de passe</label> <input id="password"
+							name="password" type="password" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label for="confirmPassword">Confirmer le mot de passe</label> <input
+							id="confirmPassword" name="confirmPassword" type="password"
+							class="form-control" required>
+					</div>
+					<button class="button btn btn-lg btn-primary btn-block w-100">Valider</button>
+				</form>
+				<a class="link-creat-account" th:href="@{/}">Se connecter</a>
 			</div>
-			<div class="form-group">
-				<label for="password">Mot de passe</label> <input id="password"
-					name="password" type="password" class="form-control" required>
-			</div>
-			<div class="form-group">
-				<label for="confirmPassword">Confirmer le mot de passe</label> <input id="confirmPassword"
-					name="confirmPassword" type="password" class="form-control" required>
-			</div>
-			<button class="button btn btn-lg btn-primary btn-block w-100">Valider</button>
-		</form>
-		<h3>
-			<a th:href="@{/login}">Connectez-vous</a>
-		</h3>
+		</div>
 	</div>
+	<!-- <footer th:replace="fragments/navbar.html :: footer"></footer> -->
 </body>
 </html>

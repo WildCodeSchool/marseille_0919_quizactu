@@ -1,0 +1,48 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head.html :: head"></head>
+<head>
+<title>Articles</title>
+<link rel="stylesheet" th:href="@{/css/favoriteArticle.css}">
+</head>
+<body>
+	<nav th:replace="fragments/navbar.html :: navUser"></nav>
+	<div class="container mt-4">
+		<h2 class="quizActu-title">Articles favoris</h2>
+		
+		<div class="row">
+			<div class="col-lg-6 pb-3" th:each="i : ${#numbers.sequence(account.articles.size() - 1, 0, -1)}">
+				<div class="card" >
+					<div class="card-body">
+						<div class="img-copyright">
+							<img th:src="${account.articles[i].question.imageEncoded}"
+								th:if="${account.articles[i].question.image != null}" class="card-img-top"> 
+							<p class="copyright"
+								th:utext="${account.articles[i].media} + '© Copyright'">
+						</div>
+						<p th:utext="'<strong>Question : </strong>' + ${account.articles[i].question.content}"></p>
+						<div th:each="response : ${account.articles[i].question.responses}">
+							<span th:utext="'<strong>Réponse : </strong>' + ${response.content}"
+								th:if="${response.isTrue}"></span>
+						</div>
+						<div class="article">
+							<h4 class="card-title" th:text="${account.articles[i].title}"></h4>
+							<p class="card-text" th:text="${account.articles[i].summary}"></p>
+						</div>
+						<div class="article-link">
+							<a class="card-text" th:href="${account.articles[i].link}" target="_blank">Voir l'article</a>
+							<a th:href="@{/favoriteArticles/delete/} + ${account.articles[i].id}">Supprimer des favoris</a>
+						</div>
+						<div class="card-footer">
+							<div class="sharethis-inline-share-buttons"
+								data-title="Article Quiz'Actu :" th:data-url="${account.articles[i].link}"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript"
+	src="https://platform-api.sharethis.com/js/sharethis.js#property=5dd7baf9576b27001242093f&product=inline-share-buttons"
+	async="async"></script>
+</html>

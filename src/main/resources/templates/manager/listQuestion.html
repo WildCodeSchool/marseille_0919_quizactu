@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="/head.html :: head"></head>
+<head>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<nav th:replace="fragments/navbar.html :: navManager"></nav>
+		<div class="container">
+			<h1 th:utext="${quiz.title}"></h1>
+			<div th:each="question : ${quiz.questions} ">
+				<p th:utext="${question.content}"></p>
+			</div>
+		</div>
+	<footer th:replace="fragments/navbar.html :: footer"></footer>
+</body>
+</html>

@@ -3,27 +3,27 @@
 	xmlns:th="http://www.thymeleaf.org">
 
 <head th:insert="/head.html :: head"></head>
-<head>
-<link rel="stylesheet" th:href="@{./css/styles.css}">
-</head>
 <body>
-	<nav th:replace="fragments/navbar.html :: nav"></nav>
-	<div class="container mt-150">
-		<h2 class="quizActu-title">Classement</h2>
+	<nav th:replace="fragments/navbar.html :: navUser"></nav>
+	<div class="container mt-4">
+		<h2 class="quizActu-title no-border">Classement</h2>
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>Rank</th>
 					<th>Pseudo</th>
+					<th>Score</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="userScore: ${usersScore}">
-					<td th:text="${userScore.getUsername()}" />
-					<td th:text="${userScore.getScore()}" />
+					<th:block th:if="${userScore.role.name == 'USER'}">
+						<td th:text="${userScore.getUsername()}" />
+						<td th:text="${userScore.getScore()}" />
+					</th:block>
 				</tr>
 			</tbody>
 		</table>
 	</div>
+	<footer th:replace="fragments/navbar.html :: footer"></footer>
 </body>
 </html>

@@ -1,0 +1,176 @@
+/*------------------------------------- GLOBAL PAGE RESULT -------------------------------------------*/
+.result {
+    margin-top: 2rem;
+}
+.result a {
+	display: block;
+	width: 100%;
+	color: grey;
+	padding: 1rem 0;
+	transition: 0.8s;
+}
+
+.result a:hover {
+	color: black;
+}
+
+.result .quizActu-title {
+	width: auto;
+	margin: 0;
+}
+
+.result .card {
+	height: 100%;
+}
+
+.result .card-body {
+	padding: .5rem
+}
+
+.article-link {
+	display: flex;
+	width: 100%;
+	justify-content: flex-end;
+	color: grey;
+	cursor: pointer;
+	margin-bottom: 1rem;
+}
+
+.article-link a {
+	width: auto;
+	transition: 0.8s;
+	padding: 0 .5rem;
+}
+
+.article-link a:hover {
+	color: black;
+}
+/*------------------------------------- END GLOBAL PAGE RESULT ---------------------------------------*/
+/*----------------------------------------- RESULT QUIZ ----------------------------------------------*/
+.result-trophy-score {
+	position: relative;
+}
+
+.result-trophy-score img {
+	width: 100%;
+    position: relative;
+    margin: 2rem 0;
+}
+
+.result-trophy-score-txt {
+	position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+    font-size: 6rem;
+    text-shadow: 2px 4px 6px rgba(95,95,95,0.74);
+}
+
+.result-score {
+	display: inline-flex;
+	font-size: 1.2rem;
+}
+
+.result-score-txt {
+	font-weight: bold;
+	margin-left: .8rem;
+}
+
+.score-total > p {
+	font-size: 1.5rem;
+	line-height: 0;
+}
+/*----------------------------------------- END RESULT QUIZ ------------------------------------------*/
+/*------------------------------------- FALSE ANWSER -----------------------------------------------*/
+.false-anwser-article-title {
+	font-style: italic;
+	font-size: inherit; padding : 1rem 0;
+	border-top: 1px solid grey;
+	transition-duration: 0.8s;
+	padding: 1rem 0;
+}
+
+/*------------------------------------- END FALSE ANWSER -----------------------------------------*/
+/*------------------------------------- ACCORDION -----------------------------------------------*/
+.accordion {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-bottom: 1px solid grey;
+}
+
+.accordion-item {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.accordion-item .toggle {
+	cursor: pointer;
+	text-align: center;
+	padding: .5rem;
+	background-color: #ffffff6b;
+	color: #2b5724;
+	border: 1px solid grey;
+	transition: 0.5s;
+	margin: .5rem auto;
+	width: intrinsic; /* Safari/WebKit utilisent un nom non-standard */
+	width: -moz-max-content; /* Firefox/Gecko */
+	width: -webkit-max-content; /* Chrome */
+}
+
+.accordion-item .toggle:hover {
+	background-color: #ffffff99;
+}
+
+.accordion-item .content .inner {
+	overflow: hidden;
+	max-height: 0;
+	transition: 0.4s ease-in-out;
+	margin-top: 0;
+}
+
+.accordion-item .content.active .inner {
+	max-height: 600px;
+}
+
+.accordion-item .content .inner .article-title {
+	font-style: italic;
+}
+
+.accordion-item .content .inner .article-link {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	justify-content: flex-end;
+	color: grey;
+	cursor: pointer;
+	margin-bottom: 1rem;
+}
+
+.accordion-item .content .inner .article-link a {
+	width: auto;
+	transition: 0.8s;
+	padding: 0 .5rem;
+}
+
+.accordion-item .content .inner .article-link a:hover {
+	color: black;
+}
+/*------------------------------------- END ACCORDION --------------------------------------------*/
+.back-home {
+	margin-bottom: 2rem;
+}
+
+/*------------------------------------- MEDIA QUERIES --------------------------------------------*/
+@media screen and (min-width: 768px) {
+	.result-trophy .result-trophy-score img  {
+		width: 60%;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.result-trophy .result-trophy-score img  {
+		width: 40%;
+	}
+}

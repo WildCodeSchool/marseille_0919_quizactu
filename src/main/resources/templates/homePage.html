@@ -1,59 +1,96 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-
 <head th:insert="/head.html :: head"></head>
-
+<head>
+<link rel="stylesheet" th:href="@{/css/homePage.css}">
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
 <body>
-	<nav th:replace="fragments/navbar.html :: nav"></nav>
-	<div class="msgUser mt-150" th:if="${#httpServletRequest.remoteUser != null}">
-		<h2 th:inline="text" class="quizActu-title">Bienvenue
-			[[${#httpServletRequest.remoteUser}]]</h2>
-	</div>
-	<div class="container">
+	<nav th:replace="fragments/navbar.html :: navUser"></nav>
+	<div class="container mt-4">
+		<div class="msgUser" th:if="${#httpServletRequest.remoteUser != null}">
+			<h2 th:inline="text" class="quizActu-title">Bienvenue
+				[[${#httpServletRequest.remoteUser}]]</h2>
+		</div>
 		<div class="row">
+			<!-- Quiz of the day -->
 			<div class="col-sm-12">
-				<div class="news">
-					<div class="img-figure">
-						<img th:src="@{/images/media.jpg}" class="img-responsive">
+				<div class="news" th:if="${quizOfTheDay != null}">
+					<div class="img-figure quiz-of-day">
+						<img th:if="${firstPictureOfQuizOfTheDay != null}"
+							th:src="${firstPictureOfQuizOfTheDay}" class="img-responsive">
+						<img th:if="${firstPictureOfQuizOfTheDay == null}"
+							th:src="@{/images/logo6.png}" />
 					</div>
 					<div class="title">
-						<span>Vendredi 8 Novembre 2019</span>
-						<h1>Quiz du jour</h1>
+						<span
+							th:utext="${#temporals.format(quizToday, 'EEEE dd MMMM yyyy')}"></span>
+						<h3>Quiz du jour</h3>
+						<a th:href="@{/timer/today}" class="button">Jouer</a>
 					</div>
-					<button class="button">Jouer</button>
+				</div>
+				<div class="news not-quiz" th:if="${quizOfTheDay == null}">
+					<div class="img-figure quiz-of-day">
+						<img th:src="@{/images/logo6.png}" class="img-responsive" />
+					</div>
+					<div class="title">
+						<p class="strong">Désolé, il n'y a pas de quiz aujourd'hui.</p>
+					</div>
 				</div>
 			</div>
+			<!-- End quiz of the day -->
 		</div>
-
 		<div class="row">
 			<div class="col-lg-6">
-				<div class="news">
+				<div class="news" th:if="${quizOfYesterday != null}">
 					<div class="img-figure">
-						<img th:src="@{/images/journalism.jpg}" class="img-responsive">
+						<img th:if="${firstPictureOfQuizYesterday != null}"
+							th:src="${firstPictureOfQuizYesterday}" class="img-responsive">
+						<img th:if="${firstPictureOfQuizYesterday == null}"
+							th:src="@{/images/logo6.png}" />
 					</div>
 					<div class="title">
-						<span>Jeudi 7 Novembre 2019</span>
-						<h1>Quiz de la veille</h1>
+						<h3>Quiz de la veille</h3>
+						<a th:href="@{/timer/yesterday}" class="button">Jouer</a>
 					</div>
-					<button class="button">Jouer</button>
+				</div>
+				<div class="news not-quiz" th:if="${quizOfYesterday == null}">
+					<div class="img-figure quiz-of-day">
+						<img th:src="@{/images/logo6.png}" class="img-responsive" />
+					</div>
+					<div class="title">
+						<p class="strong">Désolé, il n'y a pas de quiz pour ce jour.</p>
+					</div>
 				</div>
 			</div>
+			<!-- End quiz of yesterday -->
 			<div class="col-lg-6">
-				<div class="news">
+				<!-- start quiz of before yesterday -->
+				<div class="news" th:if="${quizOfBeforeYesterday != null}">
 					<div class="img-figure">
-						<img th:src="@{/images/magazine.jpg}" class="img-responsive">
+						<img th:if="${firstPictureOfQuizBeforeYesterday != null}"
+							th:src="${firstPictureOfQuizBeforeYesterday}" class="img-responsive">
+						<img th:if="${firstPictureOfQuizBeforeYesterday == null}"
+							th:src="@{/images/logo6.png}" />
 					</div>
 					<div class="title">
-						<span>Mercredi 6 Novembre 2019</span>
-						<h1>Quiz de l'avant veille</h1>
+						<h3>Quiz de l'avant veille</h3>
+						<a th:href="@{/timer/dayBeforeYesterday}" class="button">Jouer</a>
 					</div>
-					<button class="button">Jouer</button>
+				</div>
+				<div class="news not-quiz" th:if="${quizOfBeforeYesterday == null}">
+					<div class="img-figure quiz-of-day">
+						<img th:src="@{/images/logo6.png}" class="img-responsive" />
+					</div>
+					<div class="title">
+						<p class="strong">Désolé, il n'y a pas de quiz pour ce jour.</p>
+					</div>
 				</div>
 			</div>
+			<!-- End quiz of before yesterday -->
 		</div>
-
-		<div class="dashboard_ranking">
+		<div class="dashboard-ranking">
 			<h2 class="quizActu-title">Classement</h2>
 			<h3>Top 10</h3>
 			<table class="table table-striped">
@@ -73,5 +110,6 @@
 			<a th:href="@{/ranking}" class="button">Voir le classement</a>
 		</div>
 	</div>
+	<footer th:replace="fragments/navbar.html :: footer"></footer>
 </body>
 </html>

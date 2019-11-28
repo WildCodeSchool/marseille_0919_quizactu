@@ -1,0 +1,60 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="head.html :: head"></head>
+
+<head>
+<title>Création de questions</title>
+</head>
+<body>
+	<nav th:replace="fragments/navbar.html :: navManager"></nav>
+	<div class="container  bg-white">
+		<h1 class="ajoutQuiz">Créer la question</h1>
+		<form method="post" th:object="${question}"
+			th:action="@{/manager/createQuestion/} + ${quizId}"
+			enctype="multipart/form-data">
+			<div class="form-group">
+				<label for="content" class="required titleQuiz">Texte Question</label> <input
+					id="content" th:field="*{content}" required="required"
+					class="form-control"></input>
+				<div class="form-group texteQuestion">
+					<table>
+						<tr>
+							<td>Image à télécharger:</td>
+							<td><input type="file" name="questionImage" required></td>
+							<td> Timer<input type="number" name="timerQuestion" value="10"></td>
+						</tr>
+					</table>
+				</div>
+				<div class="form-group">
+				</div>
+				<div class="form-group">
+					<label for="articleTitle" class="required titleQuiz">Titre de
+						l'article</label> <input id="articleTitle" required="required"
+						class="form-control" th:field="*{article.title}" />
+				</div>
+				<div class="form-row">
+					<div class="col-md-6 mb-3">
+						<label for="articleMedia" class="required titleQuiz">Nom du média</label> <input
+							id="articleMedia" required="required" class="form-control"
+							th:field="*{article.media}" />
+
+					</div>
+					<div class="col-md-6 mb-3">
+						<label for="articleLink" class="required titleQuiz">Lien du média</label> <input
+							id="articleLink" required="required" class="form-control"
+							th:field="*{article.link}" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="articleSummary" class="required titleQuiz">Résumé de
+						l'article</label>
+					<textarea id="articleSummary" required="required"
+						class="form-control" th:field="*{article.summary}" rows="5"
+						cols="20"></textarea>
+				</div>
+				<button type="submit" class="button buttonQuiz">Ajouter la question</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

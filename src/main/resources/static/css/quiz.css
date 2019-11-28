@@ -1,0 +1,96 @@
+.mt-150 {
+	margin-top: 5rem;
+}
+
+.mt-10{
+	margin-top: 10px;
+}
+
+.vraiFaux {
+	display: inline-block;
+	width: 100%;
+	padding: 0.5rem;
+	margin-top: 0.3rem;
+}
+
+h2 {
+	font-size: 1.2rem;
+	text-align: justify;
+}
+
+.card-body {
+	padding: .5rem;
+}
+
+.card img {
+	margin: auto;
+}
+
+.progress {
+	height: 15px;
+	position: relative;
+	top: 0;
+	z-index: 99999999999999;
+}
+
+.response div {
+	width: 49%;
+}
+
+.response div>a {
+	min-height: 100px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	word-break: break-word;
+}
+
+.button {
+	margin: .3rem 0;
+	padding: 0.5rem;
+}
+
+.list-group-item-danger {
+	border: 1px solid red;
+	border-radius: 10px;
+}
+
+.list-group-item-success {
+	border: 1px solid green;
+	border-radius: 10px;
+}
+
+.copyright {
+	background-color: black;
+	color: white;
+	padding: 5px;
+	position:absolute;
+	bottom: 0%;
+	left:50%;
+	margin:0px;
+    transform: translate(-50%, 0);
+}
+.img-copyright{
+	position: relative
+}
+
+@media screen and (min-width: 768px) {
+	.card img {
+		width: auto;
+	}
+@media screen and (min-width: 992px) {
+	.card img {
+		width: 50%;
+	}
+	.card-body {
+		width: 70%;
+		margin: 0 auto;
+	}
+	.progress {
+		width: 70%;
+		margin: 0 auto;
+	}
+	.card-body h2 {
+		text-align: center;
+	}
+}

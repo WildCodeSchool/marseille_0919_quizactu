@@ -1,0 +1,41 @@
+.img-copyright{
+	position: relative
+}
+.copyright {
+	background-color: black;
+	color: white;
+	padding: 5px;
+	position:absolute;
+	bottom: 0%;
+	left:50%;
+	margin:0px;
+    transform: translate(-50%, 0);
+	width: 100%;
+}
+.card {
+	height: 100%;
+}
+.card-title {
+	font-style: italic;
+	font-size: 1.2rem;
+}
+.article {
+	border-top: 1px solid #e8e8e8;
+	margin-top: 1rem;
+}
+.article h4 {
+	margin-top: 1rem;
+}
+.article-link {
+	display: flex;
+    flex-direction: column;
+    text-align: right;
+    padding: 1rem 0;
+}
+.article-link a {
+	color: grey;
+	transition: .8s;
+}
+.article-link a:hover {
+	color: black;
+}

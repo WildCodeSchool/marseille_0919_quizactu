@@ -1,0 +1,14 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head.html :: head"></head>
+<head>
+<title>Timer</title>
+</head>
+<body>
+	<nav th:replace="fragments/navbar.html :: navManager"></nav>
+	<h1>test list</h1>
+	<div th:each="response : ${listResp}">
+		<p th:utext=${response.content}></p>
+	</div>
+	<footer th:replace="fragments/navbar.html :: footer"></footer>
+</body>
+</html>

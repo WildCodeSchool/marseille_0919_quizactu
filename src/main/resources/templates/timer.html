@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head.html :: head"></head>
+<head>
+<title>Timer</title>
+<link rel="stylesheet" th:href="@{/css/timer.css}">
+<script th:src="@{/js/timer.js}"></script>
+</head>
+<body>
+	<nav th:replace="fragments/navbar.html :: navCreate"></nav>
+	<div class="timerWrapper">
+		<h2 class="timer"></h2>
+		<svg width="160" height="160" xmlns="http://www.w3.org/2000/svg">
+	      <circle id="circle" class="circle_animation" r="69.85699" cy="81"
+				cx="81" stroke-width="8" stroke="#6fdb6f" fill="none"></circle>
+	    </svg>
+		<a href="javascript:history.go(-1)" class="btn-sm button mt-5">Retour</a>
+	</div>
+	<input id="typeQuiz" type="hidden" th:value="${type}">
+</body>
+</html>

@@ -1,29 +1,35 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-	<head th:replace="head.html :: head"></head>
-	<head>
-		<title>Connexion</title>
-	</head>
-	<body>
-		<nav th:replace="fragments/navbar.html :: nav"></nav>
-		
-		<div class="container login mt-150">
-		<h1>Connexion</h1>
-			<form class="form-signin" th:action="@{/login}" method="post">
-				<div class="form-group">
-					<label for="username">Nom d'utilisateur</label> <input id="username"
-						name="username" class="form-control" required>
-				</div>
-				<div class="form-group">
-					<label for="password">Mot de passe</label> <input id="password"
-						name="password" type="password" class="form-control" required>
-				</div>
-				<a th:href="@{/public/forgotPassword}">mot de passe oublié</a>
-				<button class="btn btn-lg btn-block button">Valider</button>
-			</form>
-			<h3>
-				<a th:href="@{/public/createAccount}">Créer un compte</a>
-			</h3>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head.html :: head"></head>
+<head>
+<title>Connexion</title>
+</head>
+<body>
+	<div class="container ctn-log bg-white rounded">
+		<div class="row">
+			<div class="col-md-6 col-sm-12 text-log">
+				<h1 class="title-log">QUIZ'ACTU</h1>
+				<img class="logo-login" th:src="@{/images/logo6.png}" />
+				<h2 class="sub-title text-white p-2">Défiez vos connaissances
+					sur l'actualité !</h2>
+			</div>
+			<div class="col-md-6 col-sm-12 form-connect">
+				<h1 class="connexion quizActu-title">Connexion</h1>
+				<form class="form-signin" th:action="@{/login}" method="post">
+					<div class="form-group">
+						<label for="username">Nom d'utilisateur</label> <input
+							id="username" name="username" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label for="password">Mot de passe</label> <input id="password"
+							name="password" type="password" class="form-control" required>
+					</div>
+					<button class="btn-log btn-lg btn-block button">Valider</button>
+				</form>
+				<a class="link-creat-account" th:href="@{/public/createAccount}">Créer un compte</a>
+			</div>
 		</div>
-	</body>
+	</div>
+</body>
 </html>

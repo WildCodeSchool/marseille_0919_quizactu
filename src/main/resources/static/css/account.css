@@ -1,0 +1,98 @@
+.account {
+	background-color: white;
+	padding: 1.5rem;
+	box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+}
+/* Si l'user à changer son avatar*/
+.image-border {
+	margin: 0 auto;
+	border: 1px solid grey;
+	border-radius: 50%;
+	padding: 0.3rem;
+	width: 50%;
+}
+
+.image-border img {
+	width: 100%;
+	border-radius: 50%;
+	padding: 0.3rem;
+	border: 1px solid grey;
+}
+/* Si l'user laisse l'avatar par défaut*/
+.icone-border {
+	width: fit-content;
+	margin: 0 auto;
+	border: 1px solid grey;
+	padding: 0.3rem;
+	border-radius: 50%;
+	width: -moz-fit-content;
+}
+
+.icone-border .icone {
+	border: 1px solid grey;
+	border-radius: 50%;
+	padding: 0.3rem;
+}
+
+.headUser h3 {
+	width: 50%;
+	margin: 0 auto;
+	font-size: 2rem;
+	padding: 1rem 0 0 0;
+}
+
+.mail {
+	padding-top: 1rem;
+}
+
+.score {
+	font-size: 1.8rem;
+	font-weight: bold;
+}
+
+.changedPwd {
+	border: 1px solid #efefef;
+	padding: 0.5rem;
+	box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+	background-color: #fafafa;
+}
+
+.changedPwd h3 {
+	margin-top: 0.5rem;
+}
+
+@media screen and (min-width: 768px) {
+	.account {
+		margin: 2rem auto;
+	}
+	.image-border {
+		width: 40%;
+	}
+}
+
+@media screen and (min-width: 992px) {
+	.account {
+		
+	}
+	.image-border {
+		width: 40%;
+	}
+	.form-signin {
+		width: 70%;
+		margin: 0 auto;
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	.image-border {
+		width: 20%;
+		height: 20%;
+	}
+	.image-border img {
+		height: 100%;
+	}
+	.form-signin {
+		width: 70%;
+		margin: 0 auto;
+	}
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="/head.html :: head"></head>
+<head>
+<link rel="stylesheet" th:href="@{/css/quiz.css}">
+<script th:src="@{/js/quiz.js}"></script>
+</head>
+<body>
+	<nav th:replace="fragments/navbar.html :: navCreate"></nav>
+	<div class="container">
+		<div class="card mt-3">
+			<div class="img-copyright mt-10">
+				<img class="card-img-top" th:if="${question.image != null}"
+					th:src="${question.imageEncoded}" />
+				<p class="copyright"
+					th:utext="${question.article.media} + '© Copyright'">
+			</div>
+			<div th:if="${!validation}" class="progress" style="height: 20px;">
+				<div id="questionTimer"
+					class="progress-bar progress-bar-striped progress-bar-animated"
+					role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+			</div>
+
+			<div class="card-body">
+				<h2 th:utext="${question.getContent()}"></h2>
+				<div
+					class="response d-flex justify-content-between align-items-center d-flex flex-wrap">
+					<div th:each="response : ${question.getResponses()}" class="mb-2">
+						<a th:unless="${validation}" class="btn btn-block button vraiFaux"
+							th:href="@{/validateQuestion/} + ${question.id} + '/' + ${response.id}"
+							th:utext="${response.getContent()}"></a> <a th:if="${validation}"
+							class="btn btn-block vraiFaux"
+							th:classappend="${response.isTrue} ? list-group-item-success : list-group-item-danger"
+							th:utext="${response.getContent()}"></a>
+					</div>
+				</div>
+				<div>
+					<a th:if="${validation}" th:href="@{/nextQuestion}" class="button">Continuer</a>
+				</div>
+			</div>
+			<input type="hidden" id="questionId" th:value="${question.id}">
+			<input type="hidden" id="timerQuestion" th:value="${question.timerQuestion}">
+			<div class="card-footer text-center">
+				<p class="mb-0"
+					th:utext="${#temporals.format(quiz.getPublicationDate(), 'EEEE dd MMMM yyyy')}"></p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

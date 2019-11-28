@@ -3,27 +3,60 @@
 *		Ecru : #fafafa;
 *		Gris Clair : #e8e8e8;
 *		Gris foncé : #444;
-*		Bleu : #4381C1;
+*		Vert menthe : #9FE6BB;
 *
 * 	CLASS :
 *		Class "button" à mettre sur les <a> pour que le style s'applique
-*		Class "quizActu-title" à mettre sur les <h2> pour aplkquer le border-bootom
+*		Class "quizActu-title" à mettre sur les <h2> pour appliquer le border-bottom
+*		Class "strong" pour afficher le text en bold
+*
+*	README :
+*		Pensez à intégrer vos pages en MOBIL FIRST merci
+*		Pensez à respecter l'ordre logique de votre code 
+*		Pensez à regrouper votre code de la même page ensemble en ajoutant un block de commentaire
+*			début et fin pour que tout le monde s'y retrouve
+*		Merci de mettre les media queries en bas de fichier
+*
+*	BREAKPOINT :
+*		Tablette : 768px
+*		Large devices : 992px
+*		XLarge device : 1200px
+*
 */
+/* ----------------------------------------------------------------------------------------------------------- 
+----------------------------------------------- GLOBAL -------------------------------------------------------
+------------------------------------------------------------------------------------------------------------*/
+html {
+	font-size: 1rem; /* 16px */
+	width: 100%;
+}
 
 body {
-	/* background-color: #14213d; */
+	font-size: 100%; /* flexible baseline */
+	line-height: 1.4;
 	background-color: #fafafa;
 	text-align: center;
 	color: #444;
+	width: 100%;
+	height: 100%;
+/* 	margin-bottom: 100px; */
+/* 	height : 100vh; */
+/* 	padding-top: 150px; */
 }
 
-h1, h3 {
+
+/* body > div.container { */
+/* 	padding-bottom: 150px; */
+/* } */
+
+
+h1 {
 	text-align: center;
-	margin-top: 2em;
+	margin: 1em;
 }
 
-.mt-150 {
-	margin-top: 150px;
+h3 {
+	font-size: 1.2rem
 }
 
 a {
@@ -46,28 +79,28 @@ form {
 	display: flex;
 	justify-content: center;
 	width: auto;
-	font-size: 1.3rem;
-	margin: 0 auto;
+	margin: 5px auto;
 	padding: 1rem 0;
 	color: white;
 	border-radius: 10px;
-	border: 1px solid #4381C1; 
-	background-color: #4381C1;
+	border: 1px solid #9FE6BB;
+	background-color: #9FE6BB;
 	transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
 }
 
 .button:hover {
 	background: white;
-	color: #4381C1;
-	border: 1px solid #4381C1;
+	color: #9FE6BB;
+	border: 1px solid #9FE6BB;
 }
 
 .quizActu-title {
 	border-bottom: 1px solid #e8e8e8;
-	width: 30%;
-	padding: 0 0 .5rem 0;
-	margin: 3rem auto;
+}
+
+.strong {
+	font-weight: bold;
 }
 
 .form-control {
@@ -75,43 +108,113 @@ form {
 	margin-top: 10px;
 }
 
-.form-signin {
-	max-width: 330px;
-	padding: 15px;
-	margin: 0 auto;
-}
-
 .login .button {
 	width: 100%;
 	margin-top: 2rem;
 }
 
+/* CREATE LOG */ 
+.ctn-creat{
+	background-image: linear-gradient(to bottom, #9fe6bb, #9be1b7, #98dcb2, #94d7ae, #91d2aa);
+	width: 100%;
+	height: auto;
+}
+
+.form-signin {
+	margin-top: 2rem;
+}
+
+.form-signin .button {
+	width: 100%;
+	margin: 30px 0;
+}
+/* ----------------------------------------------------------------------------------------------------------- 
+----------------------------------------------- END GLOBAL ---------------------------------------------------
+------------------------------------------------------------------------------------------------------------*/
 .lois {
 	margin-top: 4%;
 }
 
-#logout-btn{
+#logout-btn {
 	margin: 0;
-
-border: none;
-
-background: none;
-
-font-size: 1rem;
-
-font-weight: 400;
-
-line-height: 1.5;
+	border: none;
+	background: none;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
 }
 
-/* navbar */
+.deconnected {
+	width: 20%;
+	margin-left: 550px;
+}
 
+/* Page edition quiz */
+.reponse_tr th:first-child {
+	width: 80%;
+}
+
+
+/* Page edition log */
+.text-log {
+	background-image: linear-gradient(to bottom, #9fe6bb, #9be1b7, #98dcb2, #94d7ae, #91d2aa);
+	box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+}
+.link-creat-account{
+	font-size: 28px;
+	color: grey;
+	transition: 0.8s;
+}
+
+.link-creat-account:hover {
+	color: black;
+}
+
+.ctn-log {
+	margin-bottom: 2rem;
+}
+
+.title-log {
+	margin-top: 5%;
+	padding: 1rem 0;
+	color: #fff;
+	font-size: 3rem;
+	font-weight: bold;
+}
+
+.logo-login {
+	height: 90px;
+}
+
+.btn-log {
+	padding: 15px 120px;
+}
+
+.sub-title {
+	font-size: 2rem;
+}
+
+.connexion {
+	margin-top: 2.5rem;
+}
+
+.form-connect {
+	margin-bottom: 3rem;
+}
+
+/* ----------------------------------------------------------------------------------------------------------- 
+----------------------------------------------- navbar -------------------------------------------------------
+------------------------------------------------------------------------------------------------------------*/
 .navbar-connexion {
 	width: 100%;
+	padding-top: 0;
+	padding-bottom: 0;
+	margin-bottom: 0;
 }
 
 .navbar {
-  background-color: #4381C1;
+	background-color: #9FE6BB;
+	position: sticky;
 }
 
 .navbar-light .navbar-nav .nav-link, .navbar-light .navbar-brand {
@@ -120,50 +223,348 @@ line-height: 1.5;
 }
 
 .logo {
-	height: 70px;
+	height: 50px;
+}
+
+.small-logo {
+	height: 40px;
+}
+
+.footer-logo{
+	float: left;
+	height: 100px;
+	margin-right: 20px;
 }
 
 .title-nav {
-	font-size: 36px;
+	font-size: 1.8rem;
+}
+
+.title-small{
+	font-size: 1.5rem;
+}
+/*Boutton deconnecté*/
+.deconnect {
+	margin: 0;
+	padding: 0;
 }
 
 /* nav hover */
+.nav-item {
+	position: relative;
+}
 
-.nav-item{
-    position: relative;
+.nav-link, .nav-link::before {
+	-webkit-transition: all .5s ease-in;
+	-o-transition: all .5s ease-in;
+	transition: all .5s ease-in;
 }
-.nav-link, .nav-link::before{
-    -webkit-transition: all .5s ease-in;
-   -o-transition: all .5s ease-in;
-   transition: all .5s ease-in;
+
+.nav-link::before {
+	content: "";
+	background: #fff;
+	height: 2px;
+	width: 50%;
+	position: absolute;
+	left: 50%;
+	right: 0;
+	bottom: 10px;
+	opacity: 0;
+	visibility: hidden;
+	transform: translate(-50%, 0);
 }
-.nav-link::before{
-     content: "";
-   background: #fff;
-   height: 2px;
-   width: 0;
-   position: absolute;
-   left: 0;
-   right: 0;
-   bottom: 0;
-   opacity: 0;
-   visibility: hidden;
+
+.navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:active,
+	.navbar-light .navbar-nav .nav-link:visited {
+	color: #fff !important;
 }
-.navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:active, .navbar-light .navbar-nav .nav-link:visited{
-    color: #fff !important;
+
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active,
+	.navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link
+	{
+	color: #fff !important;
 }
-.nav-link:hover::before{
-   opacity: 1;
-   visibility: visible;
-   width: 100%;
+
+.nav-link:hover::before {
+	opacity: 1;
+	visibility: visible;
+	width: 50%;
+	margin: 0 auto;
 }
 
 .navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
-    color: #fff;
+	color: #fff;
 }
 
+.drop-menu {
+	border: none;
+	background-color: #9fe6bb;
+}
+
+.drop-menu .dropdown-item {
+	display: flex;
+	justify-content: center;
+	color: white;
+	transition: .8s;
+	width: 40%;
+	margin: 0 auto;
+	border-radius: 10px;
+	padding: 0.5rem;
+}
+
+.drop-menu .dropdown-item:hover {
+	background-color: #80808026;
+}
+
+#logout-btn {
+	color: #fff;
+}
+
+/* ----------------------------------------------------------------------------------------------------------- 
+----------------------------------------------- end navbar ---------------------------------------------------
+------------------------------------------------------------------------------------------------------------*/
+.item {
+	position: relative;
+	float: left;
+	margin: 40%;
+}
+
+.item h2 {
+	text-align: center;
+	position: absolute;
+	line-height: 125px;
+	width: 100%;
+}
+
+svg {
+	transform: rotate(-90deg);
+}
+
+.circle_animation {
+	stroke-dasharray: 440;
+	/* this value is the pixel circumference of the circle */
+	stroke-dashoffset: 440;
+	transition: all 1s linear;
+}
+
+.ajoutQuiz {
+	margin-top: 2em;
+	padding-top: 25px;
+	
+}
+
+.titleQuiz {
+	font-size: 2em;
+}
+
+.buttonQuiz {
+	width: 50%;
+	margin-top: 4em;
+}
+
+.date {
+	font-size: 2em;
+}
+
+.retour {
+	width: 50%;
+}
+
+.texteQuestion {
+	margin-top: 1em;
+}
+
+footer {
+	padding: 2rem 5rem;
+	padding-top: 3rem;
+	background-color: #e9eaea;
+	margin-top:	100px;
+	border-top: 4px #9FE6BB solid;
+}
+
+footer ul{
+	margin: 0;
+	padding: 0;
+}
+
+footer ul li{
+	list-style: none;
+}
+
+footer i{
+	color: #78bd97;
+	margin-right: 9px;
+}
+
+.footer-link {
+	color: #444;
+	transition: all .2s ease-in;
+}
+
+.footer-link:hover {
+	color: #fff;
+}
+
+.footer-rs{
+	margin-top: 10px;
+}
+
+.footer-rs a{
+	font-size: 22px;
+	
+}
+
+.footer-rs a:hover i{
+	color: #fff;
+	transition: all .2s ease-in;
+}
+
+.footer-description{
+	text-align: justify;
+}
+
+.form-group #isTrue{
+	transform: scale(1.5);
+	margin-left: 8px;
+}
+
+.form-group #labelIsTrue{
+	font-size: 1.3rem;
+}
+
+footer h5{
+	font-weight: bold;
+	color:#78bd97;
+}
+
+/* Page chagedPassword */
+.changedPwd .button {
+	width: 100%;
+}
+
+/* page not found */
+.oupsie {
+	width: 300px;
+}
+
+.text-end {
+	text-align: end;
+}
+
+.no-border{
+	border: none;
+}
+
+/* ----------------------------------------------------------------------------------------------------------- 
+----------------------------------------------- media queries -----------------------------------------------
+------------------------------------------------------------------------------------------------------------*/
 @media screen and (max-width: 640px) {
 	.lois {
 		margin-top: 17%;
 	}
+	
+	.buttonQuiz {
+		width: 100%;
+	}
 }
+
+@media screen and (min-width: 768px) {
+	.ctn-log {
+		margin: 10rem auto;
+		box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+	}
+	.text-log {
+		box-shadow: none;
+	}
+	.title-log {
+	    margin-top: 20%;
+	}
+	.create-account {
+		margin: 2rem auto;
+	}
+	.create-account-text {
+		padding-top: 9rem;
+	}
+
+	
+	
+	.retour, .buttonQuiz {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 768px){
+	footer{
+		padding: 2rem 1rem;
+	}
+	
+	.row div{
+		margin-bottom: 2rem;
+	}
+	
+	.row div:last-child{
+		margin-bottom: 0;
+	}
+	
+	.footer-description p{
+    	margin-bottom: 0;
+	}
+	
+	.row .col-md-1{
+	display: none;
+	}
+}
+
+@media screen and (min-width: 992px) {
+	/*navbar*/
+	.navbar .nav-link:hover::before {
+		width: 100%;
+	}
+	.navbar-expand-lg .navbar-nav .dropdown-menu {
+		left: -50%;
+		padding: 1rem;
+	}
+	.drop-menu .dropdown-item {
+		width: 100%;
+	}
+	.table .thead-light th {
+		background-color: #9fe6bb;
+	}
+	.btn-details {
+		width: 170px;
+	}
+	.sub-title {
+		font-size: 36px;
+	}
+	.title-log {
+		font-size: 46px;
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	/*Page de login*/
+	.ctn-log {
+    	height: auto;
+	}
+	.text-log {
+		height: auto;
+	}
+	.title-log {
+	    margin-top: 5rem;
+	}
+	.form-connect {
+    	display: flex;
+    	flex-direction: column;
+    	align-items: center;
+    	align-self: center;
+	}
+	/*Page de création de compte*/
+	.create-account {
+	    margin-bottom: 6rem;
+	}
+}
+
+
+
+
+

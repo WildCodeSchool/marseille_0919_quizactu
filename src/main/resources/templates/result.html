@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="/head.html :: head"></head>
+<head>
+<link rel="stylesheet" th:href="@{/css/result.css}">
+</head>
+<body>
+	<nav th:replace="fragments/navbar.html :: navUser"></nav>
+	<div class="container result">
+		<h2 class="quizActu-title">Résultats</h2>
+		<div class="result-trophy">
+			<div class="result-trophy-score">
+				<img alt="" th:src="@{/images/trophy.png}">
+				<p class="result-trophy-score-txt" th:text="${scoreOfQuiz}"></p>
+				
+				<!-- CONDITION DE PHRASE DE SCORE -->
+				<div th:if="${scoreOfQuiz} <= 30" class="score-total">
+					<p class="strong">Peut mieux faire</p>
+				</div>
+				<div th:if="${scoreOfQuiz} > 30 and ${scoreOfQuiz} <= 50" class="score-total">
+					<p class="strong">Encore un petit effort !</p>
+				</div>
+				<div th:if="${scoreOfQuiz} > 50 and ${scoreOfQuiz} <= 80" class="score-total">
+					<p class="strong">Bravo !</p>
+				</div>
+				<div th:if="${scoreOfQuiz} > 80" class="score-total">
+					<p class="strong">Excellent !</p>
+				</div>
+
+
+			</div>
+		</div>
+		<div class="result-score">
+			<p>Votre score total :</p>
+			<p class="result-score-txt" th:text="${totalScore}"></p>
+		</div>
+		<div class="row">
+			<div class="col-lg-4 pb-3" th:each="resp : ${listResponse}">
+				<div
+					th:classappend="${resp.isTrue} ? ( ${resp.notAnswered} ? list-group-item-danger : list-group-item-success) : list-group-item-danger"
+					class="card">
+					<div class="card-body">
+						<div class="true-anwser">
+							<img class="card-img-top" th:if="${resp.question.image != null}"
+								th:src="${resp.question.imageEncoded}" />
+							<h3 class="card-title text-center mt-3"
+								th:utext="'Question : ' + ${resp.question.content}"></h3>
+							<div th:if="${!resp.notAnswered}">
+								<p class="card-text mt-3 mb-3 text-center"
+									th:utext="'<strong>Votre réponse : </strong>' + ${resp.content}"></p>
+							</div>
+							<!-- RESPONSE NULL -->
+							<div th:if="${resp.notAnswered}" class="not-answered">
+								<strong>Vous n'avez pas répondu à cette question</strong>
+								<div th:if="${resp.question.correctResponses.size() > 1}" 
+									class="card-text mt-3 mb-3 text-center">
+									<p class="strong">Les bonnes réponses était : </p>
+									<p th:each="allResp : ${resp.question.correctResponses}"
+										th:utext="${allResp.content}"></p>
+								</div>
+								<p th:if="${resp.question.correctResponses.size() == 1}" 
+									class="card-text mt-3 mb-3 text-center"
+									th:utext="'<strong>La bonne réponse était : </strong>' + ${resp.content}"></p>
+							</div>
+						</div>
+						<!-- RESPONSE FALSE -->
+						<div th:if="${!resp.isTrue}" class="false-anwser">
+							<div th:if="${resp.question.correctResponses.size() > 1}" 
+								class="card-text mt-3 mb-3 text-center">
+								<p class="strong">Les bonnes réponses était : </p>
+								<p th:each="allResp : ${resp.question.correctResponses}"
+									th:utext="${allResp.content}"></p>
+							</div>
+							<p th:if="${resp.question.correctResponses.size() == 1}"
+								class="card-text text-center"
+								th:utext="'<strong>La bonne réponse était : </strong>' + ${resp.question.correctResponses[0].content}"></p>
+							<th:block th:if="${resp.question.article != null}">
+								<h5 th:utext="${resp.question.article.title}"
+									class="text-center false-anwser-article-title"></h5>
+								<p th:utext="${resp.question.article.summary}"
+									class="text-justify"></p>
+								<div class="article-link">
+									<a th:if="${resp.question.article != null}"
+										th:href="${resp.question.article.link}" target="_blank">
+										Lire la suite </a> <a
+										th:onclick="'registerFav(' + ${resp.question.article.id} + ')'"
+										class="onclik-favorite"> <i
+										th:id="'article-' + ${resp.question.article.id}"
+										class="fa icon" aria-hidden="true"
+										th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'">
+									</i>
+									</a>
+								</div>
+								<div class="sharethis-inline-share-buttons"
+									data-title="Article Quiz'Actu :"
+									th:data-url="${resp.question.article.link}"></div>
+							</th:block>
+						</div>
+						<!-- RESPONSE TRUE -->
+						<div th:if="${resp.isTrue}" class="true-awnser">
+							<div class="accordion"></div>
+							<div th:classappend="${resp.notAnswered} ? none : accordion-item">
+								<div th:if="${!resp.notAnswered}"
+									class="toggle button inner-html">Voir plus</div>
+								<div class="content">
+									<div class="inner">
+										<th:block th:if="${resp.question.article != null}">
+											<p th:utext="${resp.question.article.title}"
+												class="article-title"></p>
+											<p th:utext="${resp.question.article.summary}"
+												class="article-summary text-justify"></p>
+											<div class="article-link">
+												<a th:href="${resp.question.article.link}" target="_blank">
+													Lire la suite </a> <a
+													th:onclick="'registerFav(' + ${resp.question.article.id} + ')'">
+													<i th:id="'article-' + ${resp.question.article.id}"
+													class="fa icon" aria-hidden="false"
+													th:classappend="${#lists.contains(articles, resp.question.article)} ? 'fa-star' : 'fa-star-o'">
+												</i>
+												</a>
+											</div>
+											<div class="sharethis-inline-share-buttons"
+												data-title="Article Quiz'Actu :"
+												th:data-url="${resp.question.article.link}"></div>
+										</th:block>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div>
+			<div class="w-100 mx-auto">
+				<a th:href="@{/}" class="button back-home">Retourner à l'accueil</a>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="fragments/navbar.html :: footer"></footer>
+</body>
+<script type="text/javascript"
+	src="https://platform-api.sharethis.com/js/sharethis.js#property=5dd7baf9576b27001242093f&product=inline-share-buttons"
+	async="async"></script>
+<script>
+function registerFav(articleId) {
+	$.ajax('http://localhost:8080/favArticle/' + articleId).then((result) => {
+		let i = $('#article-' + articleId);
+		if (result) {
+			i.addClass('fa-star');
+			i.removeClass('fa-star-o');
+		} else {
+			i.removeClass('fa-star');
+			i.addClass('fa-star-o');
+		}
+	});
+};
+
+$('.toggle').on('click', function() {
+	  $(this)
+	    .siblings('.content')
+	    .toggleClass('active');
+});
+
+$( ".inner-html" ).click(function() {
+	var htmlString = $( this ).html();
+	if(htmlString == "Voir plus"){
+		$(this).html("Voir moins");
+	} else {
+		$(this).html("Voir plus");
+	}
+});
+</script>
+</html>

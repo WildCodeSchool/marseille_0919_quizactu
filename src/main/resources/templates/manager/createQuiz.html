@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="head.html :: head"></head>
+
+<head>
+<title>Création de quiz</title>
+</head>
+<body>
+	<nav th:replace="fragments/navbar.html :: navManager"></nav>
+	<div class="container">
+		<h1 class="ajoutQuiz">Ajouter un quiz</h1>
+		<h3 th:if="${errorMessage}" th:text="${errorMessage}"></h3>
+		<form method="post" th:action="@{/manager/createQuiz}">
+			<input th:if="${quizId}" type="hidden" name="id" th:value="${quizId}">
+			<div class="form-group">
+				<label for="title" class="required titleQuiz">Titre</label>
+				<input type="text" id="title" name="title" th:value="${title}"
+					required="required" maxlength="255" class="form-control" />
+			</div>
+			<div class="form-group">
+				<label for="start" class="required date">Date de publication </label>
+				<input type="date" id="start" name="publicationDate" th:value="${datePublication}" class="date" required>
+			</div>
+			<button type="submit" class="button buttonQuiz">Ajouter le quiz</button>
+		</form>
+		<a href="javascript:history.go(-1)" class="button retour">Retour</a>
+	</div>
+	<!--  <footer th:replace="fragments/navbar.html :: footer"></footer>-->
+</body>
+</html>

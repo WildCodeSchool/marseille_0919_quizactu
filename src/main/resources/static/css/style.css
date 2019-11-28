@@ -37,6 +37,8 @@ body {
 	background-color: #fafafa;
 	text-align: center;
 	color: #444;
+	width: 100%;
+	height: 100%;
 /* 	margin-bottom: 100px; */
 /* 	height : 100vh; */
 /* 	padding-top: 150px; */
@@ -345,10 +347,39 @@ svg {
 	transition: all 1s linear;
 }
 
+.ajoutQuiz {
+	margin-top: 4em;
+}
+
+.titleQuiz {
+	font-size: 2em;
+}
+
+.buttonQuiz {
+	width: 50%;
+	margin-top: 4em;
+}
+
+.date {
+	font-size: 2em;
+}
+
+.retour {
+	width: 50%;
+}
+
+.texteQuestion {
+	margin-top: 1em;
+}
+
 footer {
 	padding: 1rem 5rem;
 	padding-top: 3rem;
 	background-color: #9fe6bb;
+	margin-top: 200px;
+	height: 200px;
+	position: relative;
+
 	margin-top:	70px;
 }
 
@@ -389,6 +420,10 @@ footer i{
 	.lois {
 		margin-top: 17%;
 	}
+	
+	.buttonQuiz {
+		width: 100%;
+	}
 }
 
 @media screen and (min-width: 768px) {
@@ -409,6 +444,10 @@ footer i{
 		padding-top: 9rem;
 	}
 	
+	
+	.retour, .buttonQuiz {
+		width: 100%;
+	}
 }
 
 @media screen and (min-width: 992px) {

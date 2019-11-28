@@ -82,18 +82,16 @@
 	}
 }
 
-@media
-screen
-and
-(min-width:
-1200px)
-{
-.image-border {
-	width: 20%;
-}
-
-.form-signin {
-	width: 70%;
-	margin: 0 auto;
-}
+@media screen and (min-width: 1200px) {
+	.image-border {
+		width: 20%;
+		height: 20%;
+	}
+	.image-border img {
+		height: 100%;
+	}
+	.form-signin {
+		width: 70%;
+		margin: 0 auto;
+	}
 }

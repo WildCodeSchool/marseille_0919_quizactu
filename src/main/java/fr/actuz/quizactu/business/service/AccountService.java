@@ -1,10 +1,12 @@
 package fr.actuz.quizactu.business.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import fr.actuz.quizactu.business.entity.Account;
 import fr.actuz.quizactu.business.entity.Role;
@@ -53,6 +55,21 @@ public class AccountService {
 
 	public List<Account> getScoreOnRankingPage() {
 		return this.accountRepo.findByRoleNameOrderByScoreDesc("USER");
+	}
+	
+
+	public Account updateAvatar(int id, MultipartFile avatar) {
+		Account acc = this.accountRepo.getOne(id);
+		if (!avatar.getOriginalFilename().isEmpty()) {
+			try {
+				acc.setAvatar(avatar.getBytes());
+				this.accountRepo.save(acc);
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
+		}
+		return this.accountRepo.save(acc);
 	}
 
 	public void updatePassword(int id, String password) {

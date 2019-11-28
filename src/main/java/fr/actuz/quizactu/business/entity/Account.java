@@ -2,13 +2,16 @@ package fr.actuz.quizactu.business.entity;
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.Base64.Encoder;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -69,6 +72,13 @@ public class Account implements Serializable, UserDetails {
 	 */
 	private Integer score;
 
+	/**
+	 * 
+	 */
+	@Lob
+	@Column(length = 20000000) // 20Mo
+	private byte[] avatar;
+	
 	/**
 	 * 
 	 */
@@ -143,6 +153,23 @@ public class Account implements Serializable, UserDetails {
 
 	public void setScore(Integer score) {
 		this.score = score;
+	}
+	
+	public byte[] getAvatar() {
+		return this.avatar;
+
+	}
+
+	public String getAvatarEncoded() {
+		if(this.avatar == null) {
+			return null;
+		}
+		Encoder encoder = Base64.getEncoder();
+		return "data:image/png;base64," + encoder.encodeToString(this.avatar);
+	}
+
+	public void setAvatar(byte[] avatar) {
+		this.avatar = avatar;
 	}
 
 	public List<Article> getArticles() {

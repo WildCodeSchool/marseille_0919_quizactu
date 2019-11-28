@@ -8,8 +8,8 @@
 <body>
 	<nav th:replace="fragments/navbar.html :: navCreate"></nav>
 	<div class="container">
-		<div class="card">
-			<div class="img-copyright">
+		<div class="card mt-3">
+			<div class="img-copyright mt-10">
 				<img class="card-img-top" th:if="${question.image != null}"
 					th:src="${question.imageEncoded}" />
 				<p class="copyright"
@@ -39,12 +39,12 @@
 				</div>
 			</div>
 			<input type="hidden" id="questionId" th:value="${question.id}">
+			<input type="hidden" id="timerQuestion" th:value="${question.timerQuestion}">
 			<div class="card-footer text-center">
 				<p class="mb-0"
 					th:utext="${#temporals.format(quiz.getPublicationDate(), 'EEEE dd MMMM yyyy')}"></p>
 			</div>
 		</div>
 	</div>
-	<footer th:replace="fragments/navbar.html :: footer"></footer>
 </body>
 </html>

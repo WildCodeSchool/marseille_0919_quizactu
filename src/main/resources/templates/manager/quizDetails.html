@@ -67,11 +67,6 @@
 											type="number" class="form-control"
 											th:id="timerQuestion + ${question.id}" name="timerQuestion"
 											th:value="${question.timerQuestion}"> <label
-											th:for="'#' + timerResponse + ${question.id}"
-											class="col-form-label">Timer Réponse :</label> <input
-											type="number" class="form-control"
-											th:id="timerResponse + ${question.id}" name="timerResponse"
-											th:value="${question.timerResponse}"> <label
 											th:for="'#' + image + ${question.id}" class="col-form-label">Image
 											:</label> <input type="file" class="form-control"
 											th:id="image + ${question.id}" name="image"

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import fr.actuz.quizactu.business.entity.Account;
 import fr.actuz.quizactu.business.entity.Question;
@@ -34,7 +35,6 @@ public class IndexController {
 		model.addAttribute("quizOfYesterday", this.quizServ.getYesterdayQuiz());
 		model.addAttribute("quizOfBeforeYesterday", this.quizServ.getDayBeforeYesterdayQuiz());
 
-		
 		Quiz todayQuiz = this.quizServ.getTodayQuiz();
 		if (todayQuiz != null && todayQuiz.getQuestions().size() > 0) {
 			Question question = todayQuiz.getQuestions().get(0);
@@ -50,7 +50,7 @@ public class IndexController {
 				model.addAttribute("firstPictureOfQuizYesterday", question.getImageEncoded());
 			}
 		}
-			
+
 		Quiz beforeYesterdayQuiz = this.quizServ.getDayBeforeYesterdayQuiz();
 		if (beforeYesterdayQuiz != null && beforeYesterdayQuiz.getQuestions().size() > 0) {
 			Question question = beforeYesterdayQuiz.getQuestions().get(0);
@@ -58,7 +58,6 @@ public class IndexController {
 				model.addAttribute("firstPictureOfQuizBeforeYesterday", question.getImageEncoded());
 			}
 		}
-
 
 		return "homePage";
 	}
@@ -76,7 +75,13 @@ public class IndexController {
 		model.addAttribute("account", account);
 		return "favoriteArticles";
 	}
-	
+
+	@GetMapping("/favoriteArticles/delete/{id}")
+	public String deleteFavorite(@PathVariable Integer id, Principal principal) {
+		this.accountServ.deleteFavoriteArticle(principal.getName(), id);
+		return "redirect:/favoriteArticles";
+	}
+
 	@GetMapping("/public/policy")
 	public String policy() {
 		return "public/policy";

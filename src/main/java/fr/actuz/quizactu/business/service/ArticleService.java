@@ -55,10 +55,4 @@ public class ArticleService {
 		this.questionRepo.save(article.getQuestion());
 		this.articleRepo.deleteById(id);
 	}
-//
-//	public List<Article> displayArticleFavorite(Integer articleId, Integer accountId) {
-//		List<Article> art = this.articleRepo.;
-//		return art;
-//
-//	}
 }

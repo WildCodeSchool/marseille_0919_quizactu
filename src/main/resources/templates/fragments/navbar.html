@@ -60,7 +60,7 @@
 							[[${#httpServletRequest.remoteUser}]]</a>
 						<div class="dropdown-menu drop-menu"
 							aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#" th:href="@{/changedPassword}">
+							<a class="dropdown-item" href="#" th:href="@{/myAccount}">
 								<i class="fa fa-user pr-1"></i> Mon compte
 							</a> <a class="dropdown-item" href="#">
 								<form th:action="@{/logout}" class="deconnect" method="post">
@@ -132,7 +132,7 @@
 					</li>
 					<li><a class="footer-link" th:href="@{/public/policy}"
 						target="_blank">CGU</a></li>
-					<li><a class="footer-link" th:href="@{/changedPassword}">Mon
+					<li><a class="footer-link" th:href="@{/myAccount}">Mon
 							Compte</a></li>
 					<li><a class="footer-link" th:href="@{/favoriteArticles}">Mes
 							Articles</a></li>

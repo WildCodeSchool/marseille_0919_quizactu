@@ -10,31 +10,31 @@
 		<h2 class="quizActu-title">Articles favoris</h2>
 		
 		<div class="row">
-			<div class="col-lg-6 pb-3" th:each="article : ${account.articles}">
+			<div class="col-lg-6 pb-3" th:each="i : ${#numbers.sequence(account.articles.size() - 1, 0, -1)}">
 				<div class="card" >
 					<div class="card-body">
 						<div class="img-copyright">
-							<img th:src="${article.question.imageEncoded}"
-								th:if="${article.question.image != null}" class="card-img-top"> 
+							<img th:src="${account.articles[i].question.imageEncoded}"
+								th:if="${account.articles[i].question.image != null}" class="card-img-top"> 
 							<p class="copyright"
-								th:utext="${article.media} + '© Copyright'">
+								th:utext="${account.articles[i].media} + '© Copyright'">
 						</div>
-						<p th:utext="'<strong>Question : </strong>' + ${article.question.content}"></p>
-						<div th:each="response : ${article.question.responses}">
+						<p th:utext="'<strong>Question : </strong>' + ${account.articles[i].question.content}"></p>
+						<div th:each="response : ${account.articles[i].question.responses}">
 							<span th:utext="'<strong>Réponse : </strong>' + ${response.content}"
 								th:if="${response.isTrue}"></span>
 						</div>
 						<div class="article">
-							<h4 class="card-title" th:text="${article.title}"></h4>
-							<p class="card-text" th:text="${article.summary}"></p>
+							<h4 class="card-title" th:text="${account.articles[i].title}"></h4>
+							<p class="card-text" th:text="${account.articles[i].summary}"></p>
 						</div>
 						<div class="article-link">
-							<a class="card-text" th:href="${article.link}" target="_blank">Voir l'article</a>
-							<a th:href="@{/favoriteArticles/delete/} + ${article.id}">Supprimer des favoris</a>
+							<a class="card-text" th:href="${account.articles[i].link}" target="_blank">Voir l'article</a>
+							<a th:href="@{/favoriteArticles/delete/} + ${account.articles[i].id}">Supprimer des favoris</a>
 						</div>
 						<div class="card-footer">
 							<div class="sharethis-inline-share-buttons"
-								data-title="Article Quiz'Actu :" th:data-url="${article.link}"></div>
+								data-title="Article Quiz'Actu :" th:data-url="${account.articles[i].link}"></div>
 						</div>
 					</div>
 				</div>

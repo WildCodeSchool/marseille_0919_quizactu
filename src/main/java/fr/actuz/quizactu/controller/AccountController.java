@@ -29,7 +29,7 @@ public class AccountController {
 	@Autowired
 	private ArticleService artService;
 
-	@GetMapping("/changedPassword")
+	@GetMapping("/myAccount")
 	public String change(Model model, HttpServletRequest request, MultipartFile avatar) {
 		String user = request.getUserPrincipal().getName();
 		Account acc = this.service.read(user);

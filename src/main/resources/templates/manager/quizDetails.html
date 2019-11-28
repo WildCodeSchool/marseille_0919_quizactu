@@ -5,6 +5,7 @@
 <body>
 	<nav th:replace="fragments/navbar.html :: navManager"></nav>
 	<div class="container">
+		<h3 th:if="${questionAnswered}">Question / Réponse déjà répondue par un utilisateur, impossible de la supprimer</h3>
 		<h1>Modification du quiz</h1>
 
 		<p th:utext="${#temporals.format(quizYesterday, 'EEEE dd MMMM yyyy')}"></p>

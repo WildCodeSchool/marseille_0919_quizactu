@@ -25,6 +25,7 @@
 	border: 1px solid grey;
 	padding: 0.3rem;
 	border-radius: 50%;
+	width: -moz-fit-content;
 }
 
 .icone-border .icone {

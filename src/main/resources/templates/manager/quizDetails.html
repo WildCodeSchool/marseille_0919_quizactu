@@ -10,7 +10,8 @@
 		<p th:utext="${#temporals.format(quizYesterday, 'EEEE dd MMMM yyyy')}"></p>
 		<div th:each="question : ${quiz.questions}">
 			<!-- Start question -->
-			<h2 class="shadow-sm p-3 mb-5 bg-white rounded border border-dark">Modifier la question</h2>
+			<h2 class="shadow-sm p-3 mb-5 bg-white rounded border border-dark">Modifier
+				la question</h2>
 			<hr>
 			<div class="row mt-5 shadow-sm p-3 mb-5 bg-white rounded">
 				<div class="col-12">
@@ -76,7 +77,9 @@
 
 										<button type="button" class="btn btn-secondary"
 											data-dismiss="modal">Annuler</button>
-										<button type="submit" class="btn btn-primary">Enregistrer</butto</nav>n>
+										<button type="submit" class="btn btn-primary">
+											Enregistrer
+											</button>
 									</div>
 								</form>
 							</div>
@@ -84,7 +87,8 @@
 					</div>
 				</div>
 			</div>
-			<h2 class="shadow-sm p-3 mb-5 bg-white rounded border border-dark">Modifier la question</h2>
+			<h2 class="shadow-sm p-3 mb-5 bg-white rounded border border-dark">Modifier
+				la question</h2>
 			<!-- End div question -->
 
 
@@ -100,9 +104,11 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr><th><span th:if="${resp.isTrue} == true"
-							class="badge badge-success">Vraie</span> <span
-							th:if="${resp.isTrue} == false" class="badge badge-danger">Fausse</span></th></tr>
+						<tr>
+							<th><span th:if="${resp.isTrue} == true"
+								class="badge badge-success">Vraie</span> <span
+								th:if="${resp.isTrue} == false" class="badge badge-danger">Fausse</span></th>
+						</tr>
 						<tr class="reponse_tr">
 							<th scope="row" th:utext="${resp.content}"></th>
 							<th><button type="button" class="btn btn-primary"
@@ -160,7 +166,8 @@
 					</div>
 				</div>
 			</div>
-			<a class="button btn-details" th:href="@{/manager/createResponse/} + ${question.id}">Ajouter
+			<a class="button btn-details"
+				th:href="@{/manager/createResponse/} + ${question.id}">Ajouter
 				une réponse</a>
 
 			<!-- End div response -->
@@ -215,8 +222,8 @@
 									th:action="@{/manager/setArticle/} + ${question.article.id}">
 									<div class="form-group">
 										<label th:for="articleTitle + ${question.article.id}"
-											class="col-form-label">Titre de l'article :</label> <input type="text"
-											class="form-control"
+											class="col-form-label">Titre de l'article :</label> <input
+											type="text" class="form-control"
 											th:id="articleTitle + ${question.article.id}" name="title"
 											th:value="${question.article.title}"> <label
 											th:for="articleMedia + ${question.article.id}"
@@ -230,7 +237,8 @@
 											th:id="articleLink + ${question.article.id}" name="link"
 											th:value="${question.article.link}"> <label
 											th:for="articleSummary + ${question.article.id}"
-											class="col-form-label">Résumé :</label> <textarea											class="form-control"
+											class="col-form-label">Résumé :</label>
+										<textarea class="form-control"
 											th:id="articleSummary + ${question.article.id}"
 											name="summary" th:value="${question.article.summary}"></textarea>
 									</div>
@@ -246,9 +254,9 @@
 				</div>
 			</th:block>
 		</div>
-		<a class="button btn-details" th:href="@{/manager/createQuestion/} + ${quiz.id}">Ajouter une
-			question</a>
-				<a href="javascript:history.go(-1)" class="btn-sm button">Retour</a>
+		<a class="button btn-details"
+			th:href="@{/manager/createQuestion/} + ${quiz.id}">Ajouter une
+			question</a> <a href="javascript:history.go(-1)" class="btn-sm button">Retour</a>
 	</div>
 	<footer th:replace="fragments/navbar.html :: footer"></footer>
 </body>

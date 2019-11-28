@@ -93,6 +93,9 @@
 				<ul class="nav navbar-nav ml-auto">
 					<li class="nav-item" role="presentation"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+						th:href="@{/}">Page Utilisateur</a>
+					<li class="nav-item" role="presentation"><a
+						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						th:href="@{/manager/createQuiz}">Créer un quiz</a>
 					<li class="nav-item " role="presentation">
 						<form th:action="@{/logout}" class="mt-0" method="post">
@@ -106,6 +109,7 @@
 			</div>
 		</div>
 	</nav>
+	
 	<footer th:fragment="footer">
 		<div class="row">
 			<div class="footer-description col-md-5">
@@ -128,7 +132,7 @@ Quiz'Actu est né de la volonté de deux journalistes de mettre l'actualité à 
 					<li><a class="footer-link" th:href="@{/favoriteArticles}">Mes Articles</a></li>
 				</ul>
 			</div>
-			
+
 			<div class="col-md-4">
 				<h5>Contactez-nous</h5>
 				<ul>

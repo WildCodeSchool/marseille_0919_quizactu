@@ -3,8 +3,8 @@ package fr.actuz.quizactu.business.service;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import fr.actuz.quizactu.business.entity.Account;
 import fr.actuz.quizactu.business.entity.Question;
 import fr.actuz.quizactu.business.entity.Quiz;
-import fr.actuz.quizactu.business.entity.QuizRecord;
 import fr.actuz.quizactu.business.entity.Response;
 import fr.actuz.quizactu.persistence.AccountRepository;
 import fr.actuz.quizactu.persistence.QuestionRepository;
@@ -35,7 +34,7 @@ public class QuizService {
 
 	@Autowired
 	private AccountRepository accountRepo;
-	
+
 	@Autowired
 	private QuizRecordService recordService;
 
@@ -88,11 +87,11 @@ public class QuizService {
 		List<Quiz> quiz = this.quizRepo.findAll();
 		return quiz;
 	}
-	
-	public List<Quiz> getAllManager(){
+
+	public List<Quiz> getAllManager() {
 		List<Quiz> quizList = this.quizRepo.findAll();
 		for (Quiz quiz : quizList) {
-			if(recordService.hasQuizAlreadyBeenPlayed(quiz.getId())) {
+			if (this.recordService.hasQuizAlreadyBeenPlayed(quiz.getId())) {
 				quiz.setNotEditable(true);
 			} else {
 				quiz.setNotEditable(false);
@@ -101,16 +100,21 @@ public class QuizService {
 		Collections.reverse(quizList);
 		return quizList;
 	}
-	
+
 	public Quiz read(int id) {
 		return this.quizRepo.getOne(id);
 	}
 
 	public Quiz update(Integer id, String title, LocalDate publicationDate) {
-		Quiz quiz = this.read(id);
-		quiz.setTitle(title);
-		quiz.setPublicationDate(publicationDate.atStartOfDay().atZone(ZoneId.of("UTC")));
-		return this.quizRepo.save(quiz);
+		Quiz quiz = null;
+		ZonedDateTime zonedDate = publicationDate.atStartOfDay().atZone(ZoneId.of("UTC"));
+		if (!this.quizRepo.existsByPublicationDateAndIdNot(zonedDate, id)) {
+			quiz = this.read(id);
+			quiz.setTitle(title);
+			quiz.setPublicationDate(zonedDate);
+			quiz = this.quizRepo.save(quiz);
+		}
+		return quiz;
 	}
 
 	public void delete(int id) {
@@ -118,11 +122,16 @@ public class QuizService {
 	}
 
 	public Quiz createQuiz(String title, LocalDate publicationDate) {
-		Quiz quiz = new Quiz();
-		quiz.setTitle(title);
-		quiz.setPublicationDate(publicationDate.atStartOfDay().atZone(ZoneId.of("UTC")));
-		quiz.setCreationDate(LocalDate.now());
-		return this.quizRepo.save(quiz);
+		Quiz quiz = null;
+		ZonedDateTime zonedDate = publicationDate.atStartOfDay().atZone(ZoneId.of("UTC"));
+		if (!this.quizRepo.existsByPublicationDate(zonedDate)) {
+			quiz = new Quiz();
+			quiz.setTitle(title);
+			quiz.setPublicationDate(zonedDate);
+			quiz.setCreationDate(LocalDate.now());
+			quiz = this.quizRepo.save(quiz);
+		}
+		return quiz;
 	}
 
 	public Question getQuestionById(Integer id) {

@@ -29,6 +29,8 @@ import fr.actuz.quizactu.business.service.QuizService;
 @Scope("session")
 public class ManageQuizController {
 
+	private static final String ERROR_EDIT_MESSAGE = "Impossible de créer le quiz, la date de publication est déjà utilisée.";
+
 	@Autowired
 	private QuizService service;
 
@@ -44,10 +46,13 @@ public class ManageQuizController {
 	}
 
 	@GetMapping(value = { "/home", "/home/{isPlayed}" })
-	public String listQuizCreate(Model model, @PathVariable(required = false) Boolean isPlayed) {
+	public String listQuizCreate(Model model, @PathVariable(required = false) Boolean isPlayed,
+			@RequestParam(required = false) Boolean editError) {
 		model.addAttribute("listQuiz", this.service.getAllManager());
 		if (isPlayed != null) {
 			model.addAttribute("quizPlayed", isPlayed);
+		} else if (editError != null) {
+			model.addAttribute("editErrorMessage", ManageQuizController.ERROR_EDIT_MESSAGE);
 		}
 		return "manager/home";
 	}
@@ -72,7 +77,7 @@ public class ManageQuizController {
 
 	@PostMapping("/setQuestion/{questionId}")
 	public String submitUpdateQuestion(@PathVariable Integer questionId, String content, Integer timerQuestion,
-			 MultipartFile image, @ModelAttribute("quizId") Integer quizId) {
+			MultipartFile image, @ModelAttribute("quizId") Integer quizId) {
 		this.service.updateQuestion(questionId, content, timerQuestion, image);
 		return "redirect:/manager/quizDetails/" + quizId;
 	}
@@ -94,16 +99,14 @@ public class ManageQuizController {
 	@PostMapping("/createQuiz")
 	public String submitFormQuiz(Integer id, String title, String publicationDate, Model model) {
 		LocalDate pubDate = LocalDate.parse(publicationDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-//		if (id == null) {
 		Quiz quiz = this.service.createQuiz(title, pubDate);
-		model.addAttribute("quizId", quiz.getId());
-		return "redirect:/manager/createQuestion/" + quiz.getId();
-//		} else {
-//			this.service.update(id, title, pubDate);
-//			System.out.println(id);
-//			System.out.println("update");
-//			return "redirect:/manager/home";
-//		}
+		if (quiz != null) {
+			model.addAttribute("quizId", quiz.getId());
+			return "redirect:/manager/createQuestion/" + quiz.getId();
+		} else {
+			model.addAttribute("errorMessage", ManageQuizController.ERROR_EDIT_MESSAGE);
+			return "manager/createQuiz";
+		}
 	}
 
 	@GetMapping("/createQuestion/{quizId}")
@@ -153,8 +156,12 @@ public class ManageQuizController {
 	@PostMapping("/setQuiz/{quizId}")
 	public String submitUpdateQuiz(@PathVariable Integer quizId, String title, String publicationDate) {
 		LocalDate publicationDateParsed = LocalDate.parse(publicationDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		this.service.update(quizId, title, publicationDateParsed);
-		return "redirect:/manager/home";
+		Quiz quiz = this.service.update(quizId, title, publicationDateParsed);
+		if (quiz != null) {
+			return "redirect:/manager/home?";
+		} else {
+			return "redirect:/manager/home?editError=true";
+		}
 	}
 
 	@GetMapping("/deleteQuiz/{quizId}")

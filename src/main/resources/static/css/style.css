@@ -432,6 +432,11 @@ footer i{
 	font-size: 1.3rem;
 }
 
+footer h5{
+	font-weight: bold;
+	color:#78bd97;
+}
+
 /* Page chagedPassword */
 .changedPwd .button {
 	width: 100%;

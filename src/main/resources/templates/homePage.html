@@ -8,7 +8,7 @@
 </head>
 <body>
 	<nav th:replace="fragments/navbar.html :: navUser"></nav>
-	<div class="container homePage">
+	<div class="container mt-4">
 		<div class="msgUser" th:if="${#httpServletRequest.remoteUser != null}">
 			<h2 th:inline="text" class="quizActu-title">Bienvenue
 				[[${#httpServletRequest.remoteUser}]]</h2>
@@ -44,7 +44,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<div class="news" th:if="${quizOfYesterday != null}">
-					<div class="img-figure quiz-of-day">
+					<div class="img-figure">
 						<img th:if="${firstPictureOfQuizYesterday != null}"
 							th:src="${firstPictureOfQuizYesterday}" class="img-responsive">
 						<img th:if="${firstPictureOfQuizYesterday == null}"
@@ -68,7 +68,7 @@
 			<div class="col-lg-6">
 				<!-- start quiz of before yesterday -->
 				<div class="news" th:if="${quizOfBeforeYesterday != null}">
-					<div class="img-figure quiz-of-day">
+					<div class="img-figure">
 						<img th:if="${firstPictureOfQuizBeforeYesterday != null}"
 							th:src="${firstPictureOfQuizBeforeYesterday}" class="img-responsive">
 						<img th:if="${firstPictureOfQuizBeforeYesterday == null}"

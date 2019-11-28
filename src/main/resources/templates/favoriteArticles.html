@@ -6,67 +6,42 @@
 </head>
 <body>
 	<nav th:replace="fragments/navbar.html :: navUser"></nav>
-	<div class="container">
-		<h1 class="quizActu-title">Articles favoris</h1>
+	<div class="container mt-4">
+		<h2 class="quizActu-title">Articles favoris</h2>
 		
 		<div class="row">
-			<div class="col-lg-4 pb-3">
-				<div class="card" th:each="article : ${account.articles}">
+			<div class="col-lg-6 pb-3" th:each="article : ${account.articles}">
+				<div class="card" >
 					<div class="card-body">
-						<img th:src="${article.question.imageEncoded}"
-							th:if="${article.question.image != null}" class="card-img-top"
-							alt="..."> 
-						<small class="text-muted"
-							th:text="${article.media}"></small>
-						<p th:utext="'Question : ' + ${article.question.content}"></p>
+						<div class="img-copyright">
+							<img th:src="${article.question.imageEncoded}"
+								th:if="${article.question.image != null}" class="card-img-top"> 
+							<p class="copyright"
+								th:utext="${article.media} + '© Copyright'">
+						</div>
+						<p th:utext="'<strong>Question : </strong>' + ${article.question.content}"></p>
 						<div th:each="response : ${article.question.responses}">
-							<span th:utext="'Reponse : ' + ${response.content}"
+							<span th:utext="'<strong>Réponse : </strong>' + ${response.content}"
 								th:if="${response.isTrue}"></span>
 						</div>
+						<div class="article">
 							<h4 class="card-title" th:text="${article.title}"></h4>
 							<p class="card-text" th:text="${article.summary}"></p>
-							<a class="card-text" th:href="${article.link}">Lien</a>
+						</div>
+						<div class="article-link">
+							<a class="card-text" th:href="${article.link}" target="_blank">Voir l'article</a>
+							<a th:href="@{/favoriteArticles/delete/} + ${article.id}">Supprimer des favoris</a>
+						</div>
 						<div class="card-footer">
 							<div class="sharethis-inline-share-buttons"
 								data-title="Article Quiz'Actu :" th:data-url="${article.link}"></div>
 						</div>
-							
 					</div>
 				</div>
 			</div>
 		</div>
-		
-<!-- 		<div class="placeCard"> -->
-<!-- 			<div class="card mb-3" -->
-<!-- 				th:each="article : ${account.articles}"> -->
-<!-- 				<div class="row no-gutters "> -->
-<!-- 					<div class="col-sm-6"> -->
-<!-- 						​ <img th:src="${article.question.imageEncoded}" -->
-<!-- 							th:if="${article.question.image != null}" class="card-img" -->
-<!-- 							alt="..."> <small class="text-muted" -->
-<!-- 							th:text="${article.media}"></small> -->
-<!-- 					</div> -->
-<!-- 					<div class="col-sm-6"> -->
-<!-- 					<p th:utext="'Question : ' + ${article.question.content}"></p> -->
-<!-- 						<div th:each="response : ${article.question.responses}"> -->
-<!-- 							<span th:utext="'Reponse : ' + ${response.content}" -->
-<!-- 								th:if="${response.isTrue}"></span> -->
-<!-- 						</div> -->
-<!-- 						<div class="col-md-12"> -->
-<!-- 							<div class="card-body"> -->
-<!-- 								<h4 class="card-title" th:text="${article.title}"></h4> -->
-<!-- 								<p class="card-text" th:text="${article.summary}"></p> -->
-<!-- 								<a class="card-text" th:href="${article.link}">Lien</a> -->
-<!-- 								<div class="sharethis-inline-share-buttons" -->
-<!-- 									data-title="Article Quiz'Actu :" th:data-url="${article.link}"></div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
 	</div>
-<!-- 	<footer th:replace="fragments/navbar.html :: footer"></footer> -->
+	<footer th:replace="fragments/navbar.html :: footer"></footer>
 </body>
 <script type="text/javascript"
 	src="https://platform-api.sharethis.com/js/sharethis.js#property=5dd7baf9576b27001242093f&product=inline-share-buttons"

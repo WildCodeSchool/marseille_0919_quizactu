@@ -8,26 +8,22 @@
 <body>
 	<nav th:replace="fragments/navbar.html :: navManager"></nav>
 	<div class="container">
-		<h1 th:if="${quizId==null}">Ajouter un quiz</h1>
-		<h1 th:if="${quizId}">Modifier le quiz</h1>
+		<h1 class="ajoutQuiz">Ajouter un quiz</h1>
 		<form method="post" th:action="@{/manager/createQuiz}">
 			<input th:if="${quizId}" type="hidden" name="id" th:value="${quizId}">
 			<div class="form-group">
-				<label for="title" class="required">Titre</label>
+				<label for="title" class="required titleQuiz">Titre</label>
 				<input type="text" id="title" name="title" th:value="${title}"
 					required="required" maxlength="255" class="form-control" />
 			</div>
 			<div class="form-group">
-				<label for="start" class="required">Date de publication</label>
-				<input type="date" id="start" name="publicationDate" th:value="${datePublication}">
+				<label for="start" class="required date">Date de publication </label>
+				<input type="date" id="start" name="publicationDate" th:value="${datePublication}" class="date">
 			</div>
-
-			<button type="submit">Ajouter le quiz</button>
-			
-			
+			<button type="submit" class="button buttonQuiz">Ajouter le quiz</button>
 		</form>
-		<a href="javascript:history.go(-1)" class="btn-sm button">Retour</a>
+		<a href="javascript:history.go(-1)" class="button retour">Retour</a>
 	</div>
-	<footer th:replace="fragments/navbar.html :: footer"></footer>
+	<!--  <footer th:replace="fragments/navbar.html :: footer"></footer>-->
 </body>
 </html>

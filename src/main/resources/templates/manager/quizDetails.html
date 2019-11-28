@@ -5,9 +5,8 @@
 <body>
 	<nav th:replace="fragments/navbar.html :: navManager"></nav>
 	<div class="container">
-		<h3 th:if="${questionAnswered}">Question / Réponse déjà répondue par un utilisateur, impossible de la supprimer</h3>
-		<h2>Modification du quiz</h2>
-		<h1 th:utext="${quiz.title}"></h1>
+		<h1>Modification du quiz</h1>
+
 		<p th:utext="${#temporals.format(quizYesterday, 'EEEE dd MMMM yyyy')}"></p>
 		<div th:each="question : ${quiz.questions}">
 			<!-- Start question -->
@@ -77,7 +76,7 @@
 
 										<button type="button" class="btn btn-secondary"
 											data-dismiss="modal">Annuler</button>
-										<button type="submit" class="btn btn-primary">Enregistrer</button>
+										<button type="submit" class="btn btn-primary">Enregistrer</butto</nav>n>
 									</div>
 								</form>
 							</div>
@@ -85,7 +84,7 @@
 					</div>
 				</div>
 			</div>
-			<h3 class="mt-5">Modifier les réponses</h3>
+			<h2 class="shadow-sm p-3 mb-5 bg-white rounded border border-dark">Modifier la question</h2>
 			<!-- End div question -->
 
 

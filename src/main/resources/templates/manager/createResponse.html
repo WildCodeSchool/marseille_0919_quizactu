@@ -8,18 +8,18 @@
 <body>
 	<nav th:replace="fragments/navbar.html :: navManager"></nav>
 	<div class="container">
-		<h1>Création des réponses</h1>
+		<h1 class="ajoutQuiz">Création des réponses</h1>
 		<form method="post" th:object="${response}"
 			th:action="@{/manager/createResponse/} + ${questionId}">
 			<div class="form-group">
-				<label for="content" class="required">Contenu</label>
+				<label for="content" class="required date">Contenu</label>
 				<input id="content" th:field="*{content}">
 			</div>
 			<div class="form-group">
 				<label for="isTrue" class="required">Réponse correcte</label>
 				<input id="isTrue" type="checkbox" th:field="*{isTrue}">
 			</div>
-			<button type="submit">Ajouter une réponse</button>
+			<button type="submit" class="button buttonQuiz">Ajouter une réponse</button>
 			<a th:href="@{/manager/quizDetails/} + ${quizId}">Revenir aux questions</a>
 		</form>
 	</div>

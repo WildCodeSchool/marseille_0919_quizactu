@@ -68,14 +68,14 @@ public class AccountController {
 //	@PreAuthorize("hasRole('READ_PRIVILEGE')")
 	public String newPassword(Integer id, String newPassword) {
 		this.service.updatePassword(id, newPassword);
-		return "redirect:/";
+		return "redirect:/myAccount";
 	}
 
 	@PostMapping("/changedAvatar/")
 	public String newAvatar(Principal principal, @RequestParam MultipartFile avatar) {
 		Account account = this.service.read(principal.getName());
 		this.service.updateAvatar(account.getId(), avatar);
-		return "redirect:/";
+		return "redirect:/myAccount";
 	}
 
 	@GetMapping("/public/forgotPassword")

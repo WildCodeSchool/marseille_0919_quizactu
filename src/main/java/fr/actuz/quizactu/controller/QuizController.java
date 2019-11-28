@@ -113,6 +113,8 @@ public class QuizController {
 			List<QuizRecord> records = this.recordService.getByQuizIdAndAccountId(quiz.getId(), accountId);
 			if (records.isEmpty() && type.equals("today")) {
 				return "quiz";
+			} else if(this.accountService.read(principal.getName()).getRole().getId() == 2 && type.equals("today")) {
+				return "quiz";
 			} else if (type.equals("yesterday")) {
 				return "quiz";
 			} else if (type.equals("dayBeforeYesterday")) {

@@ -113,8 +113,7 @@
 						alt="Logo Quiz Actu">
 				<p>
 					Quiz'Actu est un jeu Smartphone de questions d’actualité. Chaque
-					jour, un challenge de 10 questions sous forme de QCM est proposé. Ces
-					questions concernent l’actualité du jour. À la fin du quiz, un récap'
+					jour, un challenge de 10 questions sous forme de QCM est proposé. À la fin du quiz, un récap'
 					permet d'approfondir les sujets traités grâce à des articles de
 					presse associés à chacune des réponses. Quiz'Actu est né de la
 					volonté de deux journalistes de mettre l'actualité à la portée de
@@ -122,15 +121,30 @@
 				</p>
 			</div>
 			
-			<div class="col-md-2 col-md-offset-1">
-				<h4>Liens</h4>
-				<a class="footer-link" th:href="@{/contact}">À propos | </a> 
-				<a class="footer-link" th:href="@{/public/policy}" target="_blank"> CGU </a>
+			<div class="col-md-1"></div>
+			
+			<div class="col-md-2">
+				<h5>Navigation</h5>
+				<ul>
+					<li><a class="footer-link" th:href="@{/contact}">À propos</a> </li>
+					<li><a class="footer-link" th:href="@{/public/policy}" target="_blank">CGU</a></li>
+					<li><a class="footer-link" th:href="@{/changedPassword}" target="_blank">Mon Compte</a></li>
+					<li><a class="footer-link" th:href="@{/favoriteArticles}" target="_blank">Mes Articles</a></li>
+					<li><a class="footer-link" th:href="@{/ranking}" target="_blank">Classement</a></li>
+				</ul>
 			</div>
 			
 			<div class="col-md-4">
-				<h4>Contact</h4>
-				<p><i class="fa fa-envelope-o"></i> quizactu@gmail.com</p>
+				<h5>Contactez-nous</h5>
+				<ul>
+					<li><i class="fa fa-phone"></i> 01 01 01 01 01</li>
+					<li><i class="fa fa-envelope"></i> quizactu@gmail.com</li>
+				</ul>
+				<div class="footer-rs">
+					<a href="#"><i class="fa fa-facebook"></i></a> 
+					<a href="#"><i class="fa fa-twitter"></i></a> 
+					<a href="#"><i class="fa fa-linkedin"></i></a>
+				</div>
 			</div>
 		</div>
 	</footer>

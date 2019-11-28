@@ -39,7 +39,16 @@ body {
 	color: #444;
 	width: 100%;
 	height: 100%;
+/* 	margin-bottom: 100px; */
+/* 	height : 100vh; */
+/* 	padding-top: 150px; */
 }
+
+
+/* body > div.container { */
+/* 	padding-bottom: 150px; */
+/* } */
+
 
 h1 {
 	text-align: center;
@@ -104,8 +113,8 @@ form {
 	margin-top: 2rem;
 }
 
-/* CREATE LOG */
-.ctn-creat {
+/* CREATE LOG */ 
+.ctn-creat{
 	background-image: linear-gradient(to bottom, #9fe6bb, #9be1b7, #98dcb2, #94d7ae, #91d2aa);
 	width: 100%;
 	height: auto;
@@ -145,13 +154,13 @@ form {
 	width: 80%;
 }
 
+
 /* Page edition log */
 .text-log {
 	background-image: linear-gradient(to bottom, #9fe6bb, #9be1b7, #98dcb2, #94d7ae, #91d2aa);
 	box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
 }
-
-.link-creat-account {
+.link-creat-account{
 	font-size: 28px;
 	color: grey;
 	transition: 0.8s;
@@ -338,12 +347,10 @@ svg {
 	transition: all 1s linear;
 }
 
-/* <<<<<<< HEAD */
-/* footer {
-	padding: 1rem 0;
-=======
 .ajoutQuiz {
-	margin-top: 4em;
+	margin-top: 2em;
+	padding-top: 25px;
+	
 }
 
 .titleQuiz {
@@ -368,27 +375,66 @@ svg {
 }
 
 footer {
-	padding: 1rem 5rem;
+	padding: 2rem 5rem;
 	padding-top: 3rem;
->>>>>>> 10abd30f7a3cf99eac5fec925b3585f6e89f1ca2
-	background-color: #9fe6bb;
-	margin-top: 200px;
-	height: 200px;
-	position: relative;
+	background-color: #d4f0e0;
+	margin-top:	100px;
+	border-top: 4px #9FE6BB solid;
+}
 
-	margin-top:	70px;
+footer ul{
+	margin: 0;
+	padding: 0;
+}
+
+footer ul li{
+	list-style: none;
 }
 
 footer i{
-	color: #fff;
+	color: #78bd97;
+	margin-right: 9px;
 }
 
 .footer-link {
+	color: #444;
+	transition: all .2s ease-in;
+}
+
+.footer-link:hover {
 	color: #fff;
-} */
+}
+
+.footer-rs{
+	margin-top: 10px;
+}
+
+.footer-rs a{
+	font-size: 22px;
+	
+}
+
+.footer-rs a:hover i{
+	color: #fff;
+	transition: all .2s ease-in;
+}
 
 .footer-description{
 	text-align: justify;
+}
+
+.form-group #isTrue{
+	transform: scale(1.5);
+	margin-left: 8px;
+}
+
+.form-group #labelIsTrue{
+	font-size: 1.3rem;
+}
+
+footer h5{
+	font-weight: bold;
+	color:#78bd97;
 }
 
 /* Page chagedPassword */
@@ -439,10 +485,33 @@ footer i{
 	.create-account-text {
 		padding-top: 9rem;
 	}
+
 	
 	
 	.retour, .buttonQuiz {
 		width: 100%;
+	}
+}
+
+@media screen and (max-width: 768px){
+	footer{
+		padding: 2rem 1rem;
+	}
+	
+	.row div{
+		margin-bottom: 2rem;
+	}
+	
+	.row div:last-child{
+		margin-bottom: 0;
+	}
+	
+	.footer-description p{
+    	margin-bottom: 0;
+	}
+	
+	.row .col-md-1{
+	display: none;
 	}
 }
 

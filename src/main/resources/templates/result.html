@@ -142,11 +142,10 @@
 	<footer th:replace="fragments/navbar.html :: footer"></footer>
 </body>
 <script type="text/javascript"
-	src="https://platform-api.sharethis.com/js/sharethis.js#property=5dd7baf9576b27001242093f&product=inline-share-buttons"
-	async="async"></script>
+	src="https://platform-api.sharethis.com/js/sharethis.js#property=5dd7baf9576b27001242093f&product=inline-share-buttons"></script>
 <script>
 function registerFav(articleId) {
-	$.ajax('http://localhost:8080/favArticle/' + articleId).then((result) => {
+	$.ajax('/favArticle/' + articleId).then((result) => {
 		let i = $('#article-' + articleId);
 		if (result) {
 			i.addClass('fa-star');

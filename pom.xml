@@ -12,12 +12,13 @@
 	<groupId>fr.actuz</groupId>
 	<artifactId>quizactu</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>${project.packaging}</packaging>
 	<name>quizactu</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
 		<java.version>11</java.version>
+		<project.packaging>war</project.packaging>
 	</properties>
 
 	<dependencies>
@@ -87,19 +88,10 @@
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
-			<properties>
-				<project.packaging>war</project.packaging>
-			</properties>
 		</profile>
 		<profile>
-			<id>heroku</id>
-			<activation>
-				<property>
-					<name>env.DYNO</name>
-				</property>
-			</activation>
+			<id>ovh</id>
 			<properties>
-				<java.version>1.8</java.version>
 				<project.packaging>jar</project.packaging>
 			</properties>
 		</profile>
@@ -109,6 +101,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<executable>true</executable>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
